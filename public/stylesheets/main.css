@@ -1,0 +1,54 @@
+.brand_header {
+  padding: 1em;
+  margin-bottom: 1em;
+  color: white;
+
+  background: #c9de96; /* Old browsers */
+  background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 44%, #398235 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9de96), color-stop(44%,#8ab66b), color-stop(100%,#398235)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%); /* W3C */
+}
+.brand_header .header_container {
+  position: relative;
+}
+.brand_header a {
+  color: white;
+  font-weight: bold;
+}
+.brand_header h1 {
+  font-family: serif;
+  font-size: 28px;
+  font-weight: lighter;
+}
+.brand_header h1 a {
+  text-decoration: none;
+}
+.brand_header h1 a:hover {
+  color: inherit;
+  background-color: inherit;
+}
+.brand_header .user_nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.message {
+  padding: 0.5em;
+  font-weight: bold;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+}
+.message.alert {
+  background-color: #E44;
+  color: #EEE;
+}
+.message.notice {
+  background-color: #EE4;
+  color: #444;
+}
