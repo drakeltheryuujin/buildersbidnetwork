@@ -6,6 +6,10 @@ gem 'rails', '3.0.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'mysql2', '< 0.3'
+gem 'devise'
+gem 'jquery-rails', '>= 1.0.12'
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
