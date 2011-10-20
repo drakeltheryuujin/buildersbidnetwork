@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014194523) do
+ActiveRecord::Schema.define(:version => 20111018195200) do
+
+  create_table "locations", :force => true do |t|
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postCode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "name"
@@ -19,11 +29,26 @@ ActiveRecord::Schema.define(:version => 20111014194523) do
     t.datetime "updated_at"
   end
 
-  create_table "projects", :force => true do |t|
+  create_table "project_types", :force => true do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name",            :null => false
+    t.integer  "user_id",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "bidding_start",   :null => false
+    t.datetime "bidding_end",     :null => false
+    t.datetime "pre_bid_meeting"
+    t.date     "project_start",   :null => false
+    t.date     "project_end",     :null => false
+    t.text     "description",     :null => false
+    t.text     "notes"
+    t.integer  "location_id",     :null => false
+    t.integer  "project_type_id", :null => false
   end
 
   create_table "users", :force => true do |t|

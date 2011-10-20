@@ -37,6 +37,8 @@ GEM
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
+    date_validator (0.6.2)
+      activemodel (>= 3.0.0, < 3.2.0)
     devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -93,6 +95,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate!
+  date_validator
   devise
   jquery-rails (>= 1.0.12)
   mysql2 (< 0.3)

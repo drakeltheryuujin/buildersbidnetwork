@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :integer(4)      not null, primary key
+#  address1   :string(255)
+#  address2   :string(255)
+#  city       :string(255)
+#  state      :string(255)
+#  postCode   :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+class Location < ActiveRecord::Base
+  belongs_to :project
+  
+  validates :address1, :presence => true
+  validates :city, :presence => true
+  validates :state, :presence => true
+  validates :postCode, 
+    :presence => true, 
+    :format => { :with => %r{\d{5}(-\d{4})?}, :message => "should be 12345 or 12345-1234" }
+end

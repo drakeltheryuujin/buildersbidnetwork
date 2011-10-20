@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /projects
   # GET /projects.xml
   def index
@@ -25,6 +27,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new.xml
   def new
     @project = Project.new
+    @project.build_location
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,9 +44,11 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+    @project.user_id = current_user.id
+    #@project.user_id = 1
 
     respond_to do |format|
-      if @project.save
+      if @project.save and @project.location.save
         format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else

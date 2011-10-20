@@ -11,15 +11,120 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="grid_6 alpha ">
+    <div class="field">
+      <%= f.label :name, :class => "grid_1 alpha" %>
+      <%= f.text_field :name, :class => "grid_5 alpha omega" %>
+    </div>
+    <div class="field">
+      <%= f.label :project_type, "Type", :class => "grid_1 alpha" %>
+      <%= f.collection_select(:project_type_id, ProjectType.all, :id, :name, {:prompt => true}, {:class => "grid_5 alpha omega"}) %>
+    </div>
+<%= f.fields_for :location do |location_form| %>
+  <div class="field grid_6 alpha omega">
+    <%= location_form.label :address1, "Location", :class => "grid_1 alpha" %>
+    <%= location_form.text_field :address1, :class => "grid_5 alpha omega" %>
   </div>
-  <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
+  <div class="field grid_6 alpha omega">
+    <span class="grid_1 alpha">&nbsp;</span>
+    <%= location_form.text_field :address2, :class => "grid_5 alpha omega" %>
   </div>
-  <div class="actions">
+  <div class="field grid_6 alpha omega">
+    <%= location_form.label :city, :class => "grid_1 alpha" %>
+    <%= location_form.text_field :city, :class => "grid_2 alpha omega" %>
+    
+    <%= location_form.label :state %>
+    <%= location_form.select(:state, [     
+      ['AL', 'AL'], 
+      ['AK', 'AK'],
+      ['AZ', 'AZ'],
+      ['AR', 'AR'], 
+      ['CA', 'CA'], 
+      ['CO', 'CO'], 
+      ['CT', 'CT'], 
+      ['DE', 'DE'], 
+      ['DC', 'DC'], 
+      ['FL', 'FL'],
+      ['GA', 'GA'],
+      ['HI', 'HI'], 
+      ['ID', 'ID'], 
+      ['IL', 'IL'], 
+      ['IN', 'IN'], 
+      ['IA', 'IA'], 
+      ['KS', 'KS'], 
+      ['KY', 'KY'], 
+      ['LA', 'LA'], 
+      ['ME', 'ME'], 
+      ['MD', 'MD'], 
+      ['MA', 'MA'], 
+      ['MI', 'MI'], 
+      ['MN', 'MN'],
+      ['MS', 'MS'], 
+      ['MO', 'MO'], 
+      ['MT', 'MT'], 
+      ['NE', 'NE'], 
+      ['NV', 'NV'], 
+      ['NH', 'NH'], 
+      ['NJ', 'NJ'], 
+      ['NM', 'NM'], 
+      ['NY', 'NY'], 
+      ['NC', 'NC'], 
+      ['ND', 'ND'], 
+      ['OH', 'OH'], 
+      ['OK', 'OK'], 
+      ['OR', 'OR'], 
+      ['PA', 'PA'], 
+      ['RI', 'RI'], 
+      ['SC', 'SC'], 
+      ['SD', 'SD'], 
+      ['TN', 'TN'], 
+      ['TX', 'TX'], 
+      ['UT', 'UT'], 
+      ['VT', 'VT'], 
+      ['VA', 'VA'], 
+      ['WA', 'WA'], 
+      ['WV', 'WV'], 
+      ['WI', 'WI'], 
+      ['WY', 'WY']]) %>
+    
+    <%= location_form.label :postCode, "Zip" %>
+    <%= location_form.text_field :postCode, :size => "5" %>
+  </div>
+<% end %>
+  </div>
+  <div class="grid_6 omega">
+    <div class="field">
+      <%= f.label :bidding_start, "Posted", :class => "grid_1 alpha" %>
+      <%= f.datetime_select :bidding_start %>
+    </div>
+    <div class="field">
+      <%= f.label :bidding_end, "Closed", :class => "grid_1 alpha" %>
+      <%= f.datetime_select :bidding_end %>
+    </div>
+    <div class="field">
+      <%= f.label :pre_bid_meeting, "Meeting", :class => "grid_1 alpha" %>
+      <%= f.datetime_select :pre_bid_meeting %>
+    </div>
+    <div class="field">
+      <%= f.label :project_start, "Start Date", :class => "grid_1 alpha" %>
+      <%= f.date_select :project_start %>
+    </div>
+    <div class="field">
+      <%= f.label :project_end, "End Date", :class => "grid_1 alpha" %>
+      <%= f.date_select :project_end %>
+    </div>
+  </div>
+  <div class="grid_12 alpha omega">
+    <div class="field">
+      <%= f.label :description, "Brief Project Description" %><br/>
+      <%= f.text_area :description, :class => "grid_12", :rows => "5" %>
+    </div>
+    <div class="field">
+      <%= f.label :notes, "Additional Notes and Requirements" %><br/>
+      <%= f.text_area :notes, :class => "grid_12", :rows => "5" %>
+    </div>
+  </div>
+  <div class="actions grid_12">
     <%= f.submit %>
   </div>
 <% end %>

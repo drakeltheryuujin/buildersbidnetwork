@@ -1,4 +1,8 @@
 Ypn::Application.routes.draw do
+  resources :locations
+
+  resources :project_types
+
   resources :projects
 
   resources :profiles

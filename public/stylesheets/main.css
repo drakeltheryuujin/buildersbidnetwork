@@ -68,3 +68,10 @@
   background-color: #EE4;
   color: #444;
 }
+.container_12 .grid_1point5 {
+  width: 90px;
+}
+label {
+  font-size: 0.8em;
+  font-weight: bold;
+}

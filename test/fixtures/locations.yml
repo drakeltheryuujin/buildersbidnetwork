@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  postCode: MyString
+
+two:
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  postCode: MyString
+# == Schema Information
+#
+# Table name: locations
+#
+#  id         :integer(4)      not null, primary key
+#  address1   :string(255)
+#  address2   :string(255)
+#  city       :string(255)
+#  state      :string(255)
+#  postCode   :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
