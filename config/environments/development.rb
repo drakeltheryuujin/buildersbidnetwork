@@ -24,4 +24,15 @@ Ypn::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+#  config.action_mailer.smtp_settings = {
+#    :address              => "mail.htmlfive.org",
+#    :port                 => 25,
+#    :domain               => "htmlfive.org",
+#    :user_name            => "ypn@htmlfive.org",
+#    :password             => "developer8",
+#    :authentication       => "plain",
+#    :enable_starttls_auto => true,
+#    :openssl_verify_mode => 'none'
+#  }
 end

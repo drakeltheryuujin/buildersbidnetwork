@@ -3,17 +3,15 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Edit</th>
+    <th>Destroy</th>
   </tr>
 
 <% @project_types.each do |project_type| %>
   <tr>
-    <td><%= project_type.name %></td>
-    <td><%= link_to 'Show', project_type %></td>
-    <td><%= link_to 'Edit', edit_project_type_path(project_type) %></td>
-    <td><%= link_to 'Destroy', project_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to project_type.name, project_type %></td>
+    <td><%= link_to 'Edit', edit_project_type_path(project_type), :class => 'nav nav-edit' %></td>
+    <td><%= link_to 'Destroy', project_type, {:confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' } %></td>
   </tr>
 <% end %>
 </table>

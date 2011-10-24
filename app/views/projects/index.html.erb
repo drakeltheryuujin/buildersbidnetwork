@@ -4,18 +4,22 @@
   <tr>
     <th>Name</th>
     <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Type</th>
+    <th>Bidding Start</th>
+    <th>Bidding End</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
-    <td><%= project.name %></td>
-    <td><%= project.user %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to project.name, project %></td>
+    <td><%= project.user.email %></td>
+    <td><%= project.project_type.name %></td>
+    <td><%= project.bidding_start.to_formatted_s(:long) %></td>
+    <td><%= project.bidding_end.to_formatted_s(:long) %></td>
+    <td><%= link_to 'Edit', edit_project_path(project), :class => 'nav nav-edit' %></td>
+    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' %></td>
   </tr>
 <% end %>
 </table>
