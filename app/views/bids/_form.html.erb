@@ -1,0 +1,47 @@
+<%= form_for [@project, @bid] do |f| %>
+  <% if @bid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+      <ul>
+      <% @bid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= render 'projects/meta' %>
+  
+  <div class="grid_12 alpha omega">
+    <label class="grid_12 alpha omega">Line Items</label>
+    <ul class="grid_12 line_items">
+      <%= f.fields_for :line_item_bids do |line_item_bid_form| %>
+        <li class="line_item <%= cycle("odd", "even") -%>">
+          <%= line_item_bid_form.hidden_field :line_item_id %>
+          <span class="content"><%= line_item_bid_form.object.line_item.content %></span>
+          <span class="units">
+          <% if ! line_item_bid_form.object.line_item.units.nil? %>
+            <%= line_item_bid_form.object.line_item.units %>
+            <%= line_item_bid_form.text_field :unit_cost, :size => 5, :placeholder => 'Unit Cost' %>
+            <%= line_item_bid_form.text_field :cost, :size => 10, :placeholder => 'Cost' %>
+          <% else %>
+            <%= line_item_bid_form.text_field :cost, :size => 10, :placeholder => 'Cost' %>
+          <% end %>
+		</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="grid_12 alpha ">
+    <div class="field float_right">
+      <%= f.label :total %>
+      <%= f.text_field :total, :size => 10 %>
+    </div>
+  </div>
+  
+  <div class="actions grid_12">
+    <%= f.submit :class => 'float_right' %>
+  </div>
+<% end %>

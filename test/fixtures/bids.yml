@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  total: 9.99
+  user: 
+  project: 
+
+two:
+  total: 9.99
+  user: 
+  project: 
+# == Schema Information
+#
+# Table name: bids
+#
+#  id         :integer(4)      not null, primary key
+#  total      :decimal(8, 2)
+#  user_id    :integer(4)
+#  project_id :integer(4)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

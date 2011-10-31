@@ -1,15 +1,31 @@
-<p id="notice"><%= notice %></p>
+<%= render 'meta' %>
 
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
+<div class="grid_12 alpha omega">
+  <label class="grid_12 alpha omega">Line Items</label>
+  <ul class="grid_12 line_items">
+    <% @project.line_items.each do |line_item| %>
+      <li class="line_item <%= cycle("odd", "even") -%>">
+        <span class="content"><%= line_item.content %></span>
+        <span class="units"><%= line_item.units %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<p>
-  <b>User:</b>
-  <%= @project.user %>
-</p>
-
+<% if ! @project.bids.nil? %>
+<div class="grid_12 alpha omega">
+  <label class="grid_12 alpha omega">Bids</label>
+  <ul class="grid_12 project_bids">
+    <% @project.bids.each do |bid| %>
+      <li class="project_bid <%= cycle("odd", "even") -%>">
+      	<span class="bidder"><%= bid.user.email %></span>
+      	<span class="total"><%= number_to_currency bid.total %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'Enter Bid', new_project_bid_path(@project) %>

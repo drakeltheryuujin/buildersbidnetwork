@@ -1,0 +1,71 @@
+<div class="grid_6 alpha ">
+  <div class="field">
+    <label class="grid_1 alpha">Name:</label>
+    <span class="grid_5 alpha omega"><%= @project.name %></span>
+  </div>
+  
+  <div class="field">
+    <label class="grid_1 alpha">Creator:</label>
+    <span class="grid_5 alpha omega"><%= @project.user.email %></span>
+  </div>
+  
+  <div class="field">
+    <label class="grid_1 alpha">Type:</label>
+    <span class="grid_5 alpha omega"><%= @project.project_type.name %></span>
+  </div>
+  
+  <div class="field grid_6 alpha omega">
+    <label class="grid_1 alpha">Location</label>
+    <span class="grid_5 alpha omega"><%= @project.location.address1 %></span>
+  </div>
+  <% if ! @project.location.address2.empty? %>
+    <div class="field grid_6 alpha omega">
+      <span class="grid_1 alpha">&nbsp;</span>
+      <span class="grid_5 alpha omega"><%= @project.location.address2 %></span>
+    </div>
+  <% end %>
+  <div class="field grid_6 alpha omega">
+    <span class="grid_1 alpha">&nbsp;</span>
+    <span class="grid_5 alpha omega">
+      <%= @project.location.city %>,
+      <%= @project.location.state %>&nbsp;
+      <%= @project.location.postCode %>
+    </span>
+  </div>
+</div>
+<div class="grid_6 omega">
+  <div class="field">
+    <label class="grid_1 alpha">Posted</label>
+    <span><%= @project.bidding_start.to_formatted_s(:long) %></span>
+  </div>
+  <div class="field">
+    <label class="grid_1 alpha">Closed</label>
+    <span><%= @project.bidding_end.to_formatted_s(:long) %></span>
+  </div>
+  <div class="field">
+    <label class="grid_1 alpha">Meeting</label>
+    <span><%= @project.pre_bid_meeting.to_formatted_s(:long) %></span>
+  </div>
+  <div class="field">
+    <label class="grid_1 alpha">Start&nbsp;Date</label>
+    <span><%= @project.project_start.to_formatted_s(:long) %></span>
+  </div>
+  <div class="field">
+    <label class="grid_1 alpha">End&nbsp;Date</label>
+    <span><%= @project.project_end.to_formatted_s(:long) %></span>
+  </div>
+</div>
+<div class="grid_12 alpha omega">
+  <div class="field">
+    <label class="grid_12 alpha omega">Description</label>
+    <p class="grid_12">
+      <%= @project.description %>
+    </p>
+  </div>
+  <div class="field">
+    <label class="grid_12 alpha omega">Notes</label>
+    <p class="grid_12">
+      <%= @project.notes %>
+    </p>
+  </div>
+</div>

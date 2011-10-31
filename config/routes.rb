@@ -1,9 +1,13 @@
 Ypn::Application.routes.draw do
+  resources :line_items
+
   resources :locations
 
   resources :project_types
 
-  resources :projects
+  resources :projects do
+    resources :bids
+  end
 
   resources :profiles
 

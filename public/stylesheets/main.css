@@ -53,6 +53,11 @@
   top: 0;
 }
 
+.field_with_errors {
+  padding: 0;
+  display: inline-block;
+}
+
 .message {
   padding: 0.5em;
   font-weight: bold;
@@ -95,3 +100,26 @@ a.nav {
 }
 .nav-edit { background-image: url("../images/table_edit.png"); width: 16px; }
 .nav-destroy { background-image: url("../images/cross.png"); width: 16px; }
+
+ul.project_bids,
+ul.line_items {
+  list-style: none;
+}
+ul.project_bids li,
+ul.line_items li {
+  margin-left: 0;
+  padding: 0 1em 0 1em;
+  min-height: 2em;
+}
+ul li.odd {
+  background-color: #ddd;
+}
+ul.line_items li span.content { 
+}
+ul.line_items li span.units,
+ul.project_bids li span.total {
+  font-weight: bold;
+  float: right;
+}
+
+.float_right { float: right; }

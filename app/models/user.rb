@@ -27,6 +27,7 @@
 class User < ActiveRecord::Base
   has_one :profile, :dependent => :delete
   has_many :project, :dependent => :nullify
+  has_many :bids
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

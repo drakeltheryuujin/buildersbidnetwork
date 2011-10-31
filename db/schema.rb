@@ -10,7 +10,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111018195200) do
+ActiveRecord::Schema.define(:version => 20111031163659) do
+
+  create_table "bids", :force => true do |t|
+    t.decimal  "total",      :precision => 8, :scale => 2
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_item_bids", :force => true do |t|
+    t.decimal  "unit_cost",    :precision => 8, :scale => 2
+    t.decimal  "cost",         :precision => 8, :scale => 2
+    t.integer  "bid_id"
+    t.integer  "line_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "line_items", :force => true do |t|
+    t.string   "content"
+    t.integer  "units"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "locations", :force => true do |t|
     t.string   "address1"

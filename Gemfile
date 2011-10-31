@@ -11,6 +11,8 @@ gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem 'date_validator'
+gem "nested_form"
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

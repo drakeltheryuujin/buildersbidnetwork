@@ -22,14 +22,17 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   belongs_to :project_type
+  
+  has_many :line_items
+  has_many :bids
 
   validates :name,
     :presence => true
   validates :description,
     :presence => true
   validates :bidding_start,
-    :presence => true, 
-    :date => {:after => Proc.new { Time.now }}
+    :presence => true
+    #:date => {:after => (! :created_at.nil? ? :created_at : Proc.new { Time.now })}
   validates :bidding_end,
     :presence => true, 
     :date => {:after => Proc.new { Time.now }}
@@ -46,4 +49,6 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => :true
 #  accepts_nested_attributes_for :location, :allow_destroy => :true,
 #    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+  accepts_nested_attributes_for :line_items, :allow_destroy => :true
 end
