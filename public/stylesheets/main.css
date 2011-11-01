@@ -101,25 +101,72 @@ a.nav {
 .nav-edit { background-image: url("../images/table_edit.png"); width: 16px; }
 .nav-destroy { background-image: url("../images/cross.png"); width: 16px; }
 
-ul.project_bids,
+table.project_bids {
+  width: 100%;
+}
+
+table.project_bids tr th {
+  border-bottom: solid 1px #999;
+}
+table.project_bids tr th.bidder {
+  width: 10%;
+}
+table.project_bids tr th.bid_date {
+  width: 12%;
+}
+table.project_bids tr th.total {
+  width: 50%;
+  text-align: right;
+  padding-right: 1em;
+}
+
 ul.line_items {
   list-style: none;
 }
-ul.project_bids li,
 ul.line_items li {
   margin-left: 0;
   padding: 0 1em 0 1em;
   min-height: 2em;
 }
+table tr.odd,
 ul li.odd {
   background-color: #ddd;
 }
 ul.line_items li span.content { 
 }
 ul.line_items li span.units,
-ul.project_bids li span.total {
+table.project_bids tr td.total {
   font-weight: bold;
   float: right;
+}
+ul.line_items li span.units,
+ul.line_items li span.cost,
+ul.line_items li span.unit_cost {
+  float: right;
+  padding-right: 0.5em;
+}
+#bid_total,
+ul.line_items li input {
+  text-align: right;
+}
+input[readonly] {
+  background-color: #EBEBE4;
+  font-style: italic;
+}
+
+label span.message {
+  padding: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  float: right;
+  color: #fff;
+}
+label span.message.owner {
+  background-color: #008000;
+}
+label span.message.viewer {
+  background-color: #EE4444;
 }
 
 .float_right { float: right; }

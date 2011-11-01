@@ -22,11 +22,11 @@
           <span class="content"><%= line_item_bid_form.object.line_item.content %></span>
           <span class="units">
           <% if ! line_item_bid_form.object.line_item.units.nil? %>
-            <%= line_item_bid_form.object.line_item.units %>
-            <%= line_item_bid_form.text_field :unit_cost, :size => 5, :placeholder => 'Unit Cost' %>
-            <%= line_item_bid_form.text_field :cost, :size => 10, :placeholder => 'Cost' %>
+            <span class="line_item_units"><%= line_item_bid_form.object.line_item.units %></span>
+            x $<%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost' %>
+            $<%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :readonly => 'true', :class => 'line_item_cost calculated_line_item_cost' %>
           <% else %>
-            <%= line_item_bid_form.text_field :cost, :size => 10, :placeholder => 'Cost' %>
+            $<%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :class => 'line_item_cost' %>
           <% end %>
 		</span>
         </li>
@@ -37,11 +37,43 @@
   <div class="grid_12 alpha ">
     <div class="field float_right">
       <%= f.label :total %>
-      <%= f.text_field :total, :size => 10 %>
+      $<%= f.text_field :total, :value => number_with_precision(f.object.total, :precision => 2), :id => 'bid_total', :size => 10, :readonly => 'true' %>
     </div>
   </div>
   
   <div class="actions grid_12">
     <%= f.submit :class => 'float_right' %>
   </div>
+<% end %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.calculation" %>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+      $("input.line_item_cost").sum({
+	  	bind: "keyup",
+	  	selector: "#bid_total",
+	  	oncalc: function(value, settings) {
+          $(settings.selector).val(value.toFixed(2));
+	  	}
+	  });
+    
+      $("input.line_item_unit_cost").bind("keyup", recalc);
+	  function recalc(event) {
+	  	$('.calculated_line_item_cost').calc(
+		  "units * cost", 
+		  { 
+		    units: $(".line_item_units"),
+			cost: $(".line_item_unit_cost") 
+		  }, 
+          function (s){ 
+		    return s.toFixed(2); 
+	      }, 
+          function ($this){ 
+		    var sum = $("input.line_item_cost").sum(); 
+			$("#bid_total").text( sum.toFixed(2) ); 
+		  } 
+		);
+	  }
+    });
+  </script>
 <% end %>

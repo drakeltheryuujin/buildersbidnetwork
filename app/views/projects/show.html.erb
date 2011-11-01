@@ -14,15 +14,28 @@
 
 <% if ! @project.bids.nil? %>
 <div class="grid_12 alpha omega">
-  <label class="grid_12 alpha omega">Bids</label>
-  <ul class="grid_12 project_bids">
+  <label class="grid_12 alpha omega">
+  	Bids
+    <% if @project.user == current_user %>
+      <span class="message owner">You are the project owner, and would see this list.</span>
+    <% else %>
+      <span class="message viewer">You are NOT the project owner, so would not see this list.</span>
+    <% end%>
+  </label>
+  <table class="grid_12 project_bids">
+    <tr>
+      <th class="bidder">Bidder</th>
+      <th class="bid_date">Date Submitted</th>
+      <th class="total">Total</th>
+  	</tr>
     <% @project.bids.each do |bid| %>
-      <li class="project_bid <%= cycle("odd", "even") -%>">
-      	<span class="bidder"><%= bid.user.email %></span>
-      	<span class="total"><%= number_to_currency bid.total %></span>
-      </li>
+      <tr class="project_bid <%= cycle("odd", "even") -%>">
+      	<td class="bidder"><%= link_to bid.user.email, [@project, bid] %></td>
+      	<td class="bid_date"><%= bid.created_at.to_date.to_formatted_s(:long) %></td>
+      	<td class="total"><%= number_to_currency bid.total %></td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </div>
 <% end %>
 
