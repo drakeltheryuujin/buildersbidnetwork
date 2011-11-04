@@ -1,0 +1,48 @@
+<div class="title">
+  <h2><%= conversation.subject %></h2>
+</div>
+<div class="action">
+  <% unless @box.eql?'trash' %>
+    <%= link_to '[DELETE]', conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]), :class => 'nav nav-destroy', :confirm => 'Really?', :method => :delete, :remote => true %>
+  <% end %>
+</div>
+<div class="participants">
+  <h3>Participants:</h3>
+  <% conversation.recipients.each do |recp| %>
+    <%= link_to recp.email, recp.profile %>
+  <% end %>
+</div>
+<div class="messages">
+  <% @receipts.each do |receipt| %>
+    <% message = receipt.message %>
+    <% read_class = message.is_unread?(@actor) ? 'unread' : '' %>
+    <%= render :partial => "messages/message",:object => message, :locals => {:read_class => read_class} %>
+  <% end %>
+  
+  <% unless @box.eql?'trash' %>
+    <br/>
+    <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
+      <% if @receipt and @receipt.errors.any? %>
+        <div class="error">
+          <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:</h2>
+          <ul>
+            <% @receipt.errors.full_messages.each do |msg| %>
+              <li>
+                <%= msg %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="block">
+        <div class="form_row"><%= t("message.answer") %></div>
+        <div class="form_row">
+          <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
+        </div>
+        <div class="actions center">
+          <%= submit_tag 'Reply', :name => :reply_all, :class => "button" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

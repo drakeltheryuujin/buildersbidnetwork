@@ -85,4 +85,12 @@ class ProjectsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def contact_creator
+    @project = Project.find(params[:id])
+    creator = @project.user
+    body = 'message body'
+    creator.send_message([current_user], body, current_user.email + " wants to talk about your project.")
+    redirect_to(@project, :notice => 'Message sent')  
+  end
 end

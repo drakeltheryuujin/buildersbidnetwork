@@ -1,0 +1,31 @@
+<%= div_for(notification, :class => read_class + ' conversation') do %>
+
+<div class="notification"></div>
+<div class="sender_photo">
+  <%if notification.notified_object.nil? %>
+    ???
+  <%else%>
+    <%= link_to notification.notified_object.sender.email, notification %>
+  <%end%>
+</div>
+<div class="content_left">
+  <div class="date">
+    <%= t('time.ago', :time => time_ago_in_words(notification.created_at)) %>
+  </div>
+</div>
+<div class="content_right">
+  <div class="subject">
+    <%= raw  notification.subject %>
+  </div>
+  <div class="briefing">
+    <%= raw notification.body %>
+  </div>
+</div>
+<div class="action">  
+  <% if notification.is_unread?(@actor) %>
+    <%= link_to('[READ]', notification_path(notification, :page => params[:page], :read => "Read"), :method => :put, :remote => true) %>
+  <% end%>
+  
+  <%= link_to('[DELETE]', notification_path(notification, :page => params[:page]), :confirm => 'notification.destroy_sure', :method => :delete, :remote => true) %>
+</div>
+<% end %>

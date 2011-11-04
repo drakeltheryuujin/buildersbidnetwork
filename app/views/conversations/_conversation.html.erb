@@ -1,0 +1,23 @@
+<%= div_for(conversation, :class => read_class + " grid_12 alpha omega") do %>
+  <div class="grid_5 alpha content_left">
+    <div class="subject">
+      <%= link_to(truncate(conversation.subject, :length => 55), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
+    </div>
+    <div class="sender_name">
+      <%= link_to conversation.last_sender.email, conversation.last_sender.profile %>
+    </div>
+    <div class="date">
+      <%= time_ago_in_words(conversation.updated_at) %> ago
+    </div>
+    <% unless @box.eql?'trash' %>
+      <div class="action">
+        <%= link_to '[DELETE]', conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]), :class => 'nav nav-destroy', :confirm => 'Really?', :method => :delete, :remote => true %>
+      </div>
+    <% end %>
+  </div>
+  <div class="content_right grid_7 omega">
+  	<div class="briefing">
+  		<%= raw(truncate(strip_tags(conversation.last_message.body), :length => 50)) %>
+  	</div>
+  </div>
+<% end %>

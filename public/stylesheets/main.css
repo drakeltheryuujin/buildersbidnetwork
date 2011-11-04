@@ -169,4 +169,26 @@ label span.message.viewer {
   background-color: #EE4444;
 }
 
+.conversation {
+  background-color: #ddd;
+  margin-bottom: 1em;
+}
+.conversation.unread {
+  background-color: #fff;
+}
+.conversation:hover {
+  background-color: #aaa;
+}
+
+.conversation .subject {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.conversation .date {
+  font-size: 0.8em;
+} 
+.conversation .action {
+  /* display: inline; */
+} 
+
 .float_right { float: right; }

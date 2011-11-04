@@ -7,11 +7,24 @@ Ypn::Application.routes.draw do
 
   resources :projects do
     resources :bids
+    member do
+	    get 'contact_creator'
+	  end
   end
 
   resources :profiles
 
   devise_for :users
+
+  resources :messages
+
+  resources :conversations
+  
+  resources :notifications do
+    collection do
+      put 'update_all'
+    end
+  end
 
   get "home/index"
 
