@@ -12,10 +12,15 @@ gem 'devise'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem 'date_validator'
-gem 'nested_form'
+gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
 gem 'mailboxer', '~> 0.5.4'
 #gem 'will_paginate', '~> 3.0'
 gem 'kaminari'
+
+#gem 'activerecord-postgresql-adapter'
+group :production do
+  gem 'pg'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
