@@ -12,11 +12,48 @@
   </ul>
 </div>
 
+<div class="grid_12 alpha omega">
+  <label class="grid_12 alpha omega">Documents</label>
+  <% @project.project_documents.each do |project_document| %>
+    <div class="project_document">
+      <% if project_document.is_image? %>
+        <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
+      <% else %>
+        <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
+      <% end %>
+      <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
+      <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin? %>
+    </div>
+  <% end%>
+  <% if may_admin? %>
+    <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+      <%= project_doc_form.label :asset %>
+      <%= project_doc_form.file_field :asset %>
+      <%= project_doc_form.label :description %>
+      <%= project_doc_form.text_field :description %>
+    
+      <%= project_doc_form.submit %>
+    <% end %>
+  <% end %>
+</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.lightbox-0.5" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.project_document a.lightbox_thumb').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+    });
+  </script>
+<% end%>
+
 <% if ! @project.bids.nil? %>
 <div class="grid_12 alpha omega">
   <label class="grid_12 alpha omega">
   	Bids
-    <% if @project.user == current_user %>
+    <% if may_admin? %>
       <span class="message owner">You are the project owner, and would see this list.</span>
     <% else %>
       <span class="message viewer">You are NOT the project owner, so would not see this list.</span>

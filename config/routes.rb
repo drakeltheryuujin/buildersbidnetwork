@@ -7,6 +7,7 @@ Ypn::Application.routes.draw do
 
   resources :projects do
     resources :bids
+    resources :project_documents
     member do
 	    get 'contact_creator'
 	  end

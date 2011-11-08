@@ -42,8 +42,13 @@ GEM
     activesupport (3.1.1)
       multi_json (~> 1.0)
     arel (2.2.1)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    cocaine (0.2.0)
     date_validator (0.6.2)
       activemodel (< 3.2.0, >= 3.0.0)
     devise (1.4.9)
@@ -72,6 +77,11 @@ GEM
     multi_json (1.0.3)
     mysql2 (0.3.7)
     orm_adapter (0.0.5)
+    paperclip (2.4.5)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.11.0)
     polyglot (0.3.3)
     rack (1.3.5)
@@ -114,12 +124,14 @@ GEM
     tzinfo (0.3.30)
     warden (1.0.6)
       rack (>= 1.0)
+    xml-simple (1.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   annotate!
+  aws-s3
   date_validator
   devise
   jquery-rails (>= 1.0.12)
@@ -127,6 +139,7 @@ DEPENDENCIES
   mailboxer (~> 0.5.4)
   mysql2
   nested_form!
+  paperclip
   pg
   rails (= 3.1.1)
   sqlite3

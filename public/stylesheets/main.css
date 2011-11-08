@@ -154,6 +154,25 @@ input[readonly] {
   font-style: italic;
 }
 
+.project_document {
+  display: inline-block;
+  #width: 100px;
+  padding: 1em;
+}
+.project_document img {
+  min-height: 100px;
+  min-width: 100px;
+}
+.project_document .description {
+  display: inline-block;
+  font-size: 0.8em;
+  float: left;
+  width: 100px;
+}
+form.new_project_document {
+  padding-bottom: 2em;
+}
+
 label span.message {
   padding: 0.5em;
   -webkit-border-radius: 0.5em;
@@ -190,5 +209,6 @@ label span.message.viewer {
 .conversation .action {
   /* display: inline; */
 } 
+
 
 .float_right { float: right; }

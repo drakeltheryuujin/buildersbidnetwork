@@ -45,7 +45,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
-    #@project.user_id = 1
 
     respond_to do |format|
       if @project.save and @project.location.save
@@ -90,7 +89,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     creator = @project.user
     body = 'message body'
-    creator.send_message([current_user], body, current_user.email + " wants to talk about your project.")
+    current_user.send_message([creator], body, current_user.email + " wants to talk about your project.")
     redirect_to(@project, :notice => 'Message sent')  
   end
 end

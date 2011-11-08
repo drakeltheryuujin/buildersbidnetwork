@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
   
   has_many :line_items
   has_many :bids
+  has_many :project_documents
 
   validates :name,
     :presence => true
@@ -47,8 +48,6 @@ class Project < ActiveRecord::Base
   validates_associated :project_type
   
   accepts_nested_attributes_for :location, :allow_destroy => :true
-#  accepts_nested_attributes_for :location, :allow_destroy => :true,
-#    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
   accepts_nested_attributes_for :line_items, :allow_destroy => :true
 end

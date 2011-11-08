@@ -18,9 +18,10 @@ gem 'mailboxer', '~> 0.5.4'
 gem 'kaminari'
 
 #gem 'activerecord-postgresql-adapter'
-group :production do
-  gem 'pg'
-end
+gem 'pg'
+
+gem 'paperclip'
+gem 'aws-s3'
 
 # Use unicorn as the web server
 # gem 'unicorn'

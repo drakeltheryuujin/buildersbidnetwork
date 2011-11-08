@@ -35,4 +35,10 @@ Ypn::Application.configure do
 #    :enable_starttls_auto => true,
 #    :openssl_verify_mode => 'none'
 #  }
+  PAPERCLIP_STORAGE_OPTIONS = {}
+#  PAPERCLIP_STORAGE_OPTIONS = {
+#    :storage => :s3,
+#    :s3_credentials => "#{Rails.root}/config/s3.yml",
+#    :bucket => 'project-document-bucket'
+#  }
 end

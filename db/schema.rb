@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102193422) do
+ActiveRecord::Schema.define(:version => 20111107221101) do
 
   create_table "bids", :force => true do |t|
     t.decimal  "total",      :precision => 8, :scale => 2
@@ -76,6 +76,19 @@ ActiveRecord::Schema.define(:version => 20111102193422) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "project_documents", :force => true do |t|
+    t.string   "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_documents", ["project_id"], :name => "index_project_documents_on_project_id"
 
   create_table "project_types", :force => true do |t|
     t.string   "name"
