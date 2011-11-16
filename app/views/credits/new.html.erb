@@ -1,0 +1,62 @@
+<div class="grid_6 alpha omega">
+	<%= form_for @pc, :url => credits_path, :method => :post do |f| %>
+		<% if @pc.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@pc.errors.count, "error") %> prohibited this purchase from being completed:</h2>
+	
+	      <ul>
+	      <% @pc.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	  <p class="grid_6 alpha omega">
+	    <%= f.text_field :first_name, :placeholder => "First Name", :class => "grid_3 alpha" %>
+	    <%= f.text_field :last_name, :placeholder => "Last Name", :class => "grid_3 alpha omega" %>
+	  </p>
+	  <p class="grid_6 alpha omega">
+	    <%= f.text_field :card_number,  :placeholder => "Card Number" %>
+	    <%= f.text_field :card_verification, :size => 4, :placeholder => "CCV" %>
+	    <%= f.text_field :card_billing_zip, :size => 6, :placeholder => "Zip" %>
+	  </p>
+	  <p class="grid_6 alpha omega">
+	    <%= f.label :card_type, "Type" %>
+	    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+	    <%= f.label :card_expires_on, "Expires" %>
+	    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+	  </p>
+	  <p class="grid_6 alpha omega text_align_right">
+	    <span>
+		    <%= f.label :value, "Credits" %>
+		    <%= f.select :value, [1,2,3,4,5,6,7,8,9,10] %>
+	    </span>
+	    <span>
+		    <%= f.label :amount, "Total" %>
+	      $<%= f.text_field :amount, :size => 10, :readonly => 'true' %>
+	    </span>
+		</p>
+	  <p class="grid_6 alpha omega text_align_right"><%= f.submit "Submit" %></p>
+	<% end %>
+</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.calculation" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      recalc(null);
+      $("#payment_credit_value").bind("change", recalc);
+      function recalc(event) {
+        $("input#payment_credit_amount").calc(
+          "value * cost", { 
+            value: $("#payment_credit_value"),
+            cost: 3.33 
+          }, 
+          function (s){ 
+            return s.toFixed(2); 
+          }, 
+          function ($this){ } 
+        );
+      }
+    });
+  </script>
+<% end %>

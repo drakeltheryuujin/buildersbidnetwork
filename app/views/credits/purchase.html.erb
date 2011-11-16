@@ -1,0 +1,17 @@
+<h1>Credits#purchase</h1>
+<%= form_for :purchase_form, :url => credits_complete_purchase_path, :method => :post do |f| %>
+  <% if @pc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pc.errors.count, "error") %> prohibited this purchase from being completed:</h2>
+
+      <ul>
+      <% @pc.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.text_field :credits %>
+	<%= f.submit %>
+<% end %>

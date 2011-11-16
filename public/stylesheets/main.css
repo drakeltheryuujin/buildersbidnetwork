@@ -210,5 +210,13 @@ label span.message.viewer {
   /* display: inline; */
 } 
 
+#payment_credit_card_number {
+  width: 308px;
+}
+#payment_credit_card_type {
+  width: 196px;
+}
 
+
+.text_align_right { text-align: right; }
 .float_right { float: right; }

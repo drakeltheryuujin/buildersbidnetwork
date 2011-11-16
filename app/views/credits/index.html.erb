@@ -1,0 +1,15 @@
+<h1>Credits</h1>
+<%= link_to 'Buy More Credits', new_credit_path %>
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Value</th>
+  </tr>
+
+  <% @credit_adjustments.each do |ca| %>
+    <tr>
+      <td><%= ca.type %></td>
+      <td><%= ca.value %></td>
+    </tr>
+  <% end %>
+</table>

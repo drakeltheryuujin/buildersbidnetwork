@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107221101) do
+ActiveRecord::Schema.define(:version => 20111116171146) do
 
   create_table "bids", :force => true do |t|
     t.decimal  "total",      :precision => 8, :scale => 2
@@ -26,6 +26,27 @@ ActiveRecord::Schema.define(:version => 20111107221101) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  create_table "credit_adjustments", :force => true do |t|
+    t.integer  "value"
+    t.string   "type",             :null => false
+    t.integer  "user_id",          :null => false
+    t.integer  "order_tx_id"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.date     "card_expires_on"
+    t.integer  "bid_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "card_billing_zip"
+  end
+
+  add_index "credit_adjustments", ["bid_id"], :name => "index_credit_adjustments_on_bid_id"
+  add_index "credit_adjustments", ["project_id"], :name => "index_credit_adjustments_on_project_id"
+  add_index "credit_adjustments", ["user_id"], :name => "index_credit_adjustments_on_user_id"
 
   create_table "line_item_bids", :force => true do |t|
     t.decimal  "unit_cost",    :precision => 8, :scale => 2
@@ -69,6 +90,18 @@ ActiveRecord::Schema.define(:version => 20111107221101) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "order_txes", :force => true do |t|
+    t.integer  "payment_credit_id"
+    t.string   "action"
+    t.integer  "amount"
+    t.boolean  "success"
+    t.string   "authorization"
+    t.string   "message"
+    t.text     "params"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "name"
@@ -146,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20111107221101) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "credits"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

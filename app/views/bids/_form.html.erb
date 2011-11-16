@@ -46,34 +46,33 @@
   </div>
 <% end %>
 <% content_for :javascript do %>
-  <%= javascript_include_tag "jquery.calculation" %>
-  <script type="text/javascript">
-  	$(document).ready(function() {
-      $("input.line_item_cost").sum({
-	  	bind: "keyup",
-	  	selector: "#bid_total",
-	  	oncalc: function(value, settings) {
-          $(settings.selector).val(value.toFixed(2));
-	  	}
+	<%= javascript_include_tag "jquery.calculation" %>
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	    $("input.line_item_cost").sum({
+		    bind: "keyup",
+		    selector: "#bid_total",
+		    oncalc: function(value, settings) {
+		        $(settings.selector).val(value.toFixed(2));
+		    }
+		  });
+	    
+	    $("input.line_item_unit_cost").bind("keyup", recalc);
+	    function recalc(event) {
+	      $('.calculated_line_item_cost').calc(
+		      "units * cost", { 
+		        units: $(".line_item_units"),
+			      cost: $(".line_item_unit_cost") 
+		      }, 
+	        function (s){ 
+		        return s.toFixed(2); 
+	        }, 
+	        function ($this){ 
+		        var sum = $("input.line_item_cost").sum(); 
+			      $("#bid_total").text( sum.toFixed(2) ); 
+		      } 
+		    );
+	    }
 	  });
-    
-      $("input.line_item_unit_cost").bind("keyup", recalc);
-	  function recalc(event) {
-	  	$('.calculated_line_item_cost').calc(
-		  "units * cost", 
-		  { 
-		    units: $(".line_item_units"),
-			cost: $(".line_item_unit_cost") 
-		  }, 
-          function (s){ 
-		    return s.toFixed(2); 
-	      }, 
-          function ($this){ 
-		    var sum = $("input.line_item_cost").sum(); 
-			$("#bid_total").text( sum.toFixed(2) ); 
-		  } 
-		);
-	  }
-    });
-  </script>
+	</script>
 <% end %>

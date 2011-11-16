@@ -23,6 +23,8 @@ gem 'pg'
 gem 'paperclip'
 gem 'aws-s3'
 
+gem 'activemerchant'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

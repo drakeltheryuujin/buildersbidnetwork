@@ -1,0 +1,257 @@
+<html><h1>The H1 tag looks like this</h1>
+<p>The paragraph tag after an H1 tag looks like this</p>
+<h2>The H2 tag looks like this</h2>
+<p>The paragraph tag after an H2 tag looks like this</p>
+<h3>The H3 tag looks like this</h3>
+<p>The paragraph tag after an H3 tag looks like this</p>
+<h4>The H4 tag looks like this</h4>
+<p>The paragraph tag after an H4 tag looks like this</p>
+<h5>The H5 tag looks like this</h5>
+<p>The paragraph tag after an H5 tag looks like this</p>
+<ol>
+<li><strong>This is a strong element in an ordered list</strong></li>
+<li><i>This is an italic element in an ordered list</i></li>
+<li><b>This is a bold element in an ordered list</b></li>
+<li><em>This is an emphasized element in an ordered list</em></li>
+<li>This is a regular element in an ordered list</li>
+</ol>
+<ul>
+<li><strong>This is a strong element in an unordered list</strong></li>
+<li><i>This is an italic element in an unordered list</i></li>
+<li><b>This is a bold element in an unordered list</b></li>
+<li><em>This is an emphasized element in an unordered list</em></li>
+<li>This is a regular element in an unordered list</li>
+</ul>
+<blockquote>The block quote element looks like this</blockquote>
+<pre>The pre element looks like this</pre>
+<code>The code element looks like this</code>
+<br/>
+<span>The span element looks like this</span>
+<br/>
+<a href="#">The anchor element looks like this</a>
+<br/>
+<br/>
+<div style="float:left;margin:20px;width:200px;">Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.  Text inside a div that is 200 pixels wide looks like this.</div>
+<div style="float:left;margin:20px;width:400px;">Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.  Text inside a div that is 400 pixels wide looks like this.</div>
+<div style="float:left;margin:20px;width:600px;">Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.  Text inside a div that is 600 pixels wide looks like this.</div><style>/**
+ * http://www.colorjack.com/?swatch=000985,2A2E5E,85004B,5E2A48,008539,2A5E41
+ * #000985
+ * #2A2E5E
+ * #85004B
+ * #5E2A48
+ * #008539
+ * #2A5E41
+ **/
+.brand_header {
+  padding: 1em;
+  margin-bottom: 1em;
+  color: white;
+
+  background: #2A2E5E; /* Old browsers */
+  background-image: linear-gradient(top, rgb(0,9,133) 87%, rgb(42,46,94) 56%);
+  background-image: -o-linear-gradient(top, rgb(0,9,133) 87%, rgb(42,46,94) 56%);
+  background-image: -moz-linear-gradient(top, rgb(0,9,133) 87%, rgb(42,46,94) 56%);
+  background-image: -webkit-linear-gradient(top, rgb(0,9,133) 87%, rgb(42,46,94) 56%);
+  background-image: -ms-linear-gradient(top, rgb(0,9,133) 87%, rgb(42,46,94) 56%);
+
+  background-image: -webkit-gradient(
+    linear,
+    right top,
+    right bottom,
+    color-stop(0.87, rgb(0,9,133)),
+    color-stop(0.56, rgb(42,46,94))
+  );
+}
+
+.brand_header .header_container {
+  position: relative;
+}
+.brand_header a {
+  color: white;
+  font-weight: bold;
+}
+.brand_header h1 {
+  font-family: serif;
+  font-size: 28px;
+  font-weight: lighter;
+}
+.brand_header h1 a {
+  text-decoration: none;
+}
+.brand_header h1 a:hover {
+  color: inherit;
+  background-color: inherit;
+}
+.brand_header .user_nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.field_with_errors {
+  padding: 0;
+  display: inline-block;
+}
+
+.message {
+  padding: 0.5em;
+  font-weight: bold;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+}
+.message.alert {
+  background-color: #E44;
+  color: #EEE;
+}
+.message.notice {
+  background-color: #EE4;
+  color: #444;
+}
+.container_12 .grid_1point5 {
+  width: 90px;
+}
+label {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+table th { font-weight: bold; }
+table td {
+  padding-right: 1em;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+a.nav {
+  display: block;
+  padding: 16px 0 0 0;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  height: 0px !important;
+  height /**/:16px;
+}
+.nav-edit { background-image: url("../images/table_edit.png"); width: 16px; }
+.nav-destroy { background-image: url("../images/cross.png"); width: 16px; }
+
+table.project_bids {
+  width: 100%;
+}
+
+table.project_bids tr th {
+  border-bottom: solid 1px #999;
+}
+table.project_bids tr th.bidder {
+  width: 10%;
+}
+table.project_bids tr th.bid_date {
+  width: 12%;
+}
+table.project_bids tr th.total {
+  width: 50%;
+  text-align: right;
+  padding-right: 1em;
+}
+
+ul.line_items {
+  list-style: none;
+}
+ul.line_items li {
+  margin-left: 0;
+  padding: 0 1em 0 1em;
+  min-height: 2em;
+}
+table tr.odd,
+ul li.odd {
+  background-color: #ddd;
+}
+ul.line_items li span.content { 
+}
+ul.line_items li span.units,
+table.project_bids tr td.total {
+  font-weight: bold;
+  float: right;
+}
+ul.line_items li span.units,
+ul.line_items li span.cost,
+ul.line_items li span.unit_cost {
+  float: right;
+  padding-right: 0.5em;
+}
+#bid_total,
+ul.line_items li input {
+  text-align: right;
+}
+input[readonly] {
+  background-color: #EBEBE4;
+  font-style: italic;
+}
+
+.project_document {
+  display: inline-block;
+  #width: 100px;
+  padding: 1em;
+}
+.project_document img {
+  min-height: 100px;
+  min-width: 100px;
+}
+.project_document .description {
+  display: inline-block;
+  font-size: 0.8em;
+  float: left;
+  width: 100px;
+}
+form.new_project_document {
+  padding-bottom: 2em;
+}
+
+label span.message {
+  padding: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  float: right;
+  color: #fff;
+}
+label span.message.owner {
+  background-color: #008000;
+}
+label span.message.viewer {
+  background-color: #EE4444;
+}
+
+.conversation {
+  background-color: #ddd;
+  margin-bottom: 1em;
+}
+.conversation.unread {
+  background-color: #fff;
+}
+.conversation:hover {
+  background-color: #aaa;
+}
+
+.conversation .subject {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.conversation .date {
+  font-size: 0.8em;
+} 
+.conversation .action {
+  /* display: inline; */
+} 
+
+#payment_credit_card_number {
+  width: 308px;
+}
+#payment_credit_card_type {
+  width: 196px;
+}
+
+
+.text_align_right { text-align: right; }
+.float_right { float: right; }</style></html>

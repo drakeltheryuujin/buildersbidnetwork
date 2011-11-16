@@ -2,11 +2,11 @@
 #
 # Table name: line_item_bids
 #
-#  id           :integer(4)      not null, primary key
-#  unit_cost     :decimal(8, 2)
+#  id           :integer         not null, primary key
+#  unit_cost    :decimal(8, 2)
 #  cost         :decimal(8, 2)
-#  bid_id       :integer(4)
-#  line_item_id :integer(4)
+#  bid_id       :integer
+#  line_item_id :integer
 #  created_at   :datetime
 #  updated_at   :datetime
 #

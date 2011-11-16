@@ -20,6 +20,7 @@
           <%= current_user.email %> |
 		  <%= link_to "Messages", messages_path %> |
 		  <%= link_to "Notifications", notifications_path %> (<%= current_user.mailbox.notifications.unread.count %>) |
+		  <%= link_to "Credits", credits_path %> (<%= current_user.credits %>) |
           <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>

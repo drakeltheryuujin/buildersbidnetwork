@@ -34,4 +34,9 @@ Ypn::Application.configure do
   config.active_support.deprecation = :stderr
   
   PAPERCLIP_STORAGE_OPTIONS = {}
+  
+  config.after_initialize do
+	  ActiveMerchant::Billing::Base.mode = :test
+	  ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+	end
 end
