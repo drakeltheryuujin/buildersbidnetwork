@@ -1,13 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  unitCost: 9.99
+  unit_cost: 9.99
   cost: 9.99
   bid: 
   line_item: 
 
 two:
-  unitCost: 9.99
+  unit_cost: 9.99
   cost: 9.99
   bid: 
   line_item: 

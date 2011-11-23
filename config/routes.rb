@@ -1,4 +1,5 @@
 Ypn::Application.routes.draw do
+
   resources :line_items
 
   resources :locations
@@ -27,11 +28,10 @@ Ypn::Application.routes.draw do
     end
   end
 
-  #get 'credits/index'
-  #get 'credits/purchase'
-  #match 'credits/complete_purchase' => 'credits#complete_purchase', :via => [:post]
-  
   resources :credits, :only => [:index, :new, :create]
+  
+  resources :search
+  #match 'search/' => 'search#index'
 
   get "home/index"
 

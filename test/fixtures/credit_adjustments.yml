@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  value: 1
-  user: 
+#one:
+#  value: 1
+#  user: 
 
-two:
-  value: 1
-  user: 
+#two:
+#  value: 1
+#  user: 
 # == Schema Information
 #
 # Table name: credit_adjustments

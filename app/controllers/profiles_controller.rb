@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.xml
   def new
     @profile = Profile.new
+    @profile.build_location
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class ProfilesController < ApplicationController
   # POST /profiles.xml
   def create
     @profile = Profile.new(params[:profile])
+    @profile.user_id = current_user.id
 
     respond_to do |format|
       if @profile.save

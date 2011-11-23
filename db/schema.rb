@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116171146) do
+ActiveRecord::Schema.define(:version => 20111121172822) do
 
   create_table "bids", :force => true do |t|
     t.decimal  "total",      :precision => 8, :scale => 2
@@ -70,9 +70,11 @@ ActiveRecord::Schema.define(:version => 20111116171146) do
     t.string   "address2"
     t.string   "city"
     t.string   "state"
-    t.string   "postCode"
+    t.string   "post_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "notifications", :force => true do |t|
@@ -103,11 +105,43 @@ ActiveRecord::Schema.define(:version => 20111116171146) do
     t.datetime "updated_at"
   end
 
+  create_table "phone_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "phones", :force => true do |t|
+    t.string   "number"
+    t.integer  "phone_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
+
+  create_table "profile_phones", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "phone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profile_phones", ["phone_id"], :name => "index_profile_phones_on_phone_id"
+  add_index "profile_phones", ["profile_id"], :name => "index_profile_phones_on_profile_id"
+
   create_table "profiles", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "type"
+    t.integer  "location_id", :null => false
+    t.string   "established"
+    t.text     "description"
+    t.string   "website"
   end
 
   create_table "project_documents", :force => true do |t|
@@ -143,6 +177,8 @@ ActiveRecord::Schema.define(:version => 20111116171146) do
     t.text     "notes"
     t.integer  "location_id",     :null => false
     t.integer  "project_type_id", :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "receipts", :force => true do |t|

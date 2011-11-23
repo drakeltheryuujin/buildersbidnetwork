@@ -10,9 +10,9 @@ end
 #
 # Table name: projects
 #
-#  id              :integer(4)      not null, primary key
+#  id              :integer         not null, primary key
 #  name            :string(255)     not null
-#  user_id         :integer(4)      not null
+#  user_id         :integer         not null
 #  created_at      :datetime
 #  updated_at      :datetime
 #  bidding_start   :datetime        not null
@@ -20,9 +20,11 @@ end
 #  pre_bid_meeting :datetime
 #  project_start   :date            not null
 #  project_end     :date            not null
-#  description     :text            default(""), not null
+#  description     :text            not null
 #  notes           :text
-#  location_id     :integer(4)      not null
-#  project_type_id :integer(4)      not null
+#  location_id     :integer         not null
+#  project_type_id :integer         not null
+#  latitude        :float
+#  longitude       :float
 #
 

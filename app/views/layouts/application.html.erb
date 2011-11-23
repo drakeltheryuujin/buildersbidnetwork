@@ -17,7 +17,7 @@
       </h1>
       <div class="user_nav">
         <% if user_signed_in? %>
-          <%= current_user.email %> |
+          <%= link_to current_user.email, current_user.profile %> |
 		  <%= link_to "Messages", messages_path %> |
 		  <%= link_to "Notifications", notifications_path %> (<%= current_user.mailbox.notifications.unread.count %>) |
 		  <%= link_to "Credits", credits_path %> (<%= current_user.credits %>) |
@@ -25,6 +25,18 @@
         <% else %>
           <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
         <% end %>
+      </div>
+      <div class="search_nav">
+        <%= form_tag("/search", :method => "get") do %>
+				  <%= text_field_tag(:q, params[:q]) %>
+					<%= radio_button_tag(:section, :projects, (params[:section] ? params[:section] == :projects.to_s : true)) %>
+					<%= label_tag(:section_projects, "Projects") %>
+					<%= radio_button_tag(:section, :contractors, (params[:section] ? params[:section] == :contractors.to_s : false)) %>
+					<%= label_tag(:section_contractors, "Contractors") %>
+					<%= radio_button_tag(:section, :developers, (params[:section] ? params[:section] == :developers.to_s : false)) %>
+					<%= label_tag(:section_developers, "Developers") %>
+				  <%= submit_tag("Search") %>
+				<% end %>
       </div>
     </div>
   </div>

@@ -1,29 +1,60 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  address1: MyString
-  address2: MyString
-  city: MyString
-  state: MyString
-  postCode: MyString
+  address1: 36 Cooper Sq
+  address2: Dom & Tom
+  city: New York
+  state: NY
+  post_code: 10003
 
 two:
-  address1: MyString
-  address2: MyString
-  city: MyString
-  state: MyString
-  postCode: MyString
+  address1: 97 Bond St
+  address2: 1R
+  city: Brooklyn
+  state: NY
+  post_code: 11217
+  
+three:
+  address1: 520 Court St
+  address2: Third Floor
+  city: Brooklyn
+  state: NY
+  post_code: 11231
+  
+four:
+  address1: 200 Varick St
+  address2: Legion
+  city: New York
+  state: NY
+  post_code: 10014
+  
+five:
+  address1: 594 Broadway
+  address2: Flavorpill
+  city: New York
+  state: NY
+  post_code: 10012
+  
+five:
+  address1: 444 Broadway
+  address2: Swell
+  city: New York
+  state: NY
+  post_code: 10013
+  
 # == Schema Information
 #
 # Table name: locations
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer         not null, primary key
 #  address1   :string(255)
 #  address2   :string(255)
 #  city       :string(255)
 #  state      :string(255)
-#  postCode   :string(255)
+#  post_code  :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  latitude   :float
+#  longitude  :float
 #
 

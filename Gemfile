@@ -6,24 +6,49 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# core
 gem 'sqlite3'
+# mysql
 gem 'mysql2' #, '< 0.3'
-gem 'devise'
-gem 'jquery-rails', '>= 1.0.12'
-gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-gem 'date_validator'
-gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
-gem 'mailboxer', '~> 0.5.4'
-#gem 'will_paginate', '~> 3.0'
-gem 'kaminari'
-
-#gem 'activerecord-postgresql-adapter'
+# postgress
 gem 'pg'
 
+# users & authentication
+gem 'devise'
+
+# jquery
+gem 'jquery-rails', '>= 1.0.12'
+
+# model documentation
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+
+# validates dates before/after/between.
+gem 'date_validator'
+# validates urls
+gem 'validates_url_format_of'
+
+# support for dynamically adding model children through form
+gem 'nested_form', :git => "git://github.com/ryanb/nested_form.git"
+
+# inbox and notifications
+gem 'mailboxer', '~> 0.5.4'
+
+# pagination
+gem 'kaminari'
+
+# attach images and documents to model
 gem 'paperclip'
 gem 'aws-s3'
 
+# clear credit card transactions
 gem 'activemerchant'
+
+# traslate addresses to lat/long, perform nearby queries
+gem 'geocoder'
+
+# full text indexes and searching for postgres
+gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

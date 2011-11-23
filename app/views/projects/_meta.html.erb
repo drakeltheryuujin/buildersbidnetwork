@@ -29,8 +29,13 @@
     <span class="grid_5 alpha omega">
       <%= @project.location.city %>,
       <%= @project.location.state %>&nbsp;
-      <%= @project.location.postCode %>
+      <%= @project.location.post_code %>
     </span>
+	  <% if @project.geocoded? %>
+	    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x150&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
+	  <% else %>
+      <label><span class="message bad_address">Couldn't find address.</span></label>
+	  <% end %>
   </div>
 </div>
 <div class="grid_6 omega">

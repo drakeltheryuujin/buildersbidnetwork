@@ -1,4 +1,4 @@
-<%= form_for(@profile) do |f| %>
+<%= nested_form_for @profile do |f| %>
   <% if @profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -11,15 +11,124 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="grid_6 alpha ">
+	  <div class="field">
+	    <%= f.label :name, :class => "grid_1 alpha" %>
+	    <%= f.text_field :name, :class => "grid_5 alpha omega" %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :type, "Type", :class => "grid_1 alpha" %>
+	    <%= f.select(:type, [
+	      ['Developer', DeveloperProfile],
+	      ['Contractor', ContractorProfile]
+			], :class => "grid_5 alpha omega") %>
+	  </div>
+	  <div class="field">
+	    <%= f.fields_for :location do |location_form| %>
+        <div class="field grid_6 alpha omega">
+          <%= location_form.label :address1, "Location", :class => "grid_1 alpha" %>
+          <%= location_form.text_field :address1, :class => "grid_5 alpha omega" %>
+        </div>
+        <div class="field grid_6 alpha omega">
+          <span class="grid_1 alpha">&nbsp;</span>
+          <%= location_form.text_field :address2, :class => "grid_5 alpha omega" %>
+        </div>
+        <div class="field grid_6 alpha omega">
+          <%= location_form.label :city, :class => "grid_1 alpha" %>
+          <%= location_form.text_field :city, :class => "grid_2 alpha omega" %>
+          
+          <%= location_form.label :state %>
+          <%= location_form.select(:state, [     
+            ['AL', 'AL'], 
+            ['AK', 'AK'],
+            ['AZ', 'AZ'],
+            ['AR', 'AR'], 
+            ['CA', 'CA'], 
+            ['CO', 'CO'], 
+            ['CT', 'CT'], 
+            ['DE', 'DE'], 
+            ['DC', 'DC'], 
+            ['FL', 'FL'],
+            ['GA', 'GA'],
+            ['HI', 'HI'], 
+            ['ID', 'ID'], 
+            ['IL', 'IL'], 
+            ['IN', 'IN'], 
+            ['IA', 'IA'], 
+            ['KS', 'KS'], 
+            ['KY', 'KY'], 
+            ['LA', 'LA'], 
+            ['ME', 'ME'], 
+            ['MD', 'MD'], 
+            ['MA', 'MA'], 
+            ['MI', 'MI'], 
+            ['MN', 'MN'],
+            ['MS', 'MS'], 
+            ['MO', 'MO'], 
+            ['MT', 'MT'], 
+            ['NE', 'NE'], 
+            ['NV', 'NV'], 
+            ['NH', 'NH'], 
+            ['NJ', 'NJ'], 
+            ['NM', 'NM'], 
+            ['NY', 'NY'], 
+            ['NC', 'NC'], 
+            ['ND', 'ND'], 
+            ['OH', 'OH'], 
+            ['OK', 'OK'], 
+            ['OR', 'OR'], 
+            ['PA', 'PA'], 
+            ['RI', 'RI'], 
+            ['SC', 'SC'], 
+            ['SD', 'SD'], 
+            ['TN', 'TN'], 
+            ['TX', 'TX'], 
+            ['UT', 'UT'], 
+            ['VT', 'VT'], 
+            ['VA', 'VA'], 
+            ['WA', 'WA'], 
+            ['WV', 'WV'], 
+            ['WI', 'WI'], 
+            ['WY', 'WY']]) %>
+          
+          <%= location_form.label :post_code, "Zip" %>
+          <%= location_form.text_field :post_code, :size => "5" %>
+        </div>
+      <% end %>
+	  </div>
   </div>
-  <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
+  <div class="grid_6 omega">
+    <div class="field">
+      <%= f.label :established, "Established", :class => "grid_1 alpha" %>
+      <%= f.text_field :established, :class => "grid_5 alpha omega" %>
+    </div>
+    <div class="field">
+      <%= f.label :website, "Website", :class => "grid_1 alpha" %>
+      <%= f.text_field :website, :class => "grid_5 alpha omega" %>
+    </div>
+    <div class="field">
+      <label class="grid_6 alpha omega">Phone Numbers</label>
+	    <%= f.fields_for :phones do |phone_form| %>
+	      <div class="grid_6 alpha omega">
+	        <%= phone_form.text_field :number, :class => "grid_4 alpha" %>
+	        <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "grid_2 alpha omega"}) %>
+	      </div>
+	    <% end %>
+	    <p><%= f.link_to_add "Add a Phone Number", :phones %></p>
+    </div>
   </div>
-  <div class="actions">
+  <div class="grid_12 alpha omega">
+    <div class="field">
+      <%= f.label :description, "Description" %><br/>
+      <%= f.text_area :description, :class => "grid_12", :rows => "5" %>
+    </div>
+	</div>
+  
+  <div class="grid_12 alpha omega">
+  </div>
+
+
+  <div class="actions grid_12">
     <%= f.submit %>
   </div>
 <% end %>

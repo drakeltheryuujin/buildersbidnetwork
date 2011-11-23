@@ -2,13 +2,41 @@
 #
 # Table name: profiles
 #
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  user_id    :integer(4)
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  name        :string(255)
+#  user_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  latitude    :float
+#  longitude   :float
+#  type        :string(255)
+#  location_id :integer         not null
+#  established :string(255)
+#  description :text
+#  website     :string(255)
 #
 
 class Profile < ActiveRecord::Base
   belongs_to :user
+  belongs_to :location
+  
+  has_many :profile_phones
+  has_many :phones, :through => :profile_phones
+  
+  geocoded_by :location_address
+  after_validation :geocode
+  
+  def location_address
+    location.address
+  end
+  
+  validates_associated :location
+  
+  validates_url_format_of :website,
+                          :allow_nil => true
+  
+  accepts_nested_attributes_for :location, :allow_destroy => :true
+  
+  accepts_nested_attributes_for :phones, :allow_destroy => :true
+  accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
 end

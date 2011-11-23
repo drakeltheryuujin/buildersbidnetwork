@@ -52,6 +52,11 @@
   right: 0;
   top: 0;
 }
+.brand_header .search_nav {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
 
 .field_with_errors {
   padding: 0;
@@ -186,6 +191,9 @@ label span.message.owner {
 }
 label span.message.viewer {
   background-color: #EE4444;
+}
+label span.message.bad_address {
+  background-color: #FF4800;
 }
 
 .conversation {
