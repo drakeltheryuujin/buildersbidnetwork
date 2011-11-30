@@ -1,32 +1,32 @@
-<div class="grid_6 alpha ">
+<div class="grid_8 alpha ">
   <div class="field">
-    <label class="grid_1 alpha">Name:</label>
-    <span class="grid_5 alpha omega"><%= @profile.name %></span>
+    <label class="grid_2 alpha">Name:</label>
+    <span class="grid_6 alpha omega"><%= @profile.name %></span>
   </div>
   
   <div class="field">
-    <label class="grid_1 alpha">Creator:</label>
-    <span class="grid_5 alpha omega"><%= @profile.user.email %></span>
+    <label class="grid_2 alpha">Creator:</label>
+    <span class="grid_6 alpha omega"><%= @profile.user.email %></span>
   </div>
   
   <div class="field">
-    <label class="grid_1 alpha">Type:</label>
-    <span class="grid_5 alpha omega"><%= @profile.class.to_s %></span>
+    <label class="grid_2 alpha">Type:</label>
+    <span class="grid_6 alpha omega"><%= @profile.class.to_s %></span>
   </div>
   
-  <div class="field grid_6 alpha omega">
-    <label class="grid_1 alpha">Location</label>
-    <span class="grid_5 alpha omega"><%= @profile.location.address1 %></span>
+  <div class="field grid_8 alpha omega">
+    <label class="grid_2 alpha">Location</label>
+    <span class="grid_6 alpha omega"><%= @profile.location.address1 %></span>
   </div>
   <% if ! @profile.location.address2.empty? %>
-    <div class="field grid_6 alpha omega">
-      <span class="grid_1 alpha">&nbsp;</span>
-      <span class="grid_5 alpha omega"><%= @profile.location.address2 %></span>
+    <div class="field grid_8 alpha omega">
+      <span class="grid_2 alpha">&nbsp;</span>
+      <span class="grid_6 alpha omega"><%= @profile.location.address2 %></span>
     </div>
   <% end %>
-  <div class="field grid_6 alpha omega">
-    <span class="grid_1 alpha">&nbsp;</span>
-    <span class="grid_5 alpha omega">
+  <div class="field grid_8 alpha omega">
+    <span class="grid_2 alpha">&nbsp;</span>
+    <span class="grid_6 alpha omega">
       <%= @profile.location.city %>,
       <%= @profile.location.state %>&nbsp;
       <%= @profile.location.post_code %>
@@ -39,32 +39,32 @@
 
   </div>
 </div>
-<div class="grid_6 omega">
+<div class="grid_8 omega">
   <div class="field">
-    <label class="grid_1 alpha">Established</label>
+    <label class="grid_2 alpha">Established</label>
     <span><%= @profile.established %></span>
   </div>
   <div class="field">
-    <label class="grid_1 alpha">Website</label>
+    <label class="grid_2 alpha">Website</label>
     <span><%= @profile.website %></span>
   </div>
   <% @profile.phones.each do |phone| %>
 	  <div class="field">
-	    <label class="grid_1 alpha"><%= phone.phone_type.name %></label>
+	    <label class="grid_2 alpha"><%= phone.phone_type.name %></label>
 	    <span><%= phone.number %></span>
 	  </div>
   <% end %>
 </div>
-<div class="grid_12 alpha omega">
+<div class="grid_16 alpha omega">
   <div class="field">
-    <label class="grid_12 alpha omega">Description</label>
-    <p class="grid_12">
+    <label class="grid_16 alpha omega">Description</label>
+    <p class="grid_16">
       <%= @profile.description %>
     </p>
   </div>
 </div>
 
-<div class="grid_12 alpha omega">
+<div class="grid_16 alpha omega">
 	<%= link_to 'Edit', edit_profile_path(@profile) %> |
 	<%= link_to 'Back', profiles_path %>
 </div>

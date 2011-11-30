@@ -1,4 +1,4 @@
-<div class="grid_6 alpha omega">
+<div class="grid_8 alpha omega">
 	<%= form_for @pc, :url => credits_path, :method => :post do |f| %>
 		<% if @pc.errors.any? %>
 	    <div id="error_explanation">
@@ -11,22 +11,22 @@
 	      </ul>
 	    </div>
 	  <% end %>
-	  <p class="grid_6 alpha omega">
-	    <%= f.text_field :first_name, :placeholder => "First Name", :class => "grid_3 alpha" %>
-	    <%= f.text_field :last_name, :placeholder => "Last Name", :class => "grid_3 alpha omega" %>
+	  <p class="grid_8 alpha omega">
+	    <%= f.text_field :first_name, :placeholder => "First Name", :class => "grid_4 alpha" %>
+	    <%= f.text_field :last_name, :placeholder => "Last Name", :class => "grid_4 alpha omega" %>
 	  </p>
-	  <p class="grid_6 alpha omega">
+	  <p class="grid_8 alpha omega">
 	    <%= f.text_field :card_number,  :placeholder => "Card Number" %>
 	    <%= f.text_field :card_verification, :size => 4, :placeholder => "CCV" %>
 	    <%= f.text_field :card_billing_zip, :size => 6, :placeholder => "Zip" %>
 	  </p>
-	  <p class="grid_6 alpha omega">
+	  <p class="grid_8 alpha omega">
 	    <%= f.label :card_type, "Type" %>
 	    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
 	    <%= f.label :card_expires_on, "Expires" %>
 	    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
 	  </p>
-	  <p class="grid_6 alpha omega text_align_right">
+	  <p class="grid_8 alpha omega text_align_right">
 	    <span>
 		    <%= f.label :value, "Credits" %>
 		    <%= f.select :value, [1,2,3,4,5,6,7,8,9,10] %>
@@ -36,7 +36,7 @@
 	      $<%= f.text_field :amount, :size => 10, :readonly => 'true' %>
 	    </span>
 		</p>
-	  <p class="grid_6 alpha omega text_align_right"><%= f.submit "Submit" %></p>
+	  <p class="grid_8 alpha omega text_align_right"><%= f.submit "Submit" %></p>
 	<% end %>
 </div>
 <% content_for :javascript do %>

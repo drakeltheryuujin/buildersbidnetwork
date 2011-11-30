@@ -13,9 +13,9 @@
   
   <%= render 'projects/meta' %>
   
-  <div class="grid_12 alpha omega">
-    <label class="grid_12 alpha omega">Line Items</label>
-    <ul class="grid_12 line_items">
+  <div class="grid_16 alpha omega">
+    <label class="grid_16 alpha omega">Line Items</label>
+    <ul class="grid_16 line_items">
       <%= f.fields_for :line_item_bids do |line_item_bid_form| %>
         <li class="line_item <%= cycle("odd", "even") -%>">
           <%= line_item_bid_form.hidden_field :line_item_id %>
@@ -34,14 +34,14 @@
     </ul>
   </div>
 
-  <div class="grid_12 alpha ">
+  <div class="grid_16 alpha ">
     <div class="field float_right">
       <%= f.label :total %>
       $<%= f.text_field :total, :value => number_with_precision(f.object.total, :precision => 2), :id => 'bid_total', :size => 10, :readonly => 'true' %>
     </div>
   </div>
   
-  <div class="actions grid_12">
+  <div class="actions grid_16">
     <%= f.submit :class => 'float_right' %>
   </div>
 <% end %>

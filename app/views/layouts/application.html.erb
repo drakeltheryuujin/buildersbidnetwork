@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="brand_header ">
-    <div class="container_12 header_container">
+    <div class="container_16 header_container">
       <h1>
         <%= link_to root_path do %>
           Your<em>Project</em>Network
@@ -27,20 +27,20 @@
         <% end %>
       </div>
       <div class="search_nav">
-        <%= form_tag("/search", :method => "get") do %>
-				  <%= text_field_tag(:q, params[:q]) %>
-					<%= radio_button_tag(:section, :projects, (params[:section] ? params[:section] == :projects.to_s : true)) %>
-					<%= label_tag(:section_projects, "Projects") %>
-					<%= radio_button_tag(:section, :contractors, (params[:section] ? params[:section] == :contractors.to_s : false)) %>
-					<%= label_tag(:section_contractors, "Contractors") %>
-					<%= radio_button_tag(:section, :developers, (params[:section] ? params[:section] == :developers.to_s : false)) %>
-					<%= label_tag(:section_developers, "Developers") %>
-				  <%= submit_tag("Search") %>
+        <%= form_for @search || Search.new, :url => search_index_path, :method => :get do |f| %>
+				  <%= f.text_field :q %>
+					<%= f.radio_button :section, :projects %>
+					<%= f.label :projects, "Projects" %>
+					<%= f.radio_button :section, :contractors %>
+					<%= f.label :contractors, "Contractors" %>
+					<%= f.radio_button :section, :developers %>
+					<%= f.label :developers, "Developers" %>
+				  <%= f.submit "Search" %>
 				<% end %>
       </div>
     </div>
   </div>
-  <div id="wrapper" class="container_12">
+  <div id="wrapper" class="container_16">
     <% if notice %><p class="message notice"><%= notice %></p><% end %>
     <% if alert %><p class="message alert"><%= alert %></p><% end %>
 

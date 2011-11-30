@@ -11,31 +11,31 @@
     </div>
   <% end %>
 
-  <div class="grid_6 alpha ">
+  <div class="grid_8 alpha ">
 	  <div class="field">
-	    <%= f.label :name, :class => "grid_1 alpha" %>
-	    <%= f.text_field :name, :class => "grid_5 alpha omega" %>
+	    <%= f.label :name, :class => "grid_2 alpha" %>
+	    <%= f.text_field :name, :class => "grid_6 alpha omega" %>
 	  </div>
 	  <div class="field">
-	    <%= f.label :type, "Type", :class => "grid_1 alpha" %>
+	    <%= f.label :type, "Type", :class => "grid_2 alpha" %>
 	    <%= f.select(:type, [
 	      ['Developer', DeveloperProfile],
 	      ['Contractor', ContractorProfile]
-			], :class => "grid_5 alpha omega") %>
+			], :class => "grid_6 alpha omega") %>
 	  </div>
 	  <div class="field">
 	    <%= f.fields_for :location do |location_form| %>
-        <div class="field grid_6 alpha omega">
-          <%= location_form.label :address1, "Location", :class => "grid_1 alpha" %>
-          <%= location_form.text_field :address1, :class => "grid_5 alpha omega" %>
+        <div class="field grid_8 alpha omega">
+          <%= location_form.label :address1, "Location", :class => "grid_2 alpha" %>
+          <%= location_form.text_field :address1, :class => "grid_6 alpha omega" %>
         </div>
-        <div class="field grid_6 alpha omega">
-          <span class="grid_1 alpha">&nbsp;</span>
-          <%= location_form.text_field :address2, :class => "grid_5 alpha omega" %>
+        <div class="field grid_8 alpha omega">
+          <span class="grid_2 alpha">&nbsp;</span>
+          <%= location_form.text_field :address2, :class => "grid_6 alpha omega" %>
         </div>
-        <div class="field grid_6 alpha omega">
-          <%= location_form.label :city, :class => "grid_1 alpha" %>
-          <%= location_form.text_field :city, :class => "grid_2 alpha omega" %>
+        <div class="field grid_8 alpha omega">
+          <%= location_form.label :city, :class => "grid_2 alpha" %>
+          <%= location_form.text_field :city, :class => "grid_3 alpha omega" %>
           
           <%= location_form.label :state %>
           <%= location_form.select(:state, [     
@@ -97,38 +97,38 @@
       <% end %>
 	  </div>
   </div>
-  <div class="grid_6 omega">
+  <div class="grid_8 omega">
     <div class="field">
-      <%= f.label :established, "Established", :class => "grid_1 alpha" %>
-      <%= f.text_field :established, :class => "grid_5 alpha omega" %>
+      <%= f.label :established, "Established", :class => "grid_2 alpha" %>
+      <%= f.text_field :established, :class => "grid_6 alpha omega" %>
     </div>
     <div class="field">
-      <%= f.label :website, "Website", :class => "grid_1 alpha" %>
-      <%= f.text_field :website, :class => "grid_5 alpha omega" %>
+      <%= f.label :website, "Website", :class => "grid_2 alpha" %>
+      <%= f.text_field :website, :class => "grid_6 alpha omega" %>
     </div>
     <div class="field">
-      <label class="grid_6 alpha omega">Phone Numbers</label>
+      <label class="grid_8 alpha omega">Phone Numbers</label>
 	    <%= f.fields_for :phones do |phone_form| %>
-	      <div class="grid_6 alpha omega">
-	        <%= phone_form.text_field :number, :class => "grid_4 alpha" %>
-	        <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "grid_2 alpha omega"}) %>
+	      <div class="grid_8 alpha omega">
+	        <%= phone_form.text_field :number, :class => "grid_5 alpha" %>
+	        <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "grid_3 alpha omega"}) %>
 	      </div>
 	    <% end %>
 	    <p><%= f.link_to_add "Add a Phone Number", :phones %></p>
     </div>
   </div>
-  <div class="grid_12 alpha omega">
+  <div class="grid_16 alpha omega">
     <div class="field">
       <%= f.label :description, "Description" %><br/>
-      <%= f.text_area :description, :class => "grid_12", :rows => "5" %>
+      <%= f.text_area :description, :class => "grid_16", :rows => "5" %>
     </div>
 	</div>
   
-  <div class="grid_12 alpha omega">
+  <div class="grid_16 alpha omega">
   </div>
 
 
-  <div class="actions grid_12">
+  <div class="actions grid_16">
     <%= f.submit %>
   </div>
 <% end %>

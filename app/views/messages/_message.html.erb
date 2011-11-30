@@ -1,6 +1,6 @@
 <%= div_for(message, :class => read_class) do%>
-<div class="conversation grid_12 alpha omega">
-  <div class="content_left grid_5 alpha">
+<div class="conversation grid_16 alpha omega">
+  <div class="content_left grid_7 alpha">
     <div class="subject">
       <%= truncate(message.subject, :length => 70) %>
     </div>
@@ -11,7 +11,7 @@
       <%= time_ago_in_words(message.updated_at) %>
     </div>
   </div>
-  <div class="body grid_7 omega">
+  <div class="body grid_9 omega">
   	<%= raw(message.body) %>
   </div>
 </div>

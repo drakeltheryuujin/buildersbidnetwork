@@ -1,8 +1,8 @@
 <%= render 'meta' %>
 
-<div class="grid_12 alpha omega">
-  <label class="grid_12 alpha omega">Line Items</label>
-  <ul class="grid_12 line_items">
+<div class="grid_16 alpha omega">
+  <label class="grid_16 alpha omega">Line Items</label>
+  <ul class="grid_16 line_items">
     <% @project.line_items.each do |line_item| %>
       <li class="line_item <%= cycle("odd", "even") -%>">
         <span class="content"><%= line_item.content %></span>
@@ -12,8 +12,8 @@
   </ul>
 </div>
 
-<div class="grid_12 alpha omega">
-  <label class="grid_12 alpha omega">Documents</label>
+<div class="grid_16 alpha omega">
+  <label class="grid_16 alpha omega">Documents</label>
   <% @project.project_documents.each do |project_document| %>
     <div class="project_document">
       <% if project_document.is_image? %>
@@ -50,8 +50,8 @@
 <% end%>
 
 <% if ! @project.bids.nil? %>
-<div class="grid_12 alpha omega">
-  <label class="grid_12 alpha omega">
+<div class="grid_16 alpha omega">
+  <label class="grid_16 alpha omega">
   	Bids
     <% if may_admin? %>
       <span class="message owner">You are the project owner, and would see this list.</span>
@@ -59,7 +59,7 @@
       <span class="message viewer">You are NOT the project owner, so would not see this list.</span>
     <% end%>
   </label>
-  <table class="grid_12 project_bids">
+  <table class="grid_16 project_bids">
     <tr>
       <th class="bidder">Bidder</th>
       <th class="bid_date">Date Submitted</th>
@@ -76,7 +76,7 @@
 </div>
 <% end %>
 
-<div class="grid_12 alpha omega">
+<div class="grid_16 alpha omega">
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %> |
 <%= link_to 'Contact Project Creator', contact_creator_project_path(@project) %> |
