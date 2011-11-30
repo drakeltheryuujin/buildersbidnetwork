@@ -1,0 +1,14 @@
+<% @search.results.each do |developer| %>
+  <div class="search_result developer">
+    <div class="prefix_2 grid_7 alpha omega">
+      <div class="result_name"><%= link_to developer.name, profile_path(developer) %></div>
+      <div class="result_location"><%= developer.location.city + ", " + developer.location.state %></div>
+    </div>
+    <div class="grid_3 omega">
+      <div class="result_numbers">
+        <%= developer.user.project.count %> Projects
+      </div>
+      <%= link_to "Company Overview", profile_path(developer), :class => "link_btn" %>
+    </div>
+  </div>
+<% end %>

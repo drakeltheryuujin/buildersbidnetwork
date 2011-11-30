@@ -225,6 +225,58 @@ label span.message.bad_address {
   width: 196px;
 }
 
+ul.search_tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  border-bottom: 1px solid #999;
+  margin-bottom: 10px;
+}
+ul.search_tabs li {
+  display: inline;
+  border: 1px solid #999;
+  border-bottom-width: 0;
+  margin: 0 0.5em 0 0;
+  background: #999;
+  padding: 1px 30px;
+  color: #eee;
+}
+ul.search_tabs li.selected {
+  background: white;
+  color: #333;
+}
+
+.search_filters {
+  border-left: 2px solid #999;
+  border-right: 2px solid #999;
+  border-bottom: 2px solid #999;
+  padding: 8px;
+  margin-top: -10px;
+}
+.search_filters h6 { 
+  margin: 5px 0 10px 0;
+}
+
+.search_filters div.filter {
+  border-top: 1px solid #999;
+}
+
+.search_filters ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.search_filters ul li {
+  margin-left: 0;
+}
+
+.search_results .search_result {
+  border: 1px solid #333;
+  display: inline-block;
+  padding: 10px 0;
+}
 
 .text_align_right { text-align: right; }
 .float_right { float: right; }

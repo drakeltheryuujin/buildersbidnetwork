@@ -1,0 +1,18 @@
+<% @search.results.each do |project| %>
+  <div class="search_result project">
+    <div class="prefix_2 grid_7 alpha omega">
+      <div class="result_name"><%= link_to project.name, project_path(project) %></div>
+      <div class="result_location"><%= project.location.city + ", " + project.location.state %></div>
+      <div class="result_type"><%= project.project_type.name %></div>
+    </div>
+    <div class="grid_3 omega">
+      <div class="result_numbers">
+        <%= project.bids.count %> Bids
+        &middot;
+        <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
+      </div>
+      <%= link_to "Project Scope", project_path(project), :class => "link_btn" %>
+    </div>
+  </div>
+<% end %>
+

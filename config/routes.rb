@@ -30,7 +30,7 @@ Ypn::Application.routes.draw do
 
   resources :credits, :only => [:index, :new, :create]
   
-  resources :search
+  resources :search, :only => [:index]
   #match 'search/' => 'search#index'
 
   get "home/index"
