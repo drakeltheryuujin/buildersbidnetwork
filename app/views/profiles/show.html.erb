@@ -18,7 +18,7 @@
     <label class="grid_2 alpha">Location</label>
     <span class="grid_6 alpha omega"><%= @profile.location.address1 %></span>
   </div>
-  <% if ! @profile.location.address2.empty? %>
+  <% if ! @profile.location.address2.blank? %>
     <div class="field grid_8 alpha omega">
       <span class="grid_2 alpha">&nbsp;</span>
       <span class="grid_6 alpha omega"><%= @profile.location.address2 %></span>
