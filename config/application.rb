@@ -38,5 +38,7 @@ module Ypn
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :card_number, :card_verification]
+
+    config.assets.enabled = true
   end
 end

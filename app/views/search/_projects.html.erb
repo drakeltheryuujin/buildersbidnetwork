@@ -1,17 +1,20 @@
 <% @search.results.each do |project| %>
-  <div class="search_result project">
-    <div class="prefix_2 grid_7 alpha omega">
+  <div class="search_result project span12 row">
+    <div class="span2 ">
+      <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project) %>
+    </div>
+    <div class="span7 ">
       <div class="result_name"><%= link_to project.name, project_path(project) %></div>
       <div class="result_location"><%= project.location.city + ", " + project.location.state %></div>
-      <div class="result_type"><%= project.project_type.name %></div>
+      <span class="result_type label"><%= project.project_type.name %></span>
     </div>
-    <div class="grid_3 omega">
+    <div class="span3 alpha">
       <div class="result_numbers">
         <%= project.bids.count %> Bids
         &middot;
         <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
       </div>
-      <%= link_to "Project Scope", project_path(project), :class => "link_btn" %>
+      <%= link_to "Project Scope", project_path(project), :class => "btn info" %>
     </div>
   </div>
 <% end %>

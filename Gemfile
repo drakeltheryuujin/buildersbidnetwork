@@ -49,6 +49,10 @@ gem 'geocoder'
 # full text indexes and searching for postgres
 gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 
+# twitter bootstrap 
+#gem 'twitter-bootstrap-rails'
+#gem 'less-rails-bootstrap'
+gem "css-bootstrap-rails"
 
 # Use unicorn as the web server
 # gem 'unicorn'

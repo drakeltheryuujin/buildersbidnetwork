@@ -41,12 +41,16 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.xml
   def create
-    @profile = Profile.new(params[:profile])
+    if DeveloperProfile.to_s == params[:profile][:type]
+      @profile = DeveloperProfile.new(params[:profile])
+    else
+      @profile = ContractorProfile.new(params[:profile])
+    end
     @profile.user_id = current_user.id
 
     respond_to do |format|
-      if @profile.save
-        format.html { redirect_to(@profile, :notice => 'Profile was successfully created.') }
+      if false || @profile.save
+        format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') }
         format.xml  { render :xml => @profile, :status => :created, :location => @profile }
       else
         format.html { render :action => "new" }
@@ -59,10 +63,10 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1.xml
   def update
     @profile = Profile.find(params[:id])
-
     respond_to do |format|
-      if @profile.update_attributes(params[:profile])
-        format.html { redirect_to(@profile, :notice => 'Profile was successfully updated.') }
+      # FIXME There's probably a better way to do this.
+      if @profile.update_attributes(@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
+        format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

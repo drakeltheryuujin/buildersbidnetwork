@@ -17,4 +17,7 @@
 #
 
 class ContractorProfile < Profile
+  def type_name
+    "Contractor"
+  end
 end

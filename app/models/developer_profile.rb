@@ -17,4 +17,7 @@
 #
 
 class DeveloperProfile < Profile
+  def type_name
+    "Developer"
+  end
 end

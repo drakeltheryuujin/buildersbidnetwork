@@ -2,51 +2,99 @@
 <html>
 <head>
   <title>YPN</title>
-  <%= stylesheet_link_tag "reset", "text", "960", "scaffold", "jquery.lightbox-0.5", "main" %>
+  <%= stylesheet_link_tag "scaffold", "application", "main" %>
   <%= csrf_meta_tag %>
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= yield(:head) %>
 </head>
 <body>
+
+  <div class="topbar auth_topbar" data-dropdown="dropdown">
+    <div class="fill">
+      <div class="container">
+        <% if ! user_signed_in? %>
+          <div>
+            <%= link_to "Sign In", new_user_session_path %>
+            or 
+            <%= link_to "Register", new_user_registration_path %> 
+          </div>
+        <% end %>
+        <% if user_signed_in? %>
+          <ul class="secondary-nav">
+            <li class="dropdown">
+              <%= current_user.profile.type_name %>:
+              <%= link_to current_user.profile.name, profile_path(current_user.profile) %>
+              <a href="#" class="dropdown-toggle">
+                <%= image_tag "/images/contact_person_icon.png", :alt => "Menu", :width => "16px", :height => "16px" %>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#TODO">Acount Settings</a></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <div class="brand_header ">
-    <div class="container_16 header_container">
+    <div class="container header_container">
       <h1>
         <%= link_to root_path do %>
           Your<em>Project</em>Network
         <% end %>
       </h1>
-      <div class="user_nav">
-        <% if user_signed_in? %>
-          <%= link_to current_user.email, current_user.profile %> |
-		  <%= link_to "Messages", messages_path %> |
-		  <%= link_to "Notifications", notifications_path %> (<%= current_user.mailbox.notifications.unread.count %>) |
-		  <%= link_to "Credits", credits_path %> (<%= current_user.credits %>) |
-          <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-        <% end %>
-      </div>
+
       <div class="search_nav">
         <%= form_for @search || Search.new, :url => search_index_path, :method => :get do |f| %>
-				  <%= f.text_field :q %>
-					<%= f.radio_button :section, :projects %>
-					<%= f.label :projects, "Projects" %>
-					<%= f.radio_button :section, :contractors %>
-					<%= f.label :contractors, "Contractors" %>
-					<%= f.radio_button :section, :developers %>
-					<%= f.label :developers, "Developers" %>
-				  <%= f.submit "Search" %>
+          <span class="input-append">
+            <%= f.text_field :q, :placeholder => "Enter Keyword(s)" %>
+            <label class="add-on ">
+              <%= f.select :section, [["Projects", :projects], ["Contractors", :contractors], ["Developers", :developers]], {}, {:class => 'medium'} %>
+            </label>
+          </span>
+          <%= f.submit "Search", :class => 'btn info' %>
 				<% end %>
       </div>
     </div>
+
+    <div class="topbar nav_topbar">
+      <div class="fill">
+        <div class="container nav_container">
+          <% if user_signed_in? %>
+            <ul class="nav ">
+              <li><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <li><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
+              <li><%= link_to "Browse", search_index_path %></li>
+            </ul>
+            <ul class="secondary-nav">
+              <% if DeveloperProfile.to_s == current_user.profile.type %>
+                <li><a href="#TODO">Track My Projects</a></li>
+                <li><%= link_to "Post a Project", new_project_path %></li>
+              <% elsif ContractorProfile.to_s == current_user.profile.type %>
+                <li><a href="#TODO">Track My Bids</a></li>
+              <% end %>
+              <li><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
+            </ul>
+          <% else %>
+            <ul class="nav ">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="wrapper" class="container_16">
-    <% if notice %><p class="message notice"><%= notice %></p><% end %>
-    <% if alert %><p class="message alert"><%= alert %></p><% end %>
+  <div id="wrapper" class="container">
+    <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
+    <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
 
     <%= yield %>
   </div>
-  <%= javascript_include_tag :defaults, "nested_form" %>
+  <%= javascript_include_tag :application %>
   <%= yield(:javascript) %>
 </body>
 </html>

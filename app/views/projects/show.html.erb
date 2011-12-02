@@ -1,8 +1,8 @@
 <%= render 'meta' %>
 
-<div class="grid_16 alpha omega">
-  <label class="grid_16 alpha omega">Line Items</label>
-  <ul class="grid_16 line_items">
+<div class="row form-stacked">
+  <label class="">Line Items</label>
+  <ul class="line_items">
     <% @project.line_items.each do |line_item| %>
       <li class="line_item <%= cycle("odd", "even") -%>">
         <span class="content"><%= line_item.content %></span>
@@ -12,8 +12,8 @@
   </ul>
 </div>
 
-<div class="grid_16 alpha omega">
-  <label class="grid_16 alpha omega">Documents</label>
+<div class="row form-stacked"> <!-- TODO media grid for images/documents -->
+  <label>Documents</label>
   <% @project.project_documents.each do |project_document| %>
     <div class="project_document">
       <% if project_document.is_image? %>
@@ -22,10 +22,10 @@
         <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
       <% end %>
       <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
-      <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin? %>
+      <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
     </div>
   <% end%>
-  <% if may_admin? %>
+  <% if may_admin_project? %>
     <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
       <%= project_doc_form.label :asset %>
       <%= project_doc_form.file_field :asset %>
@@ -50,16 +50,16 @@
 <% end%>
 
 <% if ! @project.bids.nil? %>
-<div class="grid_16 alpha omega">
-  <label class="grid_16 alpha omega">
-  	Bids
-    <% if may_admin? %>
-      <span class="message owner">You are the project owner, and would see this list.</span>
+<div class="row form-stacked">
+  <label>
+    Bids
+    <% if may_admin_project? %>
+      <span class="label success owner">You are the project owner, and would see this list.</span>
     <% else %>
-      <span class="message viewer">You are NOT the project owner, so would not see this list.</span>
+      <span class="label important viewer">You are NOT the project owner, so would not see this list.</span>
     <% end%>
   </label>
-  <table class="grid_16 project_bids">
+  <table class="project_bids zebra-striped">
     <tr>
       <th class="bidder">Bidder</th>
       <th class="bid_date">Date Submitted</th>
@@ -76,9 +76,8 @@
 </div>
 <% end %>
 
-<div class="grid_16 alpha omega">
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %> |
-<%= link_to 'Contact Project Creator', contact_creator_project_path(@project) %> |
-<%= link_to 'Enter Bid', new_project_bid_path(@project) %>
+<div class="row actions">
+<%= link_to 'Edit', edit_project_path(@project), :class => 'btn large primary' if may_admin_project? %> 
+<%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info' %> 
+<%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
 </div>

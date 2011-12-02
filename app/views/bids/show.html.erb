@@ -1,20 +1,22 @@
 <h1>Bid for <%= @project.name %></h1>
-<div class="grid_8 alpha ">
-  <div class="field">
-    <label class="grid_2 alpha">Bidder:</label>
-    <span class="grid_6 alpha omega"><%= @bid.user.email %></span>
+<div class="row">
+  <div class="span8 ">
+    <div class="field row">
+      <label class="span2 alpha">Bidder:</label>
+      <span class="span6"><%= @bid.user.email %></span>
+    </div>
   </div>
-</div>
-<div class="grid_8 omega">
-  <div class="field">
-    <label class="grid_2 alpha">Posted</label>
-    <span><%= @bid.created_at.to_formatted_s(:long) %></span>
+  <div class="span8">
+    <div class="field row">
+      <label class="span2">Posted</label>
+      <span><%= @bid.created_at.to_formatted_s(:long) %></span>
+    </div>
   </div>
 </div>
 
-<div class="grid_16 alpha omega">
-  <label class="grid_16 alpha omega">Line Items</label>
-  <ul class="grid_16 line_items">
+<div class="row form-stacked">
+  <label class="">Line Items</label>
+  <ul class="line_items">
     <% @bid.line_item_bids.each do |line_item_bid| %>
       <li class="line_item <%= cycle("odd", "even") -%>">
         <span class="content"><%= line_item_bid.line_item.content %></span>
@@ -28,12 +30,14 @@
   </ul>
 </div>
 
-<div class="grid_16 alpha ">
+<div class="row ">
   <div class="field float_right">
     <label>Total</label>
     <%= number_to_currency @bid.total %>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_project_bid_path(@bid) %> |
-<%= link_to 'Back', project_path(@project) %>
+<div class="row actions">
+  <%= link_to 'Edit', edit_project_bid_path(@bid), :class => 'btn primary large' if may_admin_bid? %> 
+  <%= link_to 'Back to Project', project_path(@project), :class => 'btn large' %>
+</div>

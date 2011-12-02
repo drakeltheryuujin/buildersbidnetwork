@@ -1,14 +1,17 @@
 <% @search.results.each do |contractor| %>
-  <div class="search_result contractor">
-    <div class="prefix_2 grid_7 alpha omega">
+  <div class="search_result contractor span12 row">
+    <div class="span2 ">
+      <%= link_to (image_tag "/images/company_square.png", :alt => "Contractor"), profile_path(contractor) %>
+    </div>
+    <div class="span7">
       <div class="result_name"><%= link_to contractor.name, profile_path(contractor) %></div>
       <div class="result_location"><%= contractor.location.city + ", " + contractor.location.state %></div>
     </div>
-    <div class="grid_3 omega">
+    <div class="span3 alpha">
       <div class="result_numbers">
         <%= contractor.user.bids.count %> Bids
       </div>
-      <%= link_to "Company Overview", profile_path(contractor), :class => "link_btn" %>
+      <%= link_to "Company Overview", profile_path(contractor), :class => "btn info" %>
     </div>
   </div>
 <% end %>

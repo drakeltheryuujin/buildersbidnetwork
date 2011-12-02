@@ -1,76 +1,75 @@
-<div class="grid_8 alpha ">
-  <div class="field">
-    <label class="grid_2 alpha">Name:</label>
-    <span class="grid_6 alpha omega"><%= @project.name %></span>
-  </div>
-  
-  <div class="field">
-    <label class="grid_2 alpha">Creator:</label>
-    <span class="grid_6 alpha omega"><%= @project.user.email %></span>
-  </div>
-  
-  <div class="field">
-    <label class="grid_2 alpha">Type:</label>
-    <span class="grid_6 alpha omega"><%= @project.project_type.name %></span>
-  </div>
-  
-  <div class="field grid_8 alpha omega">
-    <label class="grid_2 alpha">Location</label>
-    <span class="grid_6 alpha omega"><%= @project.location.address1 %></span>
-  </div>
-  <% if @project.location.address2 %>
-    <div class="field grid_8 alpha omega">
-      <span class="grid_2 alpha">&nbsp;</span>
-      <span class="grid_6 alpha omega"><%= @project.location.address2 %></span>
+<div class="row">
+  <div class="span8">
+    <div class="field">
+      <label class="span2">Name</label>
+      <span class="span6"><%= @project.name %></span>
     </div>
-  <% end %>
-  <div class="field grid_8 alpha omega">
-    <span class="grid_2 alpha">&nbsp;</span>
-    <span class="grid_6 alpha omega">
-      <%= @project.location.city %>,
-      <%= @project.location.state %>&nbsp;
-      <%= @project.location.post_code %>
-    </span>
-	  <% if @project.geocoded? %>
-	    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x150&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
-	  <% else %>
-      <label><span class="message bad_address">Couldn't find address.</span></label>
-	  <% end %>
+    
+    <div class="field">
+      <label class="span2">Creator</label>
+      <span class="span6"><%= @project.user.email %></span>
+    </div>
+    
+    <div class="field">
+      <label class="span2">Type</label>
+      <span class="span6"><%= @project.project_type.name %></span>
+    </div>
+    
+    <div class="field row">
+      <label class="span2">Location</label>
+      <address class="">
+        <p><%= @project.location.address1 %></p>
+        <% unless @project.location.address2.blank? %>
+          <p><%= @project.location.address2 %></p>
+        <% end %>
+        <p><%= @project.location.city %>, <%= @project.location.state %>&nbsp; <%= @project.location.post_code %></p>
+      </address>
+    </div>
+  </div>
+  <div class="span8">
+    <div class="field">
+      <label class="span2">Posted</label>
+      <span><%= @project.bidding_start.to_formatted_s(:long) %></span>
+    </div>
+    <div class="field">
+      <label class="span2">Closed</label>
+      <span><%= @project.bidding_end.to_formatted_s(:long) %></span>
+    </div>
+    <div class="field">
+      <label class="span2">Meeting</label>
+      <span><%= @project.pre_bid_meeting.to_formatted_s(:long) %></span>
+    </div>
+    <div class="field">
+      <label class="span2">Start&nbsp;Date</label>
+      <span><%= @project.project_start.to_formatted_s(:long) %></span>
+    </div>
+    <div class="field">
+      <label class="span2">End&nbsp;Date</label>
+      <span><%= @project.project_end.to_formatted_s(:long) %></span>
+    </div>
   </div>
 </div>
-<div class="grid_8 omega">
-  <div class="field">
-    <label class="grid_2 alpha">Posted</label>
-    <span><%= @project.bidding_start.to_formatted_s(:long) %></span>
-  </div>
-  <div class="field">
-    <label class="grid_2 alpha">Closed</label>
-    <span><%= @project.bidding_end.to_formatted_s(:long) %></span>
-  </div>
-  <div class="field">
-    <label class="grid_2 alpha">Meeting</label>
-    <span><%= @project.pre_bid_meeting.to_formatted_s(:long) %></span>
-  </div>
-  <div class="field">
-    <label class="grid_2 alpha">Start&nbsp;Date</label>
-    <span><%= @project.project_start.to_formatted_s(:long) %></span>
-  </div>
-  <div class="field">
-    <label class="grid_2 alpha">End&nbsp;Date</label>
-    <span><%= @project.project_end.to_formatted_s(:long) %></span>
+<div class="row">
+  <div class="offset1 span12">
+    <% if @project.geocoded? %>
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=640x150&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
+    <% else %>
+      <span class="label warning bad_address">Couldn't find address.</span>
+    <% end %>
   </div>
 </div>
-<div class="grid_16 alpha omega">
+<div class="row form-stacked">
   <div class="field">
-    <label class="grid_16 alpha omega">Description</label>
-    <p class="grid_16">
+    <label class="span16">Description</label>
+    <p class="span16">
       <%= @project.description %>
     </p>
   </div>
   <div class="field">
-    <label class="grid_16 alpha omega">Notes</label>
-    <p class="grid_16">
+    <label class="span16">Notes</label>
+    <p class="span16">
       <%= @project.notes %>
     </p>
   </div>
 </div>
+

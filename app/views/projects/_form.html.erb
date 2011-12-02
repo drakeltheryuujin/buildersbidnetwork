@@ -1,39 +1,38 @@
 <%= nested_form_for @project do |f| %>
-  <% if @project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+  <div class="row">
+    <% if @project.errors.any? %>
+      <div class="alert-message block-message error">
+        <strong><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</strong>
 
-      <ul>
-      <% @project.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <ul>
+          <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="grid_8 alpha ">
-    <div class="field">
-      <%= f.label :name, :class => "grid_2 alpha" %>
-      <%= f.text_field :name, :class => "grid_6 alpha omega" %>
-    </div>
-    <div class="field">
-      <%= f.label :project_type, "Type", :class => "grid_2 alpha" %>
-      <%= f.collection_select(:project_type_id, ProjectType.all, :id, :name, {:prompt => true}, {:class => "grid_6 alpha omega"}) %>
-    </div>
+    <div class="span8 ">
+      <div class="field row">
+        <%= f.label :name, :class => "span2" %>
+        <%= f.text_field :name, :class => "span6 alpha" %>
+      </div>
+      <div class="field row">
+        <%= f.label :project_type, "Type", :class => "span2" %>
+        <%= f.collection_select(:project_type_id, ProjectType.all, :id, :name, {:prompt => true}, {:class => "span6 alpha"}) %>
+      </div>
       <%= f.fields_for :location do |location_form| %>
-        <div class="field grid_8 alpha omega">
-          <%= location_form.label :address1, "Location", :class => "grid_2 alpha" %>
-          <%= location_form.text_field :address1, :class => "grid_6 alpha omega" %>
+        <div class="field row">
+          <%= location_form.label :address1, "Location", :class => "span2" %>
+          <%= location_form.text_field :address1, :class => "span6 alpha" %>
         </div>
-        <div class="field grid_8 alpha omega">
-          <span class="grid_2 alpha">&nbsp;</span>
-          <%= location_form.text_field :address2, :class => "grid_6 alpha omega" %>
+        <div class="field row">
+          <span class="span2">&nbsp;</span>
+          <%= location_form.text_field :address2, :class => "span6 alpha" %>
         </div>
-        <div class="field grid_8 alpha omega">
-          <%= location_form.label :city, :class => "grid_2 alpha" %>
-          <%= location_form.text_field :city, :class => "grid_3 alpha omega" %>
-          
-          <%= location_form.label :state %>
+        <div class="field row">
+          <label class="span2">City, State</label>
+          <%= location_form.text_field :city, :class => "span4 alpha" %>
           <%= location_form.select(:state, [     
             ['AL', 'AL'], 
             ['AK', 'AK'],
@@ -85,58 +84,63 @@
             ['WA', 'WA'], 
             ['WV', 'WV'], 
             ['WI', 'WI'], 
-            ['WY', 'WY']]) %>
+            ['WY', 'WY']], {}, :class => "span2") %>
+        </div>
           
-          <%= location_form.label :post_code, "Zip" %>
-          <%= location_form.text_field :post_code, :size => "5" %>
+        <div class="field row">
+          <%= location_form.label :post_code, "Zip", :class => "span2" %>
+          <%= location_form.text_field :post_code, :size => "5", :class => "span6 alpha" %>
         </div>
       <% end %>
+    </div> <!-- / span8 -->
+    <div class="span8">
+      <div class="field row datetime-field">
+        <%= f.label :bidding_start, "Posted", :class => "span2" %>
+        <%= f.datetime_select :bidding_start %>
+      </div>
+      <div class="field row datetime-field">
+        <%= f.label :bidding_end, "Closed", :class => "span2" %>
+        <%= f.datetime_select :bidding_end %>
+      </div>
+      <div class="field row datetime-field">
+        <%= f.label :pre_bid_meeting, "Meeting", :class => "span2" %>
+        <%= f.datetime_select :pre_bid_meeting %>
+      </div>
+      <div class="field row datetime-field">
+        <%= f.label :project_start, "Start&nbsp;Date".html_safe, :class => "span2" %>
+        <%= f.date_select :project_start %>
+      </div>
+      <div class="field row datetime-field">
+        <%= f.label :project_end, "End\&nbsp;Date".html_safe, :class => "span2" %>
+        <%= f.date_select :project_end %>
+      </div>
+    </div>
   </div>
-  <div class="grid_8 omega">
-    <div class="field">
-      <%= f.label :bidding_start, "Posted", :class => "grid_2 alpha" %>
-      <%= f.datetime_select :bidding_start %>
-    </div>
-    <div class="field">
-      <%= f.label :bidding_end, "Closed", :class => "grid_2 alpha" %>
-      <%= f.datetime_select :bidding_end %>
-    </div>
-    <div class="field">
-      <%= f.label :pre_bid_meeting, "Meeting", :class => "grid_2 alpha" %>
-      <%= f.datetime_select :pre_bid_meeting %>
-    </div>
-    <div class="field">
-      <%= f.label :project_start, "Start&nbsp;Date".html_safe, :class => "grid_2 alpha" %>
-      <%= f.date_select :project_start %>
-    </div>
-    <div class="field">
-      <%= f.label :project_end, "End\&nbsp;Date".html_safe, :class => "grid_2 alpha" %>
-      <%= f.date_select :project_end %>
-    </div>
-  </div>
-  <div class="grid_16 alpha omega">
+  <div class="row form-stacked">
     <div class="field">
       <%= f.label :description, "Brief Project Description" %><br/>
-      <%= f.text_area :description, :class => "grid_16", :rows => "5" %>
+      <%= f.text_area :description, :class => "span16", :rows => "5" %>
     </div>
     <div class="field">
       <%= f.label :notes, "Additional Notes and Requirements" %><br/>
-      <%= f.text_area :notes, :class => "grid_16", :rows => "5" %>
+      <%= f.text_area :notes, :class => "span16", :rows => "5" %>
     </div>
   </div>
-  <div class="grid_16 alpha omega">
-    <label class="grid_16 alpha omega">Line Items</label>
+  <div class="row ">
+    <label class="">Line Items</label>
     <%= f.fields_for :line_items do |line_item_form| %>
-      <%= line_item_form.text_field :content, :class => "grid_16" %>
-      <p class="grid_16">
-        <%= f.label :units, "Quantity or Number of Units" %>
-        <%= line_item_form.text_field :units %>
-        <%= line_item_form.link_to_remove "Remove this Line Item" %>
-      </p>
+      <div class="row">
+        <%= line_item_form.text_field :content, :class => "span16" %>
+        <p class="span16">
+          <%= f.label :units, "Quantity or Number of Units" %>
+          <%= line_item_form.text_field :units %>
+          <%= line_item_form.link_to_remove "Remove this Line Item" %>
+        </p>
+      </div> <!-- /row -->
     <% end %>
     <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
   </div>
-  <div class="actions grid_16">
-    <%= f.submit %>
+  <div class="actions row">
+    <%= f.submit "Save", :class => 'btn large primary' %>
   </div>
 <% end %>

@@ -1,70 +1,66 @@
-<div class="grid_8 alpha ">
-  <div class="field">
-    <label class="grid_2 alpha">Name:</label>
-    <span class="grid_6 alpha omega"><%= @profile.name %></span>
-  </div>
-  
-  <div class="field">
-    <label class="grid_2 alpha">Creator:</label>
-    <span class="grid_6 alpha omega"><%= @profile.user.email %></span>
-  </div>
-  
-  <div class="field">
-    <label class="grid_2 alpha">Type:</label>
-    <span class="grid_6 alpha omega"><%= @profile.class.to_s %></span>
-  </div>
-  
-  <div class="field grid_8 alpha omega">
-    <label class="grid_2 alpha">Location</label>
-    <span class="grid_6 alpha omega"><%= @profile.location.address1 %></span>
-  </div>
-  <% if ! @profile.location.address2.blank? %>
-    <div class="field grid_8 alpha omega">
-      <span class="grid_2 alpha">&nbsp;</span>
-      <span class="grid_6 alpha omega"><%= @profile.location.address2 %></span>
+<div class="row">
+  <div class="span8">
+    <div class="field">
+      <label class="span2">Name</label>
+      <span class="span6"><%= @profile.name %></span>
     </div>
-  <% end %>
-  <div class="field grid_8 alpha omega">
-    <span class="grid_2 alpha">&nbsp;</span>
-    <span class="grid_6 alpha omega">
-      <%= @profile.location.city %>,
-      <%= @profile.location.state %>&nbsp;
-      <%= @profile.location.post_code %>
-    </span>
-		<% if @profile.geocoded? %>
-		  <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x150&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
+    
+    <div class="field">
+      <label class="span2">Creator</label>
+      <span class="span6"><%= @profile.user.email %></span>
+    </div>
+    
+    <div class="field">
+      <label class="span2">Type</label>
+      <span class="span6"><%= @profile.class.to_s %></span>
+    </div>
+    
+    <div class="field row">
+      <label class="span2">Location</label>
+      <address>
+        <p><%= @profile.location.address1 %></p>
+        <% unless @profile.location.address2.blank? %>
+          <p><%= @profile.location.address2 %></p>
+        <% end %>
+        <p><%= @profile.location.city %>, <%= @profile.location.state %>&nbsp; <%= @profile.location.post_code %></p>
+      </address>
+    </div>
+  </div>
+  <div class="span8">
+    <div class="field">
+      <label class="span2">Established</label>
+      <span><%= @profile.established || '&nbsp;'.html_safe %></span>
+    </div>
+    <div class="field">
+      <label class="span2">Website</label>
+      <span><%= @profile.website || '&nbsp;'.html_safe %></span>
+    </div>
+    <% @profile.phones.each do |phone| %>
+      <div class="field">
+        <label class="span2"><%= phone.phone_type.name %></label>
+        <span><%= phone.number %></span>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="offset1 span12">
+    <% if @profile.geocoded? %>
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=640x150&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
     <% else %>
       <label><span class="message bad_address">Couldn't find address.</span></label>
     <% end %>
-
   </div>
 </div>
-<div class="grid_8 omega">
-  <div class="field">
-    <label class="grid_2 alpha">Established</label>
-    <span><%= @profile.established %></span>
-  </div>
-  <div class="field">
-    <label class="grid_2 alpha">Website</label>
-    <span><%= @profile.website %></span>
-  </div>
-  <% @profile.phones.each do |phone| %>
-	  <div class="field">
-	    <label class="grid_2 alpha"><%= phone.phone_type.name %></label>
-	    <span><%= phone.number %></span>
-	  </div>
-  <% end %>
-</div>
-<div class="grid_16 alpha omega">
-  <div class="field">
-    <label class="grid_16 alpha omega">Description</label>
-    <p class="grid_16">
+<div class="row">
+  <div class="field span16 form-stacked">
+    <label class="">Description</label>
+    <p class="">
       <%= @profile.description %>
     </p>
   </div>
 </div>
 
-<div class="grid_16 alpha omega">
-	<%= link_to 'Edit', edit_profile_path(@profile) %> |
-	<%= link_to 'Back', profiles_path %>
+<div class="row actions">
+  <%= link_to('Edit', edit_profile_path(@profile), :class => "btn large primary") if may_admin_profile? %>
 </div>

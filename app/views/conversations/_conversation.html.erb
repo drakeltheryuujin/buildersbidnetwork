@@ -4,7 +4,7 @@
       <%= link_to(truncate(conversation.subject, :length => 55), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
     </div>
     <div class="sender_name">
-      <%= link_to conversation.last_sender.email, conversation.last_sender.profile %>
+      <%= link_to conversation.last_sender.email, profile_path(conversation.last_sender.profile) %>
     </div>
     <div class="date">
       <%= time_ago_in_words(conversation.updated_at) %> ago

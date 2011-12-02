@@ -13,9 +13,9 @@
   <tr>
     <td><%= profile.name %></td>
     <td><%= profile.user %></td>
-    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Show', profile_path(profile) %></td>
     <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-    <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', profile_path(profile), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

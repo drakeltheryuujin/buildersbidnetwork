@@ -1,59 +1,65 @@
-<% if @search.q %>
-  <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
-<% end %>
-<ul class="search_tabs">
-  <li class="<%= @search.section_matches?(:projects)    ? 'selected' : '' %>">
-    <%= link_to_unless @search.section_matches?(:projects), "Projects", search_index_path("search[q]" => @search.q, "search[section]" => :projects) %>
-  </li>
-  <li class="<%= @search.section_matches?(:contractors) ? 'selected' : '' %>">
-    <%= link_to_unless @search.section_matches?(:contractors), "Contractors", search_index_path("search[q]" => @search.q, "search[section]" => :contractors) %>
-  </li>
-  <li class="<%= @search.section_matches?(:developers)  ? 'selected' : '' %>">
-    <%= link_to_unless @search.section_matches?(:developers), "Developers", search_index_path("search[q]" => @search.q, "search[section]" => :developers) %>
-  </li>
-</ul>
-<div class="search_filters grid_4 alpha">
-  <%= form_for @search, :url => search_index_path, :method => :get do |f| %>
-    <%= f.hidden_field :section %>
-    <h6>Filter your results by:</h6>
-    <div class="filter filter_q">
-      <%= f.text_field :q, :placeholder => 'Search...' %>
-    </div>
-    <% if @search.section_matches?(:projects) %>
-      <div class="filter filter_type">
-        <h6>Type:</h6>
-        <ul>
-          <% ProjectType.all.each do |pt| %>
-            <li> <%= check_box_tag 'search[type_ids][]', pt.id, @search.type_ids.include?(pt.id.to_s) %> <label><%= pt.name %></label> </li>
-          <% end %>
-        </ul>
+<div class="search-page row">
+  <% unless @search.q.blank? %>
+    <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
+  <% end %>
+  <ul class="tabs">
+    <li class="<%= @search.section_matches?(:projects)    ? 'active' : '' %>">
+      <%= link_to "Projects", search_index_path("search[q]" => @search.q, "search[section]" => :projects) %>
+    </li>
+    <li class="<%= @search.section_matches?(:contractors) ? 'active' : '' %>">
+      <%= link_to "Contractors", search_index_path("search[q]" => @search.q, "search[section]" => :contractors) %>
+    </li>
+    <li class="<%= @search.section_matches?(:developers)  ? 'active' : '' %>">
+      <%= link_to "Developers", search_index_path("search[q]" => @search.q, "search[section]" => :developers) %>
+    </li>
+  </ul>
+  <div class="search_filters span4 alpha">
+    <%= form_for @search, :url => search_index_path, :method => :get do |f| %>
+      <%= f.hidden_field :section %>
+      <h6>Filter your results by:</h6>
+      <div class="filter filter_q">
+        <%= f.text_field :q, :placeholder => 'Search...' %>
+      </div>
+      <% if @search.section_matches?(:projects) %>
+        <div class="filter filter_type">
+          <h6>Type:</h6>
+          <ul class="inputs-list">
+            <% ProjectType.all.each do |pt| %>
+              <li> 
+                <label>
+                  <%= check_box_tag 'search[type_ids][]', pt.id, @search.type_ids.include?(pt.id.to_s) %> 
+                  <span><%= pt.name %></span>
+                </label> 
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="filter filter_location">
+        <h6>Location:</h6>
+        <table>
+          <tr>
+            <td>Within</td>
+            <td>&nbsp;</td>
+            <td>Your zip</td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+            </td>
+            <td>of</td>
+            <td>
+              <%= f.text_field :location, :size => 7, :class => "span2" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="filter filter_submit">
+        <%= f.submit 'Search', :class => 'float_right btn primary' %>
       </div>
     <% end %>
-    <div class="filter filter_location">
-      <h6>Location:</h6>
-      <table>
-        <tr>
-          <td>Within</td>
-          <td>&nbsp;</td>
-          <td>Your zip</td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]] %>
-          </td>
-          <td>of</td>
-          <td>
-            <%= f.text_field :location, :size => 7 %>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="filter filter_submit">
-      <%= f.submit 'Search' %>
-    </div>
-  <% end %>
+  </div>
+  <div class="search_results span12 alpha row">
+    <%= render @search.section %>
+  </div>
 </div>
-<div class="search_results grid_12 omega">
-  <%= render @search.section %>
-</div>
-

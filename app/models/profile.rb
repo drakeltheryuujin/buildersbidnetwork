@@ -29,6 +29,7 @@ class Profile < ActiveRecord::Base
   def location_address
     location.address
   end
+
   
   validates_associated :location
   

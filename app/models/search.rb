@@ -23,17 +23,17 @@ class Search
   def results
     case @section
 	    when :contractors.to_s
-	      relation = ContractorProfile.search(@q)
+	      relation = @q.blank? ? ContractorProfile.scoped : ContractorProfile.search(@q)
 	    when :developers.to_s
-	      relation = DeveloperProfile.search(@q)
+	      relation = @q.blank? ? DeveloperProfile.scoped : DeveloperProfile.search(@q)
 	    else
-	      relation = Project.search(@q)
-        if @type_ids && ! @type_ids.empty?
+	      relation = @q.blank? ? Project.scoped : Project.search(@q)
+        unless @type_ids.blank?
           relation = relation.where(:project_type_id => @type_ids)
         end
 	  end
     
-    if @location && ! @location.blank?
+    if ! @location.blank?
       relation = relation.near(@location, @distance)
     end
 

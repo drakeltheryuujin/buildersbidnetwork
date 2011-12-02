@@ -1,8 +1,8 @@
-<div class="grid_8 alpha omega">
+<div class="row span8">
 	<%= form_for @pc, :url => credits_path, :method => :post do |f| %>
 		<% if @pc.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@pc.errors.count, "error") %> prohibited this purchase from being completed:</h2>
+      <div class="alert-message block-message error">
+	      <strong><%= pluralize(@pc.errors.count, "error") %> prohibited this purchase from being completed:</strong>
 	
 	      <ul>
 	      <% @pc.errors.full_messages.each do |msg| %>
@@ -11,32 +11,31 @@
 	      </ul>
 	    </div>
 	  <% end %>
-	  <p class="grid_8 alpha omega">
-	    <%= f.text_field :first_name, :placeholder => "First Name", :class => "grid_4 alpha" %>
-	    <%= f.text_field :last_name, :placeholder => "Last Name", :class => "grid_4 alpha omega" %>
+	  <p class="row">
+	    <%= f.text_field :first_name, :placeholder => "First Name", :class => "span4 alpha" %>
+	    <%= f.text_field :last_name, :placeholder => "Last Name", :class => "span4 " %>
 	  </p>
-	  <p class="grid_8 alpha omega">
-	    <%= f.text_field :card_number,  :placeholder => "Card Number" %>
-	    <%= f.text_field :card_verification, :size => 4, :placeholder => "CCV" %>
-	    <%= f.text_field :card_billing_zip, :size => 6, :placeholder => "Zip" %>
+	  <p class="row">
+	    <%= f.text_field :card_number,  :placeholder => "Card Number", :class => "span5 alpha" %>
+	    <%= f.text_field :card_verification, :size => 4, :placeholder => "CCV", :class => "span1 alpha" %>
+	    <%= f.text_field :card_billing_zip, :size => 6, :placeholder => "Zip", :class => "span2 alpha" %>
 	  </p>
-	  <p class="grid_8 alpha omega">
-	    <%= f.label :card_type, "Type" %>
-	    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
-	    <%= f.label :card_expires_on, "Expires" %>
-	    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+	  <p class="row">
+	    <%= f.label :card_type, "Type", :class => "span1 alpha" %>
+	    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]], {}, :class => "span2 " %>
+	    <%= f.label :card_expires_on, "Expires", :class => "span1 alpha" %>
+	    <%= f.date_select :card_expires_on, {:discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true}, :class => "span2 " %>
 	  </p>
-	  <p class="grid_8 alpha omega text_align_right">
-	    <span>
-		    <%= f.label :value, "Credits" %>
-		    <%= f.select :value, [1,2,3,4,5,6,7,8,9,10] %>
-	    </span>
-	    <span>
-		    <%= f.label :amount, "Total" %>
-	      $<%= f.text_field :amount, :size => 10, :readonly => 'true' %>
-	    </span>
-		</p>
-	  <p class="grid_8 alpha omega text_align_right"><%= f.submit "Submit" %></p>
+    <div class="row">
+      <%= f.label :value, "Credits", :class => "span2 alpha" %>
+      <%= f.select :value, [1,2,3,4,5,6,7,8,9,10], {}, :class => "span6 alpha" %>
+    </div>
+    <div class="row">
+      <%= f.label :amount, "Total", :class => "span2 alpha" %>
+      <%= f.text_field :amount, :size => 10, :readonly => 'true', :class => "span6 alpha" %>
+    </div>
+    </div>
+	  <p class="row span8 text_align_right"><%= f.submit "Submit", :class => 'btn large primary' %></p>
 	<% end %>
 </div>
 <% content_for :javascript do %>

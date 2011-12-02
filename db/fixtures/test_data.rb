@@ -38,7 +38,18 @@ project_dA1 = Project.create_or_update_by_name("Developer A Project 1",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li2'}),
+    LineItem.new({:content => 'p_dA1 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li4'}),
+    LineItem.new({:content => 'p_dA1 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA1 Li8'}),
+    LineItem.new({:content => 'p_dA1 Li9'})
+  ])
 
 randomize_offsets
 location_dA2 = Location.find_or_create_by_address1("11 Waverly Pl",
@@ -49,7 +60,18 @@ project_dA2 = Project.create_or_update_by_name("Developer A Project 2",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li2'}),
+    LineItem.new({:content => 'p_dA2 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li4'}),
+    LineItem.new({:content => 'p_dA2 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA2 Li8'}),
+    LineItem.new({:content => 'p_dA2 Li9'})
+  ])
 
 randomize_offsets
 location_dA3 = Location.find_or_create_by_address1("1211 29th Ave",
@@ -60,7 +82,14 @@ project_dA3 = Project.create_or_update_by_name("Developer A Project 3",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA3 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA3 Li2'}),
+    LineItem.new({:content => 'p_dA3 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA3 Li4'}),
+    LineItem.new({:content => 'p_dA3 Li5'})
+  ])
 
 randomize_offsets
 location_dA4 = Location.find_or_create_by_address1("3809 Ditmars Boulevard",
@@ -71,7 +100,14 @@ project_dA4 = Project.create_or_update_by_name("Developer A Project 4",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA4 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA4 Li2'}),
+    LineItem.new({:content => 'p_dA4 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dA4 Li4'}),
+    LineItem.new({:content => 'p_dA4 Li5'})
+  ])
 
 randomize_offsets
 location_dA5 = Location.find_or_create_by_address1("94-18 Roosevelt Avenue",
@@ -82,7 +118,18 @@ project_dA5 = Project.create_or_update_by_name("Developer A Project 5",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:content => 'p_dA5 Li1'}),
+    LineItem.new({:content => 'p_dA5 Li2'}),
+    LineItem.new({:content => 'p_dA5 Li3'}),
+    LineItem.new({:content => 'p_dA5 Li4'}),
+    LineItem.new({:content => 'p_dA5 Li5'}),
+    LineItem.new({:content => 'p_dA5 Li6'}),
+    LineItem.new({:content => 'p_dA5 Li7'}),
+    LineItem.new({:content => 'p_dA5 Li8'}),
+    LineItem.new({:content => 'p_dA5 Li9'})
+  ])
 
   
 email = "user@developerb.com"
@@ -101,7 +148,18 @@ project_dB1 = Project.create_or_update_by_name("Developer B Project 1",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li2'}),
+    LineItem.new({:content => 'p_dB1 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li4'}),
+    LineItem.new({:content => 'p_dB1 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB1 Li8'}),
+    LineItem.new({:content => 'p_dB1 Li9'})
+  ])
 
 randomize_offsets
 location_dB2 = Location.find_or_create_by_address1("120 State Rte 17",
@@ -112,7 +170,15 @@ project_dB2 = Project.create_or_update_by_name("Developer B Project 2",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB2 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB2 Li2'}),
+    LineItem.new({:content => 'p_dB2 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB2 Li4'}),
+    LineItem.new({:content => 'p_dB2 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB2 Li6'})
+  ])
 
 randomize_offsets
 location_dB3 = Location.find_or_create_by_address1("500 US Highway 46",
@@ -123,7 +189,18 @@ project_dB3 = Project.create_or_update_by_name("Developer B Project 3",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li2'}),
+    LineItem.new({:content => 'p_dB3 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li4'}),
+    LineItem.new({:content => 'p_dB3 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB3 Li8'}),
+    LineItem.new({:content => 'p_dB3 Li9'})
+  ])
 
 randomize_offsets
 location_dB4 = Location.find_or_create_by_address1("1 Gardner Rd",
@@ -134,7 +211,19 @@ project_dB4 = Project.create_or_update_by_name("Developer B Project 4",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li2'}),
+    LineItem.new({:content => 'p_dB4 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li4'}),
+    LineItem.new({:content => 'p_dB4 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB4 Li8'}),
+    LineItem.new({:content => 'p_dB4 Li9'}),
+  ])
+
 
 randomize_offsets
 location_dB5 = Location.find_or_create_by_address1("189 State Route 502",
@@ -145,7 +234,11 @@ project_dB5 = Project.create_or_update_by_name("Developer B Project 5",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB5 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dB5 Li2'})
+  ])
 
  
 email = "user@developerc.com"
@@ -164,7 +257,19 @@ project_dC1 = Project.create_or_update_by_name("Developer C Project 1",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li2'}),
+    LineItem.new({:content => 'p_dC1 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li4'}),
+    LineItem.new({:content => 'p_dC1 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC1 Li8'}),
+    LineItem.new({:content => 'p_dC1 Li9'})
+  ])
+
 
 randomize_offsets
 location_dC2 = Location.find_or_create_by_address1("94 Gardiners Avenue",
@@ -175,7 +280,13 @@ project_dC2 = Project.create_or_update_by_name("Developer C Project 2",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC2 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC2 Li2'}),
+    LineItem.new({:content => 'p_dC2 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dC2 Li4'})
+  ])
 
 
 
@@ -195,7 +306,18 @@ project_dD1 = Project.create_or_update_by_name("Developer D Project 1",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li2'}),
+    LineItem.new({:content => 'p_dD1 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li4'}),
+    LineItem.new({:content => 'p_dD1 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD1 Li8'}),
+    LineItem.new({:content => 'p_dD1 Li9'})
+  ])
 
 randomize_offsets
 location_dD2 = Location.find_or_create_by_address1("211 Higbie Lane",
@@ -206,7 +328,18 @@ project_dD2 = Project.create_or_update_by_name("Developer D Project 2",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li2'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li4'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li8'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dD2 Li9'})
+  ])
 
 
 email = "user@developere.com"
@@ -225,7 +358,18 @@ project_dE1 = Project.create_or_update_by_name("Developer E Project 1",
   :bidding_start   => NOW + (DAY_IN_SECONDS * $bid_start_offset_days), 
   :bidding_end     => NOW + (DAY_IN_SECONDS * $bid_end_offset_days), 
   :pre_bid_meeting => NOW + (DAY_IN_SECONDS * $pre_bid_meeting_offset_days),
-  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days)
+  :project_start => TODAY + $project_start_offset_days, :project_end => TODAY + $project_end_offset_days,
+  :line_items => [
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li1'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li2'}),
+    LineItem.new({:content => 'p_dE1 Li3'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li4'}),
+    LineItem.new({:content => 'p_dE1 Li5'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li6'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li7'}),
+    LineItem.new({:units => (1 + rand(1000)), :content => 'p_dE1 Li8'}),
+    LineItem.new({:content => 'p_dE1 Li9'})
+  ])
 
 
 email = "user@developerf.com"
