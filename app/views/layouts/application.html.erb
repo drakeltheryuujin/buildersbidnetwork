@@ -19,7 +19,7 @@
             <%= link_to "Register", new_user_registration_path %> 
           </div>
         <% end %>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && ! current_user.profile.blank? %>
           <ul class="secondary-nav">
             <li class="dropdown">
               <%= current_user.profile.type_name %>:
