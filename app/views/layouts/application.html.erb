@@ -64,7 +64,7 @@
         <div class="container nav_container">
           <% if user_signed_in? %>
             <ul class="nav ">
-              <li><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <li><%= link_to_unless current_user.profile.blank? "Profile", profile_path(current_user.profile) %></li>
               <li><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
               <li><%= link_to "Browse", search_index_path %></li>
             </ul>
