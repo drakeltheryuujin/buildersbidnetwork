@@ -1,0 +1,77 @@
+<div class="track-page track-projects-page row ">
+  <div class="span16">
+    <h1>
+      <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
+      Track My Projects
+    </h1>
+    <ul class="tabs">
+      <li class="active">
+        <%= link_to "Activity", track_projects_path %>
+      </li>
+      <li class="">
+        <%= link_to "Account", settings_profiles_path %>
+      </li>
+      <li class="">
+        <%= link_to "Notifications", notifications_path %>
+      </li>
+    </ul>
+  </div>
+  <div class="track_filters span4 ">
+    <ul>
+      <li class="active"><%= link_to "Active Projects", track_projects_projects_path %></li>
+      <li ><%= link_to "Past Projects", track_projects_projects_path(:filter => :past) %></li>
+    </ul>
+    <dl>
+      <dt>Lifetime Projects Posted:</dt>
+      <dd><%= current_user.project.count %> </dd>
+      <dt>Last Login:</dt>
+      <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+    </dl>
+  </div>
+  <div class="track_results span12 alpha row">
+    <% if @projects.blank? %>
+      <div class="search_result no_results project span12 row">
+        <h4>No projects found.  Get out there!</h4>
+        <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' %>
+      </div>
+    <% end %>
+    <% @projects.each do |project| %>
+      <div class="search_result project span12 row">
+        <div class="span2 ">
+          <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project) %>
+        </div>
+        <div class="span7 ">
+          <div class="result_name"><%= link_to project.name, project_path(project) %></div>
+          <div class="result_location">
+            <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
+            <%= project.location.city + ", " + project.location.state %>
+          </div>
+          <span class="result_type label"><%= project.project_type.name %></span>
+        </div>
+        <div class="span3 alpha">
+          <div class="result_numbers">
+            <%= number_to_currency project.median_bid %> Median Bid
+            &middot;
+            <%= project.bids.count %> Bids
+            &middot;
+            <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
+          </div>
+          <%= link_to "Full Details", project_path(project), :class => "btn info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.lightbox" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.result_location a').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+    });
+  </script>
+<% end%>
+

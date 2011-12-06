@@ -114,6 +114,26 @@
   text-shadow: none;
 }
 
+.footer {
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #ddd;
+  margin: 10px 0;
+  font-size: 10px;
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+}
+.footer ul li {
+  float: left;
+  padding: 3px 6px;
+}
+.footer ul li.right_side {
+  float: right;
+}
+
 .field_with_errors {
   padding: 0;
   display: inline-block;
@@ -310,6 +330,7 @@ label span.message.bad_address {
   width: 308px;
 }
 
+.track-page .tabs,
 .search-page .tabs { 
   margin-bottom: 0; 
 }
@@ -344,6 +365,7 @@ ul.search_tabs li.selected {
 }
 */
 
+.track_filters,
 .search_filters {
   border-color: #DDD;
   border-style: solid;
@@ -372,6 +394,8 @@ ul.search_tabs li.selected {
   text-align: center;
 }
 
+
+.track_filters ul,
 .search_filters ul {
   list-style: none;
   padding: 0;
@@ -380,11 +404,54 @@ ul.search_tabs li.selected {
 .search_filters ul li {
   margin-left: 0;
 }
+.track_filters ul li { 
+  margin-left: 0;
+  padding: 5px;
+  border-bottom: 1px dotted #ddd;
+}
+.track_filters ul li a { 
+  display: block;
+  padding: 5px;
+}
+.track_filters ul li.active a {
+  background: #666;
+  color: #eee;
+}
 
+.track_filters dl {
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 14px;
+}
+.track_filters dl dt {
+  float: left;
+  display: inline;
+  font-weight: normal;
+}
+.track_filters dl dd {
+  left: 5px;
+  position: relative;
+  font-weight: bold;
+}
+
+.track_results .search_result,
 .search_results .search_result {
   border-bottom: 1px solid #ddd;
   display: inline-block;
   padding: 10px 0;
+}
+.track_results .search_result.no_results h4 {
+  display: inline;
+}
+.track_results .search_result.no_results a {
+  float: right;
+}
+
+.track-page h1 img {
+  padding: 5px;
+  background: #DDD;
+  top: 5px;
+  position: relative;
 }
 
 

@@ -1,19 +1,21 @@
 <div class="search-page row">
-  <% unless @search.q.blank? %>
-    <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
-  <% end %>
-  <ul class="tabs">
-    <li class="<%= @search.section_matches?(:projects)    ? 'active' : '' %>">
-      <%= link_to "Projects", search_index_path("search[q]" => @search.q, "search[section]" => :projects) %>
-    </li>
-    <li class="<%= @search.section_matches?(:contractors) ? 'active' : '' %>">
-      <%= link_to "Contractors", search_index_path("search[q]" => @search.q, "search[section]" => :contractors) %>
-    </li>
-    <li class="<%= @search.section_matches?(:developers)  ? 'active' : '' %>">
-      <%= link_to "Developers", search_index_path("search[q]" => @search.q, "search[section]" => :developers) %>
-    </li>
-  </ul>
-  <div class="search_filters span4 alpha">
+  <div class="span16">
+    <% unless @search.q.blank? %>
+      <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
+    <% end %>
+    <ul class="tabs">
+      <li class="<%= @search.section_matches?(:projects)    ? 'active' : '' %>">
+        <%= link_to "Projects", search_index_path("search[q]" => @search.q, "search[section]" => :projects) %>
+      </li>
+      <li class="<%= @search.section_matches?(:contractors) ? 'active' : '' %>">
+        <%= link_to "Contractors", search_index_path("search[q]" => @search.q, "search[section]" => :contractors) %>
+      </li>
+      <li class="<%= @search.section_matches?(:developers)  ? 'active' : '' %>">
+        <%= link_to "Developers", search_index_path("search[q]" => @search.q, "search[section]" => :developers) %>
+      </li>
+    </ul>
+  </div>
+  <div class="search_filters span4 ">
     <%= form_for @search, :url => search_index_path, :method => :get do |f| %>
       <%= f.hidden_field :section %>
       <h6>Filter your results by:</h6>

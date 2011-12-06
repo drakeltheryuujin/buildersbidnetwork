@@ -36,6 +36,10 @@ class Project < ActiveRecord::Base
     location.address
   end
 
+  def median_bid
+    self.bids.average 'total'
+  end
+
   validates :name,
     :presence => true
   validates :description,

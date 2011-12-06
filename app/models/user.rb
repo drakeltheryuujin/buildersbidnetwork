@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   
   acts_as_messageable
   def mailboxer_name
-    return :email # TODO display name from profile
+    return @profile ? @profile.name : :email 
   end
   def mailboxer_email(object)
     if true # TODO preference check

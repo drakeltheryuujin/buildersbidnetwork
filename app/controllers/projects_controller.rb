@@ -92,4 +92,12 @@ class ProjectsController < ApplicationController
     current_user.send_message([creator], body, current_user.email + " wants to talk about your project.")
     redirect_to(@project, :notice => 'Message sent')  
   end
+
+  def track_projects
+    @projects = Project.find_all_by_user_id current_user.id
+  end
+
+  def track_bids 
+    @bids = Bid.find_all_by_user_id current_user.id
+  end
 end

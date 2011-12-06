@@ -28,7 +28,7 @@
                 <%= image_tag "/images/contact_person_icon.png", :alt => "Menu", :width => "16px", :height => "16px" %>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#TODO">Acount Settings</a></li>
+                <li><%= link_to "Acount Settings", settings_profiles_path %></li>
                 <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
               </ul>
             </li>
@@ -64,18 +64,18 @@
         <div class="container nav_container">
           <% if user_signed_in? %>
             <ul class="nav ">
-              <li><%= link_to "Profile", profile_path(current_user.profile) %></li>
-              <li><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
-              <li><%= link_to "Browse", search_index_path %></li>
+              <li class="<%= current_page?(profile_path(current_user.profile)) && 'active' %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <li class="<%= current_page?(notifications_path) && 'active' %>"><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
+              <li class="<%= current_page?(search_index_path) && 'active' %>"><%= link_to "Browse", search_index_path %></li>
             </ul>
             <ul class="secondary-nav">
               <% if DeveloperProfile.to_s == current_user.profile.type %>
-                <li><a href="#TODO">Track My Projects</a></li>
-                <li><%= link_to "Post a Project", new_project_path %></li>
+                <li class="<%= current_page?(track_projects_projects_path) && 'active' %>"><%= link_to "Track My Projects", track_projects_projects_path %></li>
+                <li class="<%= current_page?(new_project_path) && 'active' %>"><%= link_to "Post a Project", new_project_path %></li>
               <% elsif ContractorProfile.to_s == current_user.profile.type %>
-                <li><a href="#TODO">Track My Bids</a></li>
+                <li class="<%= current_page?(track_bids_projects_path) && 'active' %>"><%= link_to "Track My Bids", track_bids_projects_path %></li>
               <% end %>
-              <li><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
+              <li class="<%= current_page?(credits_path) && 'active' %>"><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
             </ul>
           <% else %>
             <ul class="nav ">
@@ -93,6 +93,20 @@
     <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
 
     <%= yield %>
+  </div>
+  <div class="footer">
+    <div class="fill">
+      <div class="container footer_container">
+        <ul>
+          <li><%= link_to "Terms of Service", content_page_path('terms') %></li>
+          <li><%= link_to "Privacy Policy", content_page_path('privacy') %></li>
+          <li><%= link_to "About", content_page_path('about') %></li>
+          <li><%= link_to "Help", content_page_path('help') %></li>
+          <li><%= link_to "Contact Us", content_page_path('contact') %></li>
+          <li class="right_side">&copy;2012 YPN</li>
+        </ul>
+      </div>
+    </div>
   </div>
   <%= javascript_include_tag :application %>
   <%= yield(:javascript) %>

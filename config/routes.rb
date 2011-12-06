@@ -12,9 +12,17 @@ Ypn::Application.routes.draw do
     member do
 	    get 'contact_creator'
 	  end
+    collection do
+	    get 'track_projects'
+	    get 'track_bids'
+	  end
   end
 
-  resources :profiles
+  resources :profiles do
+    collection do
+	    get 'settings'
+    end
+  end
 
   devise_for :users
 
@@ -33,6 +41,7 @@ Ypn::Application.routes.draw do
   resources :search, :only => [:index]
   #match 'search/' => 'search#index'
 
+  match 'home/:page' => 'home#show', :as => :content_page
   get "home/index"
 
   # The priority is based upon order of creation:
