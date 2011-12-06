@@ -447,6 +447,20 @@ ul.search_tabs li.selected {
   float: right;
 }
 
+.results_order {
+  background: #ddd;
+  margin: 5px;
+  padding: 5px;
+  text-align: right;
+}
+.results_order a {
+  color: #666;
+  padding: 0 5px;
+}
+.results_order a.active {
+  font-weight: bold;
+}
+
 .track-page h1 img {
   padding: 5px;
   background: #DDD;

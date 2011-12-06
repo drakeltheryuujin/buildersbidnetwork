@@ -18,6 +18,7 @@
   <div class="search_filters span4 ">
     <%= form_for @search, :url => search_index_path, :method => :get do |f| %>
       <%= f.hidden_field :section %>
+      <%= f.hidden_field :order %>
       <h6>Filter your results by:</h6>
       <div class="filter filter_q">
         <%= f.text_field :q, :placeholder => 'Search...' %>

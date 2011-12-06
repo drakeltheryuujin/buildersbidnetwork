@@ -1,3 +1,7 @@
+<div class="results_order">
+  <%= link_to "name", search_path(@search, :order => :name), :class => (@search.order == :name.to_s ? 'active' : '') %>
+  <%= link_to "distance", search_path(@search, :order => :distance), :class => (@search.order == :distance.to_s ? 'active' : '') unless @search.location.blank? %>
+</div>
 <% @search.results.each do |contractor| %>
   <div class="search_result contractor span12 row">
     <div class="span2 ">
@@ -5,7 +9,10 @@
     </div>
     <div class="span7">
       <div class="result_name"><%= link_to contractor.name, profile_path(contractor) %></div>
-      <div class="result_location"><%= contractor.location.city + ", " + contractor.location.state %></div>
+      <div class="result_location">
+        <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{contractor.latitude}%2C#{contractor.longitude}" %>
+        <%= contractor.location.city + ", " + contractor.location.state %>
+      </div>
     </div>
     <div class="span3 alpha">
       <div class="result_numbers">
@@ -15,3 +22,16 @@
     </div>
   </div>
 <% end %>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.lightbox" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.result_location a').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+    });
+  </script>
+<% end%>
+
