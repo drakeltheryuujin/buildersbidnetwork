@@ -139,6 +139,14 @@
   display: inline-block;
 }
 
+.home_page .home_box {
+  border: 3px solid #eee;
+  padding: 10px;
+}
+.home_page .search_box .type_select {
+  margin: 10px 0;
+}
+
 .message {
   padding: 0.5em;
   font-weight: bold;
@@ -388,10 +396,14 @@ ul.search_tabs li.selected {
   padding: 5px 0;
 }
 
+.home_page .search_box table td,
 .search_filters div.filter.filter_location table td {
   padding: 0;
   border: none;
   text-align: center;
+}
+.home_page .search_box table td {
+  text-align: left;
 }
 
 

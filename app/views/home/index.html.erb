@@ -1,3 +1,35 @@
-<h1>YPN</h1>
-<h2><%= link_to "Projects", projects_path %></h2>
-<h6><%= link_to "Project Types", project_types_path %></h6>
+<div class="home_page">
+  <div class="row">
+    <div class="span16 search_box home_box row">
+      <div class="offset6 span10">
+        <h1>Find Commercial Construction Projects</h1>
+        <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+          <%= f.hidden_field :section %>
+          <table class="span3">
+            <tr>
+              <td><strong>Within</strong></td>
+              <td>&nbsp;</td>
+              <td><strong>Your zip</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+              </td>
+              <td>of</td>
+              <td>
+                <%= f.text_field :location, :size => 7, :class => "span2" %>
+              </td>
+            </tr>
+          </table>
+
+          <strong class="span9">Select a Project Type</strong>
+          <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
+
+          <div class="span9">
+            <%= f.submit 'Search', :class => 'large float_right btn primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
