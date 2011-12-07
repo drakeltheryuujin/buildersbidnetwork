@@ -1,0 +1,13 @@
+<div class="span4 profile_sidebar">
+  <div class="profile_avatar sidebar_box">
+    <%= image_tag "/images/company_square.png", :alt => "Avatar" %>
+  </div>
+
+  <div class="sidebar_box sidebar_number">
+    <% cnt = @profile.user.project.count %>
+    <h1>Current Projects</h1>
+    <strong><%= cnt %></strong>
+    <span>This company has posted <%= pluralize(cnt, 'project') %>.</span>
+  </div>
+</div>
+

@@ -64,24 +64,26 @@
         <div class="container nav_container">
           <% if user_signed_in? %>
             <ul class="nav ">
-              <li class="<%= current_page?(profile_path(current_user.profile)) && 'active' %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
-              <li class="<%= current_page?(notifications_path) && 'active' %>"><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
-              <li class="<%= current_page?(search_index_path) && 'active' %>"><%= link_to "Browse", search_index_path %></li>
+              <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <li class="<%= put_if_current_page('active', notifications_path) %>"><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
+              <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse", search_index_path %></li>
             </ul>
             <ul class="secondary-nav">
               <% if DeveloperProfile.to_s == current_user.profile.type %>
-                <li class="<%= current_page?(track_projects_projects_path) && 'active' %>"><%= link_to "Track My Projects", track_projects_projects_path %></li>
-                <li class="<%= current_page?(new_project_path) && 'active' %>"><%= link_to "Post a Project", new_project_path %></li>
+                <li class="<%= put_if_current_page('active', track_projects_projects_path) %>"><%= link_to "Track My Projects", track_projects_projects_path %></li>
+                <li class="<%= put_if_current_page('active', new_project_path) %>"><%= link_to "Post a Project", new_project_path %></li>
               <% elsif ContractorProfile.to_s == current_user.profile.type %>
-                <li class="<%= current_page?(track_bids_projects_path) && 'active' %>"><%= link_to "Track My Bids", track_bids_projects_path %></li>
+                <li class="<%= put_if_current_page('active', track_bids_projects_path) %>"><%= link_to "Track My Bids", track_bids_projects_path %></li>
               <% end %>
-              <li class="<%= current_page?(credits_path) && 'active' %>"><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
+              <li class="<%= put_if_current_page('active', credits_path) %>"><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
             </ul>
           <% else %>
             <ul class="nav ">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="<%= put_if_current_page('active', root_path) %>">
+                <%= link_to "Home", root_path %>
+              </li>
+              <li class="<%= put_if_current_page('active', content_page_path('about')) %>"><%= link_to "About", content_page_path('about') %></li>
+              <li class="<%= put_if_current_page('active', content_page_path('contact')) %>"><%= link_to "Contact", content_page_path('contact') %></li>
             </ul>
           <% end %>
         </div>

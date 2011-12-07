@@ -143,8 +143,35 @@
   border: 3px solid #eee;
   padding: 10px;
 }
+.home_page .search_box {
+  margin: 0 0 20px 0;
+}
 .home_page .search_box .type_select {
   margin: 10px 0;
+}
+
+.home_page .cta_box {
+  margin-bottom: 20px;
+  background: #666;
+  color: #eee;
+  padding: 15px;
+}
+
+.home_page .cta_box span {
+  font-size: 18px;
+}
+.home_page .cta_box a {
+  color: #eee;
+  text-decoration: underline;
+}
+.home_page .info_box ul {
+  list-style: square;
+}
+.home_page .info_box ul li {
+  line-height: 2em;
+}
+.home_page .info_box .btn {
+  text-align: center;
 }
 
 .message {
@@ -404,6 +431,7 @@ ul.search_tabs li.selected {
 }
 .home_page .search_box table td {
   text-align: left;
+  padding: 0 5px 0 0;
 }
 
 
@@ -478,6 +506,57 @@ ul.search_tabs li.selected {
   background: #DDD;
   top: 5px;
   position: relative;
+}
+
+.profile_sidebar .sidebar_box {
+  padding: 10px;
+  background: #edebe1;
+  margin-bottom: 20px;
+  border: 2px solid #DDD;
+}
+.profile_sidebar .sidebar_box.profile_avatar {
+  text-align: center;
+}
+
+.profile_sidebar .sidebar_box.sidebar_number h1 {
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+.profile_sidebar .sidebar_box.sidebar_number strong {
+  font-size: 30px;
+  font-weight: bold;
+  display: block;
+  float: left;
+  padding: 0 15px;
+}
+.profile_sidebar .sidebar_box.sidebar_number span {
+  display: block;
+}
+
+.profile_actions ul {
+  list-style: none;
+}
+.profile_actions ul li {
+  border-style: dotted;
+  border-color: #ddd;
+  border-width: 1px 0;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.profile_page .field label {
+  font-size: 11px;
+}
+.profile_page .field address p {
+  font-size: 18px;
+}
+
+.profile_page .profile_meta {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 

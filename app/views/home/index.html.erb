@@ -1,8 +1,9 @@
 <div class="home_page">
   <div class="row">
-    <div class="span16 search_box home_box row">
+    <div class="span16 ">
+    <div class="search_box home_box row">
       <div class="offset6 span10">
-        <h1>Find Commercial Construction Projects</h1>
+        <h2>Find Commercial Construction Projects</h2>
         <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
           <%= f.hidden_field :section %>
           <table class="span3">
@@ -29,6 +30,36 @@
             <%= f.submit 'Search', :class => 'large float_right btn primary' %>
           </div>
         <% end %>
+      </div>
+    </div>
+    </div>
+  </div> <!-- /row -->
+  <div class="row">
+    <div class="span8 ">
+      <% unless user_signed_in? %>
+        <div class="cta_box home_box">
+          <span>
+            <strong>
+              It's free to <%= link_to "Sign Up", new_user_registration_path %>.
+            </strong>
+            What Projects are you missing?
+          </span>
+        </div>
+      <% end %>
+      <div class="info_box home_box " style="height: 200px">
+      </div>
+    </div>
+    <div class="span8 ">
+      <div class="info_box home_box ">
+        <h3>Post a Project, Get Bids from Contractors</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vulputate placerat adipiscing. Quisque in varius leo. Suspendisse interdum, elit nec sollicitudin iaculis, felis odio scelerisque nibh, eu dapibus neque elit fringilla orci. In convallis lectus ac odio malesuada a suscipit erat commodo.</p>
+        <ul>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        </ul>
+        <%= link_to "Post a Project Now", new_project_path, :class => "btn large primary span7" %>
       </div>
     </div>
   </div>

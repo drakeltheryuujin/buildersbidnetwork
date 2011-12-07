@@ -1,66 +1,67 @@
-<div class="row">
-  <div class="span8">
-    <div class="field">
-      <label class="span2">Name</label>
-      <span class="span6"><%= @profile.name %></span>
-    </div>
-    
-    <div class="field">
-      <label class="span2">Creator</label>
-      <span class="span6"><%= @profile.user.email %></span>
-    </div>
-    
-    <div class="field">
-      <label class="span2">Type</label>
-      <span class="span6"><%= @profile.class.to_s %></span>
-    </div>
-    
-    <div class="field row">
-      <label class="span2">Location</label>
-      <address>
-        <p><%= @profile.location.address1 %></p>
-        <% unless @profile.location.address2.blank? %>
-          <p><%= @profile.location.address2 %></p>
-        <% end %>
-        <p><%= @profile.location.city %>, <%= @profile.location.state %>&nbsp; <%= @profile.location.post_code %></p>
-      </address>
-    </div>
-  </div>
-  <div class="span8">
-    <div class="field">
-      <label class="span2">Established</label>
-      <span><%= @profile.established || '&nbsp;'.html_safe %></span>
-    </div>
-    <div class="field">
-      <label class="span2">Website</label>
-      <span><%= @profile.website || '&nbsp;'.html_safe %></span>
-    </div>
-    <% @profile.phones.each do |phone| %>
-      <div class="field">
-        <label class="span2"><%= phone.phone_type.name %></label>
-        <span><%= phone.number %></span>
+<div class="row profile_page">
+  <%= render "sidebar" %>
+  <div class="span12">
+    <%= render "header" %>
+    <div class="row">
+      <ul class="tabs span12">
+        <li><%= link_to "Posted Projects", projects_profile_path(@profile) %></li>
+        <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
+      </ul>
+      <div class="span6">
+        <div class="profile_meta">
+          <div class="field ">
+            <label class="span2">Location</label>
+            <address>
+              <p><%= @profile.location.address1 %></p>
+              <% unless @profile.location.address2.blank? %>
+                <p><%= @profile.location.address2 %></p>
+              <% end %>
+              <p><%= @profile.location.city %>, <%= @profile.location.state %>&nbsp; <%= @profile.location.post_code %></p>
+            </address>
+          </div>
+          <% @profile.phones.each do |phone| %>
+            <div class="field">
+              <label class="span2"><%= phone.phone_type.name %></label>
+              <span><%= phone.number %></span>
+            </div>
+          <% end %>
+        </div> <!-- /profile_meta -->
       </div>
-    <% end %>
+      <div class="span6 ">
+        <div class="profile_meta">
+          <div class="field">
+            <label class="span2">Established</label>
+            <span><%= @profile.established || '&nbsp;'.html_safe %></span>
+          </div>
+          <div class="field">
+            <label class="span2">Website</label>
+            <span><%= @profile.website || '&nbsp;'.html_safe %></span>
+          </div>
+        </div> <!-- /profile_meta -->
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12 alpha form-stacked">
+        <div class="profile_meta">
+          <label class="">Company Description</label>
+          <p class="">
+            <%= simple_format @profile.description %>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="offset1 span12">
-    <% if @profile.geocoded? %>
-      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=640x150&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
-    <% else %>
-      <label><span class="message bad_address">Couldn't find address.</span></label>
-    <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="field span16 form-stacked">
-    <label class="">Description</label>
-    <p class="">
-      <%= @profile.description %>
-    </p>
-  </div>
-</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.lightbox" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.profile_header h4 a').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+    });
+  </script>
+<% end%>
 
-<div class="row actions">
-  <%= link_to('Edit', edit_profile_path(@profile), :class => "btn large primary") if may_admin_profile? %>
-</div>

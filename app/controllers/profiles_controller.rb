@@ -86,4 +86,10 @@ class ProfilesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def projects
+    @profile = Profile.find(params[:id])
+    
+    @projects = Project.where(:user_id => @profile.user.id) 
+  end
 end

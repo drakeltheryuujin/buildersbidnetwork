@@ -19,6 +19,10 @@ Ypn::Application.routes.draw do
   end
 
   resources :profiles do
+    member do
+	    get 'projects'
+	    get 'contact_owner'
+	  end
     collection do
 	    get 'settings'
     end
