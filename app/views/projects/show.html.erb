@@ -1,83 +1,190 @@
-<%= render 'meta' %>
-
-<div class="row form-stacked">
-  <label class="">Line Items</label>
-  <ul class="line_items">
-    <% @project.line_items.each do |line_item| %>
-      <li class="line_item <%= cycle("odd", "even") -%>">
-        <span class="content"><%= line_item.content %></span>
-        <span class="units"><%= line_item.units %></span>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="row form-stacked"> <!-- TODO media grid for images/documents -->
-  <label>Documents</label>
-  <% @project.project_documents.each do |project_document| %>
-    <div class="project_document">
-      <% if project_document.is_image? %>
-        <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
-      <% else %>
-        <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
-      <% end %>
-      <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
-      <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
-    </div>
-  <% end%>
-  <% if may_admin_project? %>
-    <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
-      <%= project_doc_form.label :asset %>
-      <%= project_doc_form.file_field :asset %>
-      <%= project_doc_form.label :description %>
-      <%= project_doc_form.text_field :description %>
-    
-      <%= project_doc_form.submit %>
-    <% end %>
-  <% end %>
-</div>
-<% content_for :javascript do %>
-  <%= javascript_include_tag "jquery.lightbox-0.5" %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.project_document a.lightbox_thumb').lightBox({
-        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
-        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
-        imageBlank: '/images/lightbox/lightbox-blank.gif'
-      });
-    });
-  </script>
-<% end%>
-
-<% if ! @project.bids.nil? %>
-<div class="row form-stacked">
-  <label>
-    Bids
+<div class="row project_header">
+  <div class="span2 project_avatar">
+    <%= image_tag "/images/project_square.png", :alt => "Avatar" %>
+  </div>
+  <div class="span8 ">
+    <h1><%= @project.name %></h1>
+    <p class="project_meta">
+      <%= link_to @project.user.profile.name, profile_path(@project.user.profile) %>
+      &middot;
+      <span class="label"><%= @project.project_type.name %></span>
+      &middot;
+      <%= link_to (image_tag "/images/location_pin.png", :alt => "Location", :class => "location_link"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
+      <%= @project.location.city %>, <%= @project.location.state %>
+    </p>
+  </div>
+  <div class="span6 project_actions">
     <% if may_admin_project? %>
-      <span class="label success owner">You are the project owner, and would see this list.</span>
+    <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn large'  %> 
+    <span class="label large">
+      <strong><%= @project.bids.count %></strong> Current Bids
+    </span>
     <% else %>
-      <span class="label important viewer">You are NOT the project owner, so would not see this list.</span>
-    <% end%>
-  </label>
-  <table class="project_bids zebra-striped">
-    <tr>
-      <th class="bidder">Bidder</th>
-      <th class="bid_date">Date Submitted</th>
-      <th class="total">Total</th>
-  	</tr>
-    <% @project.bids.each do |bid| %>
-      <tr class="project_bid <%= cycle("odd", "even") -%>">
-      	<td class="bidder"><%= link_to bid.user.email, [@project, bid] %></td>
-      	<td class="bid_date"><%= bid.created_at.to_date.to_formatted_s(:long) %></td>
-      	<td class="total"><%= number_to_currency bid.total %></td>
-      </tr>
+      <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info' %> 
+      <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
     <% end %>
-  </table>
+  </div>
 </div>
-<% end %>
+<div class="row project_page">
+  <div class="span5 project_sidebar">
+    <div class="sidebar_box project_timeline">
+      <h1>Project Timeline</h1>
+      <ul>
+        <li>
+          <label>Posted for Bidding:</label>
+          <span><%= @project.bidding_start.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Closed for Bidding:</label>
+          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Pre Bid Meeting:</label>
+          <span><%= @project.pre_bid_meeting.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Estimated Start Date:</label>
+          <span><%= @project.project_start.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Estimated End Date:</label>
+          <span><%= @project.project_end.to_formatted_s(:short) %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="span11 project_content">
+    <ul class="tabs" data-tabs="tabs">
+      <li class="active"><a href="#scope">Project Scope</a></li>
+      <li><a href="#docs">Documents + Photos</a></li>
+      <% if may_admin_project? %>
+        <li><a href="#bids">Bids</a></li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active row" id="scope">
+        <div class="span6">
+          <div class="project_meta">
+            <div class="field ">
+              <label class="span2">Location</label>
+              <address>
+                <p><%= @project.location.address1 %></p>
+                <% unless @project.location.address2.blank? %>
+                  <p><%= @project.location.address2 %></p>
+                <% end %>
+                <p><%= @project.location.city %>, <%= @project.location.state %>&nbsp; <%= @project.location.post_code %></p>
+              </address>
+            </div>
+          </div> <!-- /project_meta -->
+        </div>
+        <div class="span5 ">
+          <div class="project_meta">
+            <div class="field">
+              <label class="span2">Project Type</label>
+              <span class="label"><%= @project.project_type.name %></span>
+            </div>
+          </div> <!-- /project_meta -->
+        </div>
+        <div class="span11 alpha form-stacked">
+          <div class="project_meta">
+            <label class="">Project Description</label>
+            <p class="">
+              <%= simple_format @project.description %>
+            </p>
+          </div>
+        </div>
+        <div class="span11 alpha form-stacked">
+          <div class="project_meta">
+            <label class="">Additional Notes and Requirements</label>
+            <p class="">
+              <%= simple_format @project.notes %>
+            </p>
+          </div>
+        </div>
+        <div class="span11 alpha form-stacked">
+          <div class="project_meta">
+            <label class="">Bid Breakdown</label>
+            <ul class="line_items">
+              <% @project.line_items.each_with_index do |line_item, index| %>
+                <li class="line_item">
+                  <strong>Line Item #<%= index + 1 %></strong>
+                  <span class="content"><%= line_item.content %></span>
+                  <span class="units"><%= line_item.units %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
 
-<div class="row actions">
-<%= link_to 'Edit', edit_project_path(@project), :class => 'btn large primary' if may_admin_project? %> 
-<%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info' %> 
-<%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
+      </div> <!-- /#scope -->
+
+      <div class="tab-pane" id="docs">
+        <div class="row form-stacked"> <!-- TODO media grid for images/documents -->
+          <label>Documents</label>
+          <% @project.project_documents.each do |project_document| %>
+            <div class="project_document">
+              <% if project_document.is_image? %>
+                <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
+              <% else %>
+                <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
+              <% end %>
+              <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
+              <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
+            </div>
+          <% end%>
+          <% if may_admin_project? %>
+            <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+              <%= project_doc_form.label :asset %>
+              <%= project_doc_form.file_field :asset %>
+              <%= project_doc_form.label :description %>
+              <%= project_doc_form.text_field :description %>
+            
+              <%= project_doc_form.submit %>
+            <% end %>
+          <% end %>
+        </div>
+        <% content_for :javascript do %>
+          <%= javascript_include_tag "jquery.lightbox" %>
+          <script type="text/javascript">
+            $(document).ready(function() {
+              $('.project_document a.lightbox_thumb').lightBox({
+                imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+                imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+                imageBlank: '/images/lightbox/lightbox-blank.gif'
+              });
+            });
+          </script>
+        <% end%>
+      </div> <!-- /#docs -->
+
+      <% if may_admin_project? %>
+        <div class="tab-pane" id="bids">
+          <% if @project.bids.nil? %>
+          <% else %>
+            <% @project.bids.each do |bid| %>
+              <div class="project_bid search_result bid span11 row">
+                <div class="span2 ">
+                  <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(bid.user.profile) %>
+                </div>
+                <div class="span6 ">
+                  <div class="result_name"><%= link_to bid.user.profile.name, profile_path(bid.user.profile) %></div>
+                  <div class="result_location">
+                    <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{bid.user.profile.latitude}%2C#{bid.user.profile.longitude}" %>
+                    <%= bid.user.profile.location.city + ", " + bid.user.profile.location.state %>
+                  </div>
+                </div>
+                <div class="span3 alpha">
+                  <div class="result_numbers">
+                    <p class="bid_total">Bid: <%= number_to_currency bid.total %></p>
+                    <p class="bid_posted">Posted: <%= bid.created_at.to_formatted_s(:short) %></p>
+                  </div>
+                  <%= link_to "Bid Details", project_bid_path(@project, bid), :class => "btn info" %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div> <!-- /#bids -->
+      <% end %>
+    </div>
+  </div>
 </div>
