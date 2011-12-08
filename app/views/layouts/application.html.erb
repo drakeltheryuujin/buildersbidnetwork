@@ -13,7 +13,7 @@
     <div class="fill">
       <div class="container">
         <% if ! user_signed_in? %>
-          <div>
+          <div class="sign_in_cta">
             <%= link_to "Sign In", new_user_session_path %>
             or 
             <%= link_to "Register", new_user_registration_path %> 
@@ -39,51 +39,44 @@
   </div>
 
   <div class="brand_header ">
-    <div class="container header_container">
-      <h1>
-        <%= link_to root_path do %>
-          Your<em>Project</em>Network
-        <% end %>
-      </h1>
-
-      <div class="search_nav">
-        <%= form_for @search || Search.new, :url => search_index_path, :method => :get do |f| %>
-          <span class="input-append">
-            <%= f.text_field :q, :placeholder => "Enter Keyword(s)" %>
-            <label class="add-on ">
-              <%= f.select :section, [["Projects", :projects], ["Contractors", :contractors], ["Developers", :developers]], {}, {:class => 'medium'} %>
-            </label>
-          </span>
-          <%= f.submit "Search", :class => 'btn info' %>
-				<% end %>
-      </div>
-    </div>
-
     <div class="topbar nav_topbar">
       <div class="fill">
         <div class="container nav_container">
+          <%= link_to (image_tag "/images/bestbidnetwork_templogo.png", :alt => "BBN", :class => "logo"), root_path %>
           <% if user_signed_in? %>
             <ul class="nav ">
               <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
               <li class="<%= put_if_current_page('active', notifications_path) %>">
                 <%= link_to notifications_path do %> 
                   Notifications
-                  <span class="label"><%= current_user.mailbox.notifications.unread.count.to_s %></span>
+                  <p class="nav_desc">
+                    <span class="label"><%= current_user.mailbox.notifications.unread.count.to_s %></span>
+                    messages
+                  </p>
                 <% end %>
               </li>
               <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse", search_index_path %></li>
-            </ul>
-            <ul class="secondary-nav">
               <% if DeveloperProfile.to_s == current_user.profile.type %>
-                <li class="<%= put_if_current_page('active', track_projects_projects_path) %>"><%= link_to "Track My Projects", track_projects_projects_path %></li>
-                <li class="<%= put_if_current_page('active', new_project_path) %>"><%= link_to "Post a Project", new_project_path %></li>
+                <li class="<%= put_if_current_page('active', track_projects_projects_path) %>">
+                  <%= link_to track_projects_projects_path do %>
+                    Track
+                    <p class="nav_desc">my projects</p>
+                  <% end %>
+                </li>
               <% elsif ContractorProfile.to_s == current_user.profile.type %>
-                <li class="<%= put_if_current_page('active', track_bids_projects_path) %>"><%= link_to "Track My Bids", track_bids_projects_path %></li>
+                <li class="<%= put_if_current_page('active', track_bids_projects_path) %>">
+                  <%= link_to track_bids_projects_path do %>
+                    Track 
+                    <p class="nav_desc">my bids</p>
+                  <% end %>
+                </li>
               <% end %>
               <li class="<%= put_if_current_page('active', credits_path) %>">
                 <%= link_to credits_path do %>
                   Credits 
-                  <span class="label"><%= (current_user.credits.blank? ? 0 : current_user.credits).to_s %></span>
+                  <p class="nav_desc">
+                    <span class="label"><%= (current_user.credits.blank? ? 0 : current_user.credits).to_s %></span>
+                  </p>
                 <% end %>
               </li>
             </ul>
@@ -96,6 +89,19 @@
               <li class="<%= put_if_current_page('active', content_page_path('contact')) %>"><%= link_to "Contact", content_page_path('contact') %></li>
             </ul>
           <% end %>
+          <div class="search_nav">
+            <%= form_for @search || Search.new, :url => search_index_path, :method => :get do |f| %>
+              <span class="input-append">
+                <%= f.text_field :q, :class => "search", :placeholder => "Enter Keyword(s)" %>
+                <label class="add-on ">
+                  <%= f.select :section, [["Projects", :projects], ["Contractors", :contractors], ["Developers", :developers]], {}, {:class => 'small'} %>
+                </label>
+                <label class="add-on ">
+                  <%= f.submit "Search", :class => 'search_btn', :type => "image", :src => "/images/search_icon.png" %>
+                </label>
+              </span>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
