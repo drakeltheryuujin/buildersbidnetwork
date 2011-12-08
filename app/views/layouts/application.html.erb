@@ -65,7 +65,12 @@
           <% if user_signed_in? %>
             <ul class="nav ">
               <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
-              <li class="<%= put_if_current_page('active', notifications_path) %>"><%= link_to "Notifications (" + current_user.mailbox.notifications.unread.count.to_s + ")", notifications_path %></li>
+              <li class="<%= put_if_current_page('active', notifications_path) %>">
+                <%= link_to notifications_path do %> 
+                  Notifications
+                  <span class="label"><%= current_user.mailbox.notifications.unread.count.to_s %></span>
+                <% end %>
+              </li>
               <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse", search_index_path %></li>
             </ul>
             <ul class="secondary-nav">
@@ -75,7 +80,12 @@
               <% elsif ContractorProfile.to_s == current_user.profile.type %>
                 <li class="<%= put_if_current_page('active', track_bids_projects_path) %>"><%= link_to "Track My Bids", track_bids_projects_path %></li>
               <% end %>
-              <li class="<%= put_if_current_page('active', credits_path) %>"><%= link_to "Credits (" + (current_user.credits.blank? ? 0 : current_user.credits).to_s + ")", credits_path %></li>
+              <li class="<%= put_if_current_page('active', credits_path) %>">
+                <%= link_to credits_path do %>
+                  Credits 
+                  <span class="label"><%= (current_user.credits.blank? ? 0 : current_user.credits).to_s %></span>
+                <% end %>
+              </li>
             </ul>
           <% else %>
             <ul class="nav ">
