@@ -56,6 +56,8 @@ class Project < ActiveRecord::Base
   validates :project_end,
     :presence => true, 
     :date => {:after => Proc.new { Time.now }}
+  validates :estimated_budget,
+    :presence => true
   validates :terms_of_use, 
     :acceptance => true
   # TODO validate credit_value and estimated_budget are in sync
