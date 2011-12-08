@@ -654,6 +654,11 @@ ul.search_tabs li.selected {
   display: block;
 }
 
+.sidebar_box.help_box p {
+  border-bottom: 1px dotted #666;
+  padding-bottom: 10px;
+}
+
 .profile_actions ul {
   list-style: none;
 }
@@ -673,12 +678,44 @@ ul.search_tabs li.selected {
   font-size: 18px;
 }
 
+.project_form .project_meta,
 .project_page .project_meta,
 .profile_page .profile_meta {
   border: 1px solid #ddd;
   margin-bottom: 20px;
   padding: 20px;
 }
+.project_form .project_meta .field select.type_select,
+.project_form .project_meta .field textarea,
+.project_form .project_meta .field input {
+  width: 98%;
+}
+
+.project_form .project_meta .field.line_item input,
+.project_form .project_meta .field.location select,
+.project_form .project_meta .field.location input {
+  margin: 0 0 10px 0;
+}
+.project_form .project_meta .field.location input.city_field {
+  width: 438px;
+}
+.project_form .project_meta .field.location select {
+  width: 50px;
+}
+.project_form .project_meta .field.location input.zip_field {
+  width: 80px;
+}
+.project_form .project_meta .field.line_item input.line_item_content_field {
+  width: 470px;
+}
+.project_form .project_meta .field.line_item input.line_item_units_field {
+  width: 80px;
+}
+
+.project_form .project_meta.project_budget div.input-prepend {
+  display: inline;
+}
+
 
 
 .project_header {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121172822) do
+ActiveRecord::Schema.define(:version => 20111208192922) do
 
   create_table "bids", :force => true do |t|
     t.decimal  "total",      :precision => 8, :scale => 2
@@ -164,22 +164,27 @@ ActiveRecord::Schema.define(:version => 20111121172822) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name",            :null => false
-    t.integer  "user_id",         :null => false
+    t.string   "name",                                           :null => false
+    t.integer  "user_id",                                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "bidding_start",   :null => false
-    t.datetime "bidding_end",     :null => false
+    t.datetime "bidding_start",                                  :null => false
+    t.datetime "bidding_end",                                    :null => false
     t.datetime "pre_bid_meeting"
-    t.date     "project_start",   :null => false
-    t.date     "project_end",     :null => false
-    t.text     "description",     :null => false
+    t.date     "project_start",                                  :null => false
+    t.date     "project_end",                                    :null => false
+    t.text     "description",                                    :null => false
     t.text     "notes"
-    t.integer  "location_id",     :null => false
-    t.integer  "project_type_id", :null => false
+    t.integer  "location_id",                                    :null => false
+    t.integer  "project_type_id",                                :null => false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "state"
+    t.decimal  "estimated_budget", :precision => 8, :scale => 2
+    t.integer  "credit_value"
   end
+
+  add_index "projects", ["state"], :name => "index_projects_on_state"
 
   create_table "receipts", :force => true do |t|
     t.integer  "receiver_id"

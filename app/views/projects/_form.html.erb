@@ -1,146 +1,205 @@
 <%= nested_form_for @project do |f| %>
-  <div class="row">
-    <% if @project.errors.any? %>
-      <div class="alert-message block-message error">
-        <strong><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</strong>
+  <div class="row project_form">
+    <div class="span11">
+      <% if @project.errors.any? %>
+        <div class="alert-message block-message error">
+          <strong><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</strong>
 
-        <ul>
-          <% @project.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="span8 ">
-      <div class="field row">
-        <%= f.label :name, :class => "span2" %>
-        <%= f.text_field :name, :class => "span6 alpha" %>
-      </div>
-      <div class="field row">
-        <%= f.label :project_type, "Type", :class => "span2" %>
-        <%= f.collection_select(:project_type_id, ProjectType.all, :id, :name, {:prompt => true}, {:class => "span6 alpha"}) %>
-      </div>
-      <%= f.fields_for :location do |location_form| %>
-        <div class="field row">
-          <%= location_form.label :address1, "Location", :class => "span2" %>
-          <%= location_form.text_field :address1, :class => "span6 alpha" %>
-        </div>
-        <div class="field row">
-          <span class="span2">&nbsp;</span>
-          <%= location_form.text_field :address2, :class => "span6 alpha" %>
-        </div>
-        <div class="field row">
-          <label class="span2">City, State</label>
-          <%= location_form.text_field :city, :class => "span4 alpha" %>
-          <%= location_form.select(:state, [     
-            ['AL', 'AL'], 
-            ['AK', 'AK'],
-            ['AZ', 'AZ'],
-            ['AR', 'AR'], 
-            ['CA', 'CA'], 
-            ['CO', 'CO'], 
-            ['CT', 'CT'], 
-            ['DE', 'DE'], 
-            ['DC', 'DC'], 
-            ['FL', 'FL'],
-            ['GA', 'GA'],
-            ['HI', 'HI'], 
-            ['ID', 'ID'], 
-            ['IL', 'IL'], 
-            ['IN', 'IN'], 
-            ['IA', 'IA'], 
-            ['KS', 'KS'], 
-            ['KY', 'KY'], 
-            ['LA', 'LA'], 
-            ['ME', 'ME'], 
-            ['MD', 'MD'], 
-            ['MA', 'MA'], 
-            ['MI', 'MI'], 
-            ['MN', 'MN'],
-            ['MS', 'MS'], 
-            ['MO', 'MO'], 
-            ['MT', 'MT'], 
-            ['NE', 'NE'], 
-            ['NV', 'NV'], 
-            ['NH', 'NH'], 
-            ['NJ', 'NJ'], 
-            ['NM', 'NM'], 
-            ['NY', 'NY'], 
-            ['NC', 'NC'], 
-            ['ND', 'ND'], 
-            ['OH', 'OH'], 
-            ['OK', 'OK'], 
-            ['OR', 'OR'], 
-            ['PA', 'PA'], 
-            ['RI', 'RI'], 
-            ['SC', 'SC'], 
-            ['SD', 'SD'], 
-            ['TN', 'TN'], 
-            ['TX', 'TX'], 
-            ['UT', 'UT'], 
-            ['VT', 'VT'], 
-            ['VA', 'VA'], 
-            ['WA', 'WA'], 
-            ['WV', 'WV'], 
-            ['WI', 'WI'], 
-            ['WY', 'WY']], {}, :class => "span2") %>
-        </div>
-          
-        <div class="field row">
-          <%= location_form.label :post_code, "Zip", :class => "span2" %>
-          <%= location_form.text_field :post_code, :size => "5", :class => "span6 alpha" %>
+          <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         </div>
       <% end %>
-    </div> <!-- / span8 -->
-    <div class="span8">
-      <div class="field row datetime-field">
-        <%= f.label :bidding_start, "Posted", :class => "span2" %>
-        <%= f.datetime_select :bidding_start %>
+
+      <div class="project_meta form-stacked">
+        <div class="field ">
+          <%= f.label :name, :class => "" %>
+          <%= f.text_field :name, :class => "" %>
+        </div>
+        <div class="field ">
+          <%= f.label :project_type, "Type", :class => "" %>
+          <%= f.collection_select(:project_type_id, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select"}) %>
+        </div>
+      </div> <!-- /.project_meta -->
+
+      <div class="project_meta">
+        <div class="field row datetime-field">
+          <%= f.label :bidding_start, "Posted", :class => "span2" %>
+          <%= f.datetime_select :bidding_start %>
+        </div>
+        <div class="field row datetime-field">
+          <%= f.label :bidding_end, "Closed", :class => "span2" %>
+          <%= f.datetime_select :bidding_end %>
+        </div>
+        <div class="field row datetime-field">
+          <%= f.label :pre_bid_meeting, "Meeting", :class => "span2" %>
+          <%= f.datetime_select :pre_bid_meeting %>
+        </div>
+        <div class="field row datetime-field">
+          <%= f.label :project_start, "Start&nbsp;Date".html_safe, :class => "span2" %>
+          <%= f.date_select :project_start %>
+        </div>
+        <div class="field row datetime-field">
+          <%= f.label :project_end, "End\&nbsp;Date".html_safe, :class => "span2" %>
+          <%= f.date_select :project_end %>
+        </div>
+      </div> <!-- /.project_meta -->
+
+      <div class="project_meta project_budget form-stacked">
+        <%= f.label :estimated_budget, "Estimated Project Budget" %>
+        <div class="input-prepend">
+          <span class="add-on">$</span>
+          <%= f.text_field :estimated_budget %>
+        </div>
+        <span id="credit_value_label" class="label"><%= @project.credit_value || '0' %></span> Credit Value
+        <%= f.hidden_field :credit_value %>
+      </div> <!-- /.project_meta -->
+
+      <div class="project_meta form-stacked">
+        <%= f.fields_for :location do |location_form| %>
+          <div class="field location">
+            <%= location_form.label :address1, "Location of Project", :class => "" %>
+            <%= location_form.text_field :address1, :class => "", :placeholder => "Street Address" %>
+            <%= location_form.text_field :address2, :class => "", :placeholder => "Company, Suite, Floor, etc" %>
+            <%= location_form.text_field :city, :class => "city_field", :placeholder => "City" %>
+            <%= location_form.select(:state, [     
+              ['AL', 'AL'], 
+              ['AK', 'AK'],
+              ['AZ', 'AZ'],
+              ['AR', 'AR'], 
+              ['CA', 'CA'], 
+              ['CO', 'CO'], 
+              ['CT', 'CT'], 
+              ['DE', 'DE'], 
+              ['DC', 'DC'], 
+              ['FL', 'FL'],
+              ['GA', 'GA'],
+              ['HI', 'HI'], 
+              ['ID', 'ID'], 
+              ['IL', 'IL'], 
+              ['IN', 'IN'], 
+              ['IA', 'IA'], 
+              ['KS', 'KS'], 
+              ['KY', 'KY'], 
+              ['LA', 'LA'], 
+              ['ME', 'ME'], 
+              ['MD', 'MD'], 
+              ['MA', 'MA'], 
+              ['MI', 'MI'], 
+              ['MN', 'MN'],
+              ['MS', 'MS'], 
+              ['MO', 'MO'], 
+              ['MT', 'MT'], 
+              ['NE', 'NE'], 
+              ['NV', 'NV'], 
+              ['NH', 'NH'], 
+              ['NJ', 'NJ'], 
+              ['NM', 'NM'], 
+              ['NY', 'NY'], 
+              ['NC', 'NC'], 
+              ['ND', 'ND'], 
+              ['OH', 'OH'], 
+              ['OK', 'OK'], 
+              ['OR', 'OR'], 
+              ['PA', 'PA'], 
+              ['RI', 'RI'], 
+              ['SC', 'SC'], 
+              ['SD', 'SD'], 
+              ['TN', 'TN'], 
+              ['TX', 'TX'], 
+              ['UT', 'UT'], 
+              ['VT', 'VT'], 
+              ['VA', 'VA'], 
+              ['WA', 'WA'], 
+              ['WV', 'WV'], 
+              ['WI', 'WI'], 
+              ['WY', 'WY']], {}, :class => "") %>
+            <%= location_form.text_field :post_code, :size => "5", :class => "zip_field", :placeholder => "Zip/Postal Code" %>
+          </div>
+        <% end %>
+      </div> <!-- /.project_meta -->
+
+      <div class="project_meta form-stacked">
+        <div class="field">
+          <%= f.label :description, "General Project Description" %><br/>
+          <%= f.text_area :description, :class => "", :rows => "5" %>
+        </div>
       </div>
-      <div class="field row datetime-field">
-        <%= f.label :bidding_end, "Closed", :class => "span2" %>
-        <%= f.datetime_select :bidding_end %>
+
+      <div class="project_meta project_line_items form-stacked">
+        <label class="">Bid Breakdown</label>
+        <%= f.fields_for :line_items do |line_item_form| %>
+          <div class="field line_item">
+            <%= line_item_form.text_field :content, :class => "line_item_content_field", :placeholder => "Line Item" %>
+            <%= line_item_form.text_field :units, :class => "line_item_units_field", :placeholder => "Quantity" %>
+            <%= line_item_form.link_to_remove image_tag("/images/cross.png", :alt => "[Remove]") %>
+          </div> <!-- /row -->
+        <% end %>
+        <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
       </div>
-      <div class="field row datetime-field">
-        <%= f.label :pre_bid_meeting, "Meeting", :class => "span2" %>
-        <%= f.datetime_select :pre_bid_meeting %>
+
+      <div class="project_meta form-stacked">
+        <div class="field">
+          <%= f.label :notes, "Additional Notes and Requirements" %><br/>
+          <%= f.text_area :notes, :class => "", :rows => "5" %>
+        </div>
       </div>
-      <div class="field row datetime-field">
-        <%= f.label :project_start, "Start&nbsp;Date".html_safe, :class => "span2" %>
-        <%= f.date_select :project_start %>
-      </div>
-      <div class="field row datetime-field">
-        <%= f.label :project_end, "End\&nbsp;Date".html_safe, :class => "span2" %>
-        <%= f.date_select :project_end %>
-      </div>
-    </div>
-  </div>
-  <div class="row form-stacked">
-    <div class="field">
-      <%= f.label :description, "Brief Project Description" %><br/>
-      <%= f.text_area :description, :class => "span16", :rows => "5" %>
-    </div>
-    <div class="field">
-      <%= f.label :notes, "Additional Notes and Requirements" %><br/>
-      <%= f.text_area :notes, :class => "span16", :rows => "5" %>
-    </div>
-  </div>
-  <div class="row ">
-    <label class="">Line Items</label>
-    <%= f.fields_for :line_items do |line_item_form| %>
-      <div class="row">
-        <%= line_item_form.text_field :content, :class => "span16" %>
-        <p class="span16">
-          <%= f.label :units, "Quantity or Number of Units" %>
-          <%= line_item_form.text_field :units %>
-          <%= line_item_form.link_to_remove "Remove this Line Item" %>
+
+      <div class="">
+        <p>
+          <label class="span6">
+            <%= f.check_box :terms_of_use %>
+            I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
+          </label>
         </p>
-      </div> <!-- /row -->
-    <% end %>
-    <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
-  </div>
-  <div class="actions row">
-    <%= f.submit "Save", :class => 'btn large primary' %>
-  </div>
+        <%= f.submit "Save and Continue", :class => 'btn large primary' %>
+      </div>
+    </div> <!-- /.span11 -->
+    <div class="span5">
+      <div class="sidebar_box help_box">
+        <h1>Questions?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+        <h1>Tips?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+        <h1>Help?</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+      </div>
+    </div> <!-- /.span5 -->
+  </div> <!-- /.project_form -->
 <% end %>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#project_estimated_budget").bind("change", recalc);
+      function recalc(event) {
+        var n = $("#project_estimated_budget").val();
+        if(isNumber(n)) {
+          var v = 0;
+          if(n <= 50000) {
+            v = 1;
+          } else if(n <= 100000) {
+            v = 2;
+          } else if(n <= 250000) {
+            v = 3;
+          } else if(n <= 500000) {
+            v = 4;
+          } else {
+            v = 5;
+          }
+          $("#project_credit_value").val(v);
+          $("#credit_value_label").text(v);
+        } else {
+          $("#project_estimated_budget").val(0);
+          $("#credit_value").text(0);
+        }
+      }
+
+      function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+      }
+    });
+  </script>
+<% end %>
+

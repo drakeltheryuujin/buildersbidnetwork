@@ -56,9 +56,14 @@ class Project < ActiveRecord::Base
   validates :project_end,
     :presence => true, 
     :date => {:after => Proc.new { Time.now }}
+  validates :terms_of_use, 
+    :acceptance => true
+  # TODO validate credit_value and estimated_budget are in sync
 
   validates_associated :location
   validates_associated :project_type
+
+  validates_inclusion_of :state, :in => [ "draft", "published", "cancelled", "awarded" ]
   
   accepts_nested_attributes_for :location, :allow_destroy => :true
 

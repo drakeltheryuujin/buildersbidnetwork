@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @project.build_location
+    @project.line_items.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +46,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
+    @project.state = "draft"
 
     respond_to do |format|
       if @project.save and @project.location.save
@@ -61,6 +63,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project = Project.find(params[:id])
+    @project.state = "draft" if @project.state.blank? 
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
