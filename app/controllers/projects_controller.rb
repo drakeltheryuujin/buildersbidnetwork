@@ -46,11 +46,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
-    @project.state = "draft"
+    @project.state = :draft
 
     respond_to do |format|
       if @project.save and @project.location.save
-        format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
+        format.html { redirect_to(new_project_project_document_path(@project), :notice => 'Project was successfully created.') }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else
         format.html { render :action => "new" }
@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project = Project.find(params[:id])
-    @project.state = "draft" if @project.state.blank? 
+    @project.state = (@project.state.blank? ? :draft : (params[:publish] ? :published : :draft))
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
@@ -96,8 +96,26 @@ class ProjectsController < ApplicationController
     redirect_to(@project, :notice => 'Message sent')  
   end
 
+  def review
+    @project = Project.find(params[:id])
+  end
+
   def track_projects
-    @projects = Project.find_all_by_user_id current_user.id
+    filter = params[:filter]
+    if ! filter.blank? && Project::STATES.include?(filter.to_sym)
+      @projects = Project.where :user_id => current_user.id, :state => filter
+    elsif ! filter.blank? && filter.to_sym == :past
+      @projects = Project.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
+    elsif ! filter.blank? && filter.to_sym == :future
+      @projects = Project.where(:user_id => current_user.id).where("bidding_start >= ?", Time.now)
+    elsif ! filter.blank? && filter.to_sym == :current
+      @projects = Project.
+          where(:user_id => current_user.id).
+          where("bidding_start <= ?", Time.now).
+          where("bidding_end >= ?", Time.now)
+    else
+      @projects = Project.find_all_by_user_id current_user.id
+    end
   end
 
   def track_bids 

@@ -60,12 +60,14 @@ class Project < ActiveRecord::Base
     :presence => true
   validates :terms_of_use, 
     :acceptance => true
+  validates_numericality_of :estimated_budget, :less_than => 1000000000
   # TODO validate credit_value and estimated_budget are in sync
 
   validates_associated :location
   validates_associated :project_type
 
-  validates_inclusion_of :state, :in => [ "draft", "published", "cancelled", "awarded" ]
+  STATES = [ :draft, :published, :cancelled, :awarded ]
+  validates_inclusion_of :state, :in => STATES
   
   accepts_nested_attributes_for :location, :allow_destroy => :true
 

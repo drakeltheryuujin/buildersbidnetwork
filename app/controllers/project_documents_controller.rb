@@ -23,7 +23,6 @@ class ProjectDocumentsController < ApplicationController
   
   def new
     @project = Project.find(params[:project_id])
-    redirect_to project_path(@project)
   end
   
   def create

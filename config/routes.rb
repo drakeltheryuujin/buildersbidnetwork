@@ -10,6 +10,7 @@ Ypn::Application.routes.draw do
     resources :bids
     resources :project_documents
     member do
+	    get 'review'
 	    get 'contact_creator'
 	  end
     collection do

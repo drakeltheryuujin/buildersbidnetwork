@@ -147,6 +147,24 @@
         </div>
       </div>
 
+      <% unless @project.project_documents.blank? %>
+        <div class="project_meta form-stacked">
+          <% @project.project_documents.each do |project_document| %>
+            <% unless project_document.id.blank? %>
+              <div class="project_document">
+                <% if project_document.is_image? %>
+                  <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
+                <% else %>
+                  <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
+                <% end %>
+                <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
+                <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
+              </div>
+            <% end%>
+          <% end%>
+        </div>
+      <% end %>
+
       <div class="">
         <p>
           <label class="span6">
@@ -154,7 +172,12 @@
             I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
           </label>
         </p>
-        <%= f.submit "Save and Continue", :class => 'btn large primary' %>
+        <% if current_page? new_project_path %>
+          <%= f.submit "Save and Continue", :name => :draft, :class => 'btn large primary' %>
+        <% else %>
+          <%= f.submit "Save As Draft", :name => :draft, :class => 'btn info' %>
+          <%= f.submit "Publish Project", :name => :publish, :class => 'btn primary' %>
+        <% end %>
       </div>
     </div> <!-- /.span11 -->
     <div class="span5">

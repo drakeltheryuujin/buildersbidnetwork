@@ -1,0 +1,53 @@
+<h1>Post a Project</h1>
+<div class="wizard-steps">
+  <div class="completed-step"><p>Step <span>1</span>: <strong>Project Scope</strong></p></div>
+  <div class="active-step"><p>Step <span>2</span>: <strong>Add Documents + Photos</strong></p></div>
+  <div><p>Step <span>3</span>: <strong>Review &amp; Submit</strong></p></div>
+</div>
+<div class="row new_project_document">
+  <div class="span11">
+    <div class="project_meta form-stacked">
+      <div class="field ">
+        <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+          <%= project_doc_form.label :asset, "Add Project Relevant Documents + Photos" %>
+          <%= project_doc_form.file_field :asset %>
+          <div>
+            <%= project_doc_form.text_field :description, :placeholder => "Add title..." %>
+            <%= project_doc_form.submit "Upload" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% unless @project.project_documents.blank? || @project.project_documents.count == 0 %>
+      <div class="project_meta form-stacked">
+        <% @project.project_documents.each do |project_document| %>
+          <% unless project_document.id.blank? %>
+            <div class="project_document">
+              <% if project_document.is_image? %>
+                <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
+              <% else %>
+                <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
+              <% end %>
+              <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
+              <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
+            </div>
+          <% end%>
+        <% end%>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "Continue", review_project_path(@project), :class => 'btn large primary' %>
+    </div>
+  </div>
+  <div class="span5">
+    <div class="sidebar_box help_box">
+      <h1>Questions?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+      <h1>Tips?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+      <h1>Help?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet dignissim libero, sed lacinia est gravida id. Nam venenatis magna sed nunc posuere sollicitudin.</p>
+    </div>
+  </div> <!-- /.span5 -->
+</div>
+
