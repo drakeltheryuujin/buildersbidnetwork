@@ -11,44 +11,58 @@
         </ul>
       </div>
     <% end %>
-    
-    <%= render 'projects/meta' %>
   </div>
     
   <div class="row form-stacked">
-    <label class="">Line Items</label>
-    <ul class="span16 line_items">
+    <ul class="line_items">
+      <% cnt = 0 %>
       <%= f.fields_for :line_item_bids do |line_item_bid_form| %>
-        <li class="line_item <%= cycle("odd", "even") %>">
+        <li class="line_item ">
           <%= line_item_bid_form.hidden_field :line_item_id %>
-          <span class="content"><%= line_item_bid_form.object.line_item.content %></span>
-          <span class="units">
+          <div class="content span8">
+            <span class="cnt"><%= cnt = cnt + 1 %></span>
+            <%= line_item_bid_form.object.line_item.content %>
             <% if ! line_item_bid_form.object.line_item.units.nil? %>
               <span class="line_item_units"><%= line_item_bid_form.object.line_item.units %></span>
-              x $<%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost span2' %>
-              $<%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :readonly => 'true', :class => 'line_item_cost calculated_line_item_cost span2' %>
-            <% else %>
-              $<%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :class => 'line_item_cost span2' %>
             <% end %>
-          </span>
+          </div>
+          <div class="units span3 alpha">
+            <% if ! line_item_bid_form.object.line_item.units.nil? %>
+              <%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost span3' %>
+
+              <div class="input-prepend span3">
+                <span class="add-on">$</span>
+                <%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :readonly => 'true', :class => 'line_item_cost calculated_line_item_cost ' %>
+              </div>
+            <% else %>
+              <div class="input-prepend span3">
+                <span class="add-on">$</span>
+                <%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :class => 'line_item_cost ' %>
+              </div>
+            <% end %>
+          </div>
         </li>
       <% end %>
+      <li class="line_item bid_total">
+        <div class="content span8">
+          <span class="label success"><%= @project.credit_value %></span> Credit Value
+        </div>
+        <div class="units span3 alpha form-stacked">
+          <%= f.label :total %>
+          <div class="input-prepend span3">
+            <span class="add-on">$</span>
+            <%= f.text_field :total, :value => number_with_precision(f.object.total, :precision => 2), :id => 'bid_total', :size => 10, :readonly => 'true', :class => "" %>
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 
-  <div class="row ">
-    <div class="field float_right">
-      <%= f.label :total %>
-      $<%= f.text_field :total, :value => number_with_precision(f.object.total, :precision => 2), :id => 'bid_total', :size => 10, :readonly => 'true' %>
-    </div>
-  </div>
-  
   <div class="row">
     <%= f.submit :class => 'float_right btn primary large' %>
   </div>
 <% end %>
 <% content_for :javascript do %>
-  <%= javascript_include_tag "jquery.calculation" %>
   <script type="text/javascript">
     $(document).ready(function() {
       $("input.line_item_cost").sum({

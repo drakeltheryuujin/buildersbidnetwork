@@ -1,7 +1,38 @@
-<h1>Create Bid</h1>
+<%= render "/projects/header" %>
 
-<%= render 'form' %>
+<h1>Place Your Bid</h1>
 
-<div class="row actions">
-  <%= link_to 'Back', project_path(@project), :class => 'btn' %>
+<div class="row">
+  <div class="span11">
+    <%= render 'form' %>
+  </div>
+
+  <div class="span5 project_sidebar">
+    <div class="sidebar_box project_timeline">
+      <h1>Project Timeline</h1>
+      <ul>
+        <li>
+          <label>Posted for Bidding:</label>
+          <span><%= @project.bidding_start.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Closed for Bidding:</label>
+          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Pre Bid Meeting:</label>
+          <span><%= @project.pre_bid_meeting.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Estimated Start Date:</label>
+          <span><%= @project.project_start.to_formatted_s(:short) %></span>
+        </li>
+        <li>
+          <label>Estimated End Date:</label>
+          <span><%= @project.project_end.to_formatted_s(:short) %></span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
 </div>

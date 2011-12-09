@@ -4,3 +4,4 @@
 //= require bootstrap/dropdown
 //= require bootstrap/tabs
 //= require jquery.lightbox
+//= require jquery.calculation

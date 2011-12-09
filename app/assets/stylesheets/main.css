@@ -367,23 +367,42 @@ ul.line_items {
   margin: 0;
 }
 ul.line_items li {
-  margin: 10px 0;
-  padding: 10px;
-  background: #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
 }
 table tr.odd,
 ul li.odd {
   background-color: #ddd;
 }
-ul.line_items li span.content { 
-  margin-top: 7px;
+ul.line_items li div.units,
+ul.line_items li div.content {
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 5px;
 }
-ul.line_items li span.units,
+ul.line_items li div.units {
+  background-color: #9e9;
+  padding: 7px;
+}
+ul.line_items li div.units .input-prepend input {
+  width: 124px
+}
+ul.line_items li span.cnt { 
+  font-size: 18px;
+  font-weight: bold;
+}
+ul.line_items li span.label,
+ul.line_items li span.cnt { 
+  margin: 0 10px;
+}
+ul.line_items li span.line_item_units,
 table.project_bids tr td.total {
   font-weight: bold;
   float: right;
 }
-ul.line_items li span.units,
 ul.line_items li span.cost,
 ul.line_items li span.unit_cost {
   float: right;
@@ -391,10 +410,6 @@ ul.line_items li span.unit_cost {
 }
 #bid_total {
   text-align: right;
-}
-ul.line_items li input {
-  text-align: right;
-  margin-top: 7px;
 }
 input[readonly] {
   background-color: #EBEBE4;
@@ -723,6 +738,9 @@ ul.search_tabs li.selected {
   border-style: solid;
   border-color: #ddd;
   margin-bottom: 10px;
+}
+.project_header h1 {
+  display: inline;
 }
 .project_header .project_avatar img {
   border: 2px solid #ddd;

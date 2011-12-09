@@ -21,11 +21,11 @@ class BidsController < ApplicationController
   
   def create
     @project = Project.find(params[:project_id])
-    @bid = @project.bids.new(params[:bid])
+    @bid = @project.bids.new(params[:bid].merge(:user => current_user))
+    @bid_purchase = BidPurchaseDebit.new :user => current_user, :bid => @bid, :value => - @project.credit_value
     
-    @bid.user_id = current_user.id
-    
-    if @bid.save
+    if @bid_purchase.save
+      current_user.update_attribute(:credits, current_user.credit_adjustments.sum(:value)) 
       redirect_to(project_path(@project), :notice => 'Bid was successfully created.')
     else
       render :action => "new"
