@@ -658,8 +658,31 @@ ul.search_tabs li.selected {
   line-height: 20px;
   margin-bottom: 10px;
 }
+.project_timeline .sidebar_number {
+  height: 80px;
+}
+.project_timeline .sidebar_number p {
+  clear: left;
+}
+.project_timeline .sidebar_number p span {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.project_timeline .sidebar_number p em {
+  color: #888;
+  float: right;
+  font-size: 11px;
+}
+.project_timeline .sidebar_number p em label {
+  width: auto;
+  float: none;
+  padding: 0;
+  font-style: italic;
+  font-size: 10px;
+}
+.project_timeline .sidebar_number strong,
 .sidebar_box.sidebar_number strong {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   display: block;
   float: left;
@@ -673,6 +696,36 @@ ul.search_tabs li.selected {
   border-bottom: 1px dotted #666;
   padding-bottom: 10px;
 }
+
+.sidebar_box .sidebar_flag label, 
+.sidebar_box .sidebar_flag {
+  background-color: #666;
+  color: #eee;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.sidebar_box .sidebar_flag {
+  margin: -10px -20px 10px -20px;
+  padding: 10px;
+  position: relative;
+}
+.sidebar_box .sidebar_flag .sidebar_triangle {
+  width: 0;
+  height: 0;
+  border-bottom: 9px solid transparent;
+  border-top: 9px;
+  position: absolute;
+  bottom: -9px;
+}
+.sidebar_box .sidebar_flag .sidebar_triangle.left {
+  border-right: 9px solid #333;
+  left: 0;
+}
+.sidebar_box .sidebar_flag .sidebar_triangle.right {
+  border-left: 9px solid #333;
+  right: 0;
+}
+
 
 .profile_actions ul {
   list-style: none;
@@ -755,6 +808,8 @@ ul.search_tabs li.selected {
 
 .project_sidebar .project_timeline h1 {
   border-bottom: 1px solid;
+  clear: left;
+  text-transform: uppercase;
 }
 .project_sidebar .project_timeline ul {
   list-style: none;

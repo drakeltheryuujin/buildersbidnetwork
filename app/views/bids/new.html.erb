@@ -9,6 +9,19 @@
 
   <div class="span5 project_sidebar">
     <div class="sidebar_box project_timeline">
+      <div class="sidebar_number">
+        <strong><%= (@project.bidding_end.to_date - Date.today).to_i %></strong> 
+        <p>
+          <span>Days Left To Bid</span>
+          <em><label>Posted on:</label> <%= @project.created_at.to_date.to_formatted_s(:short) %></em>
+        </p>
+      </div>
+      <div class="sidebar_flag">
+        <label>Bidding Closes</label>
+        <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        <div class="sidebar_triangle left"></div>
+        <div class="sidebar_triangle right"></div>
+      </div>
       <h1>Project Timeline</h1>
       <ul>
         <li>
@@ -16,8 +29,6 @@
           <span><%= @project.bidding_start.to_formatted_s(:short) %></span>
         </li>
         <li>
-          <label>Closed for Bidding:</label>
-          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
         </li>
         <li>
           <label>Pre Bid Meeting:</label>
