@@ -28,7 +28,10 @@
           </div>
           <div class="units span3 alpha">
             <% if ! line_item_bid_form.object.line_item.units.nil? %>
-              <%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost span3' %>
+              <div class="input-prepend span3">
+                <span class="add-on">X</span>
+                <%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost ' %>
+              </div>
 
               <div class="input-prepend span3">
                 <span class="add-on">$</span>

@@ -402,6 +402,8 @@ ul.line_items li span.line_item_units,
 table.project_bids tr td.total {
   font-weight: bold;
   float: right;
+  font-size: 14px;
+  padding-top: 7px;
 }
 ul.line_items li span.cost,
 ul.line_items li span.unit_cost {

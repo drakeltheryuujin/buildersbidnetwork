@@ -54,6 +54,11 @@ gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 #gem 'less-rails-bootstrap'
 gem "css-bootstrap-rails"
 
+# ActiveAdmin http://activeadmin.info/
+gem 'activeadmin'
+gem 'sass-rails'
+gem "meta_search",    '>= 1.1.0.pre'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

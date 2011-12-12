@@ -22,13 +22,14 @@
       <span class="label large">
         <strong><%= @project.bids.count %></strong> Current Bids
       </span>
-    <% else %>
-      <% if current_page? new_project_bid_path(@project) %>
-        <%= link_to 'Project Scope', @project, :class => 'btn ' %> 
-      <% else %>
+    <% end %>
+    <% if current_page? project_path(@project) %>
+      <% unless @project.user == current_user do %>
         <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info' %> 
         <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
       <% end %>
+    <% else %>
+      <%= link_to 'Project Scope', @project, :class => 'btn ' %> 
     <% end %>
   </div>
 </div>

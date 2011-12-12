@@ -28,4 +28,8 @@ class Location < ActiveRecord::Base
     #"36 Cooper Sq, 4th Floor, New York, NY 10003"
     address1 + (address2 ? ", " + address2 : "") + ", " + city + ", " + state + " " + post_code
   end
+
+  def to_s
+    return address
+  end
 end

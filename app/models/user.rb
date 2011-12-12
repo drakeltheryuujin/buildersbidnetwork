@@ -39,9 +39,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
+  def to_s
+    return self.profile ? self.profile.name : self.email 
+  end
+
   acts_as_messageable
   def mailboxer_name
-    return @profile ? @profile.name : :email 
+    return self.profile ? self.profile.name : self.email 
   end
   def mailboxer_email(object)
     if true # TODO preference check
