@@ -754,6 +754,9 @@ ul.search_tabs li.selected {
   margin-bottom: 20px;
   padding: 20px;
 }
+.profile_page .profile_meta label {
+  width: auto;
+}
 .project_form .project_meta .field select.type_select,
 .project_form .project_meta .field textarea,
 .project_form .project_meta .field input {
@@ -823,6 +826,92 @@ ul.search_tabs li.selected {
 
 .project_bid {
   margin-right: 0;
+}
+
+.login-page .login-box {
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.login-page .login-box .login-head {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 20px;
+}
+.login-page .login-box .login-head h6 {
+  text-transform: none;
+  line-height: 1em;
+}
+.profile_page .profile-form .field,
+.login-page .login-box .links_field,
+.login-page .login-box .field {
+  padding: 10px 20px 0;
+}
+.profile_page .profile-form .field > .field_with_errors,
+.login-page .login-box .field > .field_with_errors { 
+  width: 100%;
+}
+
+.profile_page .profile-form .field > textarea,
+.profile_page .profile-form .field > .field_with_errors > textarea,
+.profile_page .profile-form .field > select,
+.profile_page .profile-form .field > .field_with_errors > select,
+.profile_page .profile-form .field > input,
+.profile_page .profile-form .field > .field_with_errors > input,
+.login-page .login-box .field > textarea,
+.login-page .login-box .field > .field_with_errors > textarea,
+.login-page .login-box .field > select,
+.login-page .login-box .field > .field_with_errors > select,
+.login-page .login-box .field > input,
+.login-page .login-box .field > .field_with_errors > input {
+  width: 98%;
+}
+.profile_page .profile-form .field > input.btn,
+.profile_page .profile-form .field > input[type="checkbox"],
+.login-page .login-box .field > input.btn,
+.login-page .login-box .field > input[type="checkbox"] {
+  width: auto;
+}
+.profile_page .profile-form .field > input[type="checkbox"],
+.login-page .login-box .field > input[type="checkbox"] {
+  float: left;
+  margin-right: 10px;
+}
+.login-page .login-box .field > label {
+  text-transform: uppercase;
+  font-weight: normal;
+  width: 50%;
+  float: left;
+  padding: 0;
+}
+.login-page .login-box .field.remember {
+  padding: 20px;
+}
+.login-page .login-box .field.remember label {
+  text-transform: none;
+}
+.login-page .login-box .field a.label_link {
+  width: 50%;
+  float: right;
+  text-align: right;
+  font-size: 11px;
+}
+.login-page .login-box .field span.field_info {
+  display: inline-block;
+  vertical-align: top;
+  float: right;
+}
+.login-page .login-box .links_field a {
+  border-style: dotted;
+  border-color: #ddd;
+  border-width: 1px 0;
+  padding: 10px;
+  display: block;
+}
+.login-page .cta {
+  text-align: center;
+  padding: 20px 10px 30px 10px;
 }
 
 .label.large {

@@ -32,9 +32,9 @@ class Profile < ActiveRecord::Base
 
   
   validates_associated :location
+  validates_associated :phones
   
-  validates_url_format_of :website,
-                          :allow_nil => true
+#validates_url_format_of :website, :allow_nil => true
   
   accepts_nested_attributes_for :location, :allow_destroy => :true
   

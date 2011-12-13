@@ -1,0 +1,43 @@
+<div class="row login-page">
+  <div class="offset4 span8 form-stacked">
+    <div class="login-box">
+      <div class="login-head">
+        <h2>Sign up for an account</h2>
+        <h6>It's free to join!  Registering for an account is required to continue.</h6>
+      </div>
+
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation %>
+        </div>
+
+        <div class="field">
+          <%= f.submit "Create Account", :class => "btn large primary" %>
+          <span class="field_info span4">
+            By signing up you agree to our 
+            <%= link_to "User Agreement", content_page_path('agreement') %>
+            and
+            <%= link_to "Terms of Service", content_page_path('terms') %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <div class="cta">
+      Already have an account?
+      <%= link_to "Login ", new_session_path(resource_name) %>
+    </div>
+  </div>
+</div>

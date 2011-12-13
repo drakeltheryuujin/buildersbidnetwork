@@ -29,14 +29,18 @@
       </div>
       <div class="span6 ">
         <div class="profile_meta">
-          <div class="field">
-            <label class="span2">Established</label>
-            <span><%= @profile.established || '&nbsp;'.html_safe %></span>
-          </div>
-          <div class="field">
-            <label class="span2">Website</label>
-            <span><%= @profile.website || '&nbsp;'.html_safe %></span>
-          </div>
+          <% unless @profile.established.blank? %>
+            <div class="field">
+              <label class="">Established</label>
+              <span><%= @profile.established || '&nbsp;'.html_safe %></span>
+            </div>
+          <% end %>
+          <% unless @profile.website.blank? %>
+            <div class="field">
+              <label class="span2">Website</label>
+              <span><%= @profile.website || '&nbsp;'.html_safe %></span>
+            </div>
+          <% end %>
         </div> <!-- /profile_meta -->
       </div>
     </div>

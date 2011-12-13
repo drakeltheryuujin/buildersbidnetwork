@@ -19,11 +19,15 @@
             <%= link_to "Register", new_user_registration_path %> 
           </div>
         <% end %>
-        <% if user_signed_in? && ! current_user.profile.blank? %>
+        <% if user_signed_in? %>
           <ul class="secondary-nav">
             <li class="dropdown">
-              <%= current_user.profile.type_name %>:
-              <%= link_to current_user.profile.name, profile_path(current_user.profile) %>
+              <% if current_user.profile.blank? %>
+                <%= link_to current_user.email, new_profile_path %>
+              <% else %>
+                <%= current_user.profile.type_name %>
+                <%= link_to current_user.profile.name, profile_path(current_user.profile) %>
+              <% end %>
               <a href="#" class="dropdown-toggle">
                 <%= image_tag "/images/contact_person_icon.png", :alt => "Menu", :width => "16px", :height => "16px" %>
               </a>
@@ -43,7 +47,7 @@
       <div class="fill">
         <div class="container nav_container">
           <%= link_to (image_tag "/images/bestbidnetwork_templogo.png", :alt => "BBN", :class => "logo"), root_path %>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && ! current_user.profile.blank? %>
             <ul class="nav ">
               <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
               <li class="<%= put_if_current_page('active', notifications_path) %>">

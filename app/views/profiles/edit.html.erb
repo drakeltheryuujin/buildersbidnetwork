@@ -1,3 +1,11 @@
-<h1>Editing profile</h1>
-
-<%= render 'form' %>
+<div class="row profile_page">
+  <%= render "sidebar" %>
+  <div class="span12">
+    <%= render "header" %>
+    <div class="row form-stacked profile-form">
+      <%= nested_form_for @profile, :url => profile_path(@profile) do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+      <% end %>
+    </div>
+  </div>
+</div>

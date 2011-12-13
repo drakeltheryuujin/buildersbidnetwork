@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /profiles
   # GET /profiles.xml
   def index
@@ -26,6 +28,9 @@ class ProfilesController < ApplicationController
   def new
     @profile = Profile.new
     @profile.build_location
+    @phone = @profile.phones.build
+    @phone.phone_type = PhoneType.find 1
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,15 +46,24 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.xml
   def create
-    if DeveloperProfile.to_s == params[:profile][:type]
+    y params
+#if DeveloperProfile.to_s == params[:profile][:type]
+    if ! params[:profile].blank? && DeveloperProfile.to_s == params[:profile][:type]
       @profile = DeveloperProfile.new(params[:profile])
-    else
+    elsif ! params[:profile].blank? && ContractorProfile.to_s == params[:profile][:type]
       @profile = ContractorProfile.new(params[:profile])
+    elsif ! params[:developer_profile].blank?
+      @profile = DeveloperProfile.new(params[:developer_profile])
+    elsif ! params[:contractor_profile].blank?
+      @profile = ContractorProfile.new(params[:contractor_profile])
     end
     @profile.user_id = current_user.id
+    @profile.website = nil
 
     respond_to do |format|
-      if false || @profile.save
+      puts "******************"
+      y @profile
+      if @profile.save
         format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') }
         format.xml  { render :xml => @profile, :status => :created, :location => @profile }
       else

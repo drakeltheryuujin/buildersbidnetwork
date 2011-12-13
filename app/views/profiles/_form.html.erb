@@ -1,131 +1,133 @@
-<%= nested_form_for @profile, :url => profile_path(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div class="alert-message block-message error">
+      <strong><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</strong>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field ">
+    <%= f.label :name, :class => "" %>
+    <%= f.text_field :name, :class => "" %>
+  </div>
   <div class="row">
-    <% if @profile.errors.any? %>
-      <div class="alert-message block-message error">
-        <strong><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</strong>
-
-        <ul>
-        <% @profile.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="span8 ">
-      <div class="field row">
-        <%= f.label :name, :class => "span2" %>
-        <%= f.text_field :name, :class => "span6 alpha" %>
-      </div>
-      <div class="field row">
-        <%= f.label :type, "Type", :class => "span2" %>
+    <div class="span9">
+      <div class="field ">
+        <%= f.label :type, "Industry Role", :class => "" %>
         <%= f.select(:type, [
-          ['Developer', DeveloperProfile],
-          ['Contractor', ContractorProfile]], :class => "span6 alpha") %>
+          ['Developer (Creates Projects)', DeveloperProfile],
+          ['Contractor (Bids on Projects)', ContractorProfile]], :class => "") %>
       </div>
-      <%= f.fields_for :location do |location_form| %>
-        <div class="field row">
-          <%= location_form.label :address1, "Location", :class => "span2" %>
-          <%= location_form.text_field :address1, :class => "span6 alpha" %>
-        </div>
-        <div class="field row">
-          <label class="span2">&nbsp;</label>
-          <%= location_form.text_field :address2, :class => "span6 alpha" %>
-        </div>
-        <div class="field row">
-          <label class="span2">City, State</label>
-          <%= location_form.text_field :city, :class => "span4 alpha" %>
-          <%= location_form.select(:state, [     
-            ['AL', 'AL'], 
-            ['AK', 'AK'],
-            ['AZ', 'AZ'],
-            ['AR', 'AR'], 
-            ['CA', 'CA'], 
-            ['CO', 'CO'], 
-            ['CT', 'CT'], 
-            ['DE', 'DE'], 
-            ['DC', 'DC'], 
-            ['FL', 'FL'],
-            ['GA', 'GA'],
-            ['HI', 'HI'], 
-            ['ID', 'ID'], 
-            ['IL', 'IL'], 
-            ['IN', 'IN'], 
-            ['IA', 'IA'], 
-            ['KS', 'KS'], 
-            ['KY', 'KY'], 
-            ['LA', 'LA'], 
-            ['ME', 'ME'], 
-            ['MD', 'MD'], 
-            ['MA', 'MA'], 
-            ['MI', 'MI'], 
-            ['MN', 'MN'],
-            ['MS', 'MS'], 
-            ['MO', 'MO'], 
-            ['MT', 'MT'], 
-            ['NE', 'NE'], 
-            ['NV', 'NV'], 
-            ['NH', 'NH'], 
-            ['NJ', 'NJ'], 
-            ['NM', 'NM'], 
-            ['NY', 'NY'], 
-            ['NC', 'NC'], 
-            ['ND', 'ND'], 
-            ['OH', 'OH'], 
-            ['OK', 'OK'], 
-            ['OR', 'OR'], 
-            ['PA', 'PA'], 
-            ['RI', 'RI'], 
-            ['SC', 'SC'], 
-            ['SD', 'SD'], 
-            ['TN', 'TN'], 
-            ['TX', 'TX'], 
-            ['UT', 'UT'], 
-            ['VT', 'VT'], 
-            ['VA', 'VA'], 
-            ['WA', 'WA'], 
-            ['WV', 'WV'], 
-            ['WI', 'WI'], 
-            ['WY', 'WY']], {}, :class => "span2") %>
+    </div>
+    <div class="span3 alpha">
+      <div class="field ">
+        <%= f.label :established, "Established", :class => "" %>
+        <%= f.select(:established, (1900..Time.now.year).to_a.reverse, :include_blank => true) %>
+      </div>
+    </div>
+  </div>
+  <%= f.fields_for :location do |location_form| %>
+    <div class="field ">
+      <%= location_form.label :address1, "Address", :class => "" %>
+      <%= location_form.text_field :address1, :class => "", :placeholder => "Street Number" %>
+      <%= location_form.text_field :address2, :class => "", :placeholder => "Suite, Apt, Floor, etc" %>
+    </div>
+    <div class="field ">
+      <%= f.label :city, :class => "" %>
+      <%= location_form.text_field :city, :class => "" %>
+    </div>
+    <div class="row">
+      <div class="span6">
+        <div class="field ">
+          <%= f.label :state, "State", :class => "" %>
+          <%= location_form.select(:state, [
+            ['Alabama', 'AL'], 
+            ['Alaska', 'AK'],
+            ['Arizona', 'AZ'],
+            ['Arkansas', 'AR'], 
+            ['California', 'CA'], 
+            ['Colorado', 'CO'], 
+            ['Connecticut', 'CT'], 
+            ['Delaware', 'DE'], 
+            ['District Of Columbia', 'DC'], 
+            ['Florida', 'FL'],
+            ['Georgia', 'GA'],
+            ['Hawaii', 'HI'], 
+            ['Idaho', 'ID'], 
+            ['Illinois', 'IL'], 
+            ['Indiana', 'IN'], 
+            ['Iowa', 'IA'], 
+            ['Kansas', 'KS'], 
+            ['Kentucky', 'KY'], 
+            ['Louisiana', 'LA'], 
+            ['Maine', 'ME'], 
+            ['Maryland', 'MD'], 
+            ['Massachusetts', 'MA'], 
+            ['Michigan', 'MI'], 
+            ['Minnesota', 'MN'],
+            ['Mississippi', 'MS'], 
+            ['Missouri', 'MO'], 
+            ['Montana', 'MT'], 
+            ['Nebraska', 'NE'], 
+            ['Nevada', 'NV'], 
+            ['New Hampshire', 'NH'], 
+            ['New Jersey', 'NJ'], 
+            ['New Mexico', 'NM'], 
+            ['New York', 'NY'], 
+            ['North Carolina', 'NC'], 
+            ['North Dakota', 'ND'], 
+            ['Ohio', 'OH'], 
+            ['Oklahoma', 'OK'], 
+            ['Oregon', 'OR'], 
+            ['Pennsylvania', 'PA'], 
+            ['Rhode Island', 'RI'], 
+            ['South Carolina', 'SC'], 
+            ['South Dakota', 'SD'], 
+            ['Tennessee', 'TN'], 
+            ['Texas', 'TX'], 
+            ['Utah', 'UT'], 
+            ['Vermont', 'VT'], 
+            ['Virginia', 'VA'], 
+            ['Washington', 'WA'], 
+            ['West Virginia', 'WV'], 
+            ['Wisconsin', 'WI'], 
+            ['Wyoming', 'WY']
+          ], {}, :class => "") %>
           
         </div>
-        <div class="field row">
-          <%= location_form.label :post_code, "Zip", :class => "span2" %>
-          <%= location_form.text_field :post_code, :size => "5", :class => "span6 alpha" %>
+      </div>
+      <div class="span6 alpha">
+        <div class="field ">
+          <%= location_form.label :post_code, "Zip", :class => "" %>
+          <%= location_form.text_field :post_code, :size => "5", :class => "" %>
         </div>
-      <% end %>
-    </div>
-    <div class="span8">
-      <div class="field row">
-        <%= f.label :established, "Established", :class => "span2" %>
-        <%= f.text_field :established, :class => "span6 alpha" %>
-      </div>
-      <div class="field row">
-        <%= f.label :website, "Website", :class => "span2" %>
-        <%= f.text_field :website, :class => "span6 alpha" %>
-      </div>
-      <div class="field row form-stacked">
-        <p><label class="span8">Phone Numbers</label></p>
-        <%= f.fields_for :phones do |phone_form| %>
-          <div class="row">
-            <%= phone_form.text_field :number, :class => "span5" %>
-            <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "span3 alpha"}) %>
-          </div>
-        <% end %>
-        <p><%= f.link_to_add "Add a Phone Number", :phones %></p>
       </div>
     </div>
+  <% end # fields_for :location %>
+
+  <div class="field ">
+    <%= f.label :website, "Website", :class => "" %>
+    <%= f.text_field :website, :class => "" %>
   </div>
-  <div class="row form-stacked">
-    <div class="field">
-      <%= f.label :description, "Description" %><br/>
-      <%= f.text_area :description, :class => "span16", :rows => "5" %>
-    </div>
+  <div class="form-stacked">
+    <label class="">Phone Numbers</label>
+    <%= f.fields_for :phones do |phone_form| %>
+      <div class="row">
+        <%= phone_form.text_field :number, :class => "span9" %>
+        <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "span2 alpha"}) %>
+        <%= phone_form.link_to_remove image_tag("/images/cross.png", :alt => "[Remove]"), :class => "span1 alpha" %>
+      </div>
+    <% end %>
+    <p><%= f.link_to_add "Add a Phone Number", :phones %></p>
   </div>
-  <div class="row">
-    <div class="actions ">
-      <%= f.submit "Save Profile", :class => "btn large primary" %>
-<button type="reset" class="btn large">Cancel</button>
-    </div>
+  <div class="field form-stacked">
+    <%= f.label :description, "Description" %><br/>
+    <%= f.text_area :description, :class => "", :rows => "5" %>
   </div>
-<% end %>
+  <div class="field">
+    <%= f.submit "Save Profile", :class => "btn large primary" %>
+  </div>

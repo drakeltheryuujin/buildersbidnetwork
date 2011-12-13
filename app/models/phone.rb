@@ -14,4 +14,6 @@ class Phone < ActiveRecord::Base
   
   has_many :profile_phones
   has_many :phones, :through => :profile_phones
+
+  validates :phone_type, :presence => true, 
 end

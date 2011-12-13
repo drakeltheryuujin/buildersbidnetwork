@@ -1,0 +1,3 @@
+class DeveloperProfilesController < ProfilesController 
+end
+

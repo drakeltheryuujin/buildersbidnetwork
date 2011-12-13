@@ -1,0 +1,3 @@
+class ContractorProfilesController < ProfilesController 
+end
+
