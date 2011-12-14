@@ -914,6 +914,10 @@ ul.search_tabs li.selected {
   padding: 20px 10px 30px 10px;
 }
 
+.modal form { margin-bottom: 0; }
+.reply-form.form-stacked textarea,
+.modal-body.form-stacked textarea { width: 98% }
+
 .label.large {
   font-size: 15px;
   line-height: normal;

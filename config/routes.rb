@@ -15,7 +15,7 @@ Ypn::Application.routes.draw do
     resources :project_documents
     member do
 	    get 'review'
-	    get 'contact_creator'
+	    post 'contact_creator'
 	  end
     collection do
 	    get 'track_projects'
@@ -24,6 +24,26 @@ Ypn::Application.routes.draw do
   end
 
   resources :profiles do
+    member do
+	    get 'projects'
+	    get 'contact_owner'
+	  end
+    collection do
+	    get 'settings'
+    end
+  end
+
+  resources :developer_profiles do
+    member do
+	    get 'projects'
+	    get 'contact_owner'
+	  end
+    collection do
+	    get 'settings'
+    end
+  end
+
+  resources :contractor_profiles do
     member do
 	    get 'projects'
 	    get 'contact_owner'

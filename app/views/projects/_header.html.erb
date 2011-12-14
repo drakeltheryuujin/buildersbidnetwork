@@ -24,11 +24,41 @@
       </span>
     <% end %>
     <% if current_page? project_path(@project) %>
-      <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info' %> 
+      <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info', "data-controls-modal" => "contact-creator-modal", "data-backdrop" => "true" %> 
       <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
     <% else %>
       <%= link_to 'Project Scope', @project, :class => 'btn ' %> 
     <% end %>
   </div>
 </div>
-
+<div id="contact-creator-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Modal Heading</h3>
+  </div> 
+  <%= form_tag(contact_creator_project_path(@project), :remote => true, "data-type" => "text" )  do %>
+    <div class="modal-body form-stacked">
+      <label>Message Body</label>
+      <%= text_area_tag :message_body %>
+    </div> 
+    <div class="modal-footer">
+      <%= submit_tag "Send", :class => "btn primary" %>
+    </div> 
+  <% end %>
+</div>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#contact-creator-modal form")
+        .bind('ajax:complete', function(evt, data, status, xhr){
+          $("#contact-creator-modal").modal('hide');
+        })
+        .bind('ajax:success', function(evt, data, status, xhr){
+          $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+        })
+        .bind('ajax:error', function(evt, xhr, status, error){
+          $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+        });
+    });
+  </script>
+<% end %>

@@ -1,14 +1,49 @@
-<h2><%= t('notification.other') %></h2>
+<div class="track-page track-projects-page row ">
+  <%= render 'header' %>
+  <div class="track_results span12 alpha row">
+    <% if @notifications.blank? %>
+      <div class="search_result no_results project span12 row">
+        <h4>No messages found.</h4>
+      </div>
+    <% else %>
+      <div class="results_order">
+        <%= link_to('Mark All Read', update_all_notifications_path(:page => params[:page]), :confirm => 'Are you sure?',:method => :put) %>
+      </div>
+    <% end %>
+    <% @notifications.each do |notification| %>
 
-<div class="read_all">
-  <%= link_to('Mark All Read', update_all_notifications_path(:page => params[:page]), :confirm => 'Are you sure?',:method => :put, :remote => true) %>
+      <div class="search_result project span12 row">
+        <div class="span2 ">
+          <% if notification.sender.present? %>
+            <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(notification.sender.profile) %>
+          <% else %>
+            hmmm
+          <% end %>
+        </div>
+        <div class="span7 ">
+          <div class="result_name">
+            <% if notification.type.present? %>
+              <%= link_to(notification.subject, conversation_path(notification.conversation)) %>
+            <% else %>
+              notif
+            <% end %>
+            <p class="message_preview">
+              <%= raw(truncate(strip_tags(notification.body), :length => 50)) %>
+            </p>
+          </div>
+        </div>
+        <div class="span3 alpha">
+          <div class="result_numbers">
+            <%= notification.created_at.to_s(:short) %>
+            &middot;
+          </div>
+          <%= link_to("View", notification_path(notification), :class => "btn primary") unless notification.type.blank? %>
+          <%= link_to("Read", notification_path(notification, :read => "Read"), :class => "btn info", :method => :put) if notification.is_unread?(@actor) %>
+          <%= link_to("Delete", notification_path(notification), :class => "btn danger", :confirm => 'Are you sure?', :method => :delete) %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= paginate @notifications %>
+  </div>
 </div>
-
-<div class="conversations"> 
-  <% @notifications.each do |notification|%>
-    <% read_class = notification.is_unread?(@actor) ? 'unread' : '' %>
-    <%= render :partial => 'notification', :object => notification, :locals => {:read_class => read_class} %>
-  <% end %>
-  <%= paginate @notifications %>
-</div>
-

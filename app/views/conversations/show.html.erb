@@ -1,3 +1,8 @@
-<div class="conversation_full">  
-  <%= render :partial => 'conversation_full', :locals =>{:conversation => @conversation} %>
+<div class="track-page track-projects-page row ">
+  <%= render '/notifications/header' %>
+  <div class="span12 ">
+    <div class="conversation_full">  
+      <%= render :partial => 'conversation_full', :locals =>{:conversation => @conversation} %>
+    </div>
+  </div>
 </div>

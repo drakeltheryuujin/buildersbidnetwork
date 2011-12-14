@@ -54,7 +54,7 @@
                 <%= link_to notifications_path do %> 
                   Notifications
                   <p class="nav_desc">
-                    <span class="label"><%= current_user.mailbox.notifications.unread.count.to_s %></span>
+                    <span class="label"><%= current_user.unread_message_count.to_s %></span>
                     messages
                   </p>
                 <% end %>

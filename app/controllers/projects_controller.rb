@@ -91,9 +91,16 @@ class ProjectsController < ApplicationController
   def contact_creator
     @project = Project.find(params[:id])
     creator = @project.user
-    body = 'message body'
-    current_user.send_message([creator], body, current_user.email + " wants to talk about your project.")
-    redirect_to(@project, :notice => 'Message sent')  
+    sender_name = (current_user.profile.present?  ? current_user.profile.name : current_user.email)
+    body = params[:message_body] || sender_name + " wants to talk about your project."
+    subject = "[YPN] Message regarding #{@project.name} from #{sender_name}"
+    current_user.send_message([creator], body, subject)
+    #creator.notify(subject, body, @project)
+
+    respond_to do |format|
+      format.html { redirect_to(@project, :notice => 'Message sent') }
+      format.text { render :text => "Message Sent" }
+    end
   end
 
   def review
@@ -102,13 +109,13 @@ class ProjectsController < ApplicationController
 
   def track_projects
     filter = params[:filter]
-    if ! filter.blank? && Project::STATES.include?(filter.to_sym)
+    if filter.present? && Project::STATES.include?(filter.to_sym)
       @projects = Project.where :user_id => current_user.id, :state => filter
-    elsif ! filter.blank? && filter.to_sym == :past
+    elsif filter.present? && filter.to_sym == :past
       @projects = Project.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
-    elsif ! filter.blank? && filter.to_sym == :future
+    elsif filter.present? && filter.to_sym == :future
       @projects = Project.where(:user_id => current_user.id).where("bidding_start >= ?", Time.now)
-    elsif ! filter.blank? && filter.to_sym == :current
+    elsif filter.present? && filter.to_sym == :current
       @projects = Project.
           where(:user_id => current_user.id).
           where("bidding_start <= ?", Time.now).

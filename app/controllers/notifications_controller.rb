@@ -5,7 +5,23 @@ class NotificationsController < ApplicationController
   before_filter :check_current_subject_is_owner, :only => [:show, :update, :destroy]
   
   def index
-    @notifications = @mailbox.notifications.not_trashed.page(params[:page]).per(10)
+    filter = params[:filter]
+
+    notifs = Notification.recipient(@actor).order("notifications.created_at DESC")
+#if (options[:read].present? and options[:read]==false) or (options[:unread].present? and options[:unread]==true)
+#notifs = notifs.unread
+#end
+    if filter.present? && filter.to_sym == :unread
+      notifs = notifs.unread
+    elsif filter.present? && filter.to_sym == :trash
+      notifs = notifs.where('receipts.trashed' => true)
+    elsif filter.present? && filter.to_sym == :sent
+      notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
+    else
+      notifs = notifs.not_trashed.where('receipts.mailbox_type' => 'inbox')
+    end
+
+    @notifications = notifs.page(params[:page]).per(10)
   end
 
   def show
@@ -32,21 +48,21 @@ class NotificationsController < ApplicationController
         @actor.unread @notification
       end
     end
-    @notifications = @mailbox.notifications.not_trashed.page(params[:page]).per(10)
-    render :action => :index
+
+    redirect_to notifications_path
   end
   
   def update_all
     @notifications= @mailbox.notifications.all
     @actor.read @notifications
-    @notifications = @mailbox.notifications.not_trashed.page(params[:page]).per(10)
-    render :action => :index
+
+    redirect_to notifications_path
   end
 
   def destroy
     @notification.receipt_for(@actor).move_to_trash
-    @notifications = @mailbox.notifications.not_trashed.page(params[:page]).per(10)
-    render :action => :index
+
+    redirect_to notifications_path
   end
 
   private

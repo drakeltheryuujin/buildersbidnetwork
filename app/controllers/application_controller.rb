@@ -26,12 +26,6 @@ class ApplicationController < ActionController::Base
   end
 
   def assure_profile!
-    puts "################" + self.controller_name + "  " + self.action_name 
-    puts "@@@@@@@@@@@@@@@@" if (self.controller_name.ends_with? 'profiles') 
-    puts "!!!!!!!!!!!!!!!!" if (self.action_name == 'create') 
-    puts "********        " if (self.controller_name == 'sessions')
-    puts "        ********" if (self.controller_name.ends_with?('profiles') && self.action_name == 'create')
-    puts "****************" if ((self.controller_name == 'sessions') || (self.controller_name.ends_with?('profiles') && self.action_name == 'create'))
     return if((self.controller_name == 'sessions') || (self.controller_name.ends_with?('profiles') && self.action_name == 'create'))
     if user_signed_in? && current_user.profile.blank?
       redirect_to new_profile_path, :alert => 'Please create your Profile before continuing.' unless request.fullpath.include?(new_profile_path)

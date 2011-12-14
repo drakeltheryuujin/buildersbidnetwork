@@ -1,18 +1,14 @@
-<%= div_for(message, :class => read_class) do%>
-<div class="conversation grid_16 alpha omega">
-  <div class="content_left grid_7 alpha">
-    <div class="subject">
-      <%= truncate(message.subject, :length => 70) %>
-    </div>
+<%= div_for(message, :class => read_class + "search_result row") do%>
+  <div class="span2">
     <div class="sender_name">
-      <%= link_to message.sender.email, message.sender.profile %>
+      <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile) %>
+      <%= link_to message.sender.profile.name, profile_path(message.sender.profile) %>
     </div>
     <div class="date">
       <%= time_ago_in_words(message.updated_at) %>
     </div>
   </div>
-  <div class="body grid_9 omega">
+  <div class="body span10">
   	<%= raw(message.body) %>
   </div>
-</div>
 <% end %>

@@ -54,4 +54,8 @@ class User < ActiveRecord::Base
       return nil
 	  end
   end
+
+  def unread_message_count
+    notifs = Notification.recipient(self).unread.count
+  end
 end

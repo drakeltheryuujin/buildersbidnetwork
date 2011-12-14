@@ -1,18 +1,14 @@
-<div class="title">
-  <h2><%= conversation.subject %></h2>
+<div class="row">
+  <div class="title span10">
+    <h2><%= conversation.subject %></h2>
+  </div>
+  <div class="action span2">
+    <% unless @box.eql? 'trash' %>
+      <%= link_to 'Delete', conversation_path(conversation, :location => @box, :box => @box), :class => 'btn danger', :confirm => 'Really?', :method => :delete %>
+    <% end %>
+  </div>
 </div>
-<div class="action">
-  <% unless @box.eql?'trash' %>
-    <%= link_to '[DELETE]', conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]), :class => 'nav nav-destroy', :confirm => 'Really?', :method => :delete, :remote => true %>
-  <% end %>
-</div>
-<div class="participants">
-  <h3>Participants:</h3>
-  <% conversation.recipients.each do |recp| %>
-    <%= link_to recp.email, recp.profile %>
-  <% end %>
-</div>
-<div class="messages">
+<div class="track_results">
   <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
     <% read_class = message.is_unread?(@actor) ? 'unread' : '' %>
@@ -20,7 +16,6 @@
   <% end %>
   
   <% unless @box.eql?'trash' %>
-    <br/>
     <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
       <% if @receipt and @receipt.errors.any? %>
         <div class="error">
@@ -34,13 +29,11 @@
           </ul>
         </div>
       <% end %>
-      <div class="block">
-        <div class="form_row"><%= t("message.answer") %></div>
-        <div class="form_row">
-          <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
-        </div>
+      <div class="reply-form form-stacked">
+        <label>Reply</label>
+        <%= text_area_tag :body, nil,:rows =>5, :class => "required form_tag" %>
         <div class="actions center">
-          <%= submit_tag 'Reply', :name => :reply_all, :class => "button" %>
+          <%= submit_tag 'Reply', :name => :reply_all, :class => "btn success" %>
         </div>
       </div>
     <% end %>

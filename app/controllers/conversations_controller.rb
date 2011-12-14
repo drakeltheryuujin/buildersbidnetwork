@@ -15,9 +15,9 @@ class ConversationsController < ApplicationController
 
   def show
     if @box.eql? 'trash'
-      @receipts = @mailbox.receipts_for(@conversation).trash
+      @receipts = @mailbox.receipts_for(@conversation).trash.order('created_at ASC')
     else
-      @receipts = @mailbox.receipts_for(@conversation).not_trash
+      @receipts = @mailbox.receipts_for(@conversation).not_trash.order('created_at ASC')
     end
     render :action => :show
     @receipts.mark_as_read
