@@ -2,7 +2,7 @@
   <div class="span2">
     <div class="sender_name">
       <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile) %>
-      <%= link_to message.sender.profile.name, profile_path(message.sender.profile) %>
+      <%= link_to message.sender.name, profile_path(message.sender.profile) %>
     </div>
     <div class="date">
       <%= time_ago_in_words(message.updated_at) %>
