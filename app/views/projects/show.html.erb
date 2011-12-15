@@ -133,9 +133,9 @@
 
       <% if may_admin_project? %>
         <div class="tab-pane" id="bids">
-          <% if @project.bids.nil? %>
+          <% if @project.bids.published.nil? %>
           <% else %>
-            <% @project.bids.each do |bid| %>
+            <% @project.bids.published.each do |bid| %>
               <div class="project_bid search_result bid span11 row">
                 <div class="span2 ">
                   <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(bid.user.profile) %>

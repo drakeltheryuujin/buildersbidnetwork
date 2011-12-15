@@ -76,4 +76,11 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => :true
 
   accepts_nested_attributes_for :line_items, :allow_destroy => :true
+
+  def published_bids 
+    bids.where(:state => :published)
+  end
+  def draft_bids 
+    bids.where(:state => :draft)
+  end
 end

@@ -24,7 +24,7 @@
     </div>
     <div class="span3 alpha">
       <div class="result_numbers">
-        <%= project.bids.count %> Bids
+        <%= project.bids.published.count %> Bids
         &middot;
         <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
       </div>

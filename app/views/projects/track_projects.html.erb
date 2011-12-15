@@ -58,7 +58,7 @@
           <div class="result_numbers">
             <%= number_to_currency project.median_bid %> Median Bid
             &middot;
-            <%= project.bids.count %> Bids
+            <%= project.bids.published.count %> Bids
             &middot;
             <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
           </div>

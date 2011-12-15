@@ -20,6 +20,7 @@ class BidsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @bid = @project.bids.new(params[:bid].merge(:user => current_user))
+    @bid.state = (@bid.state.blank? ? :draft : (params[:publish] ? :published : :draft))
     @bid_purchase = BidPurchaseDebit.new :user => current_user, :bid => @bid, :value => - @project.credit_value
     
     if @bid_purchase.save
@@ -32,6 +33,7 @@ class BidsController < ApplicationController
   
   def update
     @bid.user_id = current_user.id
+    @bid.state = (@bid.state.blank? ? :draft : (params[:publish] ? :published : :draft))
     
     if @bid.update_attributes(params[:bid])
       redirect_to(project_path(@bid.project), :notice => 'Bid was successfully updated.')

@@ -18,8 +18,12 @@
   </div>
   <div class="track_filters span4 ">
     <ul>
-      <li class="active"><%= link_to "Active Bids", track_bids_projects_path %></li>
-      <li ><%= link_to "Past Bids", track_bids_projects_path(:filter => :past) %></li>
+      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", track_bids_projects_path %></li>
+      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", track_bids_projects_path(:filter => :draft) %></li>
+      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", track_bids_projects_path(:filter => :published) %></li>
+      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", track_bids_projects_path(:filter => :cancelled) %></li>
+      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", track_bids_projects_path(:filter => :awarded) %></li>
+      <li class="<%= 'active' if params[:filter] == :hold.to_s %>"><%= link_to "On Hold", track_bids_projects_path(:filter => :hold) %></li>
     </ul>
     <dl>
       <dt>Lifetime Bids Posted:</dt>
@@ -52,7 +56,7 @@
           <div class="result_numbers">
             <%= number_to_currency bid.total %> My Bid
             &middot;
-            <%= bid.project.bids.count %> Bids
+            <%= bid.project.bids.published.count %> Bids
             &middot;
             <%= (bid.project.bidding_end.to_date - Date.today).to_i %> Days Left
           </div>

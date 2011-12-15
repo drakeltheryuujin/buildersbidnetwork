@@ -20,7 +20,7 @@
     <% if may_admin_project? %>
       <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn large'  %> 
       <span class="label large">
-        <strong><%= @project.bids.count %></strong> Current Bids
+        <strong><%= @project.bids.published.count %></strong> Current Bids
       </span>
     <% end %>
     <% if current_page? project_path(@project) %>

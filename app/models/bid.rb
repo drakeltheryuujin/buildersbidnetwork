@@ -22,6 +22,12 @@ class Bid < ActiveRecord::Base
   validates :project, :presence => true
   validate :sufficient_credits
 
+  STATES = [ :draft, :published, :cancelled, :awarded, :hold ]
+  validates_inclusion_of :state, :in => STATES
+
+  scope :draft, where(:state => :draft)
+  scope :published, where(:state => :published)
+
   def may_modify?(user)
     self.user == user || user.try(:admin?)
   end
@@ -29,6 +35,6 @@ class Bid < ActiveRecord::Base
   private
 
   def sufficient_credits
-    self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." unless self.user.credits >= self.project.credit_value
+    self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." unless (self.user.credits >= self.project.credit_value)
   end
 end

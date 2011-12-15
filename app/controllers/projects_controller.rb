@@ -121,7 +121,12 @@ class ProjectsController < ApplicationController
   end
 
   def track_bids 
-    @bids = Bid.find_all_by_user_id current_user.id
+    filter = params[:filter]
+    if filter.present? && Bid::STATES.include?(filter.to_sym)
+      @bids = Bid.where :user_id => current_user.id, :state => filter
+    else
+      @bids = Bid.find_all_by_user_id current_user.id
+    end
   end
 
   private
