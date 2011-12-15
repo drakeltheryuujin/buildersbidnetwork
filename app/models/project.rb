@@ -40,6 +40,10 @@ class Project < ActiveRecord::Base
     self.bids.average 'total'
   end
 
+  def may_modify?(user)
+    self.user == user || user.try(:admin?)
+  end
+
   validates :name,
     :presence => true
   validates :description,

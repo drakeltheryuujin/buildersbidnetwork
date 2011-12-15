@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review]
+  before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
   
   # GET /projects
   # GET /projects.xml
@@ -15,8 +17,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = Project.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @project }
@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
   end
 
   # POST /projects
@@ -62,7 +61,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.xml
   def update
-    @project = Project.find(params[:id])
     @project.state = (@project.state.blank? ? :draft : (params[:publish] ? :published : :draft))
 
     respond_to do |format|
@@ -79,7 +77,6 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
 
     respond_to do |format|
@@ -89,7 +86,6 @@ class ProjectsController < ApplicationController
   end
   
   def contact_creator
-    @project = Project.find(params[:id])
     creator = @project.user
     sender_name = current_user.name
     body = params[:message_body] || sender_name + " wants to talk about your project."
@@ -104,7 +100,6 @@ class ProjectsController < ApplicationController
   end
 
   def review
-    @project = Project.find(params[:id])
   end
 
   def track_projects
@@ -127,5 +122,15 @@ class ProjectsController < ApplicationController
 
   def track_bids 
     @bids = Bid.find_all_by_user_id current_user.id
+  end
+
+  private
+
+  def get_project
+    @project = Project.find(params[:id])
+  end
+
+  def check_may_modify!
+    redirect_to(project_path(@project), :alert => "Access denied.") unless @project.may_modify? current_user
   end
 end
