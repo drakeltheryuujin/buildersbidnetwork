@@ -1,14 +1,12 @@
 class BidsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_project_and_bid, :only => [:show, :update, :edit]
+  before_filter :check_may_modify!, :only => [:update, :edit]
   
   def show
-    @bid = Bid.find(params[:id])
-    @project = @bid.project
   end
   
   def edit
-    @bid = Bid.find(params[:id])
-    @project = @bid.project
   end
   
   def new
@@ -33,8 +31,6 @@ class BidsController < ApplicationController
   end
   
   def update
-    @bid = Bid.find(params[:id])
-    
     @bid.user_id = current_user.id
     
     if @bid.update_attributes(params[:bid])
@@ -42,5 +38,16 @@ class BidsController < ApplicationController
     else
       render :action => "edit"
     end
+  end
+
+  private
+
+  def get_project_and_bid
+    @bid = Bid.find(params[:id])
+    @project = @bid.project
+  end
+
+  def check_may_modify!
+    redirect_to(bid_path(@bid), :alert => "Access denied.") unless @bid.may_modify? current_user
   end
 end

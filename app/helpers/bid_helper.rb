@@ -1,5 +1,5 @@
 module BidHelper
   def may_admin_bid?(bid = @bid, user = current_user)
-    bid.user == user || user.try(:admin?)
+    bid.may_modify? user
   end
 end

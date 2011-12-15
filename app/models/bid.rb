@@ -22,6 +22,10 @@ class Bid < ActiveRecord::Base
   validates :project, :presence => true
   validate :sufficient_credits
 
+  def may_modify?(user)
+    self.user == user || user.try(:admin?)
+  end
+
   private
 
   def sufficient_credits
