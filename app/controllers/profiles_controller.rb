@@ -1,5 +1,7 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner]
+  before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
   # GET /profiles.xml
@@ -15,8 +17,6 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.xml
   def show
-    @profile = Profile.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @profile }
@@ -40,14 +40,11 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    @profile = Profile.find(params[:id])
   end
 
   # POST /profiles
   # POST /profiles.xml
   def create
-    y params
-#if DeveloperProfile.to_s == params[:profile][:type]
     if ! params[:profile].blank? && DeveloperProfile.to_s == params[:profile][:type]
       @profile = DeveloperProfile.new(params[:profile])
     elsif ! params[:profile].blank? && ContractorProfile.to_s == params[:profile][:type]
@@ -76,7 +73,6 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
-    @profile = Profile.find(params[:id])
     respond_to do |format|
       # FIXME There's probably a better way to do this.
       if @profile.update_attributes(@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
@@ -92,7 +88,6 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.xml
   def destroy
-    @profile = Profile.find(params[:id])
     @profile.destroy
 
     respond_to do |format|
@@ -102,13 +97,10 @@ class ProfilesController < ApplicationController
   end
 
   def projects
-    @profile = Profile.find(params[:id])
-    
     @projects = Project.where(:user_id => @profile.user.id) 
   end
 
   def contact_owner
-    @profile = Profile.find(params[:id])
     creator = @profile.user
     sender_name = current_user.name
     body = params[:message_body]
@@ -128,4 +120,13 @@ class ProfilesController < ApplicationController
     end
   end
 
+  private
+
+  def get_profile
+    @profile = Profile.find(params[:id])
+  end
+
+  def check_may_modify!
+    redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
+  end
 end

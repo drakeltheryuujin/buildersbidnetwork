@@ -30,6 +30,9 @@ class Profile < ActiveRecord::Base
     location.address
   end
 
+  def may_modify?(user)
+    self.user == user || user.try(:admin?)
+  end
   
   validates_associated :location
   validates_associated :phones

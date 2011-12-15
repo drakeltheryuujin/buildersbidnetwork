@@ -1,5 +1,5 @@
 module ProfilesHelper
   def may_admin_profile?(profile = @profile, user = current_user)
-    profile.user == user || user.try(:admin?)
+    profile.may_modify? user
   end
 end
