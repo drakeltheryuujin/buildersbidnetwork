@@ -14,7 +14,7 @@
 
       <div class="search_result project span12 row">
         <div class="span2 ">
-          <% if notification.sender.present? %>
+          <% if false && notification.sender.present? %>
             <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(notification.sender.profile) %>
           <% else %>
             <%= image_tag "/images/company_square.png", :alt => "System" %>

@@ -45,7 +45,7 @@ class ConversationsController < ApplicationController
       @receipt = @actor.reply_to_all(last_receipt, params[:body])
     end
 
-    redirect_to conversations_path(@conversation)
+    redirect_to conversation_path(@conversation)
   end
 
   def destroy
