@@ -34,7 +34,7 @@
 <div id="contact-creator-modal" class="modal hide fade">
   <div class="modal-header">
     <a href="#" class="close">×</a>
-    <h3>Modal Heading</h3>
+    <h3>Contact: <%= @project.user.name %> </h3>
   </div> 
   <%= form_tag(contact_creator_project_path(@project), :remote => true, "data-type" => "text" )  do %>
     <div class="modal-body form-stacked">

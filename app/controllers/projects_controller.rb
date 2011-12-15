@@ -91,7 +91,7 @@ class ProjectsController < ApplicationController
   def contact_creator
     @project = Project.find(params[:id])
     creator = @project.user
-    sender_name = (current_user.profile.present?  ? current_user.profile.name : current_user.email)
+    sender_name = current_user.name
     body = params[:message_body] || sender_name + " wants to talk about your project."
     subject = "[YPN] Message regarding #{@project.name} from #{sender_name}"
     current_user.send_message([creator], body, subject)

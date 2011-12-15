@@ -106,4 +106,26 @@ class ProfilesController < ApplicationController
     
     @projects = Project.where(:user_id => @profile.user.id) 
   end
+
+  def contact_owner
+    @profile = Profile.find(params[:id])
+    creator = @profile.user
+    sender_name = current_user.name
+    body = params[:message_body]
+    respond_to do |format|
+      if body.present?
+        subject = "[YPN] Message from #{sender_name}"
+        current_user.send_message([creator], body, subject)
+
+        message = 'Message sent.'
+        format.html { redirect_to(@profile, :notice => message) }
+        format.text { render :text => message }
+      else
+        message = 'Must include a message to send.'
+        format.html { redirect_to(@profile, :alert => message) }
+        format.text { render :text => message, :status => :bad_request }
+      end
+    end
+  end
+
 end

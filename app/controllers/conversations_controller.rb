@@ -45,31 +45,13 @@ class ConversationsController < ApplicationController
       @receipt = @actor.reply_to_all(last_receipt, params[:body])
     end
 
-    if @box.eql? 'trash'
-      @receipts = @mailbox.receipts_for(@conversation).trash
-    else
-      @receipts = @mailbox.receipts_for(@conversation).not_trash
-    end
-    render :action => :show
-    @receipts.mark_as_read
-
+    redirect_to conversations_path(@conversation)
   end
 
   def destroy
-
     @conversation.move_to_trash(@actor)
 
-    if params[:location].present?
-      case params[:location]
-      when 'conversation'
-        redirect_to conversations_path(:box => :trash)
-        return
-      else
-      redirect_to conversations_path(:box => @box,:page => params[:page])
-      return
-      end
-    end
-    redirect_to conversations_path(:box => @box,:page => params[:page])
+    redirect_to notifications_path
   end
 
   private
