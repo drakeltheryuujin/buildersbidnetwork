@@ -35,6 +35,6 @@ class Bid < ActiveRecord::Base
   private
 
   def sufficient_credits
-    self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." unless (self.user.credits >= self.project.credit_value)
+    self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." unless (self.user.credits.blank? || self.user.credits >= self.project.credit_value)
   end
 end
