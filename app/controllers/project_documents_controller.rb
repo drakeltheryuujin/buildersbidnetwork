@@ -1,23 +1,21 @@
 class ProjectDocumentsController < ApplicationController
 	before_filter :authenticate_user!
+  before_filter :get_project_and_document, :only => [:show, :update, :edit, :destroy]
+  before_filter :check_may_modify!, :only => [:update, :edit, :destroy]
 
   def index
   end
 
   def destroy
-    @project = Project.find(params[:project_id])
-    @project_document = ProjectDocument.find(params[:id])
     @project_document.destroy
     redirect_to(project_path(@project), :notice => 'ProjectDocument was successfully destroyed.')
 	end
 
   def show
-    @project_document = ProjectDocument.find(params[:id])
     redirect_to project_path(@project_document.project)
   end
   
   def edit
-    @project_document = ProjectDocument.find(params[:id])
     redirect_to project_path(@project_document.project)
   end
   
@@ -38,8 +36,6 @@ class ProjectDocumentsController < ApplicationController
   end
   
   def update
-    @project_document = ProjectDocument.find(params[:id])
-    
     if @project_document.update_attributes(params[:project_document])
       redirect_to(project_path(@project_document.project), :notice => 'ProjectDocument was successfully updated.')
     else
@@ -47,4 +43,14 @@ class ProjectDocumentsController < ApplicationController
     end
   end
 
+  private
+
+  def get_project_and_document
+    @project = Project.find(params[:project_id])
+    @project_document = ProjectDocument.find(params[:id])
+  end
+
+  def check_may_modify!
+    redirect_to(project_path(@project), :alert => "Access denied.") unless @project.may_modify? current_user
+  end
 end
