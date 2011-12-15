@@ -4,8 +4,6 @@ Ypn::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :line_items
-
   resources :locations
 
   resources :project_types
