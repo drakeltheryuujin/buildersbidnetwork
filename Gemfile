@@ -59,6 +59,10 @@ gem 'activeadmin'
 gem 'sass-rails'
 gem "meta_search",    '>= 1.1.0.pre'
 
+# state machine
+gem "aasm"
+
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

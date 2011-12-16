@@ -10,7 +10,6 @@ class BidPurchaseDebit < CreditAdjustmentDebit
   def attrs_in_sync
     self.errors[:base] << "Out of sync purchase." unless self.value == - self.bid.project.credit_value
   end
-
 end
 
 # == Schema Information

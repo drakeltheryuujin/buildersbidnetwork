@@ -23,4 +23,33 @@ class CreditAdjustment < ActiveRecord::Base
   belongs_to :user
 
   validates :user, :presence => true
+
+  after_save :update_user_credits
+  def update_user_credits
+    self.user.update_attribute(:credits, self.user.credit_adjustments.sum(:value)) 
+  end
+
+  class << self
+    def new(attributes = {}, options = {}, &block)
+      adjustment_type = attributes.delete(:adjustment_type)
+      return super if adjustment_type.blank?
+
+      klass_name = "#{adjustment_type.to_s.camelize}"
+      if Object.const_defined?(klass_name)
+        klass = Object.const_get(klass_name)
+      else
+        begin
+          klass = Object.const_missing(klass_name)
+        rescue NameError => e
+          if e.instance_of?(NameError)
+            raise ArgumentError, "Unknown adjustment type: #{adjustment_type}"
+          else
+            raise e
+          end
+        end
+      end
+
+      klass.new(attributes, options, &block)
+    end
+  end
 end
