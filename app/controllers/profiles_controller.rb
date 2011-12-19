@@ -58,8 +58,6 @@ class ProfilesController < ApplicationController
     @profile.website = nil
 
     respond_to do |format|
-      puts "******************"
-      y @profile
       if @profile.save
         format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') }
         format.xml  { render :xml => @profile, :status => :created, :location => @profile }
