@@ -59,8 +59,12 @@
             <%= bid.project.bids.published.count %> Bids
             &middot;
             <%= (bid.project.bidding_end.to_date - Date.today).to_i %> Days Left
+            <% unless bid.published? %>
+              &middot;
+              <span class="label warning"><%= bid.state %></span>
+            <% end %>
           </div>
-          <%= link_to "Full Details", project_bid_path(bid.project, bid), :class => "btn info" %>
+          <%= link_to "Full Details", edit_project_bid_path(bid.project, bid), :class => "btn info" %>
         </div>
       </div>
     <% end %>

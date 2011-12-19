@@ -56,10 +56,12 @@ class Project < ActiveRecord::Base
     :date => {:after => Proc.new { Time.now }}
   validates :project_start,
     :presence => true, 
-    :date => {:after => Proc.new { Time.now }}
+    :date => {:after => Proc.new { Time.now }},
+    :on => :create
   validates :project_end,
     :presence => true, 
-    :date => {:after => Proc.new { Time.now }}
+    :date => {:after => Proc.new { Time.now }},
+    :on => :create
   validates :estimated_budget,
     :presence => true
   validates :terms_of_use, 
@@ -77,10 +79,20 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :line_items, :allow_destroy => :true
 
-  def published_bids 
-    bids.where(:state => :published)
+  def bidding_period?
+    return (self.bidding_start <= Time.now) && (Time.now <= self.bidding_end)
   end
-  def draft_bids 
-    bids.where(:state => :draft)
+
+  def award_period?
+    return Time.now >= self.bidding_end
+  end
+
+  def hold_bids_and_notify_bidders
+    subject = "[YPN] Project #{self.name} has changed"
+    body = "Project #{self.name} has changed.  Your bid has been placed on hold and your credits have been refunded. Please visit the site to update your bid."
+    self.bids.published.each do |bid|
+      bid.hold!
+      self.user.send_message([bid.user], body, subject)
+    end
   end
 end

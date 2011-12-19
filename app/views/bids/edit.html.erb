@@ -1,6 +1,11 @@
-<h1>Editing bid</h1>
+<%= render "/projects/header" %>
 
-<%= render 'form' %>
+<h1>Edit Your Bid</h1>
 
-<%= link_to 'Show', [@bid.project, @bid] %> |
-<%= link_to 'Back', project_path(@bid.project) %>
+<div class="row">
+  <div class="span11">
+    <%= render 'form' %>
+  </div>
+
+  <%= render 'sidebar' %>
+</div>

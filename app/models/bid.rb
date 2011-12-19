@@ -25,7 +25,7 @@ class Bid < ActiveRecord::Base
   validates :user, :presence => true
   validates :project, :presence => true
 
-  STATES = [ :draft, :published, :cancelled, :awarded, :hold ].collect do |n| n.to_s end
+  STATES = [ :draft, :published, :cancelled, :awarded, :held ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
   validate :sufficient_credits?, :if => :changed_to_published?
@@ -42,19 +42,19 @@ class Bid < ActiveRecord::Base
   aasm_state :published, :enter => :charge_credits, :exit => :refund_credits
   aasm_state :cancelled
   aasm_state :awarded
-  aasm_state :hold
+  aasm_state :held
 
   aasm_event :publish do
-    transitions :to => :published, :from => [:draft, :hold]
+    transitions :to => :published, :from => [:draft, :hold, :cancelled]
   end
   aasm_event :cancel do
-    transitions :to => :cancel, :from => :published
+    transitions :to => :cancelled, :from => [:draft, :published]
   end
   aasm_event :award do
     transitions :to => :awarded, :from => :published
   end
   aasm_event :hold do
-    transitions :to => :hold, :from => :published
+    transitions :to => :held, :from => :published
   end
 # /AASM
 
@@ -73,10 +73,10 @@ class Bid < ActiveRecord::Base
   end
 
   def refund_credits 
-    self.credit_adjustments.build(:adjustment_type => :bid_purchase_refund_credit, :user => self.user, :value => self.project.credit_value)
+    self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_refund_credit, :user => self.user, :value => self.project.credit_value)
   end
 
   def charge_credits
-    self.credit_adjustments.build(:adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-self.project.credit_value)) if changed_to_published?
+    self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-self.project.credit_value)) unless self.state_was == :published.to_s
   end
 end

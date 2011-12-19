@@ -25,7 +25,7 @@
     <% end %>
     <% if current_page? project_path(@project) %>
       <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info', "data-controls-modal" => "contact-creator-modal", "data-backdrop" => "true" %> 
-      <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' %>
+      <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' if @project.bidding_period? %>
     <% else %>
       <%= link_to 'Project Scope', @project, :class => 'btn ' %> 
     <% end %>
