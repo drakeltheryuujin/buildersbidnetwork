@@ -41,11 +41,11 @@ class Bid < ActiveRecord::Base
   aasm_state :draft
   aasm_state :published, :enter => :charge_credits, :exit => :refund_credits
   aasm_state :cancelled
-  aasm_state :awarded
+  aasm_state :awarded, :enter => :award_project
   aasm_state :held
 
   aasm_event :publish do
-    transitions :to => :published, :from => [:draft, :hold, :cancelled]
+    transitions :to => :published, :from => [:draft, :held, :cancelled]
   end
   aasm_event :cancel do
     transitions :to => :cancelled, :from => [:draft, :published]
@@ -78,5 +78,9 @@ class Bid < ActiveRecord::Base
 
   def charge_credits
     self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-self.project.credit_value)) unless self.state_was == :published.to_s
+  end
+
+  def award_project
+    self.project.update_attribute(:state, :awarded)
   end
 end

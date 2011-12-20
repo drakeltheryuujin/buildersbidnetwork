@@ -62,7 +62,7 @@
   </div>
 
   <div class="row">
-    <%= f.submit "Save As Draft", :name => :draft, :class => 'float_right btn info large' unless (@bid.published? || @bid.cancelled? || @bid.awarded? || @bid.hold?) %>
+    <%= f.submit "Save As Draft", :name => :draft, :class => 'float_right btn info large' unless (@bid.published? || @bid.cancelled? || @bid.awarded? || @bid.held?) %>
     <%= f.submit "Cancel Bid", :name => :cancel, :class => 'float_right btn danger large' if (@bid.draft? || @bid.published?) %>
     <%= f.submit "Publish Bid", :name => :publish, :class => 'float_right btn primary large' %>
   </div>

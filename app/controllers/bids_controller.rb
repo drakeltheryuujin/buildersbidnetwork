@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_project_and_bid, :only => [:show, :update, :edit]
+  before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award]
   before_filter :get_project, :only => [:new, :create]
   before_filter :verify_bidding_period!, :only => [:new, :create, :edit, :update]
   before_filter :check_may_modify!, :only => [:update, :edit]
@@ -39,6 +39,21 @@ class BidsController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def award
+    @bid.award!
+    winnder = @bid.user
+    sender_name = current_user.name
+    body = params[:message_body] || sender_name + " has awarded your bid for #{@project.name}."
+    subject = "[YPN] You've been awarded #{@project.name}"
+    current_user.send_message([winnder], body, subject)
+
+    respond_to do |format|
+      format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Awarded') }
+      format.text { render :text => "Bid Awarded" }
+    end
+  end
+
 
   private
 

@@ -8,8 +8,13 @@
         </p>
       </div>
       <div class="sidebar_flag">
-        <label>Bidding Closes</label>
-        <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        <% if @project.award_period? %>
+          <label class="award">Bidding Closed</label>
+          <span class="award"><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        <% else %>
+          <label>Bidding Closes</label>
+          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+        <% end %>
         <div class="sidebar_triangle left"></div>
         <div class="sidebar_triangle right"></div>
       </div>

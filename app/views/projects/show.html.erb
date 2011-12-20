@@ -136,25 +136,7 @@
           <% if @project.bids.published.nil? %>
           <% else %>
             <% @project.bids.published.each do |bid| %>
-              <div class="project_bid search_result bid span11 row">
-                <div class="span2 ">
-                  <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(bid.user.profile) %>
-                </div>
-                <div class="span6 ">
-                  <div class="result_name"><%= link_to bid.user.profile.name, profile_path(bid.user.profile) %></div>
-                  <div class="result_location">
-                    <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{bid.user.profile.latitude}%2C#{bid.user.profile.longitude}" %>
-                    <%= bid.user.profile.location.city + ", " + bid.user.profile.location.state %>
-                  </div>
-                </div>
-                <div class="span3 alpha">
-                  <div class="result_numbers">
-                    <p class="bid_total">Bid: <%= number_to_currency bid.total %></p>
-                    <p class="bid_posted">Posted: <%= bid.created_at.to_formatted_s(:short) %></p>
-                  </div>
-                  <%= link_to "Bid Details", project_bid_path(@project, bid), :class => "btn info" %>
-                </div>
-              </div>
+              <%= render :partial => "bid_bubble", :locals => { :bid => bid } %>
             <% end %>
           <% end %>
         </div> <!-- /#bids -->

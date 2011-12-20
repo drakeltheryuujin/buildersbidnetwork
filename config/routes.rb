@@ -3,7 +3,11 @@ Ypn::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :projects do
-    resources :bids
+    resources :bids do
+      member do 
+        post 'award'
+      end 
+    end
     resources :project_documents
     member do
 	    get 'review'

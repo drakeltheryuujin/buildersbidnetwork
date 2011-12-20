@@ -1,0 +1,37 @@
+  <div class="span11">
+    <div class="search_result bid ">
+      <div class="row">
+        <div class="span2 ">
+          <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => "profile_avatar"), profile_path(bid.user.profile) %>
+        </div>
+        <div class="span6 ">
+          <% unless current_page? track_bids_projects_path(@project) %>
+            <div class="result_name"><%= link_to bid.user.profile.name, profile_path(bid.user.profile) %></div>
+            <div class="result_location">
+              <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{bid.user.profile.latitude}%2C#{bid.user.profile.longitude}" %>
+              <%= bid.user.profile.location.city + ", " + bid.user.profile.location.state %>
+            </div>
+          <% else %>
+            <div class="result_name"><%= link_to bid.project.name, project_path(bid.project) %></div>
+            <div class="result_location">
+              <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{bid.project.latitude}%2C#{bid.project.longitude}" %>
+              <%= bid.project.location.city + ", " + bid.project.location.state %>
+            </div>
+          <% end %>
+          <span class="result_type label"><%= bid.project.project_type.name %></span>
+        </div>
+        <div class="span3 alpha">
+          <div class="result_numbers">
+            <strong><%= number_to_currency bid.total %></strong>
+            <p class="bid_posted">Posted: <%= bid.created_at.to_formatted_s(:short) %></p>
+            <% unless bid.published? %>
+              &middot;
+              <span class="label warning"><%= bid.state %></span>
+            <% end %>
+            <%= link_to "Full Details", project_bid_path(bid.project, bid), :class => "btn small info" unless current_page? project_bid_path(bid.project, bid) %>
+            <%= link_to "Edit Bid", edit_project_bid_path(bid.project, bid), :class => "btn small info" if bid.may_modify? current_user %>
+          </div>
+        </div>
+      </div> <!-- /.row -->
+    </div> <!-- /.search_result -->
+  </div> <!-- /.row -->

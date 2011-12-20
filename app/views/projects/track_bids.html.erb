@@ -9,21 +9,21 @@
         <%= link_to "Activity", track_bids_projects_path %>
       </li>
       <li class="">
-        <%= link_to "Account", settings_profiles_path %>
+        <%= link_to "Account", edit_user_registration_path %>
       </li>
       <li class="">
         <%= link_to "Notifications", notifications_path %>
       </li>
     </ul>
   </div>
-  <div class="track_filters span4 ">
+  <div class="track_filters span5 ">
     <ul>
       <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", track_bids_projects_path %></li>
       <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", track_bids_projects_path(:filter => :draft) %></li>
       <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", track_bids_projects_path(:filter => :published) %></li>
       <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", track_bids_projects_path(:filter => :cancelled) %></li>
       <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", track_bids_projects_path(:filter => :awarded) %></li>
-      <li class="<%= 'active' if params[:filter] == :hold.to_s %>"><%= link_to "On Hold", track_bids_projects_path(:filter => :hold) %></li>
+      <li class="<%= 'active' if params[:filter] == :held.to_s %>"><%= link_to "On Hold", track_bids_projects_path(:filter => :held) %></li>
     </ul>
     <dl>
       <dt>Lifetime Bids Posted:</dt>
@@ -32,7 +32,7 @@
       <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
     </dl>
   </div>
-  <div class="track_results span12 alpha row">
+  <div class="track_results span11 alpha row">
     <% if @bids.blank? %>
       <div class="search_result no_results project span12 row">
         <h4>No bids found.  Get out there!</h4>
@@ -40,33 +40,7 @@
       </div>
     <% end %>
     <% @bids.each do |bid| %>
-      <div class="search_result bid span12 row">
-        <div class="span2 ">
-          <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_bid_path(bid.project, bid) %>
-        </div>
-        <div class="span7 ">
-          <div class="result_name"><%= link_to bid.project.name, project_path(bid.project) %></div>
-          <div class="result_location">
-            <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{bid.project.latitude}%2C#{bid.project.longitude}" %>
-            <%= bid.project.location.city + ", " + bid.project.location.state %>
-          </div>
-          <span class="result_type label"><%= bid.project.project_type.name %></span>
-        </div>
-        <div class="span3 alpha">
-          <div class="result_numbers">
-            <%= number_to_currency bid.total %> My Bid
-            &middot;
-            <%= bid.project.bids.published.count %> Bids
-            &middot;
-            <%= (bid.project.bidding_end.to_date - Date.today).to_i %> Days Left
-            <% unless bid.published? %>
-              &middot;
-              <span class="label warning"><%= bid.state %></span>
-            <% end %>
-          </div>
-          <%= link_to "Full Details", edit_project_bid_path(bid.project, bid), :class => "btn info" %>
-        </div>
-      </div>
+      <%= render :partial => "bid_bubble", :locals => { :bid => bid } %>
     <% end %>
   </div>
 </div>

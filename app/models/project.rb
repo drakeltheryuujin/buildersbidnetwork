@@ -72,6 +72,7 @@ class Project < ActiveRecord::Base
   validates_associated :location
   validates_associated :project_type
 
+  # TODO Use AASM like with Bid
   STATES = [ :draft, :published, :cancelled, :awarded ]
   validates_inclusion_of :state, :in => STATES
   

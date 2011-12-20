@@ -1,43 +1,86 @@
-<h1>Bid for <%= @project.name %></h1>
+<%= render "/projects/header" %>
+
 <div class="row">
-  <div class="span8 ">
-    <div class="field row">
-      <label class="span2 alpha">Bidder:</label>
-      <span class="span6"><%= @bid.user.email %></span>
-    </div>
-  </div>
-  <div class="span8">
-    <div class="field row">
-      <label class="span2">Posted</label>
-      <span><%= @bid.created_at.to_formatted_s(:long) %></span>
-    </div>
-  </div>
-</div>
-
-<div class="row form-stacked">
-  <label class="">Line Items</label>
-  <ul class="line_items">
-    <% @bid.line_item_bids.each do |line_item_bid| %>
-      <li class="line_item <%= cycle("odd", "even") -%>">
-        <span class="content"><%= line_item_bid.line_item.content %></span>
-        <span class="cost"><%= number_to_currency line_item_bid.cost %></span>
-        <% if ! line_item_bid.line_item.units.nil? %>
-          <span class="unit_cost">x <%= number_to_currency line_item_bid.unit_cost %> = </span>
-          <span class="units"><%= line_item_bid.line_item.units %></span>
+  <div class="span11">
+    <%= render :partial => "/projects/bid_bubble", :locals => { :bid => @bid } %>
+    <% if @project.user == current_user && @project.award_period? %>
+      <div class="span11">
+        <div class="search_result bid award_cta">
+          <% unless @project.state == :awarded.to_s %>
+            <%= link_to 'Award Project', award_project_bid_path(@project, @bid), :class => 'btn large primary', "data-controls-modal" => "award-project-modal", "data-backdrop" => "true" %> 
+          <% else %>
+            <h1>Project Awarded</h1>
+          <% end %>
+        </div>
+      </div>
+      <div id="award-project-modal" class="modal hide fade">
+        <div class="modal-header">
+          <a href="#" class="close">×</a>
+          <h3>Award: <%= @bid.user.name %> </h3>
+        </div> 
+        <%= form_tag(award_project_bid_path(@project, @bid), :remote => true, "data-type" => "text" )  do %>
+          <div class="modal-body form-stacked">
+            <label>Message Body</label>
+            <%= text_area_tag :message_body %>
+          </div> 
+          <div class="modal-footer">
+            <%= submit_tag "Send", :class => "btn primary" %>
+          </div> 
         <% end %>
-      </li>
+      </div>
+      <% content_for :javascript do %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#award-project-modal form")
+              .bind('ajax:complete', function(evt, data, status, xhr){
+                $("#award-project-modal").modal('hide');
+              })
+              .bind('ajax:success', function(evt, data, status, xhr){
+                $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+              })
+              .bind('ajax:error', function(evt, xhr, status, error){
+                $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+              });
+          });
+        </script>
+      <% end %>
+    <% elsif @bid.awarded? && @bid.user == current_user %>
+      <div class="span11">
+        <div class="search_result bid award_cta">
+          <h1>Congrats!</h1>
+        </div>
+      </div>
     <% end %>
-  </ul>
-</div>
+    <div class="row form-stacked">
+      <ul class="line_items">
+        <% @bid.line_item_bids.each_with_index do |line_item_bid, cnt| %>
+          <li class="line_item ">
+            <div class="content span8">
+              <span class="cnt"><%= cnt + 1 %></span>
+              <%= line_item_bid.line_item.content %>
+              <% if ! line_item_bid.line_item.units.nil? %>
+                <span class="line_item_units"><%= line_item_bid.line_item.units %></span>
+              <% end %>
+            </div>
+            <div class="units span3 alpha">
+              <%= number_to_currency line_item_bid.cost %>
+              <% if ! line_item_bid.line_item.units.nil? %>
+                <span class="unit_cost">x <%= number_to_currency line_item_bid.unit_cost %> = </span>
+                <span class="units"><%= line_item_bid.line_item.units %></span>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-<div class="row ">
-  <div class="field float_right">
-    <label>Total</label>
-    <%= number_to_currency @bid.total %>
-  </div>
-</div>
+    <div class="row ">
+      <div class="field float_right">
+        <label>Total</label>
+        <%= number_to_currency @bid.total %>
+      </div>
+    </div>
+  </div> <!-- /.span11 -->
 
-<div class="row actions">
-  <%= link_to 'Edit', edit_project_bid_path(@bid), :class => 'btn primary large' if may_admin_bid? %> 
-  <%= link_to 'Back to Project', project_path(@project), :class => 'btn large' %>
-</div>
+  <%= render 'sidebar' %>
+</div> <!-- /.row -->

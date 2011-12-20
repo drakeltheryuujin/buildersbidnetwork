@@ -624,6 +624,40 @@ ul.search_tabs li.selected {
   float: right;
 }
 
+.search_result.bid {
+  border: 1px solid #ddd;
+  padding: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.search_result.bid img.profile_avatar {
+  padding: 10px;
+}
+.search_result.bid .result_name {
+  padding-top: 10px;
+  font-size: 26px;
+  line-height: 32px;
+}
+.search_result.bid .result_numbers {
+  background-color: #9E9;
+  padding: 10px;
+  height: 100px;
+}
+.search_result.bid .result_numbers strong {
+  color: green;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.search_result.bid.award_cta {
+  background: #ddd;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
 .results_order {
   background: #ddd;
   margin: 5px;
@@ -726,6 +760,10 @@ ul.search_tabs li.selected {
 .sidebar_box .sidebar_flag .sidebar_triangle.right {
   border-left: 9px solid #333;
   right: 0;
+}
+.sidebar_box .sidebar_flag label.award,
+.sidebar_box .sidebar_flag span.award {
+  color: orange;
 }
 
 
