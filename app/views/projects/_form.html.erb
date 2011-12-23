@@ -12,12 +12,14 @@
           </ul>
         </div>
       <% end %>
-      <% if @project.bidding_period? %>
-        <div class="alert-message block-message error">
-          <strong>Warning:</strong> Any changes made to your project during the bidding
-          period will cause any previously submitted bids to be placed on hold to give
-          their owners opportunity to make any necessary changes.
-        </div>
+      <% unless @project.bidding_start.nil? && @project.bidding_end.nil? %>
+      	<% if @project.bidding_period? %>
+		  <div class="alert-message block-message error">
+	          <strong>Warning:</strong> Any changes made to your project during the bidding
+	          period will cause any previously submitted bids to be placed on hold to give
+	          their owners opportunity to make any necessary changes.
+	        </div>
+		<% end %>
       <% end %>
 
       <div class="project_meta form-stacked">
