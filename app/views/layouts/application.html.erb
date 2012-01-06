@@ -87,11 +87,14 @@
             </ul>
           <% else %>
             <ul class="nav ">
-              <li class="<%= put_if_current_page('active', root_path) %>">
+              <!--<li class="<%= put_if_current_page('active', root_path) %>">
                 <%= link_to "Home", root_path %>
-              </li>
-              <li class="<%= put_if_current_page('active', content_page_path('about')) %>"><%= link_to "About", content_page_path('about') %></li>
-              <li class="<%= put_if_current_page('active', content_page_path('contact')) %>"><%= link_to "Contact", content_page_path('contact') %></li>
+              </li>-->
+			  <!-- TODO: Fix Link destinations & content_page_path -->
+			  <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "How<span>it works</span>".html_safe, root_path %></li>
+			  <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "What<span>is BBN?</span>".html_safe, content_page_path('about') %></li>
+              <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "Browse<span>projects, etc.</span>".html_safe, root_path %></li>
+              <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "Questions?<span>contact us</span>".html_safe, content_page_path('contact') %></li>
             </ul>
           <% end %>
           <div class="search_nav">
@@ -111,6 +114,24 @@
       </div>
     </div>
   </div>
+  
+  <div id = "building-relationships">
+	<div class="container building-relationships-container">
+		<h2> Building <span>Relationships</span></h2>	
+		<ul>
+			<li>
+				A new way to <span>find</span> and <span>bid</span> on <span>commercial construction projects</span>
+			</li>
+			<li>
+				<span>Create a profile</span> and start building your professional network today
+			</li>
+			<li>
+				<span>Developers:</span> Find contractors in your area and invite them to bid
+			</li>
+		</ul>
+	</div>
+  </div>
+  
   <div id="wrapper" class="container">
     <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
     <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
@@ -121,13 +142,21 @@
     <div class="fill">
       <div class="container footer_container">
         <ul>
-          <li><%= link_to "Terms of Use", content_page_path('terms') %></li>
-          <li><%= link_to "Privacy Policy", content_page_path('privacy') %></li>
-          <li><%= link_to "About", content_page_path('about') %></li>
+		  <li><%= link_to "Advertise", content_page_path('advertise') %></li>
+		  <li> | </li>
+          <li><%= link_to "Contact Us", content_page_path('contact')%></li>
+		  <li> | </li>
           <li><%= link_to "Help", content_page_path('help') %></li>
-          <li><%= link_to "Contact Us", content_page_path('contact') %></li>
-		   <li><%= link_to "Advertise", content_page_path('advertise') %></li>
-          <li class="left_side">&copy;BuildersBidNetwork</li>
+		  <li> | </li>
+          <li><%= link_to "About", content_page_path('about') %></li>
+		  <li> | </li>
+          <li><%= link_to "Privacy Policy", content_page_path('privacy') %></li>
+		  <li> | </li>
+          <li><%= link_to "Terms of Use", content_page_path('terms') %></li>
+          <li class="left_side">
+			<span class="left_sidetop">BuildersBidNetwork</span>
+			<span class="left_sidebottom">&copy;2012 BuildersBidNetwork.com</span>
+		  </li>
         </ul>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <div class="span16 ">
     <div class="search_box home_box row">
       <div class="offset6 span10">
-        <h2>Find Commercial Construction Projects</h2>
+        <h2>Search for Projects</h2>
         <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
           <%= f.hidden_field :section %>
           <table class="span3">
@@ -23,11 +23,11 @@
             </tr>
           </table>
 
-          <strong class="span9">Select a Project Type</strong>
+          <strong class="span9">Select a Type of Trade</strong>
           <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
 
           <div class="span9">
-            <%= f.submit 'Search', :class => 'large float_right btn primary' %>
+            <%= f.submit 'Search', :class => 'large btn primary' %>
           </div>
         <% end %>
       </div>
