@@ -348,26 +348,49 @@ white-space: nowrap;
   padding: 10px;
 }
 .home_page .search_box {
+  padding-top:15px;
   margin: 20px 0 20px 0;
   width:432px;
+  position:relative;
 }
+.home_page .search_box .background{
+	background:transparent url('../images/home_searchman_copy.png')0 0 no-repeat; 
+	position:absolute; 
+	left:118px; 
+	top:-40px;
+	width:334px;
+	height:221px;
+	z-index:-1;
+} 
+
+.home_page .search_box .large.btn.primary {
+  background-color:#f26805;
+  color:#fff;
+  border-color:#E56F01;
+  background-image: -ms-linear-gradient(top, #FF8013 0%, #FFB134 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
+  font-weight:normal;
+  font-size:12px;
+}
+
 .home_page .search_box h2{
-color:#002358;
-font-size:32px;
-font-weight:bold;
+  color:#002358;
+  font-size:32px;
+  font-weight:bold;
 }
 .home_page .search_box .offset6 {
 margin-left:0px;
+margin-top:5px;
 width:320px;
 }
 
 .home_page .search_box .type_select {
   margin: 10px 0;
   width:413px;
-}
-
-.home_page .search_box #input.large.float_right.btn.primary{
-
 }
 
 .home_page .cta_box {
