@@ -34,6 +34,8 @@ class Profile < ActiveRecord::Base
     self.user == user || user.try(:admin?)
   end
   
+  validates :name, :presence => true
+
   validates_associated :location
   validates_associated :phones
   
