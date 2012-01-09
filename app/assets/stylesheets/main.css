@@ -151,7 +151,8 @@ white-space: nowrap;
 }
 .auth_topbar .sign_in_cta {
   padding-top: 4px;
-}
+  float:left;
+  }
 .auth_topbar a {
   font-weight: bold;
   color: #eee;
@@ -171,6 +172,22 @@ white-space: nowrap;
   background-color: #3873AF;
   background-image: none;
 }
+
+.home-page-navbar-login form{
+  margin-top:0px;
+  float:right;
+}
+.home-page-navbar-login  input[type=text]{
+  background-color:#fff;
+  height:15px;
+  width:175px;
+}
+.home-page-navbar-login input[type=button]{
+  background-color:#3491d6;
+  color:#fff;
+  height:25px;
+}
+
 .auth_topbar.topbar div > ul a img { 
   margin-top: 20px;
 }

@@ -17,8 +17,16 @@
 			Already have an account?
             <%= link_to "Log In", new_user_session_path %>
             or 
-            <%= link_to "Sign Up", new_user_registration_path %> 
-          </div>
+            <%= link_to "Sign Up", new_user_registration_path %>
+		  </div>
+		<div class="home-page-navbar-login">		
+			<form action="nav-bar-login_form">
+				Username: <input type="text" name="username" />
+				Password: <input type="text" name="password" />
+				<input type="button" value="Login" />
+			</form>	
+		</div>
+          
         <% end %>
         <% if user_signed_in? %>
           <ul class="secondary-nav">
