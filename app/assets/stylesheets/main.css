@@ -567,25 +567,6 @@ form div.field_with_errors label {
   margin-left: 0;
 }
 
-.project_document {
-  display: inline-block;
-  #width: 100px;
-  padding: 1em;
-}
-.project_document img {
-  min-height: 100px;
-  min-width: 100px;
-}
-.project_document .description {
-  display: inline-block;
-  font-size: 0.8em;
-  float: left;
-  width: 100px;
-}
-form.new_project_document {
-  padding-bottom: 2em;
-}
-
 .datetime-field select[id*="_2i"] {
   width: 90px;
 }
@@ -1099,6 +1080,7 @@ ul.search_tabs li.selected {
   font-size: 2em;
   vertical-align: middle;
 }
+
 
 input, textarea {
   -webkit-transform-style: flat;

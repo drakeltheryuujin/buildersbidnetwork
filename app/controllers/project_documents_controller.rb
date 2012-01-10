@@ -37,9 +37,15 @@ class ProjectDocumentsController < ApplicationController
   
   def update
     if @project_document.update_attributes(params[:project_document])
-      redirect_to(project_path(@project_document.project), :notice => 'ProjectDocument was successfully updated.')
+      respond_to do |format|
+        format.text { render :text => @project_document.description }
+        format.html { redirect_to(project_path(@project_document.project), :notice => 'ProjectDocument was successfully updated.') }
+      end
     else
-      redirect_to(project_path(@project_document.project), :alert => 'ProjectDocument could not be updated.')
+      respond_to do |format|
+        format.text { render :text => "Error updating description.", :status => :bad_request }
+        format.html { redirect_to(project_path(@project_document.project), :alert => 'ProjectDocument could not be updated.') }
+      end
     end
   end
 

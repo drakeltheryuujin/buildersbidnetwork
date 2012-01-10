@@ -6,6 +6,9 @@ class ProjectDocument < ActiveRecord::Base
 	  :styles => { :thumb  => "100x100", :large => "600x400" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
+  scope :image, where(["asset_content_type LIKE ?", "image%"])
+  scope :doc, where(["asset_content_type NOT LIKE ?", "image%"])
+
   before_post_process :is_image?
   def is_image?
     !(asset_content_type =~ /^image/).nil?

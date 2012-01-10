@@ -30,7 +30,8 @@
   <div class="span11 project_content">
     <ul class="tabs" data-tabs="tabs">
       <li class="active"><a href="#scope">Project Scope</a></li>
-      <li><a href="#docs">Documents + Photos</a></li>
+      <li><a href="#docs">Documents (<%= @project.project_documents.doc.size() %>)</a></li>
+      <li><a href="#photos">Photos (<%= @project.project_documents.image.size() %>)</a></li>
       <% if may_admin_project? %>
         <li><a href="#bids">Bids</a></li>
       <% end %>
@@ -92,43 +93,100 @@
 
       </div> <!-- /#scope -->
 
-      <div class="tab-pane" id="docs">
-        <div class="row form-stacked"> <!-- TODO media grid for images/documents -->
-          <label>Documents</label>
-          <% @project.project_documents.each do |project_document| %>
-            <div class="project_document">
-              <% if project_document.is_image? %>
-                <%= link_to image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name), project_document.asset(:original), :class => 'lightbox_thumb', :title => project_document.asset_file_name %>
-              <% else %>
-                <%= link_to image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name), project_document.asset(:original) %>
-              <% end %>
-              <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
-              <%= link_to '[DELETE]', [@project, project_document], :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' if may_admin_project? %>
-            </div>
-          <% end%>
+      <div class="tab-pane" id="photos">
+        <div class="row form-stacked editable assets">
           <% if may_admin_project? %>
-            <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
-              <%= project_doc_form.label :asset %>
-              <%= project_doc_form.file_field :asset %>
-              <%= project_doc_form.label :description %>
-              <%= project_doc_form.text_field :description %>
-            
-              <%= project_doc_form.submit %>
-            <% end %>
+            <span class="admin-btns">
+              <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Photos</a>
+              <!-- Coming soon
+              <a href="#" class="btn small select-cover-btn"><%= image_tag "/images/icon_blacksquare_coverphoto.png" %> Select Project Cover Photo</a>
+              -->
+            </span>
+            <div class="add-asset">
+              <a href="#" class="btn small cancel-btn">Cancel</a>
+              <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+                <%= project_doc_form.label :asset, "Add Photo" %>
+                <%= project_doc_form.file_field :asset %>
+                <%= project_doc_form.label :description %>
+                <%= project_doc_form.text_field :description %>
+              
+                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+              <% end %>
+            </div>
           <% end %>
+
+          <ul class="faux-media-grid">
+            <% @project.project_documents.image.each do |project_document| %>
+              <li class="project_document editable">
+                <%= link_to project_document.asset(:original), {:class => 'lightbox_thumb', :title => project_document.asset_file_name} do %>
+                  <%= image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name) %>
+                  <div class="description"><%= project_document.description || "&nbsp;".html_safe %></div>
+                <% end %>
+                <% if may_admin_project? %>
+                  <%= form_for [@project, project_document], :remote => true, "data-type" => "text" do |project_doc_form| %>
+                    <%= project_doc_form.text_field :description %>
+                    <a href="#" class="btn small cancel-btn">Cancel</a>
+                    <%= project_doc_form.submit "Save", {:class => 'btn small'} %>
+                  <% end %>
+                  <span class="edit-btns">
+                    <%= link_to [@project, project_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
+                      <%= image_tag "/images/icon_X_delete.png" %> Delete
+                    <% end %>
+                    <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_pencil_edit.png" %> Edit</a>
+                  </span>
+                <% end %>
+              </li>
+            <% end%>
+          </ul>
         </div>
-        <% content_for :javascript do %>
-          <%= javascript_include_tag "jquery.lightbox" %>
-          <script type="text/javascript">
-            $(document).ready(function() {
-              $('.project_document a.lightbox_thumb').lightBox({
-                imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
-                imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
-                imageBlank: '/images/lightbox/lightbox-blank.gif'
-              });
-            });
-          </script>
-        <% end%>
+      </div> <!-- /#photos -->
+
+      <div class="tab-pane" id="docs">
+        <div class="row form-stacked assets">
+          <% if may_admin_project? %>
+            <span class="admin-btns">
+              <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Photos</a>
+              <!-- Coming soon
+              <a href="#" class="btn small select-cover-btn"><%= image_tag "/images/icon_blacksquare_coverphoto.png" %> Select Project Cover Photo</a>
+              -->
+            </span>
+            <div class="add-asset">
+              <a href="#" class="btn small cancel-btn">Cancel</a>
+              <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+                <%= project_doc_form.label :asset, "Add Photo" %>
+                <%= project_doc_form.file_field :asset %>
+                <%= project_doc_form.label :description %>
+                <%= project_doc_form.text_field :description %>
+              
+                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+              <% end %>
+            </div>
+          <% end %>
+
+          <ul class="faux-media-grid">
+            <% @project.project_documents.doc.each do |project_document| %>
+              <li class="project_document editable">
+                <%= link_to project_document.asset(:original) do %>
+                  <%= image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name) %>
+                  <span class="description"><%= project_document.description || "&nbsp;".html_safe %></span>
+                <% end %>
+                <% if may_admin_project? %>
+                  <%= form_for [@project, project_document], :remote => true, "data-type" => "text" do |project_doc_form| %>
+                    <%= project_doc_form.text_field :description %>
+                    <a href="#" class="btn small cancel-btn">Cancel</a>
+                    <%= project_doc_form.submit "Save", {:class => 'btn small'} %>
+                  <% end %>
+                  <span class="edit-btns">
+                    <%= link_to [@project, project_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
+                      <%= image_tag "/images/icon_X_delete.png" %> Delete
+                    <% end %>
+                    <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_pencil_edit.png" %> Edit</a>
+                  </span>
+                <% end %>
+              </li>
+            <% end%>
+          </ul>
+        </div>
       </div> <!-- /#docs -->
 
       <% if may_admin_project? %>
@@ -143,4 +201,36 @@
       <% end %>
     </div>
   </div>
+
+  <% content_for :javascript do %>
+    <%= javascript_include_tag "jquery.lightbox" %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.btn.edit-btn').click(function() {
+          $(this).closest('.editable').addClass('edit');
+          return false;
+        });
+        $('.btn.cancel-btn').click(function() {
+          $(this).closest('.editable').removeClass('edit');
+          return false;
+        });
+        $(".project_document form")
+          .bind('ajax:complete', function(evt, data, status, xhr){
+            $(this).closest('.editable').removeClass('edit');
+          })
+          .bind('ajax:success', function(evt, data, status, xhr){
+            $(this).closest('.project_document').find('.description').html(xhr.responseText);
+            //$(this).closest('.project_document').html(xhr.responseText);
+          })
+          .bind('ajax:error', function(evt, xhr, status, error){
+            $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+          });
+        $('.project_document a.lightbox_thumb').lightBox({
+          imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+          imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+          imageBlank: '/images/lightbox/lightbox-blank.gif'
+        });
+      });
+    </script>
+  <% end%>
 </div>

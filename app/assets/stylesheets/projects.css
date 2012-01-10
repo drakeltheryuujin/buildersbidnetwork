@@ -1,0 +1,94 @@
+.faux-media-grid {
+  margin-left: -20px;
+}
+.faux-media-grid li {
+  display: inline;
+  float: left;
+  padding: 4px;
+  margin: 0 0 18px 20px;
+  border: 1px solid #DDD;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  width: 147px;
+  text-align: center;
+}
+
+.project_document {
+  display: inline-block;
+  width: 100px;
+  padding: 1em;
+}
+.project_document img {
+  min-height: 100px;
+  min-width: 100px;
+}
+.project_document .btn img {
+  min-height: 8px;
+  min-width: 8px;
+  max-height: 8px;
+  max-width: 8px;
+}
+.project_document .description {
+  color: #333;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 5px;
+  padding: 4px;
+  display: block;
+}
+form.new_project_document {
+  padding-bottom: 2em;
+}
+
+.project_page .tab-pane .row .admin-btns {
+  display: block;
+  margin: 0 0 5px 0;
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid #eee;
+}
+.project_page .tab-pane .row .btn {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.project_page .tab-pane .row .btn img {
+  padding-right: 3px;
+}
+.project_page .tab-pane .row .add-asset {
+  display: none;
+}
+.project_page .tab-pane .row .add-asset form {
+  margin: 5px 0;
+  padding: 20px 40px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.project_page .tab-pane .row.edit .add-asset {
+  display: block;
+}
+.project_page .tab-pane .row.edit .admin-btns {
+  display: none;
+}
+
+.project_page .tab-pane .project_document form.edit_project_document {
+  display: none;
+  margin-bottom: 0;
+}
+.project_page .tab-pane .project_document form.edit_project_document input.small {
+  width: 60px;
+}
+.project_page .tab-pane .project_document.edit form.edit_project_document {
+  display: block;
+}
+.project_page .tab-pane .project_document.edit .edit-btns,
+.project_page .tab-pane .project_document.edit .description {
+  display: none;
+}
+.project_page .tab-pane .project_document form.edit_project_document input[type="text"] {
+  width: 135px;
+  display: block;
+  margin-bottom: 5px;
+}

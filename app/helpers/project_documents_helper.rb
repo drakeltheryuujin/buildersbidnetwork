@@ -10,6 +10,8 @@ module ProjectDocumentsHelper
         result += "xls.png"
       when /^application\/vnd.ms-powerpoint$/, /^application\/mspowerpoint$/, /^application\/ms-powerpoint$/, /^application\/mspowerpnt$/, /^application\/vnd-mspowerpoint$/, /^application\/powerpoint$/, /^application\/x-powerpoint$/
         result += "ppt.png"
+      when /^application\/postscript$/, /^application\/eps$/, /^application\/x-eps$/
+        result += "eps.png"
       else
         result += "doc.png"
     end
