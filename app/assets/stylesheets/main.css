@@ -275,14 +275,13 @@ white-space: nowrap;
   padding-top:10px;
 }
 
-#building-relationships	{
-	border-bottom:1px solid #c2c2c2;
+#top-banner	{
 	background-color:#edeae3;
 }
 .building-relationships-container	{
-
+	border-bottom:1px solid #c2c2c2;
 }
-#building-relationships h2 {
+#top-banner .building-relationships-container h2 {
 	background: transparent url('../images/home_triangle.png') 0 0 no-repeat;
 	float:left;
 	font-weight:normal;
@@ -290,16 +289,16 @@ white-space: nowrap;
 	line-height:100px;
 	padding-left:75px;
 }
-#building-relationships span {
+#top-banner .building-relationships-container span {
 	font-weight:bold;
 }
-#building-relationships ul {
+#top-banner .building-relationships-container ul {
 	float:right;
 	list-style-type:none;
 	margin-top:15px;
 	margin-right:90px;
 }
-#building-relationships ul  li{
+#top-banner .building-relationships-container ul  li{
 	background: transparent url('../images/home_squarebullet.png')  0 .5em no-repeat;
 	margin-top:5px;
 	padding-left:20px;
