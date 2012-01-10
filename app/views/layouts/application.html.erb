@@ -68,12 +68,12 @@
                   </p>
                 <% end %>
               </li>
-              <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse", search_index_path %></li>
+              <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse <span>projects, etc.</span>".html_safe, search_index_path %></li>
               <% if DeveloperProfile.to_s == current_user.profile.type %>
                 <li class="<%= put_if_current_page('active', track_projects_projects_path) %>">
                   <%= link_to track_projects_projects_path do %>
-                    Track
-                    <p class="nav_desc">my projects</p>
+                    My BBN
+                    <p class="nav_desc"> <span>track bids, etc.</span></p>
                   <% end %>
                 </li>
               <% elsif ContractorProfile.to_s == current_user.profile.type %>

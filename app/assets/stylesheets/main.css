@@ -9,7 +9,7 @@
  **/
 .brand_header {
   padding: 1em;
-  margin-bottom: 35px;
+  margin-bottom: 39px;
   color: white;
 
   height: 30px;
@@ -189,7 +189,7 @@ white-space: nowrap;
 }
 
 .auth_topbar.topbar div > ul a img { 
-  margin-top: 20px;
+  
 }
 
 .brand_header .nav_topbar {
@@ -209,7 +209,7 @@ white-space: nowrap;
 }
 .brand_header .nav_topbar a {
   color: #3F9DE0;
-  padding:15px 15px;
+  padding:15px 10px;
   margin: auto;
   font-size:14px;
   height: 45px;
@@ -221,6 +221,16 @@ white-space: nowrap;
   font-size:12px;
   font-weight:normal;
 }
+.brand_header .nav_topbar .label {
+  background-color:#FF6502;
+  color:#fff;
+  display:inline;
+  height:10px;
+  padding-top:4px;
+  text-align:center;
+  width:20px;
+}
+
 .brand_header .nav_topbar ul li {
   height: 65px;
   border-right:1px solid #eee;
@@ -256,12 +266,13 @@ white-space: nowrap;
 
 .brand_header .nav_topbar img.logo {
   float: left;
-  padding: 20px 60px 10px 0;
+  padding: 20px 25px 10px 0;
 }
 
 .brand_header .nav_topbar p.nav_desc {
-  line-height: 5px;
   font-size: 10px;
+  line-height: 5px;
+  padding-top:10px;
 }
 
 #building-relationships	{
@@ -352,6 +363,7 @@ white-space: nowrap;
   margin: 20px 0 20px 0;
   width:432px;
   position:relative;
+  z-index:-2;
 }
 .home_page .search_box .background{
 	background:transparent url('../images/home_searchman_copy.png')0 0 no-repeat; 
