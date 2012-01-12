@@ -4,11 +4,13 @@
   </div>
   <div class="action span2">
     <% unless @box.eql? 'trash' %>
-      <%= link_to 'Delete', conversation_path(conversation, :location => @box, :box => @box), :class => 'btn danger', :confirm => 'Really?', :method => :delete %>
+      <%= link_to conversation_path(conversation, :location => @box, :box => @box), :class => 'btn small danger', :confirm => 'Really?', :method => :delete do %>
+        <%= image_tag '/images/icon_X_delete.png' %> Delete
+      <% end %>
     <% end %>
   </div>
 </div>
-<div class="track_results">
+<div class="conversation">
   <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
     <% read_class = message.is_unread?(@actor) ? 'unread' : '' %>
@@ -29,10 +31,12 @@
           </ul>
         </div>
       <% end %>
-      <div class="reply-form form-stacked">
-        <label>Reply</label>
-        <%= text_area_tag :body, nil,:rows =>5, :class => "required form_tag" %>
-        <div class="actions center">
+      <div class="actions row reply-form form-stacked">
+        <div class="span2">&nbsp;</div>
+        <div class="span8">
+          <%= text_area_tag :body, nil,:rows => 3, :class => "required form_tag", :placeholder => "Write a reply..." %>
+        </div>
+        <div class="span1">
           <%= submit_tag 'Reply', :name => :reply_all, :class => "btn success" %>
         </div>
       </div>

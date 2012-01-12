@@ -1,14 +1,14 @@
-<%= div_for(message, :class => read_class + "search_result row") do%>
+<%= div_for(message, :class => read_class + "row") do%>
   <div class="span2">
     <div class="sender_name">
       <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile) %>
       <%= link_to_unless(message.sender.profile.blank?, message.sender.name, profile_path(message.sender.profile)) %>
     </div>
     <div class="date">
-      <%= time_ago_in_words(message.updated_at) %>
+      about <%= time_ago_in_words(message.updated_at) %> ago
     </div>
   </div>
-  <div class="body span10">
+  <div class="body span9">
   	<%= raw(message.body) %>
   </div>
 <% end %>

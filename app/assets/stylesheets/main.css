@@ -620,27 +620,35 @@ label span.message.bad_address {
   background-color: #FF4800;
 }
 
-.conversation {
-  background-color: #ddd;
-  margin-bottom: 1em;
-}
-.conversation.unread {
-  background-color: #fff;
-}
-.conversation:hover {
-  background-color: #aaa;
-}
-
 .conversation .subject {
   font-size: 1.2em;
   font-weight: bold;
 }
 .conversation .date {
-  font-size: 0.8em;
+  font-size: 10px;
+  border: none;
+  width: auto;
+  text-align: left;
+  padding: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
 } 
-.conversation .action {
-  /* display: inline; */
+.conversation .message {
+  font-weight: normal;
+  border-bottom: 1px solid #ddd;
 } 
+.conversation .actions {
+  margin-top: 0;
+} 
+.conversation_full .title h2 {
+  font-size: 18px;
+  line-height: 22px;
+  color: #42AAF1;
+}
+.conversation_full .action .btn {
+  text-transform: uppercase;
+}
 
 #payment_credit_card_number {
   width: 308px;
