@@ -1,0 +1,46 @@
+.profile_actions ul {
+  list-style: none;
+}
+.profile_actions ul li {
+  border-style: dotted;
+  border-color: #ddd;
+  border-width: 1px 0;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.profile_page .field label {
+  font-size: 11px;
+}
+.profile_page .field address p {
+  font-size: 18px;
+}
+
+.profile_page .profile_meta label {
+  width: auto;
+}
+
+.profile_page .profile-form .field {
+  padding: 10px 20px 0;
+}
+.profile_page .profile-form .field > .field_with_errors {
+  width: 100%;
+}
+
+.profile_page .profile-form .field > textarea,
+.profile_page .profile-form .field > .field_with_errors > textarea,
+.profile_page .profile-form .field > select,
+.profile_page .profile-form .field > .field_with_errors > select,
+.profile_page .profile-form .field > input,
+.profile_page .profile-form .field > .field_with_errors > input {
+  width: 98%;
+}
+.profile_page .profile-form .field > input.btn,
+.profile_page .profile-form .field > input[type="checkbox"] {
+  width: auto;
+}
+.profile_page .profile-form .field > input[type="checkbox"] {
+  float: left;
+  margin-right: 10px;
+}

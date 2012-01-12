@@ -951,35 +951,6 @@ ul.search_tabs li.selected {
 }
 
 
-.profile_actions ul {
-  list-style: none;
-}
-.profile_actions ul li {
-  border-style: dotted;
-  border-color: #ddd;
-  border-width: 1px 0;
-  padding: 5px 0;
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.profile_page .field label {
-  font-size: 11px;
-}
-.profile_page .field address p {
-  font-size: 18px;
-}
-
-.project_meta,
-.profile_page .profile_meta {
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-.profile_page .profile_meta label {
-  width: auto;
-}
-
 
 
 
@@ -1002,41 +973,7 @@ ul.search_tabs li.selected {
   text-transform: none;
   line-height: 1em;
 }
-.profile_page .profile-form .field,
-.login-page .login-box .links_field,
-.login-page .login-box .field {
-  padding: 10px 20px 0;
-}
-.profile_page .profile-form .field > .field_with_errors,
-.login-page .login-box .field > .field_with_errors { 
-  width: 100%;
-}
 
-.profile_page .profile-form .field > textarea,
-.profile_page .profile-form .field > .field_with_errors > textarea,
-.profile_page .profile-form .field > select,
-.profile_page .profile-form .field > .field_with_errors > select,
-.profile_page .profile-form .field > input,
-.profile_page .profile-form .field > .field_with_errors > input,
-.login-page .login-box .field > textarea,
-.login-page .login-box .field > .field_with_errors > textarea,
-.login-page .login-box .field > select,
-.login-page .login-box .field > .field_with_errors > select,
-.login-page .login-box .field > input,
-.login-page .login-box .field > .field_with_errors > input {
-  width: 98%;
-}
-.profile_page .profile-form .field > input.btn,
-.profile_page .profile-form .field > input[type="checkbox"],
-.login-page .login-box .field > input.btn,
-.login-page .login-box .field > input[type="checkbox"] {
-  width: auto;
-}
-.profile_page .profile-form .field > input[type="checkbox"],
-.login-page .login-box .field > input[type="checkbox"] {
-  float: left;
-  margin-right: 10px;
-}
 .login-page .login-box .field > label {
   text-transform: uppercase;
   font-weight: normal;
@@ -1071,6 +1008,35 @@ ul.search_tabs li.selected {
 .login-page .cta {
   text-align: center;
   padding: 20px 10px 30px 10px;
+}
+.login-page .login-box .links_field,
+.login-page .login-box .field {
+  padding: 10px 20px 0;
+}
+.login-page .login-box .field > .field_with_errors { 
+  width: 100%;
+}
+.login-page .login-box .field > textarea,
+.login-page .login-box .field > .field_with_errors > textarea,
+.login-page .login-box .field > select,
+.login-page .login-box .field > .field_with_errors > select,
+.login-page .login-box .field > input,
+.login-page .login-box .field > .field_with_errors > input {
+  width: 98%;
+}
+.login-page .login-box .field > input.btn,
+.login-page .login-box .field > input[type="checkbox"] {
+  width: auto;
+}
+.login-page .login-box .field > input[type="checkbox"] {
+  float: left;
+  margin-right: 10px;
+}
+.project_meta,
+.profile_meta {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 .modal form { margin-bottom: 0; }
