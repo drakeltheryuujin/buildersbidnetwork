@@ -20,7 +20,7 @@
       <div class="notification_result ">
         <div class="row">
           <div class="span2 ">
-            <% if notification.sender.profile.present? %>
+            <% if notification.sender.present? && notification.sender.profile.present? %>
               <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => 'profile_avatar'), profile_path(notification.sender.profile) %>
             <% else %>
               <%= image_tag "/images/company_square.png", :alt => "System", :class => 'profile_avatar' %>
