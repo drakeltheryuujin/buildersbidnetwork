@@ -1,11 +1,27 @@
-<%= render "/projects/header" %>
-
-<h1>Edit Your Bid</h1>
+<% content_for :top_banner do %>
+  <div class="container">
+    <%= render "/projects/header" %>
+    <ul class="tabs" data-tabs="tabs">
+      <li><%= link_to 'Project Scope', project_path(@project, :anchor => 'scope') %></li>
+      <li>
+        <%= link_to project_path(@project, :anchor => 'docs') do %>
+          Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to project_path(@project, :anchor => 'photos') do %>
+          Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+        <% end %>
+      </li>
+      <li class="active"><a href="#my_bid">My Bid</a></li>
+    </ul>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="span11">
     <%= render 'form' %>
   </div>
 
-  <%= render 'sidebar' %>
+  <%= render '/projects/sidebar' %>
 </div>

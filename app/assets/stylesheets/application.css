@@ -2,5 +2,6 @@
 *= require bootstrap
 *= require jquery.lightbox
 *= require wizard
+*= require jquery.tools_dateinput
 *= require projects
 */

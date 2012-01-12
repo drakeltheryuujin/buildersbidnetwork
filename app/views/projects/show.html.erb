@@ -1,41 +1,35 @@
-<%= render "header" %>
-<div class="row project_page">
-  <div class="span5 project_sidebar">
-    <div class="sidebar_box project_timeline">
-      <h1>Project Timeline</h1>
-      <ul>
-        <li>
-          <label>Posted for Bidding:</label>
-          <span><%= @project.bidding_start.to_formatted_s(:short) %></span>
-        </li>
-        <li>
-          <label>Closed for Bidding:</label>
-          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
-        </li>
-        <li>
-          <label>Pre Bid Meeting:</label>
-          <span><%= @project.pre_bid_meeting.to_formatted_s(:short) %></span>
-        </li>
-        <li>
-          <label>Estimated Start Date:</label>
-          <span><%= @project.project_start.to_formatted_s(:short) %></span>
-        </li>
-        <li>
-          <label>Estimated End Date:</label>
-          <span><%= @project.project_end.to_formatted_s(:short) %></span>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="span11 project_content">
+<% content_for :body_class, "project_page" %>
+<% content_for :top_banner do %>
+  <div class="container">
+    <%= render "header" %>
     <ul class="tabs" data-tabs="tabs">
       <li class="active"><a href="#scope">Project Scope</a></li>
-      <li><a href="#docs">Documents (<%= @project.project_documents.doc.size() %>)</a></li>
-      <li><a href="#photos">Photos (<%= @project.project_documents.image.size() %>)</a></li>
+      <li>
+        <a href="#docs">
+          Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+        </a>
+      </li>
+      <li>
+        <a href="#photos">
+          Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+        </a>
+      </li>
       <% if may_admin_project? %>
-        <li><a href="#bids">Bids</a></li>
+        <li>
+          <a href="#bids">
+            Bids <%= ("(#{@project.bids.published.size()})") unless @project.bids.published.empty? %>
+          </a>
+        </li>
+      <% elsif has_bid_on_project? %>
+        <li>
+          <%= link_to "My Bid", project_bid_path(@project, @project.my_bid(current_user)) %>
+        </li>
       <% end %>
     </ul>
+  </div>
+<% end %>
+<div class="row project_page">
+  <div class="span11 project_content">
     <div class="tab-content">
       <div class="tab-pane active row" id="scope">
         <div class="span6">
@@ -142,13 +136,10 @@
       </div> <!-- /#photos -->
 
       <div class="tab-pane" id="docs">
-        <div class="row form-stacked assets">
+        <div class="row form-stacked editable assets">
           <% if may_admin_project? %>
             <span class="admin-btns">
-              <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Photos</a>
-              <!-- Coming soon
-              <a href="#" class="btn small select-cover-btn"><%= image_tag "/images/icon_blacksquare_coverphoto.png" %> Select Project Cover Photo</a>
-              -->
+              <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Documents</a>
             </span>
             <div class="add-asset">
               <a href="#" class="btn small cancel-btn">Cancel</a>
@@ -202,10 +193,13 @@
     </div>
   </div>
 
+  <%= render 'sidebar' %>
+
   <% content_for :javascript do %>
     <%= javascript_include_tag "jquery.lightbox" %>
     <script type="text/javascript">
       $(document).ready(function() {
+        if(window.location.hash) $('a[href="' + window.location.hash + '"]').click();
         $('.btn.edit-btn').click(function() {
           $(this).closest('.editable').addClass('edit');
           return false;

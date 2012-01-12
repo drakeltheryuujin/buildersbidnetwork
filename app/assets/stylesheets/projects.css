@@ -1,3 +1,21 @@
+.project_header {
+  padding: 5px 0;
+}
+.project_header h1 {
+  display: inline;
+}
+.project_header .project_avatar img {
+  border: 2px solid #ddd;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.project_header .project_actions {
+  padding-top: 23px;
+  text-align: right;
+}
+
+
 .faux-media-grid {
   margin-left: -20px;
 }
@@ -92,3 +110,95 @@ form.new_project_document {
   display: block;
   margin-bottom: 5px;
 }
+
+.project_form .project_meta .datetime-field {
+  min-height: 47px;
+}
+.project_form .project_meta .field select.type_select,
+.project_form .project_meta .field textarea,
+.project_form .project_meta .field input {
+  width: 98%;
+}
+.project_form .project_meta .field input.date {
+  width: 80px;
+  font-size: 1em;
+  text-align: left;
+}
+
+.project_form .project_meta .field.line_item input,
+.project_form .project_meta .field.location select,
+.project_form .project_meta .field.location input {
+  margin: 0 0 10px 0;
+}
+.project_form .project_meta .field.location input.city_field {
+  width: 438px;
+}
+.project_form .project_meta .field.location select {
+  width: 50px;
+}
+.project_form .project_meta .field.location input.zip_field {
+  width: 80px;
+}
+.project_form .project_meta .field.line_item input.line_item_content_field {
+  width: 470px;
+}
+.project_form .project_meta .field.line_item input.line_item_units_field {
+  width: 80px;
+}
+
+.project_form .project_meta.project_budget div.input-prepend {
+  display: inline;
+}
+
+.project_sidebar .project_timeline h1 {
+  border-bottom: 1px solid;
+  clear: left;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 26px;
+}
+.project_sidebar .project_timeline ul {
+  list-style: none;
+  margin: 0;
+}
+.project_sidebar .project_timeline ul li {
+  line-height: 33px;
+  border-bottom: 1px dotted #ccc;
+  font-size: 11px;
+}
+.project_sidebar .project_timeline ul label {
+  color: #666;
+}
+.project_timeline .sidebar_number {
+  height: 80px;
+}
+.project_timeline .sidebar_number p {
+  clear: left;
+}
+.project_timeline .sidebar_number p span {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.project_timeline .sidebar_number p em {
+  color: #888;
+  float: right;
+  font-size: 11px;
+}
+.project_timeline label {
+  width: auto;
+  float: none;
+  padding: 0;
+}
+.project_timeline .sidebar_number p em label {
+  font-style: italic;
+  font-size: 10px;
+}
+.project_timeline .sidebar_number strong,
+.sidebar_box.sidebar_number strong {
+  font-size: 40px;
+  font-weight: bold;
+  display: block;
+  float: left;
+  padding: 0 15px;
+}
+

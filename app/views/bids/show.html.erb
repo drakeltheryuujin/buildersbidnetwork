@@ -1,4 +1,30 @@
-<%= render "/projects/header" %>
+<% content_for :top_banner do %>
+  <div class="container">
+    <%= render "/projects/header" %>
+    <ul class="tabs" data-tabs="tabs">
+      <li><%= link_to 'Project Scope', project_path(@project, :anchor => 'scope') %></li>
+      <li>
+        <%= link_to project_path(@project, :anchor => 'docs') do %>
+          Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to project_path(@project, :anchor => 'photos') do %>
+          Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+        <% end %>
+      </li>
+      <% if may_admin_project? %>
+        <li class="active">
+          <%= link_to project_path(@project, :anchor => 'bids') do %>
+            Bids <%= ("(#{@project.bids.published.size()})") unless @project.bids.published.empty? %>
+          <% end %>
+        </li>
+      <% elsif @bid.user == current_user %>
+        <li class="active"><a href="#my_bid">My Bid</a></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="row">
   <div class="span11">
@@ -82,5 +108,5 @@
     </div>
   </div> <!-- /.span11 -->
 
-  <%= render 'sidebar' %>
+  <%= render '/projects/sidebar' %>
 </div> <!-- /.row -->

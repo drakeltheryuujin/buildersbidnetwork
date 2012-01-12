@@ -1,5 +1,5 @@
-<div class="track-page track-projects-page row ">
-  <div class="span16">
+<% content_for :top_banner do %>
+  <div class="container">
     <h1>
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Track My Projects
@@ -16,7 +16,9 @@
       </li>
     </ul>
   </div>
-  <div class="track_filters span4 ">
+<% end %>
+<div class="track-page track-projects-page row ">
+  <div class="track_filters span5 ">
     <ul>
       <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Projects", track_projects_projects_path %></li>
       <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", track_projects_projects_path(:filter => :draft) %></li>
@@ -34,35 +36,49 @@
       <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
     </dl>
   </div>
-  <div class="track_results span12 alpha row">
+  <div class="track_results span11 alpha row">
     <% if @projects.blank? %>
-      <div class="search_result no_results project span12 row">
+      <div class="search_result no_results project span11 row">
         <h4>No projects found.  Get out there!</h4>
         <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' %>
       </div>
     <% end %>
     <% @projects.each do |project| %>
-      <div class="search_result project span12 row">
-        <div class="span2 ">
-          <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project) %>
-        </div>
-        <div class="span7 ">
-          <div class="result_name"><%= link_to project.name, project_path(project) %></div>
-          <div class="result_location">
-            <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
-            <%= project.location.city + ", " + project.location.state %>
+      <div class="span11">
+        <div class="search_result project">
+          <div class="row">
+            <div class="span2 ">
+              <%= link_to (image_tag "/images/project_square.png", :alt => "Project", :class => "project_cover_image"), project_path(project) %>
+            </div>
+            <div class="span6 ">
+              <div class="result_name">
+                <%= link_to project.name, project_path(project) %>
+              </div>
+              <div class="result_location">
+                <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
+                <%= project.location.city + ", " + project.location.state %>
+              </div>
+              <span class="result_type label"><%= project.project_type.name %></span>
+              <p class="posted"><%= image_tag "/images/calendar.png" %><strong>Posted:</strong> <%= project.created_at.to_formatted_s(:short) %></p>
+            </div>
+            <div class="span3 alpha">
+              <div class="result_numbers">
+                <% unless project.bids.published.empty? %>
+                  <strong><%= number_to_currency project.median_bid  %></strong> 
+                  <label>median bid</label>
+                <% end %>
+                <dl>
+                  <dd><%= project.bids.published.count %></dd>
+                  <dt>Bids</dt>
+                </dl>
+                <dl>
+                  <dd><%= (project.bidding_end.to_date - Date.today).to_i %></dd>
+                  <dt>Days Left</dt>
+                </dl>
+                <%= link_to "Full Details", project_path(project), :class => "btn info" %>
+              </div>
+            </div>
           </div>
-          <span class="result_type label"><%= project.project_type.name %></span>
-        </div>
-        <div class="span3 alpha">
-          <div class="result_numbers">
-            <%= number_to_currency project.median_bid %> Median Bid
-            &middot;
-            <%= project.bids.published.count %> Bids
-            &middot;
-            <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
-          </div>
-          <%= link_to "Full Details", project_path(project), :class => "btn info" %>
         </div>
       </div>
     <% end %>

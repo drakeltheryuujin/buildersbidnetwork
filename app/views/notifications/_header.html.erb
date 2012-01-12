@@ -15,13 +15,4 @@
       </li>
     </ul>
   </div>
-  <div class="span4 ">
-    <div class="track_filters ">
-      <ul>
-        <li class="<%= 'active' if ((current_page? notifications_path) && (! params[:filter])) %>"><%= link_to "All Messages", notifications_path %></li>
-        <li class="<%= 'active' if params[:filter] == :unread.to_s %>"><%= link_to "Unread Messages", notifications_path(:filter => :unread) %></li>
-        <li class="<%= 'active' if params[:filter] == :trash.to_s %>"><%= link_to "Deleted Messages", notifications_path(:filter => :trash) %></li>
-        <li class="<%= 'active' if params[:filter] == :sent.to_s %>"><%= link_to "Sent Messages", notifications_path(:filter => :sent) %></li>
-      </ul>
-    </div>
-  </div>
+

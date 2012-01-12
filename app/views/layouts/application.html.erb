@@ -7,7 +7,7 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= yield(:head) %>
 </head>
-<body>
+<body class="<%= yield(:body_class) %>">
 
   <div class="topbar auth_topbar" data-dropdown="dropdown">
     <div class="fill">

@@ -33,26 +33,32 @@
         </div>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta">
-        <div class="field row datetime-field">
-          <%= f.label :bidding_start, "Posted", :class => "span2" %>
-          <%= f.datetime_select :bidding_start %>
+      <div class="project_meta form-stacked ">
+        <div class="row">
+          <div class="span6 ">
+            <div class="field datetime-field">
+              <%= f.label :bidding_start, "Posted" %>
+              <%= f.datetime_select :bidding_start, :ampm => true, :discard_minute => true %>
+            </div>
+            <div class="field datetime-field">
+              <%= f.label :bidding_end, "Closed" %>
+              <%= f.datetime_select :bidding_end, :ampm => true, :discard_minute => true %>
+            </div>
+          </div>
+          <div class="span3">
+            <div class="field datetime-field">
+              <%= f.label :project_start, "Start&nbsp;Date".html_safe %>
+              <%= f.date_select :project_start %>
+            </div>
+            <div class="field datetime-field">
+              <%= f.label :project_end, "End\&nbsp;Date".html_safe %>
+              <%= f.date_select :project_end %>
+            </div>
+          </div>
         </div>
-        <div class="field row datetime-field">
-          <%= f.label :bidding_end, "Closed", :class => "span2" %>
-          <%= f.datetime_select :bidding_end %>
-        </div>
-        <div class="field row datetime-field">
-          <%= f.label :pre_bid_meeting, "Meeting", :class => "span2" %>
-          <%= f.datetime_select :pre_bid_meeting %>
-        </div>
-        <div class="field row datetime-field">
-          <%= f.label :project_start, "Start&nbsp;Date".html_safe, :class => "span2" %>
-          <%= f.date_select :project_start %>
-        </div>
-        <div class="field row datetime-field">
-          <%= f.label :project_end, "End\&nbsp;Date".html_safe, :class => "span2" %>
-          <%= f.date_select :project_end %>
+        <div class="field datetime-field">
+          <%= f.label :pre_bid_meeting, "Pre-Bid Meeting (Optional)" %>
+          <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true %>
         </div>
       </div> <!-- /.project_meta -->
 
@@ -203,7 +209,26 @@
 <% end %>
 <% content_for :javascript do %>
   <script type="text/javascript">
+    $.tools.dateinput.conf.format = 'mm-dd-yyyy';
     $(document).ready(function() {
+      $('div.datetime-field').each(function(i, el) {
+        var sels = $(el).find("select:lt(3)");
+        var d = new Date(sels[0].value, parseInt(sels[1].value) - 1, sels[2].value);
+        var field = $('<div class="input-append"><input type="date" /><span class="add-on"><img src="/images/calendar.png"/></span></div>');
+        var dateinput = $(field).find('input').dateinput({ value: d} );
+
+        // Without this, the field is initially blank
+        dateinput.val(dateinput.data().dateinput.getValue($.tools.dateinput.conf.format));
+
+        dateinput.change(function(event, date) {
+          $(sels[0]).val(date.getFullYear());
+          $(sels[1]).val(date.getMonth() + 1);
+          $(sels[2]).val(date.getDate());
+        });
+        $(sels[0]).before(field);
+        $(sels).hide();
+      });
+
       $("#project_estimated_budget").bind("change", recalc);
       function recalc(event) {
         var n = $("#project_estimated_budget").val();

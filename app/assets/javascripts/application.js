@@ -6,3 +6,4 @@
 //= require bootstrap/modal
 //= require jquery.lightbox
 //= require jquery.calculation
+//= require jquery.tools.min

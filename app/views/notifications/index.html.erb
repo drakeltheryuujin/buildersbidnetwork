@@ -1,6 +1,11 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <%= render 'header' %>
+  </div>
+<% end %>
 <div class="track-page track-projects-page row ">
-  <%= render 'header' %>
-  <div class="track_results span12 alpha row">
+  <%= render 'sidebar' %>
+  <div class="track_results span12 row">
     <% if @notifications.blank? %>
       <div class="search_result no_results project span12 row">
         <h4>No messages found.</h4>
@@ -12,34 +17,42 @@
     <% end %>
     <% @notifications.each do |notification| %>
 
-      <div class="search_result project span12 row">
-        <div class="span2 ">
-          <% if notification.sender.profile.present? %>
-            <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(notification.sender.profile) %>
-          <% else %>
-            <%= image_tag "/images/company_square.png", :alt => "System" %>
-          <% end %>
-        </div>
-        <div class="span7 ">
-          <div class="result_name">
-            <% if notification.type.present? %>
-              <%= link_to(notification.subject, conversation_path(notification.conversation)) %>
+      <div class="notification_result ">
+        <div class="row">
+          <div class="span2 ">
+            <% if notification.sender.profile.present? %>
+              <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => 'profile_avatar'), profile_path(notification.sender.profile) %>
             <% else %>
-              <strong>System Notification</strong>
+              <%= image_tag "/images/company_square.png", :alt => "System", :class => 'profile_avatar' %>
             <% end %>
-            <p class="message_preview">
-              <%= raw(truncate(strip_tags(notification.body), :length => 50)) %>
-            </p>
           </div>
-        </div>
-        <div class="span3 alpha">
-          <div class="result_numbers">
-            <%= notification.created_at.to_s(:short) %>
-            &middot;
+          <div class="span8 ">
+            <div class="result_name">
+              <h6>
+                <% if notification.type.present? %>
+                  <%= link_to(notification.subject, conversation_path(notification.conversation)) %>
+                <% else %>
+                  <strong>System Notification</strong>
+                <% end %>
+              </h6>
+              <p class="message_preview">
+                <%= raw(truncate(strip_tags(notification.body), :length => 50)) %>
+              </p>
+            </div>
           </div>
-          <%= link_to("View", notification_path(notification), :class => "btn primary") unless notification.type.blank? %>
-          <%= link_to("Read", notification_path(notification, :read => "Read"), :class => "btn info", :method => :put) if notification.is_unread?(@actor) %>
-          <%= link_to("Delete", notification_path(notification), :class => "btn danger", :confirm => 'Are you sure?', :method => :delete) %>
+          <div class="span2 alpha">
+            <div class="result_numbers">
+              <%= notification.created_at.to_date.to_s(:tiny) %>
+              <%= link_to(notification_path(notification), :class => "btn small", :confirm => 'Are you sure?', :method => :delete) do %>
+                <%= image_tag "/images/icon_X_delete.png" %> Delete
+              <% end %>
+              <% unless notification.type.blank? %>
+                <%= link_to(conversation_path(notification.conversation), :class => "btn small") do %>
+                  <%= image_tag "/images/icon_plus_add.png" %> View
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>

@@ -1,5 +1,5 @@
-<div class="track-page track-projects-page row ">
-  <div class="span16">
+<% content_for :top_banner do %>
+  <div class="container">
     <h1>
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Edit my Account
@@ -16,6 +16,8 @@
       </li>
     </ul>
   </div>
+<% end %>
+<div class="track-page track-projects-page row ">
   <div class="span5 ">
     <div class="track_filters ">
       <h3>Cancel my account</h3>

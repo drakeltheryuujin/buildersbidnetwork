@@ -37,12 +37,20 @@ class Project < ActiveRecord::Base
   end
 
   def median_bid
-    self.bids.average 'total'
+    self.bids.published.average 'total'
   end
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)
   end
+
+  def my_bid(user)
+    self.bids.where(:user_id => user).first
+  end
+  def has_bid?(user)
+    my_bid(user).present?
+  end
+
 
   validates :name,
     :presence => true

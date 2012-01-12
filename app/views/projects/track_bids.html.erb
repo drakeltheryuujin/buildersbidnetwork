@@ -1,5 +1,5 @@
-<div class="track-page track-bids-page row ">
-  <div class="span16">
+<% content_for :top_banner do %>
+  <div class="container">
     <h1>
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Track My Bids
@@ -16,6 +16,8 @@
       </li>
     </ul>
   </div>
+<% end %>
+<div class="track-page track-bids-page row ">
   <div class="track_filters span5 ">
     <ul>
       <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", track_bids_projects_path %></li>

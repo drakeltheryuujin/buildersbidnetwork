@@ -10,10 +10,10 @@
       <div class="sidebar_flag">
         <% if @project.award_period? %>
           <label class="award">Bidding Closed</label>
-          <span class="award"><%= @project.bidding_end.to_formatted_s(:short) %></span>
+          <span class="award"><%= @project.bidding_end.to_formatted_s(:med) %></span>
         <% else %>
           <label>Bidding Closes</label>
-          <span><%= @project.bidding_end.to_formatted_s(:short) %></span>
+          <span><%= @project.bidding_end.to_formatted_s(:med) %></span>
         <% end %>
         <div class="sidebar_triangle left"></div>
         <div class="sidebar_triangle right"></div>
@@ -21,22 +21,20 @@
       <h1>Project Timeline</h1>
       <ul>
         <li>
-          <label>Posted for Bidding:</label>
-          <span><%= @project.bidding_start.to_formatted_s(:short) %></span>
+          <label>Bidding Starts</label>
+          <span><%= @project.bidding_start.to_formatted_s(:med) %></span>
         </li>
         <li>
+          <label>Pre-Bid Meeting</label>
+          <span><%= @project.pre_bid_meeting.to_formatted_s(:med) %></span>
         </li>
         <li>
-          <label>Pre Bid Meeting:</label>
-          <span><%= @project.pre_bid_meeting.to_formatted_s(:short) %></span>
+          <label>Estimated Start</label>
+          <span><%= @project.project_start.to_formatted_s(:med) %></span>
         </li>
         <li>
-          <label>Estimated Start Date:</label>
-          <span><%= @project.project_start.to_formatted_s(:short) %></span>
-        </li>
-        <li>
-          <label>Estimated End Date:</label>
-          <span><%= @project.project_end.to_formatted_s(:short) %></span>
+          <label>Estimated Finish</label>
+          <span><%= @project.project_end.to_formatted_s(:med) %></span>
         </li>
       </ul>
     </div>
