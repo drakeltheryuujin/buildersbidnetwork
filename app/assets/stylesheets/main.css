@@ -387,7 +387,6 @@ white-space: nowrap;
   margin: 20px 0 20px 0;
   width:432px;
   position:relative;
-  z-index:-2;
 }
 .home_page .search_box .background{
 	background:transparent url('../images/home_searchman_copy.png')0 0 no-repeat; 
@@ -396,7 +395,6 @@ white-space: nowrap;
 	top:-40px;
 	width:334px;
 	height:221px;
-	z-index:-1;
 } 
 
 .home_page .search_box .large.btn.primary {
