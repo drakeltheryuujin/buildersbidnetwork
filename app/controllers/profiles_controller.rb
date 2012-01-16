@@ -104,8 +104,8 @@ class ProfilesController < ApplicationController
     body = params[:message_body]
     respond_to do |format|
       if body.present?
-        subject = "[YPN] Message from #{sender_name}"
-        current_user.send_message([creator], body, subject)
+        subject = "Message from #{sender_name}"
+        current_user.send_message_with_object_and_type([creator], body, subject, @profile, :profile_message)
 
         message = 'Message sent.'
         format.html { redirect_to(@profile, :notice => message) }

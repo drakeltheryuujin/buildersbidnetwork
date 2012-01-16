@@ -20,11 +20,11 @@
             <%= link_to "Sign Up", new_user_registration_path %>
 		  </div>
 		<div class="home-page-navbar-login">		
-			<form action="nav-bar-login_form">
-				Username: <input type="text" name="username" />
-				Password: <input type="text" name="password" />
-				<input type="button" value="Login" />
-			</form>	
+      <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %> 
+				Username: <%= f.email_field :email %>
+				Password: <%= f.password_field :password %>
+        <%= f.submit "Login", :class => "" %>
+			<% end %> 
 		</div>
           
         <% end %>
@@ -150,7 +150,7 @@
           <li><%= link_to "Terms of Use", content_page_path('terms') %></li>
           <li class="left_side">
 			<span class="left_sidetop">BuildersBidNetwork</span>
-			<span class="left_sidebottom">&copy;2012 BuildersBidNetwork.com</span>
+			<span class="left_sidebottom">&copy;<%= Date.today.year %> BuildersBidNetwork.com</span>
 		  </li>
         </ul>
       </div>

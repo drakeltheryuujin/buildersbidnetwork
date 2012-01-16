@@ -40,5 +40,9 @@ module Ypn
     config.filter_parameters += [:password, :card_number, :card_verification]
 
     config.assets.enabled = true
+
+    config.to_prepare do
+      Devise::Mailer.layout "email" # email.haml or email.erb
+    end
   end
 end

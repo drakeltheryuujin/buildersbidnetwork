@@ -96,12 +96,11 @@ class Project < ActiveRecord::Base
     return Time.now >= self.bidding_end
   end
 
-  def hold_bids_and_notify_bidders
-    subject = "[YPN] Project #{self.name} has changed"
-    body = "Project #{self.name} has changed.  Your bid has been placed on hold and your credits have been refunded. Please visit the site to update your bid."
+  def hold_bids_and_notify_bidders(body)
+    subject = "Project #{self.name} has changed"
     self.bids.published.each do |bid|
       bid.hold!
-      self.user.send_message([bid.user], body, subject)
+      self.user.send_message_with_object_and_type([bid.user], body, subject, bid, :project_change_message)
     end
   end
 end

@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
   def mailboxer_email(object)
     if true # TODO preference check
-      return :email
+      return email
     else
       return nil
 	  end
@@ -61,5 +61,21 @@ class User < ActiveRecord::Base
 
   def unread_message_count
     notifs = Notification.recipient(self).unread.count
+  end
+
+
+  # Modified version of send_message from Mailboxer::Modles::Messagable
+  def send_message_with_object_and_type(recipients, msg_body, subject, obj = nil, type = nil, sanitize_text = true)
+    convo = Conversation.new({:subject => subject})
+    message = Message.new({
+        :sender => self, 
+        :conversation => convo,  
+        :body => msg_body, 
+        :subject => subject})
+    message.notified_object = obj if obj.present?
+    message.notification_type = type if type.present?
+    message.recipients = recipients.is_a?(Array) ? recipients : [recipients]
+    message.recipients = message.recipients.uniq
+    return message.deliver(false,sanitize_text)
   end
 end

@@ -48,6 +48,7 @@ Ypn::Application.configure do
   config.active_support.deprecation = :notify
   
   config.action_mailer.default_url_options = { :host => 'ypn.heroku.com' }
+  config.action_mailer.asset_host = 'http://ypn.heroku.com'
 
   config.action_mailer.smtp_settings = {
     :address              => "mail.htmlfive.org",

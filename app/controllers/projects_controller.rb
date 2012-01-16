@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
-        @project.hold_bids_and_notify_bidders
+        @project.hold_bids_and_notify_bidders(render_to_string(:partial => "project_changed", :layout => false))
         format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -90,8 +90,8 @@ class ProjectsController < ApplicationController
     creator = @project.user
     sender_name = current_user.name
     body = params[:message_body] || sender_name + " wants to talk about your project."
-    subject = "[YPN] Message regarding #{@project.name} from #{sender_name}"
-    current_user.send_message([creator], body, subject)
+    subject = "Message regarding #{@project.name} from #{sender_name}"
+    current_user.send_message_with_object_and_type([creator], body, subject, @project, :project_message)
     #creator.notify(subject, body, @project)
 
     respond_to do |format|

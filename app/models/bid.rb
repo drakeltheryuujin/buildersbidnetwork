@@ -39,7 +39,7 @@ class Bid < ActiveRecord::Base
   aasm_initial_state :draft
 
   aasm_state :draft
-  aasm_state :published, :enter => :charge_credits, :exit => :refund_credits
+  aasm_state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
   aasm_state :cancelled
   aasm_state :awarded, :enter => :award_project
   aasm_state :held
@@ -76,8 +76,11 @@ class Bid < ActiveRecord::Base
     self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_refund_credit, :user => self.user, :value => self.project.credit_value)
   end
 
-  def charge_credits
-    self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-self.project.credit_value)) unless self.state_was == :published.to_s
+  def charge_credits_and_notify_creator
+    self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value))) unless self.state_was == :published.to_s
+    subject = "Bid from #{self.user.profile.name}"
+    body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
+    self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
   end
 
   def award_project

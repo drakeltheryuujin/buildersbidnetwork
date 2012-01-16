@@ -1,5 +1,8 @@
-<p>Welcome <%= @resource.email %>!</p>
+<% content_for :salutation do %>Welcome <%= @resource.email %><% end %>
 
-<p>You can confirm your account through the link below:</p>
+<% content_for :top_head, "Thanks for Joining BBN" %>
+<% content_for :sub_head, "One more step and you're done." %>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><strong>Thank you for opening a profile at EPS!</strong> To complete your account registration, please follow the link below so that we can confirm your email address. Once you've completed registration, you will be able to access all of our site features and begin building connections with other developers and contractors.</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), :class => 'btn confirm' %></p>
