@@ -42,11 +42,11 @@ class BidsController < ApplicationController
 
   def award
     @bid.award!
-    winnder = @bid.user
+    winner = @bid.user
     sender_name = current_user.name
     body = params[:message_body] || sender_name + " has awarded your bid for #{@project.name}."
     subject = "[YPN] You've been awarded #{@project.name}"
-    current_user.send_message([winnder], body, subject)
+    current_user.send_message([winner], body, subject)
 
     respond_to do |format|
       format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Awarded') }
