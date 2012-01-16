@@ -1,0 +1,7 @@
+Hi <%= @receiver.name %>,
+
+<%= @message.sender.name %> has sent you a message on BBN's internal messaging system.
+
+<%= raw @message.body %>
+
+To view the conversation and reply, go to: <%= conversation_url(@message.conversation) %>

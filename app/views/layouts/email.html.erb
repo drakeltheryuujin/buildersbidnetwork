@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Facebook sharing information tags -->
+    <meta property="og:title" content="<%= yield (:subject) || "Builders Bid Network" %>" />
+
+    <title><%= yield (:subject) || "Builders Bid Network" %></title>
+    <style type="text/css">
+      /* Client-specific Styles */
+      #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
+      body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+      body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+
+      /* Reset Styles */
+      body{margin:0; padding:0;}
+      img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+      table td{border-collapse:collapse;}
+      #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+      body, #backgroundTable{
+        background-color:#FAFAFA;
+      }
+
+      #templateContainer{
+        border: 2px solid #fd761d;
+      }
+
+      h1, .h1{
+        color:#202020;
+        display:block;
+        font-family:Arial;
+        font-size:34px;
+        font-weight:bold;
+        line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+
+      h2, .h2{
+        color:#202020;
+        display:block;
+        font-family:Arial;
+        font-size:30px;
+        font-weight:bold;
+        line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+
+      h3, .h3{
+        color:#202020;
+        display:block;
+        font-family:Arial;
+        font-size:26px;
+        font-weight:bold;
+        line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+
+      h4, .h4{
+        color:#202020;
+        display:block;
+        font-family:Arial;
+        font-size:22px;
+        font-weight:bold;
+        line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+
+      h5, .h5 {
+        font-size: 18px;
+        margin-bottom: 18px;
+      }
+
+      #templatePreheader{
+        background-color:#FAFAFA;
+      }
+
+      .preheaderContent div{
+        color:#505050;
+        font-family:Arial;
+        font-size:10px;
+        line-height:100%;
+        text-align:left;
+      }
+
+      .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
+        color:#336699;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+
+      #templateHeader{
+        background-color:#FFFFFF;
+        border-bottom:0;
+      }
+
+      .headerContent{
+        color:#202020;
+        font-family:Arial;
+        font-size:34px;
+        font-weight:bold;
+        line-height:100%;
+        padding: 10px;
+        text-align: left;
+        vertical-align:middle;
+        background-color:#edeae3;
+        background: -moz-linear-gradient(top, rgba(237,234,227,1) 100%, rgba(255,255,255,1) 0%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(100%,rgba(237,234,227,1)), color-stop(0%,rgba(255,255,255,1)));
+        background: -webkit-linear-gradient(top,rgba(237,234,227,1) 100%, rgba(255,255,255,1) 0%);
+        background: -o-linear-gradient(top,rgba(237,234,227,1) 100%, rgba(255,255,255,1) 0%);
+        background: -ms-linear-gradient(top,rgba(237,234,227,1) 100%, rgba(255,255,255,1) 0%);
+        background: linear-gradient(top,rgba(237,234,227,1) 100%, rgba(255,255,255,1) 0%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edeae3', endColorstr='#ffffff',GradientType=0 );
+      }
+
+      .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+        color:#336699;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+
+      #headerImage{
+        height:auto;
+        max-width:600px !important;
+      }
+
+      #templateContainer, .bodyContent{
+        background-color:#FFFFFF;
+      }
+
+      .bodyContent div{
+        color:#505050;
+        font-family:Arial;
+        font-size:14px;
+        line-height:150%;
+        text-align:left;
+      }
+
+      .bodyContent div a:link, .bodyContent div a:visited, /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */{
+        color:#336699;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+
+      .bodyContent img{
+        display:inline;
+        height:auto;
+      }
+
+      .bodyContent .headerBalloon {
+        background: #FD761D;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+      }
+      .bodyContent .headerBalloon h1,
+      .bodyContent .headerBalloon h2,
+      .bodyContent .headerBalloon h3,
+      .bodyContent .headerBalloon h4 {
+        text-align: center;
+        color: #ffffff;
+      }
+
+      #templateFooter{
+        background-color:#FFFFFF;
+        border-top:0;
+      }
+
+      .footerContent div{
+        color:#707070;
+        font-family:Arial;
+        font-size:12px;
+        line-height:125%;
+        text-align:left;
+      }
+
+      .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+        color:#336699;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+
+      .footerContent img{
+        display:inline;
+      }
+
+      #social{
+        background-color:#FAFAFA;
+        border:0;
+      }
+
+      #social div{
+        text-align:center;
+      }
+
+      #utility{
+        background-color:#FFFFFF;
+        border:0;
+      }
+
+      #utility div{
+        text-align:center;
+      }
+
+      #monkeyRewards img{
+        max-width:190px;
+      }
+
+      .btn {
+        cursor: pointer;
+        display: inline-block;
+        background-color: #E6E6E6;
+        background-repeat: no-repeat;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
+        background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+        background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #e6e6e6);
+        background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+        background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+        background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+        padding: 5px 14px 6px;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+        color: #333 !important;
+        font-size: 13px;
+        line-height: normal;
+        border: 1px solid #CCC;
+        border-bottom-color: #BBB;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition: 0.1s linear all;
+        -moz-transition: 0.1s linear all;
+        -ms-transition: 0.1s linear all;
+        -o-transition: 0.1s linear all;
+        transition: 0.1s linear all;
+        text-decoration: none !important;
+      }
+      .btn.primary {
+        background-color:#f26805;
+        color: #fff !important;
+        border-color:#E56F01;
+        background-image: -ms-linear-gradient(top, #FF8013 0%, #FFB134 100%);   /* IE*/  
+        background-image: -moz-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Mozilla Firefox */
+        background-image: -o-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Opera */  
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
+        background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
+        background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
+        font-size: 18px;
+        padding: 10px 30px;
+      }
+    </style>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    <center>
+      <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+        <tr>
+          <td align="center" valign="top">
+            <table border="0" cellpadding="10" cellspacing="0" width="600" id="templatePreheader">
+              <tr>
+                <td valign="top" class="preheaderContent">
+                  <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                    <tr>
+                      <td valign="top">
+                        <div>
+                          Use this area to offer a short teaser of your email's content. Text here will show in the preview area of some email clients.
+                        </div>
+                      </td>
+                      <td valign="top" width="190">
+                        <div>
+                          Is this email not displaying correctly?<br /><%= link_to "View it in your browser", notifications_url(:only_path => false) %>.
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table> <!-- /#templatePreheader -->
+            <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
+                    <tr>
+                      <td class="headerContent">
+                        <%= link_to image_tag("/images/BuildersBidNetwork_Logo.png", :style => "max-width:600px;", :id => "headerImage"), root_url %>
+                      </td>
+                    </tr>
+                  </table> <!-- /#templateHeader -->
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+                    <tr>
+                      <td valign="top" class="bodyContent">
+                        <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                          <tr>
+                            <td valign="top">
+                              <div>
+                                <% if content_for?(:top_head) %>
+                                  <div class="headerBalloon">
+                                    <h1><%= yield (:top_head) %></h1>
+                                    <% if content_for?(:sub_head) %><h4><%= yield (:sub_head) %></h4><% end %>
+                                  </div>
+                                <% end %>
+                                <h5 class="h5"><%= yield (:salutation) || "Hi" %>,</h5>
+                                <%= yield %>
+                              </div>
+                            </td>
+                          </tr>
+                        </table> 
+                      </td>
+                    </tr>
+                  </table> <!-- /#templateBody -->
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+                    <tr>
+                      <td valign="top" class="footerContent">
+                        <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                          <tr>
+                            <td colspan="2" valign="middle" id="social">
+                              <div>
+                                &nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top" width="350">
+                              <div>
+                                <em>&copy;<%= Date.today.year %> BuildersBidNetwork.com</em>
+                                <br />
+                                &nbsp;
+                              </div>
+                            </td>
+                            <td valign="top" width="190" id="monkeyRewards">
+                              <div>
+                                &nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" valign="middle" id="utility">
+                              <div>
+                                &nbsp;<%= link_to "Manage account settings", edit_user_registration_url(:only_path => false) %>&nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table> <!-- /#templateFooter -->
+                </td>
+              </tr>
+            </table> <!-- /#templateContainer -->
+            <br />
+          </td>
+        </tr>
+      </table> <!-- /#backgroundTable -->
+    </center>
+  </body>
+</html>

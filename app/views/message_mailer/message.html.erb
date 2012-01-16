@@ -1,0 +1,31 @@
+<% content_for :salutation do %>Hi <%= @receiver.name %><% end %>
+
+<% if @message.notification_type == :project_change_message %>
+  <% content_for :top_head, "Project has changed!" %>
+<% elsif @message.notification_type == :project_award_message %>
+  <% content_for :top_head, "Your bid won the project!" %>
+<% else %>
+  <% content_for :top_head, "You have a new message!" %>
+<% end %>
+
+<% if @message.notification_type.blank? || @message.notification_type == :profile_message || @message.notification_type == :project_message %>
+  <p><%= @message.sender.name %> has sent you a message on BBN's internal messaging system.</p>
+
+  <blockquote>
+    <p class="message">
+      <%= raw @message.body %>
+    </p>
+  </blockquote>
+<% elsif @message.notification_type == :bid_placed_message %>
+  <p><%= raw @message.body %></p>
+
+  <p>
+    <%= link_to 'View Bid', project_bid_url(@message.notified_object.project, @message.notified_object), :class => 'btn primary' %>
+  </p>
+<% else %>
+  <p><%= raw @message.body %></p>
+<% end %>
+
+<p>
+  <%= link_to 'View Conversation', conversation_url(@message.conversation), :class => 'btn primary' %>
+</p>
