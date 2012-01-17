@@ -1,5 +1,4 @@
 <div class="row profile_page">
-  <%= render "sidebar" %>
   <div class="span12">
     <%= render "header" %>
     <div class="row">
@@ -34,6 +33,7 @@
 <% end %>
     </div>
   </div>
+  <%= render "sidebar" %>
 </div>
 <% content_for :javascript do %>
   <%= javascript_include_tag "jquery.lightbox" %>

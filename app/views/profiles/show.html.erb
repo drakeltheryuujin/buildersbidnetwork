@@ -1,11 +1,10 @@
 <div class="row profile_page">
-  <%= render "sidebar" %>
   <div class="span12">
     <%= render "header" %>
     <div class="row">
       <ul class="tabs span12">
-        <li><%= link_to "Posted Projects", projects_profile_path(@profile) %></li>
-        <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
+      <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
+      <li><%= link_to "Awarded Projects", projects_profile_path(@profile) %></li>
       </ul>
       <div class="span6">
         <div class="profile_meta">
@@ -55,6 +54,7 @@
       </div>
     </div>
   </div>
+  <%= render "sidebar" %>
 </div>
 <% content_for :javascript do %>
   <%= javascript_include_tag "jquery.lightbox" %>
