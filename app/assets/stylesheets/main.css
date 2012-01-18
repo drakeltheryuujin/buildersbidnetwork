@@ -390,7 +390,7 @@ white-space: nowrap;
 } 
 
 .btn.primary {
-  background-color:#f26805;
+  background-color:#FFB134;
   color:#fff;
   border-color:#E56F01;
   background-image: -ms-linear-gradient(top, #FF8013 0%, #FFB134 100%);   /* IE*/  
@@ -752,6 +752,9 @@ ul.search_tabs li.selected {
   background: #eee;
   color: #f77010;
 }
+.track_filters ul li:hover a {
+  background: #eee;
+}
 
 .track_filters dl {
   margin: 20px 10px 30px 10px;
@@ -913,7 +916,6 @@ ul.search_tabs li.selected {
   text-align: center;
   float:left;
   margin-top:6px;
-  padding-left:220px;
   padding-right:10px;
 }
 .profile-container {
@@ -1113,6 +1115,137 @@ ul.search_tabs li.selected {
   vertical-align: middle;
 }
 
+.settings_page table {
+  border-spacing: 0;
+}
+.settings_page table td {
+  border-top: none;
+  border-bottom: 1px solid #ddd;
+}
+.settings_page table tbody th {
+  border: none;
+}
+.settings_page table tbody tr:first-child {
+  border: 1px solid #ddd;
+  background-color: #eee;
+}
+.settings_page table tbody tr:first-child th:first-child {
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 0px 5px;
+}
+.settings_page table tbody tr:first-child th:last-child {
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.credits_page h1 {
+  border-bottom: 1px solid #ddd;
+  padding-top: 15px;
+}
+.credits_page .credits_nav {
+  border-right: 1px solid #ddd;
+  height: 650px;
+}
+.credits_page ul {
+  list-style: none;
+  margin-left: 0;
+}
+.credits_page ul li {
+  padding: 5px;
+}
+.credits_page .explanation {
+  margin: 10px 20px 30px 10px;
+}
+.credits_page .credits_box {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+.credits_page .credits_box h1 {
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 1)), color-stop(100%,rgba(237, 234, 227, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
+  font-size: 18px;
+  line-height: 22px;
+  padding: 5px 15px;
+  margin-bottom: 0;
+  border-left: 1px solid #ddd;
+}
+.credits_page .credits_box select,
+.credits_page .credits_box label,
+.credits_page .credits_box input {
+  width: auto;
+  margin: 0 10px;
+}
+.credits_page .credits_box .btn,
+.credits_page .credits_box label {
+  margin: 10px;
+}
+.credits_page .credits_box .label.price {
+  font-size: 22px;
+  display: block;
+  clear: left;
+  text-align: center;
+  padding: 5px;
+  background-color: #83c444;
+  margin: 10px;
+  width: 60px;
+}
+.credits_page .credits_box .label.price .denom {
+  font-size: 16px;
+  vertical-align: top;
+}
+.credits_page .groups_box .group_box {
+  width: 150px;
+  border-left: 1px solid #DDD;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+.credits_page .groups_box:first-child {
+  border-left: none;
+}
+.credits_page .groups_box .group_box .group_credits {
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  display: block;
+  background-color: #fe7e11;
+  text-align: center;
+  color: white;
+  margin-left: 15px;
+}
+.credits_page .groups_box .group_box .group_credits span {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.credits_page .groups_box .group_box .group_credits span.number {
+  font-size: 24px;
+  padding-top: 40px;
+}
+.credits_page .groups_box .group_box .group_deal {
+  margin: 10px;
+}
+.credits_page .groups_box .group_box .group_deal .price {
+  display: block;
+  font-size: 18px;
+}
 
 input, textarea {
   -webkit-transform-style: flat;
