@@ -902,9 +902,6 @@ ul.search_tabs li.selected {
   top: 5px;
   position: relative;
 }
-.row .profile_page .profile_sidebar {
-  float right;
-}
 .sidebar_box {
   background-color: #FFF;
   border: 2px solid #DDD;
@@ -912,28 +909,44 @@ ul.search_tabs li.selected {
   margin-bottom: 20px;
   padding: 10px;
 }
-.sidebar_box.profile_avatar {
+.box.profile_avatar {
   text-align: center;
   float:left;
-  padding:0px;
+  margin-top:6px;
+  padding-left:220px;
+  padding-right:10px;
 }
-.row .profile_page{
-  background-color:#efefe7
+.profile-container {
+  display:inline;
+ }
+.profile_page  .container {
+  width:1663px;
+}  
+ 
+.profile_page .top-banner {
+  padding-left:220px;
+}
+.profile_page.sidebar_number {
+  margin-top:185px;
+}
+.row.profile_page {
+  background-color:#fff;
+  padding-left:10px;
   }
-
-.row .profile_header  {
+.top-banner .profile_page {
+  padding-left:200px
+}
+.profile_header  {
   display:inline;
   width:455px;
-  padding-bottom:30px;
   }
-.row .profile_actions {
+.profile_actions {
   background-color:#e6e6e6;
   float:right;
   height:35px;
   margin-left:0px;
   margin-top:5px;
-  width:115px;
-    
+  width:115px; 
 }
 .row .profile_actions a{
   color:#ababab;
