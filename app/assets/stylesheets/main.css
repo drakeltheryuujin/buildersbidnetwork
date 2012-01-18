@@ -75,17 +75,14 @@
   border: none;
   box-shadow: none;
   padding: 3px;
-  top: -5px;
-  position: relative;
 }
 
 .search_nav select {
-  height: 18px;
-  line-height: 18px;
+  height: 16px;
+  line-height: 16px;
   font-size: 10px;
-  top: -4px;
   border: none;
-  position: relative;
+  padding: 0 0 0 9px;
 
 /*
 -webkit-border-radius: 2px;
@@ -116,9 +113,8 @@ text-overflow: ellipsis;
 white-space: nowrap;
 }
 .search_nav label.add-on {
-  padding-left: 0px;
-  padding-right: 0px;
-  height: 10px;
+  padding: 0px;
+  height: 18px;
 }
 
 .search_nav .input-append label.add-on:last-child {
@@ -214,6 +210,7 @@ white-space: nowrap;
   font-size:14px;
   height: 45px;
   line-height:15px;
+  text-shadow: 0 -0 0 rgba(0, 0, 0, 0);
 }
 .brand_header .nav_topbar a  span{
   color: #A8A8A8;
@@ -330,10 +327,10 @@ white-space: nowrap;
 }
 
 .footer {
-  border-width: 2px 0;
+  border-width: 2px 0 0 0;
   border-style: solid;
   border-color: #ddd;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   font-size: 10px;
   background-color: #EDEDED;
   background-image: -ms-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);   /* IE*/  
@@ -356,7 +353,7 @@ white-space: nowrap;
 }
 .footer ul li.left_side  {
   float:left;
-  padding-bottom:165px;
+  padding-bottom: 45px;
 }
 
 .footer ul li span.left_sidetop,
@@ -389,12 +386,7 @@ white-space: nowrap;
   position:relative;
 }
 .home_page .search_box .background{
-  background:transparent url('/images/home_searchman_copy.png')0 0 no-repeat; 
-  position:absolute; 
-  left:118px; 
-  top:-40px;
-  width:334px;
-  height:221px;
+  
 } 
 
 .btn.primary {
@@ -407,6 +399,16 @@ white-space: nowrap;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
   background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
+}
+.btn.primary:hover {
+  background-position: 0;
+
+  background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFB134), color-stop(1, #FF8013)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
 }
 .home_page .search_box .btn.primary {
   font-weight:normal;
