@@ -284,13 +284,15 @@ white-space: nowrap;
   margin-bottom: 20px;
 }
 #top-banner  .tabs {
-  margin-bottom: 0;
+  margin-bottom:0;
+  padding-left:220px;
 }
 #top-banner  .tabs > li > a {
   background-color: #42aaf1;
   color: #fff;
   padding: 0 30px;
   font-size: 16px;
+  font-weight:bold;
   margin-right: 5px;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -905,15 +907,18 @@ ul.search_tabs li.selected {
   top: 5px;
   position: relative;
 }
-.sidebar_box {
+.profile_sidebar {
   background-color: #FFF;
   border: 2px solid #DDD;
   float:right;
   margin-bottom: 20px;
   padding: 10px;
 }
+.profile_page  .tabs{
+  margin-bottom:0;
+  padding-left:220px;
+}
 .box.profile_avatar {
-  text-align: center;
   float:left;
   margin-top:6px;
   padding-right:10px;
@@ -921,37 +926,34 @@ ul.search_tabs li.selected {
 .profile-container {
   display:inline;
  }
-.profile_page  .container {
-  width:1663px;
-}  
- 
 .profile_page .top-banner {
   padding-left:220px;
-}
-.profile_page.sidebar_number {
-  margin-top:185px;
 }
 .row.profile_page {
   background-color:#fff;
   padding-left:10px;
   }
+.profile-container.tabs{
+  padding-left:220px;
+}
 .top-banner .profile_page {
   padding-left:200px
 }
 .profile_header  {
-  display:inline;
   width:455px;
+  float:left;
   }
+.profile_header  ul li {
+  list-style:none
+}  
 .profile_actions {
   background-color:#e6e6e6;
   float:right;
   height:35px;
-  margin-left:0px;
-  margin-top:5px;
   width:115px; 
-}
-.row .profile_actions a{
-  color:#ababab;
+} 
+.profile_actions a{
+  color:#656565;
   font-size:12px;
   font-weight:normal;
   text-transform:uppercase;
