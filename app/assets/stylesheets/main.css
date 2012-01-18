@@ -907,7 +907,7 @@ ul.search_tabs li.selected {
   top: 5px;
   position: relative;
 }
-.profile_sidebar {
+.row .profile_sidebar {
   background-color: #FFF;
   border: 2px solid #DDD;
   float:right;
@@ -940,7 +940,7 @@ ul.search_tabs li.selected {
   padding-left:200px
 }
 .profile_header  {
-  width:455px;
+  width:940px;
   float:left;
   }
 .profile_header  ul li {
@@ -958,6 +958,12 @@ ul.search_tabs li.selected {
   font-weight:normal;
   text-transform:uppercase;
   }
+.profile_page .profile_meta label {
+  text-transform:uppercase;
+  font-weight:bold;
+  font-size:14px;
+  color:#000;
+}
 
 .sidebar_box h1 {
   font-size: 18px;
@@ -966,7 +972,6 @@ ul.search_tabs li.selected {
 }
 .sidebar_box.sidebar_number span {
   color:#686868;
-  display: block;
   font-weight:bold;
   width:210px;
   }
