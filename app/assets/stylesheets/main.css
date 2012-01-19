@@ -903,7 +903,7 @@ ul.search_tabs li.selected {
   top: 5px;
   position: relative;
 }
-  
+
 .sidebar_box h1 {
   font-size: 18px;
   line-height: 20px;
@@ -911,10 +911,9 @@ ul.search_tabs li.selected {
 }
 .sidebar_box.sidebar_number span {
   color:#686868;
-  display: block;
   font-weight:bold;
   width:210px;
-  }
+}
 
 .sidebar_box.help_box p {
   border-bottom: 1px dotted #666;

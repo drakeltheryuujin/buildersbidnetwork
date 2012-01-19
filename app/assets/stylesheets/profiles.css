@@ -36,7 +36,18 @@
 .profile_page .field address p {
   font-size: 18px;
 }
-
+.profile_actions a {
+  color:#656565;
+  font-size:12px;
+  font-weight:normal;
+  text-transform:uppercase;
+}
+.profile_page .profile_meta label {
+  text-transform:uppercase;
+  font-weight:bold;
+  font-size:14px;
+  color:#000;
+}
 .profile_page .profile_meta label {
   width: auto;
 }
