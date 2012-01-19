@@ -29,6 +29,9 @@
               <span><%= phone.number %></span>
             </div>
           <% end %>
+          <div class="field map_snapshot">
+            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=340x100&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
+          </div>
         </div> <!-- /profile_meta -->
       </div>
       <div class="span6 ">
