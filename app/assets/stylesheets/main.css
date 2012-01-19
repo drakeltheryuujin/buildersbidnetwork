@@ -935,8 +935,6 @@ ul.search_tabs li.selected {
   padding-top:10px;
   }
   
-
-  
 .profile_header.row{
 margin-bottom:5px
 }
@@ -946,10 +944,13 @@ margin-bottom:5px
   
 .profile_page .span12  {
   width: 647px;
-  margin-right: 54px;  
+  margin-right: 52px;  
 }
 .location {
   border-bottom:1px solid #C0C0C0;
+  color:#000;
+  font-size:14px;
+  font-weight:bold;
   margin-bottom:15px;
 }
 .map_snapshot img {
@@ -964,9 +965,12 @@ margin-bottom:5px
 }
 .profile_page .row .span12 .profile_meta  label {
   border-bottom: 1px solid #D0D0D0;
+  font-size:14px;
+  font-weight:bold;
 }
 .profile_page .field address p {
-  font-size:14px;
+  color:#000;
+  font-size:17px;
 }
 
 .sidebar_box.sidebar_number span {
@@ -1011,11 +1015,16 @@ margin-bottom:5px
 .sidebar_box .sidebar_flag span.award {
   color: orange;
 }
-.profile_sidebar  {
-  height:95px;
-  padding: 0 0 10px 0;
-  width:280px;
-  }
+.profile_sidebar {
+  height: 95px;
+  padding: 0 0 0px 0;
+  width: 280px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #D2D2D2;
+  border-image: initial;
+}
 .profile_sidebar  .head{
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
   background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
