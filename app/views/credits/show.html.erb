@@ -1,0 +1,106 @@
+<div class="credits_page invoice row">
+  <div class="span4 ">
+    <div class="credits_nav">
+      <h1>Credits</h1>
+      <ul>
+        <li>
+          <%= link_to "Buy Credits", credits_path %>
+        </li>
+        <li>
+          Buy a Subscription
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row span12">
+    <h1>Invoice</h1>
+
+    <div class="row">
+      <div class="invoice_header span12 ">
+        <h4 class="span5">Payment Info:</h4>
+        <h4 class="span5">Order Info:</h4>
+        <a href="#" onclick="window.print(); return false;" class="btn info">Print</a>
+      </div>
+    </div>
+
+    <div class="span5">
+      <div class="payment_info">
+        <div class="">
+          <label>Card Type:</label><span><%= @credit.card_type %></span>
+        </div>
+        <div class="">
+          <label>Name on card:</label><span><%= @credit.first_name %> <%= @credit.last_name %></span>
+        </div>
+        <div class="">
+          <label>Amount:</label><span><%= number_to_currency @credit.order_txes.first.amount / 100 %></span>
+        </div>
+        <div class="">
+          <label>Transaction ID:</label><span><%= @credit.order_txes.first.authorization %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="span5">
+      <div class="order_info">
+        <div class="">
+          <label>Profile:</label><span><%= @credit.user.profile.name %></span>
+        </div>
+        <div class="">
+          <label>Transaction Date:</label><span><%= @credit.created_at.to_formatted_s(:med) %></span>
+        </div>
+        <div class="">
+          <label>Order ID:</label><span><%= @credit.id %></span>
+        </div>
+      </div>
+    </div>
+
+
+    <h1>Order Summary</h1>
+
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Credits</th>
+        <th>Unit Price</th>
+        <th>Total</th>
+      </tr>
+
+      <tr>
+        <td>
+          Bid Credits - 
+          <% if @credit.value < 10 %>
+            Individual
+          <% else %>
+            Package
+          <% end %>
+        </td>
+        <td>
+          <%= @credit.value %>
+        </td>
+        <td>
+          <%= number_to_currency ((@credit.order_txes.first.amount.to_i/100)/@credit.value.to_i) %>
+        </td>
+        <td>
+          <%= number_to_currency @credit.order_txes.first.amount.to_i/100 %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+
+      <tr>
+        <td>Total</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>
+          <%= number_to_currency @credit.order_txes.first.amount.to_i/100 %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>

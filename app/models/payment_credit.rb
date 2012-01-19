@@ -50,6 +50,7 @@ class PaymentCredit < CreditAdjustmentCredit
 	                    :with => %r{\d{5}(-\d{4})?},
 	                    :message => "should be 12345 or 12345-1234"
 	validate :validate_card, :on => :create
+  validate :validate_package, :on => :create
   
   def purchase!
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
@@ -76,6 +77,25 @@ class PaymentCredit < CreditAdjustmentCredit
     unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
         errors[:base] << message
+      end
+    end
+  end
+
+  def validate_package
+    v = value.to_i
+    a = amount.to_i
+    if v < 10 && a != (v * CreditsController::PricePerCredit)
+      errors[:base] << "Invalid purchase."
+    elsif v >= 10
+      valid = false
+      CreditsController::GroupPackages.each do |package|
+        if(v == package[0] && a == package[1]) 
+          valid = true 
+          break
+        end
+      end
+      unless valid
+        errors[:base] << "Invalid package purchase."
       end
     end
   end

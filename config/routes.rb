@@ -58,7 +58,7 @@ Ypn::Application.routes.draw do
     end
   end
 
-  resources :credits, :only => [:index, :new, :create] do
+  resources :credits, :only => [:index, :new, :create, :show] do
     collection do
       get 'history'
     end

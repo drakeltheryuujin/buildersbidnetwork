@@ -920,23 +920,20 @@ ul.search_tabs li.selected {
   padding: 1px;
   width: 93px;
 } 
-.profile_page .span6 {
-  width:302px;
-}
-.profile_page .span6.left {
+.profile_page .profile_meta.left {
   border-right: solid 1px #D0D0D0;
 }
 .profile_header h1 {
   margin-bottom:5px;
-  }
+}
 
 .profile_header .span8,
 .profile_actions {
   padding-top:10px;
-  }
+}
   
 .profile_header.row{
-margin-bottom:5px
+  margin-bottom:5px
 }
 .profile_actions .span6 {
   padding-top:10px;
@@ -944,8 +941,9 @@ margin-bottom:5px
   
 .profile_page .span12  {
   width: 647px;
-  margin-right: 52px;  
+  margin-right: 52px;
 }
+  
 .location {
   border-bottom:1px solid #C0C0C0;
   color:#000;
@@ -953,17 +951,13 @@ margin-bottom:5px
   font-weight:bold;
   margin-bottom:15px;
 }
-.map_snapshot img {
-  height:66px;
-  width:271px;
-  }
 .verticalLine {
-    border-left: solid 1px #d0d0d0;
+  border-left: solid 1px #d0d0d0;
 }
 .profile_page .profile_meta label {
   font-size:12px;
 }
-.profile_page .row .span12 .profile_meta  label {
+.profile_page .profile_meta  label {
   border-bottom: 1px solid #D0D0D0;
   font-size:14px;
   font-weight:bold;
@@ -1015,6 +1009,7 @@ margin-bottom:5px
 .sidebar_box .sidebar_flag span.award {
   color: orange;
 }
+
 .profile_sidebar {
   height: 95px;
   padding: 0 0 0px 0;
@@ -1024,6 +1019,8 @@ margin-bottom:5px
   -webkit-border-radius: 5px;
   border: 1px solid #D2D2D2;
   border-image: initial;
+
+
 }
 .profile_sidebar  .head{
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
@@ -1175,6 +1172,7 @@ margin-bottom:5px
 .credits_page h1 {
   border-bottom: 1px solid #ddd;
   padding-top: 15px;
+  clear: left;
 }
 .credits_page .credits_nav {
   border-right: 1px solid #ddd;
@@ -1282,12 +1280,12 @@ margin-bottom:5px
   display: block;
   font-size: 18px;
 }
-.credits_page.checkout table tbody tr,
-.credits_page.checkout table tbody tr th,
-.credits_page.checkout table tbody tr td {
+.credits_page table tbody tr,
+.credits_page table tbody tr th,
+.credits_page table tbody tr td {
   border: none;
 }
-.credits_page.checkout table tbody tr:first-child th {
+.credits_page table tbody tr:first-child th {
   border-bottom: 1px solid #ddd;
 }
 .credits_page.checkout .payment_info div {
@@ -1304,6 +1302,23 @@ margin-bottom:5px
 }
 .credits_page.checkout .payment_info #payment_credit_card_expires_on_2i {
   margin-left: 20px;
+}
+
+.credits_page.invoice .invoice_header {
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+.credits_page.invoice .invoice_header h4 {
+  display: inline-block;
+  margin-left: 10px;
+}
+.credits_page.invoice .invoice_header .btn {
+  float: right;
+  margin: 5px;
+}
+.credits_page.invoice .order_info label,
+.credits_page.invoice .payment_info label {
+  text-align: left;
 }
 
 input, textarea {

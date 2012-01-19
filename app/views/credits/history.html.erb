@@ -42,8 +42,8 @@
           <td><%= ca.value %></td>
           <td><%= ca.type %></td>
           <td><%= ca.created_at.to_formatted_s(:long) %></td>
-          <td><a href="#TODO">View</a></td>
-          <td><%= ca.order_txes.first.amount %></td>
+          <td><%= link_to 'View', credit_path(ca) %></td>
+          <td><%= number_to_currency (ca.order_txes.first.amount/100) %></td>
         </tr>
       <% end %>
     </table>

@@ -13,13 +13,15 @@ class CreditsController < ApplicationController
   def new
     @pc = PaymentCredit.new
     if params[:value].present?
-      @pc.value = params[:value]
+      @pc.value = params[:value].to_i
       @pc.amount = @pc.value * PricePerCredit
-    elsif params[:package].present?
-#package = [params[:package], GroupPackages.size()].min
-      package = params[:package]
-      @pc.value = GroupPackages[package.to_i][0]
-      @pc.amount = GroupPackages[package.to_i][1]
+    elsif params[:package].present? && params[:package].to_i < GroupPackages.size()
+      package = params[:package].to_i
+      @pc.value = GroupPackages[package][0]
+      @pc.amount = GroupPackages[package][1]
+    else
+      @pc.value = 1
+      @pc.amount = @pc.value * PricePerCredit
     end
   end
   
@@ -31,10 +33,15 @@ class CreditsController < ApplicationController
       # maybe a transaction here? eg: @pc.transaction do ... end
 		  @pc.save!
 	    @pc.purchase!
-      redirect_to history_credits_path, :notice => "Success" 
+      redirect_to credit_path(@pc), :notice => "Thank you for your payment." 
 	  rescue Exception => e  
       flash[:alert] = e.message unless e.class == ActiveRecord::RecordInvalid
 	    render :action => 'new'
     end
 	end
+
+  def show
+    @credit = CreditAdjustment.find(params[:id])
+    # TODO validate ownership
+  end
 end
