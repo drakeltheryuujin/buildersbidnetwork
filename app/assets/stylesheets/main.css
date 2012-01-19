@@ -480,8 +480,7 @@ label {
   padding-right: 10px;
 }
 
-address { 
-  display: inline-block; 
+address {  
   margin-bottom: 0;
 }
 
@@ -905,14 +904,66 @@ ul.search_tabs li.selected {
 }
 
 .sidebar_box h1 {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;
+  padding:5px;
 }
+.sidebar_box.sidebar_number strong,
+.sidebar_box.sidebar_number div {
+  padding-top:10px;
+  }
+.box.profile_avatar {
+  border: 1px solid #4BAAEE; 
+  float: left;
+  margin-top:6px;
+  padding: 1px;
+  width: 93px;
+} 
+.profile_page .span6 {
+  width:302px;
+}
+.profile_page .span6.left {
+  border-right: solid 1px #D0D0D0;
+}
+.profile_header .span8{
+  padding-top:10px;
+  }
+.profile_header.row{
+margin-bottom:5px
+}
+.profile_actions .span6 {
+  padding-top:10px;
+  }
+  
+.profile_page .span12  {
+  width: 647px;
+  margin-right: 54px;  
+}
+.location {
+  border-bottom:1px solid #C0C0C0;
+  margin-bottom:15px;
+}
+.map_snapshot img {
+  height:66px;
+  width:271px;
+  }
+.verticalLine {
+    border-left: solid 1px #d0d0d0;
+}
+.profile_page .profile_meta label {
+  font-size:12px;
+}
+.profile_page .row .span12 .profile_meta  label {
+  border-bottom: 1px solid #D0D0D0;
+}
+.profile_page .field address p {
+  font-size:14px;
+}
+
 .sidebar_box.sidebar_number span {
   color:#686868;
   font-weight:bold;
-  width:210px;
 }
 
 .sidebar_box.help_box p {
@@ -952,10 +1003,22 @@ ul.search_tabs li.selected {
 .sidebar_box .sidebar_flag span.award {
   color: orange;
 }
-
-
-
-
+.profile_sidebar  {
+  height:95px;
+  padding: 0 0 10px 0;
+  width:280px;
+  }
+.profile_sidebar  .head{
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 1)), color-stop(100%,rgba(237, 234, 227, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
+  height:27px;
+  }
 
 .project_bid {
   margin-right: 0;

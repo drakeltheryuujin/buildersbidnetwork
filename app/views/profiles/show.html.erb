@@ -10,11 +10,11 @@
 
 <div class="row profile_page">
   <div class="span12">
+    <div class ="location">Location</div>
     <div class="row">
-      <div class="span6">
+      <div class="span6 left">
         <div class="profile_meta">
           <div class="field ">
-            <label class="span2">Location</label>
             <address>
               <p><%= @profile.location.address1 %></p>
               <% unless @profile.location.address2.blank? %>
@@ -34,7 +34,7 @@
           </div>
         </div> <!-- /profile_meta -->
       </div>
-      <div class="span6 ">
+      <div class="span6 right">
         <div class="profile_meta">
           <% unless @profile.established.blank? %>
             <div class="field">
