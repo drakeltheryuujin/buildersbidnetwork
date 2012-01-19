@@ -926,9 +926,17 @@ ul.search_tabs li.selected {
 .profile_page .span6.left {
   border-right: solid 1px #D0D0D0;
 }
-.profile_header .span8{
+.profile_header h1 {
+  margin-bottom:5px;
+  }
+
+.profile_header .span8,
+.profile_actions {
   padding-top:10px;
   }
+  
+
+  
 .profile_header.row{
 margin-bottom:5px
 }
