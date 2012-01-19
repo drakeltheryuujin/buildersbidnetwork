@@ -1,0 +1,52 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <h1>
+      <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
+      Purchase History
+    </h1>
+    <%= render '/activity/tabs' %>
+  </div>
+<% end %>
+<div class="settings_page row">
+  <div class="span5 ">
+    <div class="track_filters ">
+      <ul>
+        <li>
+          <%= link_to "Settings", edit_user_registration_path %>
+        </li>
+        <li class="active">
+          <%= link_to "Purchase History", history_credits_path %>
+        </li>
+      </ul>
+
+      <dl>
+        <dt>Last Login:</dt>
+        <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+      </dl>
+
+      <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
+    </div>
+  </div>
+  <div class="span11 ">
+    <table>
+      <tr>
+        <th>Credits</th>
+        <th>Type</th>
+        <th>Date</th>
+        <th>Receipt</th>
+        <th>Total</th>
+      </tr>
+
+      <% @credit_adjustments.each do |ca| %>
+        <tr>
+          <td><%= ca.value %></td>
+          <td><%= ca.type %></td>
+          <td><%= ca.created_at.to_formatted_s(:long) %></td>
+          <td><a href="#TODO">View</a></td>
+          <td><%= ca.order_txes.first.amount %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to 'Buy More Credits', new_credit_path, :class => 'btn large primary float_right' %>
+  </div>
+</div>

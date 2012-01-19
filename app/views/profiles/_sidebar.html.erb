@@ -1,9 +1,11 @@
-<div class="span4 profile_sidebar">
-  <div class="sidebar_box sidebar_number">
-    <% cnt = @profile.user.project.count %>
-    <h1>Recent Activity</h1>
-    <strong><%= cnt %></strong>
-    <div>You currently have <span><%=cnt%> active bids</span></div>
+<div class="span4 ">
+  <div class="profile_sidebar">
+    <div class="sidebar_box sidebar_number">
+      <% cnt = @profile.user.project.count %>
+      <h1>Recent Activity</h1>
+      <strong><%= cnt %></strong>
+      <div>You currently have <span><%=cnt%> active bids</span></div>
+    </div>
   </div>
 </div>
 

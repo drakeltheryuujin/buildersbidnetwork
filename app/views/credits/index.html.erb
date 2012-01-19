@@ -1,15 +1,92 @@
-<h1>Credits</h1>
-<%= link_to 'Buy More Credits', new_credit_path, :class => 'btn large success' %>
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Value</th>
-  </tr>
+<div class="credits_page row">
+  <div class="span4 ">
+    <div class="credits_nav">
+      <h1>Credits</h1>
+      <ul>
+        <li>
+          <strong>Buy Credits</strong>
+        </li>
+        <li>
+          Buy a Subscription
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <% @credit_adjustments.each do |ca| %>
-    <tr>
-      <td><%= ca.type %></td>
-      <td><%= ca.value %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="span12">
+    <h1>Buy Credits</h1>
+
+    <div class="explanation">
+      <h3>How do credits work?</h3>
+      <p>Credits are BBN's very own currency.  Purchase credits and spend them whenever you want to submit a bid on a project.  The credit cost of a project depends on its budget, size and complexity.</p>
+    </div>
+
+    <div class="span5">
+      <div class="credits_box direct_purchase">
+        <h1>1 Bid Credit = $<%= CreditsController::PricePerCredit %></h1>
+        <%= form_tag(new_credit_path, :method => :get, :class => 'row') do %>
+          <div class="span2">
+            <label>Quantity:</label>
+            <%= select_tag(
+                :value, 
+                options_for_select(
+                  [
+                    ["1 Bid Credit", 1], 
+                    ["2 Bid Credits", 2],
+                    ["3 Bid Credits", 3],
+                    ["4 Bid Credits", 4],
+                    ["5 Bid Credits", 5],
+                    ["6 Bid Credits", 6],
+                    ["7 Bid Credits", 7],
+                    ["8 Bid Credits", 8],
+                    ["9 Bid Credits", 9]
+                  ])) %>
+          </div>
+          <div class="span2 ">
+            <label>Price:</label>
+            <span class="label price"><span class="denom">$</span><span class="number"><%= CreditsController::PricePerCredit %></span></span>
+          </div>
+          <div class="span5 ">
+            <%= submit_tag 'Buy Now', :class => 'btn large primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="span12">
+      <div class="credits_box groups_box">
+        <h1>Save on Bid Credits by purchasing them in Groups</h1>
+        <% CreditsController::GroupPackages.each_with_index do |package, index| %>
+          <%- credits, price = package %>
+          <div class="group_box">
+            <span class="group_credits">
+              <span class="number"><%= credits %></span>
+              <span class="group_credits_label">credits</span>
+            </span>
+            <div class="bonus">
+              Includes <%= credits - (price / CreditsController::PricePerCredit) %> FREE
+            </div>
+            <div class="group_deal">
+              <span class="price"><%= number_to_currency price %></span>
+              <span class="price_per">(<%= number_to_currency(price / credits) %>/Credit)</span>
+            </div>
+            <%= link_to "Buy Now", new_credit_path(:package => index), {:class => 'btn primary large'} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.calculation" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      recalc(null);
+      $(".credits_box.direct_purchase select").bind("change", recalc);
+      function recalc(event) {
+        var amt = $('.credits_box.direct_purchase select').val();
+        $(".credits_page .credits_box .label.price span.number").text(amt * <%= CreditsController::PricePerCredit %>);
+      }
+    });
+  </script>
+<% end %>

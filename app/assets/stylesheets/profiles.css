@@ -1,15 +1,35 @@
-.profile_actions ul {
-  list-style: none;
+.profile_sidebar {
+  background-color: #FFF;
+  border: 2px solid #DDD;
+  float:right;
+  margin-bottom: 20px;
+  padding: 10px;
 }
-.profile_actions ul li {
-  border-style: dotted;
-  border-color: #ddd;
-  border-width: 1px 0;
-  padding: 5px 0;
-  font-weight: bold;
-  font-size: 15px;
+.profile_page  .tabs{
+  margin-bottom:0;
+  padding-left:220px;
 }
-
+.box.profile_avatar {
+  float:left;
+  margin-top:6px;
+  padding-right:10px;
+}
+.profile-container {
+  display:inline;
+}
+.profile_page .top-banner {
+  padding-left:220px;
+}
+.top-banner .profile_page {
+  padding-left:200px
+}
+.profile_header  ul li {
+  list-style:none
+}
+.profile_header .profile_actions {
+  margin-top: 6px;
+  float: right;
+}
 .profile_page .field label {
   font-size: 11px;
 }

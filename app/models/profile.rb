@@ -33,6 +33,14 @@ class Profile < ActiveRecord::Base
   def may_modify?(user)
     self.user == user || user.try(:admin?)
   end
+
+  # Overriden by subclasses
+  def developer_profile?
+    return false
+  end
+  def contractor_profile?
+    return false
+  end
   
   validates :name, :presence => true
 

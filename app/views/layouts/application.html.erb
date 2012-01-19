@@ -14,19 +14,18 @@
       <div class="container">
         <% if ! user_signed_in? %>
           <div class="sign_in_cta">
-			Already have an account?
+            Already have an account?
             <%= link_to "Log In", new_user_session_path %>
             or 
             <%= link_to "Sign Up", new_user_registration_path %>
-		  </div>
-		<div class="home-page-navbar-login">		
-      <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %> 
-				Username: <%= f.email_field :email %>
-				Password: <%= f.password_field :password %>
-        <%= f.submit "Login", :class => "" %>
-			<% end %> 
-		</div>
-          
+          </div>
+          <div class="home-page-navbar-login">    
+            <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %> 
+              Username: <%= f.email_field :email %>
+              Password: <%= f.password_field :password %>
+              <%= f.submit "Login", :class => "" %>
+            <% end %> 
+          </div>
         <% end %>
         <% if user_signed_in? %>
           <ul class="secondary-nav">
@@ -69,21 +68,18 @@
                 <% end %>
               </li>
               <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse <span>projects, etc.</span>".html_safe, search_index_path %></li>
-              <% if DeveloperProfile.to_s == current_user.profile.type %>
-                <li class="<%= put_if_current_page('active', track_projects_projects_path) %>">
-                  <%= link_to track_projects_projects_path do %>
-                    My BBN
-                    <p class="nav_desc"> <span>track bids, etc.</span></p>
-                  <% end %>
-                </li>
-              <% elsif ContractorProfile.to_s == current_user.profile.type %>
-                <li class="<%= put_if_current_page('active', track_bids_projects_path) %>">
-                  <%= link_to track_bids_projects_path do %>
-                    Track 
-                    <p class="nav_desc">my bids</p>
-                  <% end %>
-                </li>
-              <% end %>
+              <li class="<%= put_if_current_page('active', activity_index_path) %>">
+                <%= link_to activity_index_path do %>
+                  My BBN
+                  <p class="nav_desc">
+                    <% if current_user.contractor? %>
+                      <span>track bids, etc.</span>
+                    <% else %>
+                      <span>track projects</span>
+                    <% end %>
+                  </p>
+                <% end %>
+              </li>
               <li class="<%= put_if_current_page('active', credits_path) %>">
                 <%= link_to credits_path do %>
                   Credits 
@@ -98,9 +94,9 @@
               <!--<li class="<%= put_if_current_page('active', root_path) %>">
                 <%= link_to "Home", root_path %>
               </li>-->
-			  <!-- TODO: Fix Link destinations & content_page_path -->
-			  <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "How<span>it works</span>".html_safe, root_path %></li>
-			  <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "What<span>is BBN?</span>".html_safe, content_page_path('about') %></li>
+              <!-- TODO: Fix Link destinations & content_page_path -->
+              <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "How<span>it works</span>".html_safe, root_path %></li>
+              <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "What<span>is BBN?</span>".html_safe, content_page_path('about') %></li>
               <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "Browse<span>projects, etc.</span>".html_safe, root_path %></li>
               <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "Questions?<span>contact us</span>".html_safe, content_page_path('contact') %></li>
             </ul>
@@ -124,7 +120,7 @@
   </div>
   
   <div id = "top-banner">
-	<%= yield :top_banner %>
+    <%= yield :top_banner %>
   </div>
   
   <div id="wrapper" class="container">
@@ -137,21 +133,21 @@
     <div class="fill">
       <div class="container footer_container">
         <ul>
-		  <li><%= link_to "Advertise", content_page_path('advertise') %></li>
-		  <li> | </li>
+          <li><%= link_to "Advertise", content_page_path('advertise') %></li>
+          <li> | </li>
           <li><%= link_to "Contact Us", content_page_path('contact')%></li>
-		  <li> | </li>
+          <li> | </li>
           <li><%= link_to "Help", content_page_path('help') %></li>
-		  <li> | </li>
+          <li> | </li>
           <li><%= link_to "About", content_page_path('about') %></li>
-		  <li> | </li>
+          <li> | </li>
           <li><%= link_to "Privacy Policy", content_page_path('privacy') %></li>
-		  <li> | </li>
+          <li> | </li>
           <li><%= link_to "Terms of Use", content_page_path('terms') %></li>
           <li class="left_side">
-			<span class="left_sidetop">BuildersBidNetwork</span>
-			<span class="left_sidebottom">&copy;<%= Date.today.year %> BuildersBidNetwork.com</span>
-		  </li>
+            <span class="left_sidetop">BuildersBidNetwork</span>
+            <span class="left_sidebottom">&copy;<%= Date.today.year %> BuildersBidNetwork.com</span>
+          </li>
         </ul>
       </div>
     </div>

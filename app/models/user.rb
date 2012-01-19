@@ -63,6 +63,13 @@ class User < ActiveRecord::Base
     notifs = Notification.recipient(self).unread.count
   end
 
+  def developer?
+    return self.profile.present? ? self.profile.developer_profile? : false
+  end
+  def contractor?
+    return self.profile.present? ? self.profile.contractor_profile? : false
+  end
+
 
   # Modified version of send_message from Mailboxer::Modles::Messagable
   def send_message_with_object_and_type(recipients, msg_body, subject, obj = nil, type = nil, sanitize_text = true)

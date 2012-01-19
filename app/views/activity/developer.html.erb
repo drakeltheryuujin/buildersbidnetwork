@@ -4,30 +4,20 @@
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Track My Projects
     </h1>
-    <ul class="tabs">
-      <li class="active">
-        <%= link_to "Activity", track_projects_projects_path %>
-      </li>
-      <li class="">
-        <%= link_to "Account", edit_user_registration_path %>
-      </li>
-      <li class="">
-        <%= link_to "Notifications", notifications_path %>
-      </li>
-    </ul>
+    <%= render 'tabs' %>
   </div>
 <% end %>
 <div class="track-page track-projects-page row ">
   <div class="track_filters span5 ">
     <ul>
-      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Projects", track_projects_projects_path %></li>
-      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", track_projects_projects_path(:filter => :draft) %></li>
-      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", track_projects_projects_path(:filter => :published) %></li>
-      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Cancelled", track_projects_projects_path(:filter => :cancelled) %></li>
-      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", track_projects_projects_path(:filter => :awarded) %></li>
-      <li class="<%= 'active' if params[:filter] == :past.to_s %>"><%= link_to "Past Projects", track_projects_projects_path(:filter => :past) %></li>
-      <li class="<%= 'active' if params[:filter] == :current.to_s %>"><%= link_to "Current Projects", track_projects_projects_path(:filter => :current) %></li>
-      <li class="<%= 'active' if params[:filter] == :future.to_s %>"><%= link_to "Future Projects", track_projects_projects_path(:filter => :future) %></li>
+      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Projects", activity_index_path %></li>
+      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
+      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", activity_index_path(:filter => :published) %></li>
+      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Cancelled", activity_index_path(:filter => :cancelled) %></li>
+      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
+      <li class="<%= 'active' if params[:filter] == :past.to_s %>"><%= link_to "Past Projects", activity_index_path(:filter => :past) %></li>
+      <li class="<%= 'active' if params[:filter] == :current.to_s %>"><%= link_to "Current Projects", activity_index_path(:filter => :current) %></li>
+      <li class="<%= 'active' if params[:filter] == :future.to_s %>"><%= link_to "Future Projects", activity_index_path(:filter => :future) %></li>
     </ul>
     <dl>
       <dt>Lifetime Projects Posted:</dt>

@@ -285,7 +285,6 @@ white-space: nowrap;
 }
 #top-banner  .tabs {
   margin-bottom:0;
-  padding-left:220px;
 }
 #top-banner  .tabs > li > a {
   background-color: #42aaf1;
@@ -654,9 +653,6 @@ label span.message.bad_address {
   text-transform: uppercase;
 }
 
-#payment_credit_card_number {
-  width: 308px;
-}
 
 .track-page .tabs,
 .search-page .tabs { 
@@ -907,58 +903,7 @@ ul.search_tabs li.selected {
   top: 5px;
   position: relative;
 }
-.profile_sidebar {
-  background-color: #FFF;
-  border: 2px solid #DDD;
-  float:right;
-  margin-bottom: 20px;
-  padding: 10px;
-}
-.profile_page  .tabs{
-  margin-bottom:0;
-  padding-left:220px;
-}
-.box.profile_avatar {
-  float:left;
-  margin-top:6px;
-  padding-right:10px;
-}
-.profile-container {
-  display:inline;
- }
-.profile_page .top-banner {
-  padding-left:220px;
-}
-.row.profile_page {
-  background-color:#fff;
-  padding-left:10px;
-  }
-.profile-container.tabs{
-  padding-left:220px;
-}
-.top-banner .profile_page {
-  padding-left:200px
-}
-.profile_header  {
-  width:455px;
-  float:left;
-  }
-.profile_header  ul li {
-  list-style:none
-}  
-.profile_actions {
-  background-color:#e6e6e6;
-  float:right;
-  height:35px;
-  width:115px; 
-} 
-.profile_actions a{
-  color:#656565;
-  font-size:12px;
-  font-weight:normal;
-  text-transform:uppercase;
-  }
-
+  
 .sidebar_box h1 {
   font-size: 18px;
   line-height: 20px;
@@ -1241,12 +1186,45 @@ ul.search_tabs li.selected {
   font-size: 24px;
   padding-top: 40px;
 }
+.credits_page .groups_box .group_box .bonus {
+  background-color: #DDD;
+  margin: 10px;
+  border: 1px solid #AAA;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px;
+  font-weight: bold;
+  font-style: italic;
+}
 .credits_page .groups_box .group_box .group_deal {
   margin: 10px;
 }
 .credits_page .groups_box .group_box .group_deal .price {
   display: block;
   font-size: 18px;
+}
+.credits_page.checkout table tbody tr,
+.credits_page.checkout table tbody tr th,
+.credits_page.checkout table tbody tr td {
+  border: none;
+}
+.credits_page.checkout table tbody tr:first-child th {
+  border-bottom: 1px solid #ddd;
+}
+.credits_page.checkout .payment_info div {
+  padding-bottom: 10px;
+}
+.credits_page.checkout .payment_info div.cards {
+  margin-left: 110px;
+}
+.credits_page.checkout .payment_info div.cards img {
+  margin-right: 10px;
+}
+.credits_page.checkout .payment_info #payment_credit_card_billing_zip {
+  width: 100px;
+}
+.credits_page.checkout .payment_info #payment_credit_card_expires_on_2i {
+  margin-left: 20px;
 }
 
 input, textarea {

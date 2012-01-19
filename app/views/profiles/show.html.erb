@@ -1,6 +1,15 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <%= render "header" %>
+    <ul class="tabs span12">
+      <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
+      <li><%= link_to "Awarded Projects", projects_profile_path(@profile) %></li>
+    </ul>
+  </div>
+<% end %>
+
 <div class="row profile_page">
   <div class="span12">
-    <%= render "header" %>
     <div class="row">
       <div class="span6">
         <div class="profile_meta">

@@ -20,4 +20,7 @@ class ContractorProfile < Profile
   def type_name
     "Contractor"
   end
+  def contractor_profile?
+    return true
+  end
 end

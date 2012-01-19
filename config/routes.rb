@@ -13,10 +13,6 @@ Ypn::Application.routes.draw do
 	    get 'review'
 	    post 'contact_creator'
 	  end
-    collection do
-	    get 'track_projects'
-	    get 'track_bids'
-	  end
   end
 
   resources :profiles do
@@ -51,6 +47,7 @@ Ypn::Application.routes.draw do
 
   devise_for :users
 
+
   resources :messages
 
   resources :conversations
@@ -61,9 +58,15 @@ Ypn::Application.routes.draw do
     end
   end
 
-  resources :credits, :only => [:index, :new, :create]
+  resources :credits, :only => [:index, :new, :create] do
+    collection do
+      get 'history'
+    end
+  end
   
   resources :search, :only => [:index]
+
+  resources :activity, :only => [:index]
 
   match 'home/:page' => 'home#show', :as => :content_page
   get "home/index"

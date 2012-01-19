@@ -3,16 +3,5 @@
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       My Notifications
     </h1>
-    <ul class="tabs">
-      <li class="">
-        <%= link_to "Activity", track_projects_projects_path %>
-      </li>
-      <li class="">
-        <%= link_to "Account", edit_user_registration_path %>
-      </li>
-      <li class="active">
-        <%= link_to "Notifications", notifications_path %>
-      </li>
-    </ul>
+    <%= render '/activity/tabs' %>
   </div>
-

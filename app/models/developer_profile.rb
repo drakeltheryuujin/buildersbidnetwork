@@ -20,4 +20,7 @@ class DeveloperProfile < Profile
   def type_name
     "Developer"
   end
+  def developer_profile?
+    return true
+  end
 end

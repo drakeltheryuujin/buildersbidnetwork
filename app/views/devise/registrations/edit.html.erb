@@ -4,30 +4,27 @@
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Edit my Account
     </h1>
-    <ul class="tabs">
-      <li class="">
-        <%= link_to "Activity", track_projects_projects_path %>
-      </li>
-      <li class="active">
-        <%= link_to "Account", edit_user_registration_path %>
-      </li>
-      <li class="">
-        <%= link_to "Notifications", notifications_path %>
-      </li>
-    </ul>
+    <%= render '/activity/tabs' %>
   </div>
 <% end %>
 <div class="track-page track-projects-page row ">
   <div class="span5 ">
     <div class="track_filters ">
-      <h3>Cancel my account</h3>
-
-      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
+      <ul>
+        <li class="active">
+          <%= link_to "Settings", edit_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "Purchase History", history_credits_path %>
+        </li>
+      </ul>
 
       <dl>
         <dt>Last Login:</dt>
         <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
       </dl>
+
+      <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
     </div>
   </div>
   <div class="span11 form-stacked alpha">

@@ -4,28 +4,18 @@
       <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
       Track My Bids
     </h1>
-    <ul class="tabs">
-      <li class="active">
-        <%= link_to "Activity", track_bids_projects_path %>
-      </li>
-      <li class="">
-        <%= link_to "Account", edit_user_registration_path %>
-      </li>
-      <li class="">
-        <%= link_to "Notifications", notifications_path %>
-      </li>
-    </ul>
+    <%= render 'tabs' %>
   </div>
 <% end %>
 <div class="track-page track-bids-page row ">
   <div class="track_filters span5 ">
     <ul>
-      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", track_bids_projects_path %></li>
-      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", track_bids_projects_path(:filter => :draft) %></li>
-      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", track_bids_projects_path(:filter => :published) %></li>
-      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", track_bids_projects_path(:filter => :cancelled) %></li>
-      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", track_bids_projects_path(:filter => :awarded) %></li>
-      <li class="<%= 'active' if params[:filter] == :held.to_s %>"><%= link_to "On Hold", track_bids_projects_path(:filter => :held) %></li>
+      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", activity_index_path %></li>
+      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
+      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", activity_index_path(:filter => :published) %></li>
+      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", activity_index_path(:filter => :cancelled) %></li>
+      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
+      <li class="<%= 'active' if params[:filter] == :held.to_s %>"><%= link_to "On Hold", activity_index_path(:filter => :held) %></li>
     </ul>
     <dl>
       <dt>Lifetime Bids Posted:</dt>
@@ -42,7 +32,7 @@
       </div>
     <% end %>
     <% @bids.each do |bid| %>
-      <%= render :partial => "bid_bubble", :locals => { :bid => bid } %>
+      <%= render :partial => "/projects/bid_bubble", :locals => { :bid => bid } %>
     <% end %>
   </div>
 </div>

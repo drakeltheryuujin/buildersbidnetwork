@@ -5,7 +5,7 @@
           <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => "profile_avatar"), profile_path(bid.user.profile) %>
         </div>
         <div class="span6 ">
-          <% unless current_page? track_bids_projects_path(@project) %>
+          <% unless current_page? activity_index_path(@project) %>
             <div class="result_name">
               <%= link_to bid.user.profile.name, profile_path(bid.user.profile) %>
               <% unless bid.published? %>

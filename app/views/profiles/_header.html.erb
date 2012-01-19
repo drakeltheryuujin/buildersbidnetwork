@@ -1,51 +1,45 @@
-<% content_for :top_banner do %>
-  <div class="container">
-    <div class="span9 profile_header">
-      <div class="profile_avatar box">
-        <%= image_tag "/images/company_square.png", :alt => "Avatar" %>
-      </div>    
-      <h1><%= @profile.name %></h1>
-      <h4>
-        <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
-        <%= @profile.location.city %>, <%= @profile.location.state %>
-        &middot;
-        <%= @profile.type_name %>
-      </h4>     
-     <div class="profile_actions">
-       <ul>
-         <% if may_admin_profile? %>
-           <li><%= link_to('Edit Profile', edit_profile_path(@profile)) %></li>
-             <% end %>
-         <% if @profile.user != current_user %>
-           <li><%= link_to('Send Message', contact_owner_profile_path(@profile), "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %></li>
-             <% end %>
-        </ul>
-      </div> 
-    </div>  
-  </div> 
-    <ul class="tabs span12">
-      <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
-      <li><%= link_to "Awarded Projects", projects_profile_path(@profile) %></li>
-    </ul>
+<div class="profile_header row">
+  <div class="span2">
+    <div class="profile_avatar box ">
+      <%= image_tag "/images/company_square.png", :alt => "Avatar" %>
+    </div>
   </div>
-<% end %>
+  <div class="span8 ">  
+    <h1><%= @profile.name %></h1>
+    <h4>
+      <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
+      <%= @profile.location.city %>, <%= @profile.location.state %>
+      <span class="label"><%= @profile.type_name %></span>
+    </h4>
+  </div>
+  <div class="span6">
+    <div class="profile_actions">
+      <ul class="">
+        <% if may_admin_profile? %>
+          <li><%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn') %></li>
+            <% end %>
+        <% if @profile.user != current_user %>
+            <li><%= link_to('Send Message', contact_owner_profile_path(@profile), "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<div class="profile_page row">
-  <div id="contact-profile-modal" class="modal hide fade">
-    <div class="modal-header">
-      <a href="#" class="close">×</a>
-      <h3>Contact: <%= @profile.name %></h3>
-    </div> 
+<div id="contact-profile-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Contact: <%= @profile.name %></h3>
+  </div> 
   <%= form_tag(contact_owner_profile_path(@profile), :remote => true, "data-type" => "text" )  do %>
     <div class="modal-body form-stacked">
       <label>Message Body</label>
       <%= text_area_tag :message_body %>
     </div> 
-      <div class="modal-footer">
-        <%= submit_tag "Send", :class => "btn primary" %>
-      </div> 
-    <% end %>
-  </div>
+    <div class="modal-footer">
+      <%= submit_tag "Send", :class => "btn primary" %>
+    </div> 
+  <% end %>
 </div>
 <% content_for :javascript do %>
   <script type="text/javascript">
