@@ -36,7 +36,7 @@
           <%= @pc.value %>
         </td>
         <td>
-          <%= number_to_currency (@pc.amount/@pc.value) %>
+          <%= number_to_currency (@pc.amount.to_i/@pc.value.to_i) %>
         </td>
         <td>
           <%= number_to_currency @pc.amount %>
