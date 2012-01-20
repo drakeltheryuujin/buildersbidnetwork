@@ -83,6 +83,9 @@
 .profile_header h1 {
   margin-bottom:5px;
 }
+.profile_header h4 {
+  line-height: 22px;
+}
   
 .profile_header.row{
   margin-bottom:5px

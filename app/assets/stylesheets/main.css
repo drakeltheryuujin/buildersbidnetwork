@@ -331,11 +331,12 @@ white-space: nowrap;
 }
 .sector {
   padding: 1px 3px 2px;
-  font-size: 9.75px;
+  margin-top: 5px;
+  display: inline-block;
   font-weight: bold;
   color: #8DC04A;
   white-space: nowrap;
-  background-color: f0fdec;
+  background-color: #f0fdec;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -347,7 +348,8 @@ white-space: nowrap;
   float: left;
   margin-top:6px;
   padding: 1px;
-  width: 93px;
+  width: 94px;
+  height: 94px;
 } 
 
 
@@ -876,16 +878,20 @@ h1.search_header span {
   margin-left: 10px;
 }
 .search_result .result_image {
-  margin: 18px 10px 16px 16px;
+  margin: 12px;
 }
 .search_result .result_body {
   width: 400px;
 }
 .search_result .result_infos {
-  width: 160px;
+  width: 158px;
 }
 .search_result.bid .result_numbers {
   background-color: #9E9;
+}
+.search_result .result_location {
+  font-size: 14px;
+  font-weight: bold;
 }
 .search_result .result_numbers {
   background-color: #eee;
