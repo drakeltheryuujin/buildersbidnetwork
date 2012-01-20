@@ -1,9 +1,9 @@
   <div class="span5 project_sidebar">
     <div class="sidebar_box project_timeline">
       <div class="sidebar_number">
-        <strong><%= (@project.bidding_end.to_date - Date.today).to_i %></strong> 
+        <strong><%= @project.award_period? ? "Ended" : (@project.bidding_end.to_date - Date.today).to_i %></strong> 
         <p>
-          <span>Days Left To Bid</span>
+          <span><%= "Days Left To Bid" unless @project.award_period? %></span>
           <em><label>Posted on:</label> <%= @project.created_at.to_date.to_formatted_s(:short) %></em>
         </p>
       </div>

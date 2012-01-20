@@ -150,6 +150,13 @@ form.new_project_document {
   display: inline;
 }
 
+.project_sidebar .sidebar_box {
+  padding: 10px; 
+  background: #edebe1; 
+  margin-bottom: 20px; 
+  border: 2px 
+  solid #DDD;
+}
 .project_sidebar .project_timeline h1 {
   border-bottom: 1px solid;
   clear: left;
