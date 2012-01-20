@@ -825,10 +825,13 @@ h1.search_header span {
   display: inline-block;
   padding: 10px 0;
 }
-.search_result.no_results h4 {
+.search_result.no_result {
+  padding: 18px;
+}
+.search_result.no_result h4 {
   display: inline;
 }
-.search_result.no_results a {
+.search_result.no_result a {
   float: right;
 }
 
@@ -965,9 +968,9 @@ h1.search_header span {
   text-align: center;
 }
 
-.search_result.no_result {
-  padding-top: 18px;
-  text-align: center;
+.track_results .profile_avatar,
+.track_results .project_avatar {
+  margin: 10px;
 }
 
 .results_order {
