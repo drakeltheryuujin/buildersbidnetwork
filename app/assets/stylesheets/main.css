@@ -950,21 +950,44 @@ ul.search_tabs li.selected {
   font-size:14px;
   font-weight:bold;
   margin-bottom:15px;
+  padding-bottom:5px;
+  text-transform:uppercase;
 }
 .verticalLine {
   border-left: solid 1px #d0d0d0;
 }
-.profile_page .profile_meta label {
-  font-size:12px;
+.profile_header .sector {
+  padding: 1px 3px 2px;
+  font-size: 9.75px;
+  font-weight: bold;
+  color: #8DC04A;
+  white-space: nowrap;
+  background-color: f0fdec;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #8DC04A;
 }
+
 .profile_page .profile_meta  label {
+  font-size:12px;
+  font-weight:bold;
+}
+.profile_page .profile_meta.right  label {
+  width:82px;
+  text-align:right;
+}
+.profile_page .span10 .description {
   border-bottom: 1px solid #D0D0D0;
   font-size:14px;
   font-weight:bold;
+  padding-bottom:5px;
 }
+
 .profile_page .field address p {
   color:#000;
   font-size:17px;
+  font-weight:bold;
 }
 
 .sidebar_box.sidebar_number span {
@@ -1019,9 +1042,8 @@ ul.search_tabs li.selected {
   -webkit-border-radius: 5px;
   border: 1px solid #D2D2D2;
   border-image: initial;
-
-
 }
+
 .profile_sidebar  .head{
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
   background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
@@ -1032,7 +1054,10 @@ ul.search_tabs li.selected {
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
   height:27px;
-  }
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid transparent;
+}
 
 .project_bid {
   margin-right: 0;

@@ -38,13 +38,13 @@
         <div class="profile_meta right">
           <% unless @profile.established.blank? %>
             <div class="field">
-              <label class="">Established</label>
+              <label class="">Established:</label>
               <span><%= @profile.established || '&nbsp;'.html_safe %></span>
             </div>
           <% end %>
           <% unless @profile.website.blank? %>
             <div class="field">
-              <label class="span2">Website</label>
+              <label class="span2">Website:</label>
               <span><%= @profile.website || '&nbsp;'.html_safe %></span>
             </div>
           <% end %>
@@ -54,7 +54,7 @@
     <div class="row">
       <div class="span10 alpha form-stacked">
         <div class="profile_meta">
-          <label class="">Company Description</label>
+          <label class="description">Company Description</label>
           <p class="">
             <%= simple_format @profile.description %>
           </p>

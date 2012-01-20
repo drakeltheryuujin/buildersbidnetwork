@@ -10,7 +10,7 @@
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
       <%= @profile.location.city %>, <%= @profile.location.state %>
     </h4>
-    <span class="label"><%= @profile.type_name %></span>
+    <span class="sector"><%= @profile.type_name %></span>
   </div>
   <div class="span6">
     <div class="profile_actions">
