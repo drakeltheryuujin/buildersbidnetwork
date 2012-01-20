@@ -1,26 +1,50 @@
 <div class="results_order">
-  <%= link_to "name", search_path(@search, :order => :name), :class => (@search.order == :name.to_s ? 'active' : '') %>
-  <%= link_to "distance", search_path(@search, :order => :distance), :class => (@search.order == :distance.to_s ? 'active' : '') unless @search.location.blank? %>
+  <%= link_to_unless @search.order == :name.to_s, "name", search_path(@search, :order => :name), :class => (@search.order == :name.to_s ? 'active' : '') %>
+  <%= link_to_unless @search.order == :distance.to_s, "distance", search_path(@search, :order => :distance), :class => (@search.order == :distance.to_s ? 'active' : '') unless @search.location.blank? %>
 </div>
 <% @search.results.each do |developer| %>
-  <div class="search_result developer span12 row">
-    <div class="span2 ">
-      <%= link_to (image_tag "/images/company_square.png", :alt => "Developer"), profile_path(developer) %>
+  <div class="search_result developer ">
+    <div class="result_image ">
+      <%= link_to (image_tag "/images/company_square.png", :alt => "Developer"), profile_path(developer), :class => 'project_avatar' %>
     </div>
-    <div class="span7">
+    <div class="result_body">
       <div class="result_name"><%= link_to developer.name, profile_path(developer) %></div>
       <div class="result_location">
         <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{developer.latitude}%2C#{developer.longitude}" %>
         <%= developer.location.city + ", " + developer.location.state %>
       </div>
     </div>
-    <div class="span3 alpha">
+    <div class="result_infos">
       <div class="result_numbers">
-        <%= developer.user.project.count %> Projects
+        <dl>
+          <dd>
+            <%= developer.user.project.count %> 
+          </dd>
+          <dt>
+            Projects
+          </dt>
+        </dl>
+        <%= link_to('Send Message', contact_owner_profile_path(developer), "data-controls-modal" => "contact-profile-modal-" + developer.id.to_s , "data-backdrop" => "true", :class => 'btn') %>
+        <%= link_to "Company Overview", profile_path(developer), :class => "btn info" %>
       </div>
-      <%= link_to "Company Overview", profile_path(developer), :class => "btn info" %>
     </div>
   </div>
+  <div id="contact-profile-modal-<%= developer.id %>" class="contact-profile-modal modal hide fade">
+    <div class="modal-header">
+      <a href="#" class="close">×</a>
+      <h3>Contact: <%= developer.name %></h3>
+    </div> 
+    <%= form_tag(contact_owner_profile_path(developer), :remote => true, "data-type" => "text" )  do %>
+      <div class="modal-body form-stacked">
+        <label>Message Body</label>
+        <%= text_area_tag :message_body %>
+      </div> 
+      <div class="modal-footer">
+        <%= submit_tag "Send", :class => "btn primary" %>
+      </div> 
+    <% end %>
+  </div>
+
 <% end %>
 <% content_for :javascript do %>
   <%= javascript_include_tag "jquery.lightbox" %>
@@ -31,6 +55,16 @@
         imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
         imageBlank: '/images/lightbox/lightbox-blank.gif'
       });
+      $(".contact-profile-modal form")
+        .bind('ajax:complete', function(evt, data, status, xhr){
+          $(this).parents(".contact-profile-modal").modal('hide');
+        })
+        .bind('ajax:success', function(evt, data, status, xhr){
+          $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+        })
+        .bind('ajax:error', function(evt, xhr, status, error){
+          $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+        });
     });
   </script>
 <% end%>
