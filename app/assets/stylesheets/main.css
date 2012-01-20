@@ -965,6 +965,11 @@ h1.search_header span {
   text-align: center;
 }
 
+.search_result.no_result {
+  padding-top: 18px;
+  text-align: center;
+}
+
 .results_order {
   border: 1px solid #ddd;
   background: #eee;
