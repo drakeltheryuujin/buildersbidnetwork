@@ -9,8 +9,8 @@
 <% end %>
 
 <div class="row profile_page">
-  <div class="span11">
-    <div class ="location">Location</div>
+  <div class="span11 profile_content">
+    <h4>Location</h4>
     <div class="row">
       <div class="span6 ">
         <div class="profile_meta left">
@@ -45,7 +45,7 @@
           <% unless @profile.website.blank? %>
             <div class="field">
               <label class="span2">Website:</label>
-              <span><%= @profile.website || '&nbsp;'.html_safe %></span>
+              <span><%= link_to @profile.website, @profile.website %></span>
             </div>
           <% end %>
         </div> <!-- /profile_meta -->
@@ -54,7 +54,7 @@
     <div class="row">
       <div class="span11 alpha form-stacked">
         <div class="profile_meta">
-          <label class="description">Company Description</label>
+          <h4>Company Description</h4>
           <p class="">
             <%= simple_format @profile.description %>
           </p>

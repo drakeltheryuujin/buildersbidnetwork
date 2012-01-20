@@ -6,14 +6,15 @@
     <h1>
       <%= @project.name %>
     </h1>
-    <span class="label success"><%= @project.credit_value %></span> Credit Value
+    <span class="credit_value">
+      <span class="label success"><%= @project.credit_value %></span> Credit Value
+    </span>
     <p class="project_meta">
-      <%= link_to @project.user.profile.name, profile_path(@project.user.profile) %>
-      &middot;
-      <span class="label"><%= @project.project_type.name %></span>
-      &middot;
-      <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link"%>
-      <%= @project.location.city %>, <%= @project.location.state %>
+      <%= link_to @project.user.profile.name, profile_path(@project.user.profile), :class => 'profile_link' %>
+      <h4>
+        <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link"%>
+        <%= @project.location.city %>, <%= @project.location.state %>
+      </hr>
     </p>
   </div>
   <div class="span6 project_actions">
@@ -25,7 +26,7 @@
     <% end %>
     <% if current_page? project_path(@project) %>
       <%= link_to 'Contact Project Creator', contact_creator_project_path(@project), :class => 'btn large info', "data-controls-modal" => "contact-creator-modal", "data-backdrop" => "true" unless @project.user == current_user %> 
-      <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' if @project.bidding_period? unless @project.user == current_user %>
+      <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success' if @project.bidding_period? if (current_user.contractor? && ! has_bid_on_project?) %>
     <% else %>
       <%= link_to 'Project Scope', @project, :class => 'btn ' %> 
     <% end %>

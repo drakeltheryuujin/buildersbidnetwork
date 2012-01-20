@@ -32,10 +32,10 @@
   <div class="span11 project_content">
     <div class="tab-content">
       <div class="tab-pane active row" id="scope">
+        <h4 class="span11">Location</h4>
         <div class="span6">
-          <div class="project_meta">
+          <div class="project_meta left">
             <div class="field ">
-              <label class="span2">Location</label>
               <address>
                 <p><%= @project.location.address1 %></p>
                 <% unless @project.location.address2.blank? %>
@@ -44,19 +44,22 @@
                 <p><%= @project.location.city %>, <%= @project.location.state %>&nbsp; <%= @project.location.post_code %></p>
               </address>
             </div>
+            <div class="field map_snapshot">
+              <%= image_tag "http://maps.google.com/maps/api/staticmap?size=271x66&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
+            </div>
           </div> <!-- /project_meta -->
         </div>
         <div class="span5 ">
           <div class="project_meta">
             <div class="field">
               <label class="span2">Project Type</label>
-              <span class="label"><%= @project.project_type.name %></span>
+              <span class="sector"><%= @project.project_type.name %></span>
             </div>
           </div> <!-- /project_meta -->
         </div>
         <div class="span11 alpha form-stacked">
           <div class="project_meta">
-            <label class="">Project Description</label>
+            <h4>Project Description</h4>
             <p class="">
               <%= simple_format @project.description %>
             </p>
@@ -64,7 +67,7 @@
         </div>
         <div class="span11 alpha form-stacked">
           <div class="project_meta">
-            <label class="">Additional Notes and Requirements</label>
+            <h4>Additional Notes and Requirements</h4>
             <p class="">
               <%= simple_format @project.notes %>
             </p>
@@ -72,11 +75,11 @@
         </div>
         <div class="span11 alpha form-stacked">
           <div class="project_meta">
-            <label class="">Bid Breakdown</label>
+            <h4>Bid Breakdown By Line</h4>
             <ul class="line_items">
               <% @project.line_items.each_with_index do |line_item, index| %>
                 <li class="line_item">
-                  <strong>Line Item #<%= index + 1 %></strong>
+                  <strong><%= index + 1 %></strong>
                   <span class="content"><%= line_item.content %></span>
                   <span class="units"><%= line_item.units %></span>
                 </li>

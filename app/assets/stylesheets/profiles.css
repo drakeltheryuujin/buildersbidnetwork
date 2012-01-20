@@ -22,12 +22,6 @@
 .profile_page .field label {
   font-size: 11px;
 }
-.profile_page .field address p {
-  font-size: 18px;
-  font-weight:normal;
-  font-family: verdana, arial, helvetica;
-  color:#000;  
-}
 .profile_actions a {
   color:#656565;
   font-size:12px;
@@ -77,14 +71,11 @@
 .sidebar_box.sidebar_number div {
   padding-top:10px;
   }
-.profile_page .profile_meta.left {
-  border-right: solid 1px #D0D0D0;
-}
 .profile_header h1 {
   margin-bottom:5px;
 }
 .profile_header h4 {
-  line-height: 22px;
+  line-height: 28px;
 }
   
 .profile_header.row{
@@ -103,15 +94,7 @@
   margin-right: 52px;
 }
   
-.location {
-  border-bottom:1px solid #C0C0C0;
-  color:#000;
-  font-size:14px;
-  font-weight:bold;
-  margin-bottom:15px;
-  padding-bottom:5px;
-  text-transform:uppercase;
-}
+
 
 .profile_page .profile_meta  label {
   font-size:12px;

@@ -331,7 +331,6 @@ white-space: nowrap;
 }
 .sector {
   padding: 1px 3px 2px;
-  margin-top: 5px;
   display: inline-block;
   font-weight: bold;
   color: #8DC04A;
@@ -565,6 +564,18 @@ ul.line_items li {
   border-radius: 4px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
+  padding: 8px;
+  background: #EEE;
+  font-size: 14px;
+}
+ul.line_items li strong {
+  font-size: 16px;
+  font-weight: bold;
+  padding-right: 8px;
+}
+ul.line_items li .units {
+  float: right;
+  font-weight: bold;
 }
 table tr.odd,
 ul li.odd {
@@ -916,6 +927,7 @@ h1.search_header span {
 .search_result .result_location {
   font-size: 14px;
   font-weight: bold;
+  margin-bottom: 6px;
 }
 .search_result .result_numbers {
   padding: 16px;
@@ -929,8 +941,8 @@ h1.search_header span {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=1 );
   border-left: 1px solid #ccc;
 }
-.search_result .result_numbers .credit_value,
-.search_result .result_numbers .credit_value .label {
+.credit_value,
+.credit_value .label {
   font-size: 13px;
   font-weight: bold;
   padding: 3px 8px;
@@ -1290,6 +1302,27 @@ h1.search_header span {
 .credits_page.invoice .order_info label,
 .credits_page.invoice .payment_info label {
   text-align: left;
+}
+.project_page .project_content h4,
+.profile_page .profile_content h4 {
+  border-bottom:1px solid #C0C0C0;
+  color:#000;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:15px;
+  padding-bottom:5px;
+  text-transform:uppercase;
+  line-height: 18px;
+}
+.project_page .project_meta.left,
+.profile_page .profile_meta.left {
+  border-right: solid 1px #D0D0D0;
+}
+.field address p {
+  font-size: 18px;
+  font-weight:normal;
+  font-family: verdana, arial, helvetica;
+  color:#000;  
 }
 
 input, textarea {
