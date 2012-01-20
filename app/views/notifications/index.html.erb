@@ -12,7 +12,7 @@
       </div>
     <% else %>
       <div class="results_order">
-        <%= link_to('Mark All Read', update_all_notifications_path(:page => params[:page]), :confirm => 'Are you sure?',:method => :put) %>
+        &nbsp;
       </div>
     <% end %>
     <% @notifications.each do |notification| %>
@@ -21,9 +21,9 @@
         <div class="row">
           <div class="span2 ">
             <% if notification.sender.present? && notification.sender.profile.present? %>
-              <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => 'profile_avatar'), profile_path(notification.sender.profile) %>
+              <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(notification.sender.profile), :class => 'profile_avatar' %>
             <% else %>
-              <%= image_tag "/images/company_square.png", :alt => "System", :class => 'profile_avatar' %>
+              <%= image_tag "/images/company_square.png", :alt => "System" %>
             <% end %>
           </div>
           <div class="span8 ">

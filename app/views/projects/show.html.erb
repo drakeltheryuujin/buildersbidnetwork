@@ -14,7 +14,7 @@
           Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
         </a>
       </li>
-      <% if may_admin_project? %>
+      <% if may_admin_project? && @project.bids.present? %>
         <li>
           <a href="#bids">
             Bids <%= ("(#{@project.bids.published.size()})") unless @project.bids.published.empty? %>
