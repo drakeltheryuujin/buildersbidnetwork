@@ -3,11 +3,6 @@
   margin-bottom:0;
   padding-left:220px;
 }
-.box.profile_avatar {
-  float:left;
-  margin-top:6px;
-  padding-right:10px;
-}
 .profile-container {
   display:inline;
 }
@@ -82,13 +77,6 @@
 .sidebar_box.sidebar_number div {
   padding-top:10px;
   }
-.box.profile_avatar {
-  border: 1px solid #4BAAEE; 
-  float: left;
-  margin-top:6px;
-  padding: 1px;
-  width: 93px;
-} 
 .profile_page .profile_meta.left {
   border-right: solid 1px #D0D0D0;
 }
@@ -120,19 +108,6 @@
   margin-bottom:15px;
   padding-bottom:5px;
   text-transform:uppercase;
-}
-
-.profile_header .sector {
-  padding: 1px 3px 2px;
-  font-size: 9.75px;
-  font-weight: bold;
-  color: #8DC04A;
-  white-space: nowrap;
-  background-color: f0fdec;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #8DC04A;
 }
 
 .profile_page .profile_meta  label {
