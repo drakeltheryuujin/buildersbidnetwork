@@ -4,15 +4,20 @@
 .project_header h1 {
   display: inline;
 }
-.project_header .project_avatar img {
-  border: 2px solid #ddd;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-}
+
 .project_header .project_actions {
   padding-top: 23px;
   text-align: right;
+}
+
+.project_header h4 {
+  line-height: 22px;
+}
+.project_header .project_meta {
+  margin-top: 9px;
+}
+.project_header .project_meta .profile_link {
+  font-size: 16px;
 }
 
 

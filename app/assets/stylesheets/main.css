@@ -331,11 +331,11 @@ white-space: nowrap;
 }
 .sector {
   padding: 1px 3px 2px;
-  font-size: 9.75px;
+  display: inline-block;
   font-weight: bold;
   color: #8DC04A;
   white-space: nowrap;
-  background-color: f0fdec;
+  background-color: #f0fdec;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -348,12 +348,13 @@ white-space: nowrap;
   background-image: linear-gradient(top right, #F4F9F5 0%, #EBF1D5 100%); /* Proposed W3C Markup */
 }
 .project_avatar,
-.box.profile_avatar {
+.profile_avatar {
   border: 1px solid #4BAAEE; 
   float: left;
   margin-top:6px;
   padding: 1px;
-  width: 93px;
+  width: 94px;
+  height: 94px;
 } 
 
 
@@ -563,6 +564,18 @@ ul.line_items li {
   border-radius: 4px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
+  padding: 8px;
+  background: #EEE;
+  font-size: 14px;
+}
+ul.line_items li strong {
+  font-size: 16px;
+  font-weight: bold;
+  padding-right: 8px;
+}
+ul.line_items li .units {
+  float: right;
+  font-weight: bold;
 }
 table tr.odd,
 ul li.odd {
@@ -732,6 +745,17 @@ ul.search_tabs li.selected {
   -webkit-box-shadow: 1px 1px 2px 4px rgba(215, 215, 215, 0.5);
   -moz-box-shadow: 1px 1px 2px 4px rgba(215, 215, 215, 0.5);
   box-shadow: 1px 1px 2px 4px rgba(215, 215, 215, 0.5);
+  padding: 10px;
+}
+
+.search_filters h5 {
+  color: #0a1863;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+.search_filters h6 {
+  color: #333;
+  text-transform: none;
 }
 
 .search_filters form {
@@ -740,7 +764,11 @@ ul.search_tabs li.selected {
 
 .search_filters div.filter {
   border-top: 1px solid #ddd;
-  padding: 5px 0;
+  padding: 10px 0;
+  min-height: 20px;
+}
+.search_filters div.filter_q input {
+  width: 188px;
 }
 
 .home_page .search_box table td,
@@ -814,10 +842,13 @@ h1.search_header span {
   display: inline-block;
   padding: 10px 0;
 }
-.search_result.no_results h4 {
+.search_result.no_result {
+  padding: 18px;
+}
+.search_result.no_result h4 {
   display: inline;
 }
-.search_result.no_results a {
+.search_result.no_result a {
   float: right;
 }
 
@@ -882,21 +913,40 @@ h1.search_header span {
   margin-left: 10px;
 }
 .search_result .result_image {
-  margin: 18px 10px 16px 16px;
+  margin: 12px;
 }
 .search_result .result_body {
   width: 400px;
 }
 .search_result .result_infos {
-  width: 160px;
+  width: 158px;
 }
 .search_result.bid .result_numbers {
   background-color: #9E9;
 }
+.search_result .result_location {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
 .search_result .result_numbers {
+  padding: 16px;
   background-color: #eee;
-  padding: 10px;
-  height: 112px;
+  background: -moz-linear-gradient(left, #eeeeee 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#eeeeee), color-stop(100%,#ffffff));
+  background: -webkit-linear-gradient(left, #eeeeee 0%,#ffffff 100%);
+  background: -o-linear-gradient(left, #eeeeee 0%,#ffffff 100%);
+  background: -ms-linear-gradient(left, #eeeeee 0%,#ffffff 100%);
+  background: linear-gradient(left, #eeeeee 0%,#ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=1 );
+  border-left: 1px solid #ccc;
+}
+.credit_value,
+.credit_value .label {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 8px;
+  margin-bottom: 5px;
 }
 .search_result .result_numbers strong {
   color: green;
@@ -921,8 +971,11 @@ h1.search_header span {
   color: #666;
 }
 .search_result .result_numbers a.btn {
-  width: 110px;
+  width: 96px;
   text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .search_result.bid.award_cta {
@@ -931,6 +984,11 @@ h1.search_header span {
   margin: 10px 0;
   padding: 10px 0;
   text-align: center;
+}
+
+.track_results .profile_avatar,
+.track_results .project_avatar {
+  margin: 10px;
 }
 
 .results_order {
@@ -1244,6 +1302,27 @@ h1.search_header span {
 .credits_page.invoice .order_info label,
 .credits_page.invoice .payment_info label {
   text-align: left;
+}
+.project_page .project_content h4,
+.profile_page .profile_content h4 {
+  border-bottom:1px solid #C0C0C0;
+  color:#000;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:15px;
+  padding-bottom:5px;
+  text-transform:uppercase;
+  line-height: 18px;
+}
+.project_page .project_meta.left,
+.profile_page .profile_meta.left {
+  border-right: solid 1px #D0D0D0;
+}
+.field address p {
+  font-size: 18px;
+  font-weight:normal;
+  font-family: verdana, arial, helvetica;
+  color:#000;  
 }
 
 input, textarea {

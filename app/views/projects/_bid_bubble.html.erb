@@ -2,7 +2,7 @@
     <div class="search_result bid ">
       <div class="row">
         <div class="span2 ">
-          <%= link_to (image_tag "/images/company_square.png", :alt => "Profile", :class => "profile_avatar"), profile_path(bid.user.profile) %>
+          <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(bid.user.profile), :class => 'profile_avatar' %>
         </div>
         <div class="span6 ">
           <% unless current_page? activity_index_path(@project) %>
@@ -28,10 +28,10 @@
               <%= bid.project.location.city + ", " + bid.project.location.state %>
             </div>
           <% end %>
-          <span class="result_type label"><%= bid.project.project_type.name %></span>
+          <span class="result_type sector"><%= bid.project.project_type.name %></span>
           <p class="posted"><%= image_tag "/images/calendar.png" %><strong>Posted:</strong> <%= bid.created_at.to_formatted_s(:short) %></p>
         </div>
-        <div class="span3 alpha">
+        <div class="span3 ">
           <div class="result_numbers">
             <strong><%= number_to_currency bid.total %></strong>
             <dl>

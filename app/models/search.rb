@@ -17,7 +17,7 @@ class Search
     end
     @section = :projects.to_s unless @section
     @type_ids = [] unless @type_ids
-    @order = :name.to_s unless @order
+    @order = (@section == :projects.to_s ? :time_left.to_s : :name.to_s) unless @order
     @q = "" unless @q
 
     if @order == :distance.to_s && @location.blank?

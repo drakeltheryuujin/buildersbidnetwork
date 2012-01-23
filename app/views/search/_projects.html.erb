@@ -1,29 +1,45 @@
 <div class="results_order">
-  <%= link_to "name", search_path(@search, :order => :name), :class => (@search.order == :name.to_s ? 'active' : '') %>
-  <%= link_to "distance", search_path(@search, :order => :distance), :class => (@search.order == :distance.to_s ? 'active' : '') unless @search.location.blank? %>
-  <%= link_to "credit value", search_path(@search, :order => :value), :class => (@search.order == :value.to_s ? 'active' : '') %>
-  <%= link_to "time left", search_path(@search, :order => :time_left), :class => (@search.order == :time_left.to_s ? 'active' : '') %>
+  <%= link_to_unless @search.order == :name.to_s, "name", search_path(@search, :order => :name), :class => (@search.order == :name.to_s ? 'active' : '') %>
+  <%= link_to_unless @search.order == :distance.to_s, "distance", search_path(@search, :order => :distance), :class => (@search.order == :distance.to_s ? 'active' : '') unless @search.location.blank? %>
+  <%= link_to_unless @search.order == :value.to_s, "credit value", search_path(@search, :order => :value), :class => (@search.order == :value.to_s ? 'active' : '') %>
+  <%= link_to_unless @search.order == :time_left.to_s, "time left", search_path(@search, :order => :time_left), :class => (@search.order == :time_left.to_s ? 'active' : '') %>
 </div>
 <% @search.results.each do |project| %>
-  <div class="search_result project span12 row">
-    <div class="span2 ">
-      <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project) %>
+  <div class="search_result project ">
+    <div class="result_image ">
+      <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project), :class => 'project_avatar' %>
     </div>
-    <div class="span7 ">
+    <div class="result_body ">
       <div class="result_name"><%= link_to project.name, project_path(project) %></div>
       <div class="result_location">
         <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
         <%= project.location.city + ", " + project.location.state %>
       </div>
-      <span class="result_type label"><%= project.project_type.name %></span>
+      <span class="result_type sector"><%= project.project_type.name %></span>
     </div>
-    <div class="span3 alpha">
+    <div class="result_infos">
       <div class="result_numbers">
-        <%= project.bids.published.count %> Bids
-        &middot;
-        <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
+        <div class="credit_value">
+          <span class="label success"><%= project.credit_value %></span> Credit&nbsp;Value
+        </div>
+        <dl>
+          <dd>
+            <%= project.bids.published.count %> 
+          </dd>
+          <dt>
+            Bids
+          </dt>
+        </dl>
+        <dl>
+          <dd>
+            <%= (project.bidding_end.to_date - Date.today).to_i %> 
+          </dd>
+          <dt>
+            Days Left
+          </dt>
+        </dl>
+        <%= link_to "Project Scope", project_path(project), :class => "btn primary" %>
       </div>
-      <%= link_to "Project Scope", project_path(project), :class => "btn info" %>
     </div>
   </div>
 <% end %>

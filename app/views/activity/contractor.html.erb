@@ -8,32 +8,38 @@
   </div>
 <% end %>
 <div class="track-page track-bids-page row ">
-  <div class="track_filters span5 ">
-    <ul>
-      <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", activity_index_path %></li>
-      <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
-      <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", activity_index_path(:filter => :published) %></li>
-      <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", activity_index_path(:filter => :cancelled) %></li>
-      <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
-      <li class="<%= 'active' if params[:filter] == :held.to_s %>"><%= link_to "On Hold", activity_index_path(:filter => :held) %></li>
-    </ul>
-    <dl>
-      <dt>Lifetime Bids Posted:</dt>
-      <dd><%= current_user.bids.count %> </dd>
-      <dt>Last Login:</dt>
-      <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
-    </dl>
+  <div class="span5 ">
+    <div class="track_filters ">
+      <ul>
+        <li class="<%= 'active' unless params[:filter] %>"><%= link_to "All Bids", activity_index_path %></li>
+        <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
+        <li class="<%= 'active' if params[:filter] == :published.to_s %>"><%= link_to "Published", activity_index_path(:filter => :published) %></li>
+        <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Canelled", activity_index_path(:filter => :cancelled) %></li>
+        <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
+        <li class="<%= 'active' if params[:filter] == :held.to_s %>"><%= link_to "On Hold", activity_index_path(:filter => :held) %></li>
+      </ul>
+      <dl>
+        <dt>Lifetime Bids Posted:</dt>
+        <dd><%= current_user.bids.count %> </dd>
+        <dt>Last Login:</dt>
+        <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+      </dl>
+    </div>
   </div>
-  <div class="track_results span11 alpha row">
-    <% if @bids.blank? %>
-      <div class="search_result no_results project span12 row">
-        <h4>No bids found.  Get out there!</h4>
-        <%= link_to "Search for Projects", search_index_path, :class => 'btn large primary' %>
-      </div>
-    <% end %>
-    <% @bids.each do |bid| %>
-      <%= render :partial => "/projects/bid_bubble", :locals => { :bid => bid } %>
-    <% end %>
+  <div class="span11 ">
+    <div class="track_results row">
+      <% if @bids.blank? %>
+        <div class="span11">
+          <div class="search_result no_result project ">
+            <h4>No bids found.  Get out there!</h4>
+            <%= link_to "Search for Projects", search_index_path, :class => 'btn large primary' %>
+          </div>
+        </div>
+      <% end %>
+      <% @bids.each do |bid| %>
+        <%= render :partial => "/projects/bid_bubble", :locals => { :bid => bid } %>
+      <% end %>
+    </div>
   </div>
 </div>
 <% content_for :javascript do %>
