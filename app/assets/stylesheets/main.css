@@ -361,6 +361,10 @@ white-space: nowrap;
   padding-top: 8px;
   text-align: right;
 }
+.track_header .track_actions .label.large,
+.track_header .track_actions .btn.large,
+.search_header .search_actions .label.large,
+.search_header .search_actions .btn.large,
 .profile_header .profile_actions .label.large,
 .profile_header .profile_actions .btn.large,
 .project_header .project_actions .label.large,
@@ -755,6 +759,10 @@ ul.search_tabs li.selected {
 }
 */
 
+.track_header,
+.search_header {
+  padding-top: 10px;
+}
 .track_filters,
 .search_filters {
   border-color: #eee;

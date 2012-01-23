@@ -1,10 +1,19 @@
 <% content_for :top_banner do %>
   <div class="container">
-    <% if @search.q.blank? %>
-      <h1 class="search_header">Browse <span><%= @search.section.titleize %></span></h1>
-    <% else %>
-      <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
-    <% end %>
+    <div class="search_header row">
+      <div class="span11">
+        <% if @search.q.blank? %>
+          <h1 class="search_header">Browse <span><%= @search.section.titleize %></span></h1>
+        <% else %>
+          <h1 class="search_header">You Searched for "<span><%= @search.q %></span>"</h1>
+        <% end %>
+      </div>
+      <div class="span5">
+        <div class="search_actions">
+          <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
+        </div>
+      </div>
+    </div>
     <ul class="tabs">
       <li class="<%= @search.section_matches?(:projects)    ? 'active' : '' %>">
         <%= link_to "Projects", search_index_path("search[q]" => @search.q, "search[section]" => :projects) %>
