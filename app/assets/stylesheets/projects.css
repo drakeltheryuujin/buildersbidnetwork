@@ -5,11 +5,6 @@
   display: inline;
 }
 
-.project_header .project_actions {
-  padding-top: 23px;
-  text-align: right;
-}
-
 .project_header h4 {
   line-height: 22px;
 }

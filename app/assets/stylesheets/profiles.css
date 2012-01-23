@@ -15,19 +15,10 @@
 .profile_header  ul li {
   list-style:none
 }
-.profile_header .profile_actions {
-  margin-top: 6px;
-  float: right;
-}
 .profile_page .field label {
   font-size: 11px;
 }
-.profile_actions a {
-  color:#656565;
-  font-size:12px;
-  font-weight:normal;
-  text-transform:uppercase;
-}
+
 .profile_page .profile_meta label {
   text-transform:uppercase;
   font-weight:bold;
@@ -78,17 +69,11 @@
   line-height: 28px;
 }
   
-.profile_header.row{
-  margin-bottom:5px
+.profile_header {
+  padding-top: 10px;
+  margin-bottom: 5px
 }
-.profile_actions .span6 {
-  padding-top:10px;
-  }
-.profile_header .span8,
-.profile_actions {
-  padding-top:10px;
-}
-  
+ 
 .profile_page .span12  {
   width: 647px;
   margin-right: 52px;
