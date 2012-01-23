@@ -913,8 +913,8 @@ h1.search_header span {
   display: inline-block;
   padding: 10px 0;
 }
-.search_result .project_avatar,
-.search_result .profile_avatar {
+.search_result.bid .project_avatar,
+.search_result.bid .profile_avatar {
   margin: 6px;
 }
 .search_result.no_result {

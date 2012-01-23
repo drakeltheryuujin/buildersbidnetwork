@@ -18,9 +18,9 @@
         <%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn small edit') %>
       <% end %>
       <% if @profile.user != current_user %>
-        <div class="btn invite"><a href="#">Invite to Bid</a></div>
-        <div class='btn message'><%= link_to('Send A Message', contact_owner_profile_path(@profile), :class => '', "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %></div>
-        <div class="btn save"><a href="#">Save</a></div>
+        <!-- TODO <a href="#" class="btn large invite">Invite to Bid</a> -->
+        <%= link_to('Send A Message', contact_owner_profile_path(@profile), :class => 'btn small message', "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %>
+        <!-- TODO <a class="btn small save" href="#">Save</a> -->
       <% end %>
     </div>
   </div>

@@ -14,37 +14,13 @@
   background-image: -o-linear-gradient(#fce42a, #fce42a 25%, #edc530);
   background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
   background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
-}
-.btn.invite a{
+
   color:#525252;
   vertical-align:middle;
   background:transparent url('../images/invite_tag.png') 0 0  no-repeat;
   padding-left:30px;
 }
-.btn.save,
-.btn.message {
-  background-color:#e7e7e7;
-  height:22px;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  text-align: center;
-  font-size:12px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-.btn.save a,
-.btn.message a{
-  color:#848484;
-  vertical-align:middle;
-}
-.btn.save a {
-   background:transparent url('../images/save.png') 0 0  no-repeat;
-   padding-left:20px;
-}
-.btn.save{
-  float: right;
-  width: 79px;
-}
+
 .btn.message {
   float:left;
   /*width:115px;*/
