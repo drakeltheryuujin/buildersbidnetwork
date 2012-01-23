@@ -361,6 +361,10 @@ white-space: nowrap;
   padding-top: 8px;
   text-align: right;
 }
+.track_header .track_actions .label.large,
+.track_header .track_actions .btn.large,
+.search_header .search_actions .label.large,
+.search_header .search_actions .btn.large,
 .profile_header .profile_actions .label.large,
 .profile_header .profile_actions .btn.large,
 .project_header .project_actions .label.large,
@@ -755,6 +759,10 @@ ul.search_tabs li.selected {
 }
 */
 
+.track_header,
+.search_header {
+  padding-top: 10px;
+}
 .track_filters,
 .search_filters {
   border-color: #eee;
@@ -868,6 +876,24 @@ h1.search_header span {
 }
 .search_result.no_result {
   padding: 18px;
+  border-color: #FF6502;
+  background: #eeeeee;
+  background: -moz-linear-gradient(top, #eeeeee 0%, #ffffff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#ffffff));
+  background: -webkit-linear-gradient(top, #eeeeee 0%,#ffffff 100%);
+  background: -o-linear-gradient(top, #eeeeee 0%,#ffffff 100%);
+  background: -ms-linear-gradient(top, #eeeeee 0%,#ffffff 100%);
+  background: linear-gradient(top, #eeeeee 0%,#ffffff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 );
+}
+.search_result.no_result h1,
+.search_result.no_result h2 {
+  font-size: 22px;
+  line-height: 28px;
+  margin: 15px;
+}
+.search_result.no_result h2 {
+  font-weight: normal;
 }
 .search_result.no_result h4 {
   display: inline;
