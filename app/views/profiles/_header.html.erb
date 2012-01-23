@@ -4,7 +4,7 @@
       <%= image_tag "/images/company_square.png", :alt => "Avatar" %>
     </div>
   </div>
-  <div class="span8 ">  
+  <div class="span9 ">  
     <h1><%= @profile.name %></h1>
     <h4>
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
@@ -12,16 +12,14 @@
     </h4>
     <span class="sector"><%= @profile.type_name %></span>
   </div>
-  <div class="span6">
+  <div class="span5">
     <div class="profile_actions">
-      <ul class="">
-        <% if may_admin_profile? %>
-          <li><%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn') %></li>
-            <% end %>
-        <% if @profile.user != current_user %>
-            <li><%= link_to('Send Message', contact_owner_profile_path(@profile), "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %></li>
-        <% end %>
-      </ul>
+      <% if may_admin_profile? %>
+        <%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn small edit') %>
+      <% end %>
+      <% if @profile.user != current_user %>
+        <%= link_to('Send A Message', contact_owner_profile_path(@profile), :class => 'btn small message', "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %>
+      <% end %>
     </div>
   </div>
 </div>

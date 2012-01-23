@@ -185,7 +185,8 @@ white-space: nowrap;
 }
 
 .auth_topbar.topbar div > ul a img { 
-  
+  padding-top: 6px;
+  vertical-align: top;
 }
 
 .brand_header .nav_topbar {
@@ -351,11 +352,34 @@ white-space: nowrap;
 .profile_avatar {
   border: 1px solid #4BAAEE; 
   float: left;
-  margin-top:6px;
   padding: 1px;
   width: 94px;
   height: 94px;
 } 
+.profile_header .profile_actions,
+.project_header .project_actions {
+  padding-top: 8px;
+  text-align: right;
+}
+.profile_header .profile_actions .label.large,
+.profile_header .profile_actions .btn.large,
+.project_header .project_actions .label.large,
+.project_header .project_actions .btn.large {
+  display: inline-block;
+  width: 240px;
+  margin: 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.profile_header .profile_actions .btn.small,
+.project_header .project_actions .btn.small {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5px 5px 0 0;
+  width: 111px;
+  font-weight: bold;
+}
 
 
 .footer {
@@ -1117,7 +1141,8 @@ h1.search_header span {
   padding: 9px 14px 9px;
 }
 .label strong {
-  font-size: 2em;
+  font-size: 36px;
+  line-height: 18px;
   vertical-align: middle;
 }
 
