@@ -1,4 +1,57 @@
 
+.btn.invite {
+  
+  background-color:#fce42a;
+  height:40px;
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
+  width:206px;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fce42a), color-stop(25%, #fce42a), to(#edc530));
+  background-image: -webkit-linear-gradient(#fce42a, #fce42a 25%, #edc530);
+  background-image: -moz-linear-gradient(top, #fce42a, #fce42a 25%, #edc530);
+  background-image: -ms-linear-gradient(#fce42a, #fce42a 25%, #edc530);
+  background-image: -o-linear-gradient(#fce42a, #fce42a 25%, #edc530);
+  background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
+  background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
+}
+.btn.invite a{
+  color:#525252;
+  vertical-align:middle;
+  background:transparent url('../images/invite_tag.png') 0 0  no-repeat;
+  padding-left:30px;
+}
+.btn.save,
+.btn.message {
+  background-color:#e7e7e7;
+  height:22px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size:12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.btn.save a,
+.btn.message a{
+  color:#848484;
+  vertical-align:middle;
+}
+.btn.save a {
+   background:transparent url('../images/save.png') 0 0  no-repeat;
+   padding-left:20px;
+}
+.btn.save{
+  float: right;
+  width: 79px;
+}
+.btn.message {
+  float:left;
+  /*width:115px;*/
+  margin-left:44px;
+  margin-right:5px;
+}
+
 .profile_page  .tabs{
   margin-bottom:0;
   padding-left:220px;
@@ -59,8 +112,12 @@
 }
 .sidebar_box.sidebar_number strong,
 .sidebar_box.sidebar_number div {
-  padding-top:10px;
-  }
+  padding:2px;
+}
+.sidebar_box.sidebar_number strong {
+  padding:10px 15px;
+}
+
 .profile_header h1 {
   margin-bottom:5px;
 }
