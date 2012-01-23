@@ -22,6 +22,12 @@
   <p>
     <%= link_to 'View Bid', project_bid_url(@message.notified_object.project, @message.notified_object), :class => 'btn primary' %>
   </p>
+<% elsif @message.notification_type == :project_award_message %>
+  <p><%= raw @message.body %></p>
+
+  <p>
+    <%= link_to 'Accept or Decline', project_bid_url(@message.notified_object.project, @message.notified_object), :class => 'btn primary' %>
+  </p>
 <% else %>
   <p><%= raw @message.body %></p>
 <% end %>

@@ -42,11 +42,14 @@
       <div id="award-project-modal" class="modal hide fade">
         <div class="modal-header">
           <a href="#" class="close">×</a>
-          <h3>Award: <%= @bid.user.name %> </h3>
+          <h3>Send an award notification e-mail</h3>
         </div> 
+        <div class="award_explanation">
+          <strong>Congrats!</strong> You've found a contractor for your project.  This award notification e-mail will notify your contractor.
+        </div>
         <%= form_tag(award_project_bid_path(@project, @bid), :remote => true, "data-type" => "text" )  do %>
           <div class="modal-body form-stacked">
-            <label>Message Body</label>
+            <label>Include a personal note <em>(Optional)</em></label>
             <%= text_area_tag :message_body %>
           </div> 
           <div class="modal-footer">
@@ -81,20 +84,20 @@
       <ul class="line_items">
         <% @bid.line_item_bids.each_with_index do |line_item_bid, cnt| %>
           <li class="line_item ">
-            <div class="content span8">
+            <div class="content ">
               <span class="cnt"><%= cnt + 1 %></span>
               <%= line_item_bid.line_item.content %>
-              <% if ! line_item_bid.line_item.units.nil? %>
-                <span class="line_item_units"><%= line_item_bid.line_item.units %></span>
-              <% end %>
             </div>
-            <div class="units span3 alpha">
-              <%= number_to_currency line_item_bid.cost %>
-              <% if ! line_item_bid.line_item.units.nil? %>
-                <span class="unit_cost">x <%= number_to_currency line_item_bid.unit_cost %> = </span>
-                <span class="units"><%= line_item_bid.line_item.units %></span>
+            <div class="units ">
+              <% if line_item_bid.line_item.units.present? %>
+                <span class="multiply_explainer">x Unit Cost</span>
+                <span class="label unit_cost"><%= number_to_currency line_item_bid.unit_cost %></span>
               <% end %>
+              <span class="line_item_total"><%= number_to_currency line_item_bid.cost %></span>
             </div>
+            <% if line_item_bid.line_item.units.present? %>
+              <span class="units"><%= line_item_bid.line_item.units %></span>
+            <% end %>
           </li>
         <% end %>
       </ul>

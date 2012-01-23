@@ -592,33 +592,61 @@ ul.line_items li {
   border-radius: 4px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
-  padding: 8px;
   background: #EEE;
   font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+ul.line_items li > div{
+  margin: 8px;
 }
 ul.line_items li strong {
   font-size: 16px;
   font-weight: bold;
   padding-right: 8px;
 }
-ul.line_items li .units {
+ul.line_items li span.units {
   float: right;
   font-weight: bold;
+  padding-top: 5px;
 }
 table tr.odd,
 ul li.odd {
   background-color: #ddd;
 }
-ul.line_items li div.units,
 ul.line_items li div.content {
   display: inline-block;
   vertical-align: top;
   padding-top: 5px;
 }
 ul.line_items li div.units {
-  background-color: #9e9;
-  padding: 7px;
+  float: right;
+  width: 127px;
+  background-color: #9E9;
+  padding: 8px 16px 8px 16px;
+  margin: auto 0 auto 20px;
+  display: block;
+  border-left: 1px solid #CCC;
+  min-height: 26px;
 }
+ul.line_items li div.units > span {
+  display: block;
+}
+ul.line_items li div.units > span.multiply_explainer {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: -8px;
+  margin-top: -4px;
+  color: #333;
+}
+ul.line_items li div.units > span.unit_cost {
+  background: #87c442;
+  font-size: 16px;
+  padding: 2px 5px;
+  display: inline-block;
+  margin: 8px;
+}
+
 ul.line_items li div.units .input-prepend input {
   width: 124px
 }
@@ -637,11 +665,22 @@ table.project_bids tr td.total {
   font-size: 14px;
   padding-top: 7px;
 }
-ul.line_items li span.cost,
-ul.line_items li span.unit_cost {
-  float: right;
-  padding-right: 0.5em;
+
+#award-project-modal .award_explanation {
+  border-bottom: 1px solid #EEE;
+  padding: 15px 30px;
 }
+#award-project-modal .modal-body.form-stacked label {
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 14px;
+  padding-bottom: 3px;
+}
+#award-project-modal .modal-body.form-stacked label em {
+  text-transform: none;
+  font-style: normal;
+}
+
 #bid_total {
   text-align: right;
 }
@@ -874,6 +913,10 @@ h1.search_header span {
   display: inline-block;
   padding: 10px 0;
 }
+.search_result .project_avatar,
+.search_result .profile_avatar {
+  margin: 6px;
+}
 .search_result.no_result {
   padding: 18px;
   border-color: #FF6502;
@@ -933,7 +976,7 @@ h1.search_header span {
 }
 .notification_result .result_name,
 .search_result .result_name {
-  padding-top: 18px;
+  padding-top: 6px;
   font-size: 26px;
   line-height: 32px;
 }
@@ -998,8 +1041,9 @@ h1.search_header span {
   padding: 3px 8px;
   margin-bottom: 5px;
 }
+ul.line_items li div.units .line_item_total,
 .search_result .result_numbers strong {
-  color: green;
+  color: #40c730;
   font-size: 22px;
   font-weight: bold;
   display: block;
@@ -1034,6 +1078,10 @@ h1.search_header span {
   margin: 10px 0;
   padding: 10px 0;
   text-align: center;
+}
+.search_result.bid.award_cta .btn.large {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .track_results .profile_avatar,
