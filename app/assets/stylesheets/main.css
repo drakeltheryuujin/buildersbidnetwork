@@ -852,7 +852,14 @@ ul.search_tabs li.selected {
   text-align: left;
   padding: 0 5px 0 0;
 }
-
+strong.strong_privacy {
+  float:left;
+  padding-right:5px;
+  padding-top:2px;
+}
+li.li_privacy  {
+  list-style:none;
+}
 
 .track_filters ul,
 .search_filters ul {
