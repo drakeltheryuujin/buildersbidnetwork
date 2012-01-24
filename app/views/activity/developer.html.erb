@@ -75,10 +75,14 @@
                     <dd><%= project.bids.published.count %></dd>
                     <dt>Bids</dt>
                   </dl>
-                  <dl>
-                    <dd><%= (project.bidding_end.to_date - Date.today).to_i %></dd>
-                    <dt>Days Left</dt>
-                  </dl>
+                  <% if project.bidding_end > Time.now %>
+                    <dl>
+                      <dd><%= (project.bidding_end.to_date - Date.today).to_i %></dd>
+                      <dt>Days Left</dt>
+                    </dl>
+                  <% else %>
+                    <em>Ended</em>
+                  <% end %>
                   <%= link_to "Full Details", project_path(project), :class => "btn info" %>
                 </div>
               </div>

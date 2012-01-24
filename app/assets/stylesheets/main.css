@@ -1065,6 +1065,14 @@ ul.line_items li div.units .line_item_total,
   font-weight: bold;
   display: block;
 }
+.search_result .result_numbers em {
+  font-size: 18px;
+  font-style: normal;
+  display: inline-block;
+  font-weight: bold;
+  text-transform: uppercase;
+  vertical-align: super;
+}
 .search_result .result_numbers dl {
   display: inline-block;
   margin: 5px 10px 5px 10px;
