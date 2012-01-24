@@ -4,19 +4,21 @@ class ActivityController < ApplicationController
   def index
     @filter = params[:filter]
     if current_user.developer?
+      @projects = Project.order(:bidding_end)
+
       if @filter.present? && Project::STATES.include?(@filter.to_sym)
-        @projects = Project.where :user_id => current_user.id, :state => @filter
+        @projects = @projects.where :user_id => current_user.id, :state => @filter
       elsif @filter.present? && @filter.to_sym == :past
-        @projects = Project.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
+        @projects = @projects.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
       elsif @filter.present? && @filter.to_sym == :future
-        @projects = Project.where(:user_id => current_user.id).where("bidding_start >= ?", Time.now)
+        @projects = @projects.where(:user_id => current_user.id).where("bidding_start >= ?", Time.now)
       elsif @filter.present? && @filter.to_sym == :current
-        @projects = Project.
+        @projects = @projects.
             where(:user_id => current_user.id).
             where("bidding_start <= ?", Time.now).
             where("bidding_end >= ?", Time.now)
       else
-        @projects = Project.find_all_by_user_id current_user.id
+        @projects = @projects.find_all_by_user_id current_user.id
       end
 
       render :action => "developer"

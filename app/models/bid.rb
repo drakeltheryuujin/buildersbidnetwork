@@ -67,7 +67,7 @@ class Bid < ActiveRecord::Base
   end
 
   def award_message
-    Message.where(:notification_type => :project_award_message).where(:notified_object_type => 'Bid').where(:notified_object_id => self.id).first
+    Message.where(:notification_type => :project_award_message, :notified_object_type => 'Bid', :notified_object_id => self.id).first
   end
 
   private
