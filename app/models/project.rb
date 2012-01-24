@@ -51,6 +51,13 @@ class Project < ActiveRecord::Base
     my_bid(user).present?
   end
 
+  def winning_bid
+    self.bids.where(:state => :accepted.to_s)
+  end
+  def award_pending_bid
+    self.bids.where(:state => :awarded.to_s)
+  end
+
 
   validates :name,
     :presence => true
@@ -81,7 +88,7 @@ class Project < ActiveRecord::Base
   validates_associated :project_type
 
   # TODO Use AASM like with Bid
-  STATES = [ :draft, :published, :cancelled, :awarded ]
+  STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ]
   validates_inclusion_of :state, :in => STATES
   
   accepts_nested_attributes_for :location, :allow_destroy => :true

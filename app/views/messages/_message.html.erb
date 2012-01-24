@@ -1,7 +1,7 @@
 <%= div_for(message, :class => read_class + " row") do%>
   <div class="span2">
     <div class="sender_name">
-      <%= link_to_unless(message.sender.profile.blank?, (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile) %>
+      <%= link_to_unless(message.sender.profile.blank?, (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile)) %>
       <%= link_to_unless(message.sender.profile.blank?, message.sender.name, profile_path(message.sender.profile)) %>
     </div>
     <div class="date">
@@ -9,9 +9,9 @@
     </div>
   </div>
   <div class="body span9">
-  	<%= raw(message.body) %>
+  	<p><%= raw(message.body) %></p>
     <% if message.notification_type == :project_award_message.to_s %>
-      <p>
+      <p class="message_actions">
         <%= link_to 'Accept or Decline', project_bid_path(message.notified_object.project, message.notified_object), :class => 'btn primary' %>
       </p>
     <% end %>

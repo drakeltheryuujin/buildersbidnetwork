@@ -25,7 +25,7 @@ class Bid < ActiveRecord::Base
   validates :user, :presence => true
   validates :project, :presence => true
 
-  STATES = [ :draft, :published, :cancelled, :awarded, :held ].collect do |n| n.to_s end
+  STATES = [ :draft, :published, :cancelled, :awarded, :accepted, :held ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
   validate :sufficient_credits?, :if => :changed_to_published?
@@ -41,7 +41,8 @@ class Bid < ActiveRecord::Base
   aasm_state :draft
   aasm_state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
   aasm_state :cancelled
-  aasm_state :awarded, :enter => :award_project
+  aasm_state :awarded, :enter => :pending_award_project
+  aasm_state :accepted, :enter => :award_project
   aasm_state :held
 
   aasm_event :publish do
@@ -53,6 +54,9 @@ class Bid < ActiveRecord::Base
   aasm_event :award do
     transitions :to => :awarded, :from => :published
   end
+  aasm_event :accept do
+    transitions :to => :accepted, :from => :awarded
+  end
   aasm_event :hold do
     transitions :to => :held, :from => :published
   end
@@ -60,6 +64,10 @@ class Bid < ActiveRecord::Base
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)
+  end
+
+  def award_message
+    Message.where(:notification_type => :project_award_message).where(:notified_object_type => 'Bid').where(:notified_object_id => self.id).first
   end
 
   private
@@ -81,6 +89,10 @@ class Bid < ActiveRecord::Base
     subject = "Bid from #{self.user.profile.name}"
     body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
     self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
+  end
+
+  def award_pending_project
+    self.project.update_attribute(:state, :award_pending)
   end
 
   def award_project

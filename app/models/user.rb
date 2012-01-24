@@ -85,4 +85,15 @@ class User < ActiveRecord::Base
     message.recipients = message.recipients.uniq
     return message.deliver(false,sanitize_text)
   end
+
+  def reply_with_object_and_type(conversation, recipients, reply_body, subject = nil, obj = nil, type = nil, sanitize_text = true)
+    subject = subject || "RE: #{conversation.subject}"
+    response = Message.new({:sender => self, :conversation => conversation, :body => reply_body, :subject => subject})
+    response.notified_object = obj if obj.present?
+    response.notification_type = type if type.present?
+    response.recipients = recipients.is_a?(Array) ? recipients : [recipients]
+    response.recipients = response.recipients.uniq
+    response.recipients.delete(self)
+    return response.deliver true,sanitize_text
+  end
 end

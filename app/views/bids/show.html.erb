@@ -32,10 +32,14 @@
     <% if @project.user == current_user && @project.award_period? %>
       <div class="span11">
         <div class="search_result bid award_cta">
-          <% unless @project.state == :awarded.to_s %>
+          <% if @bid.published? %>
             <%= link_to 'Award Project', award_project_bid_path(@project, @bid), :class => 'btn large primary', "data-controls-modal" => "award-project-modal", "data-backdrop" => "true" %> 
-          <% else %>
+          <% elsif @bid.awarded? %>
+            <h1>Award Pending</h1>
+            <h2><%= link_to @bid.user.name, profile_path(@bid.user.profile) %></h2>
+          <% elsif @bid.accepted? %>
             <h1>Project Awarded</h1>
+            <h2><%= link_to @bid.user.name, profile_path(@bid.user.profile) %></h2>
           <% end %>
         </div>
       </div>
@@ -76,9 +80,53 @@
     <% elsif @bid.awarded? && @bid.user == current_user %>
       <div class="span11">
         <div class="search_result bid award_cta">
-          <h1>Congrats!</h1>
+          <h1><%= image_tag '/images/orange_flag.png' %> Congratulations!</h1>
+          <p>You have been awared the <strong>"<%= @project.name %>."</strong> Please review your bid and accept the project.</p>
+          <% if message = @bid.award_message %>
+            <div class="award_message">
+              <div><%= message.body %></div>
+              <strong class="signature"><%= message.sender.name %></strong>
+            </div>
+          <% end %>
+          <div class="award_actions">
+            <%= link_to 'Accept Project', accept_project_bid_path(@project, @bid), :class => 'btn large primary', "data-controls-modal" => "accept-project-modal", "data-backdrop" => "true" %> 
+          </div>
         </div>
       </div>
+      <div id="accept-project-modal" class="modal hide fade">
+        <div class="modal-header">
+          <a href="#" class="close">×</a>
+          <h3><%= image_tag '/images/orange_flag.png' %> Accept your bid award</h3>
+        </div> 
+        <div class="award_explanation">
+          <strong>Congrats!</strong> Your bid was awarded by the project creator.  Accept to commit to the project.
+        </div>
+        <%= form_tag(accept_project_bid_path(@project, @bid), :remote => true, "data-type" => "text" )  do %>
+          <div class="modal-body form-stacked">
+            <label>Include a personal note <em>(Optional)</em></label>
+            <%= text_area_tag :message_body %>
+          </div> 
+          <div class="modal-footer">
+            <%= submit_tag "Send", :class => "btn primary" %>
+          </div> 
+        <% end %>
+      </div>
+      <% content_for :javascript do %>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#accept-project-modal form")
+              .bind('ajax:complete', function(evt, data, status, xhr){
+                $("#accept-project-modal").modal('hide');
+              })
+              .bind('ajax:success', function(evt, data, status, xhr){
+                $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+              })
+              .bind('ajax:error', function(evt, xhr, status, error){
+                $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+              });
+          });
+        </script>
+      <% end %>
     <% end %>
     <div class="row form-stacked">
       <ul class="line_items">
