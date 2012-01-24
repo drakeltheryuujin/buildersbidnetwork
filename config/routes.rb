@@ -6,6 +6,7 @@ Ypn::Application.routes.draw do
     resources :bids do
       member do 
         post 'award'
+        post 'accept'
       end 
     end
     resources :project_documents

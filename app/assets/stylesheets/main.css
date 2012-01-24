@@ -666,7 +666,10 @@ table.project_bids tr td.total {
   padding-top: 7px;
 }
 
-#award-project-modal .award_explanation {
+.modal .modal-header h3 img {
+  vertical-align: top;
+}
+.modal .award_explanation {
   border-bottom: 1px solid #EEE;
   padding: 15px 30px;
 }
@@ -750,6 +753,13 @@ label span.message.bad_address {
   font-weight: normal;
   border-bottom: 1px solid #ddd;
 } 
+.conversation .message p {
+  padding: 5px 0;
+}
+.conversation .message p.message_actions {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
 .conversation .actions {
   margin-top: 0;
 } 
@@ -1078,9 +1088,39 @@ ul.line_items li div.units .line_item_total,
   margin: 10px 0;
   padding: 10px 0;
   text-align: center;
+  border: 1px solid #aaa;
+}
+.search_result.bid.award_cta h1 {
+  margin-bottom: 0;
+  color: #fc7d01;
+}
+.search_result.bid.award_cta p {
+  margin: 10px 0;
+  padding: 15px 110px;
+  font-size: 16px;
+  border-top: 1px dotted #aaa;
+  border-bottom: 1px dotted #aaa;
+}
+.search_result.bid.award_cta .award_message {
+  border: 1px solid #aaa;
+  background-color: #fff;
+  margin: 10px 20px;
+  color: #666;
+  text-align: left;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+.search_result.bid.award_cta .award_message .signature {
+  text-align: right;
+  display: block;
+}
+.search_result.bid.award_cta .award_actions .btn {
+  margin: 0 30px;
 }
 .search_result.bid.award_cta .btn.large {
   text-transform: uppercase;
+}
+.search_result.bid.award_cta .btn.large.primary {
   font-weight: bold;
 }
 

@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award]
+  before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award, :accept]
   before_filter :get_project, :only => [:new, :create]
   before_filter :verify_bidding_period!, :only => [:new, :create, :edit, :update]
   before_filter :check_may_modify!, :only => [:update, :edit]
@@ -51,6 +51,21 @@ class BidsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Awarded') }
       format.text { render :text => "Bid Awarded" }
+    end
+  end
+
+  def accept
+    @bid.accept!
+    sender_name = current_user.name
+    body = params[:message_body] || sender_name + " has accepted your project award for #{@project.name}."
+    owner = @bid.project.user
+    message = @bid.award_message
+
+    current_user.reply_with_object_and_type(message.conversation, owner, body, nil, @bid, :bid_accepted_message)
+
+    respond_to do |format|
+      format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Accepted') }
+      format.text { render :text => "Bid Accepted" }
     end
   end
 

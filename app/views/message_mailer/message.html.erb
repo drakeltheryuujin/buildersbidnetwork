@@ -4,6 +4,8 @@
   <% content_for :top_head, "Project has changed!" %>
 <% elsif @message.notification_type == :project_award_message %>
   <% content_for :top_head, "Your bid won the project!" %>
+<% elsif @message.notification_type == :bid_accepted_message %>
+  <% content_for :top_head, "Your bid award was accepted!" %>
 <% else %>
   <% content_for :top_head, "You have a new message!" %>
 <% end %>
@@ -25,7 +27,7 @@
 <% elsif @message.notification_type == :project_award_message %>
   <p><%= raw @message.body %></p>
 
-  <p>
+  <p class="message_actions">
     <%= link_to 'Accept or Decline', project_bid_url(@message.notified_object.project, @message.notified_object), :class => 'btn primary' %>
   </p>
 <% else %>
