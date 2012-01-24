@@ -6,6 +6,8 @@
   <% content_for :top_head, "Your bid won the project!" %>
 <% elsif @message.notification_type == :bid_accepted_message %>
   <% content_for :top_head, "Your bid award was accepted!" %>
+<% elsif @message.notification_type == :bid_placed_message %>
+  <% content_for :top_head, "A bid has been placed!" %>
 <% else %>
   <% content_for :top_head, "You have a new message!" %>
 <% end %>
