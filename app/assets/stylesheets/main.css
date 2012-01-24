@@ -130,6 +130,10 @@ white-space: nowrap;
   color: #fff;
   height: 20px;
 }
+.topbar .fill {
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
+}
+
 .auth_topbar .fill {
   background: #3873af; /* Old browsers */
   background: -moz-linear-gradient(top,  #3873af 0%, #326092 100%); /* FF3.6+ */
