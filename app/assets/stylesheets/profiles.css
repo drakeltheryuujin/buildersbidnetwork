@@ -1,12 +1,10 @@
 
 .btn.invite {
-  
-  background-color:#fce42a;
-  height:40px;
-  font-size:22px;
-  font-weight:bold;
+  background-color :#edc530;
+  height: 40px;
+  font-size: 22px;
+  font-weight: bold;
   text-align:center;
-  width:206px;
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fce42a), color-stop(25%, #fce42a), to(#edc530));
   background-image: -webkit-linear-gradient(#fce42a, #fce42a 25%, #edc530);
   background-image: -moz-linear-gradient(top, #fce42a, #fce42a 25%, #edc530);
@@ -14,20 +12,24 @@
   background-image: -o-linear-gradient(#fce42a, #fce42a 25%, #edc530);
   background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
   background-image: linear-gradient(#fce42a, #fce42a 25%, #edc530);
-
+  padding-top: 18px;
+  padding-bottom: 2px;
+}
+.btn.invite span {
   color:#525252;
   vertical-align:middle;
-  background:transparent url('../images/invite_tag.png') 0 0  no-repeat;
+  background:transparent url('/images/invite_tag.png') 0 0  no-repeat;
   padding-left:30px;
 }
-
-.btn.message {
-  float:left;
-  /*width:115px;*/
-  margin-left:44px;
-  margin-right:5px;
+.btn.save {
+  padding: 6px 9px 5px;
 }
-
+.btn.save span {
+  background: transparent url('/images/save.png') 0 -1px  no-repeat;
+  padding-left: 20px;
+  display: inline-block;
+  height: 16px;
+}
 .profile_page  .tabs{
   margin-bottom:0;
   padding-left:220px;
