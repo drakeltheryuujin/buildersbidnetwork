@@ -1329,6 +1329,12 @@ ul.line_items li div.units .line_item_total,
 .credits_page .explanation {
   margin: 10px 20px 30px 10px;
 }
+.credits_page .explanation.policy p{
+  color: #999;
+  text-align: justify;
+  font-size: 12px;
+  line-height: 12px;
+}
 .credits_page .credits_box {
   border: 1px solid #ddd;
   margin-top: 10px;
