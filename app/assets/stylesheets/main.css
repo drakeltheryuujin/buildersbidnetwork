@@ -652,7 +652,7 @@ ul.line_items li div.units > span.unit_cost {
 }
 
 ul.line_items li div.units .input-prepend input {
-  width: 124px
+  width: 88px;
 }
 ul.line_items li span.cnt { 
   font-size: 18px;
