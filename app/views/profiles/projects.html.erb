@@ -3,51 +3,17 @@
     <%= render "header" %>
     <ul class="tabs span12">
       <li><%= link_to "Company Overview", profile_path(@profile) %></li>
-      <li class="active"><%= link_to "Awarded Projects", projects_profile_path(@profile) %></li>
+      <li class="active"><%= link_to (@profile.user.contractor? ? "Awarded Projects" : "Posted Projects"), projects_profile_path(@profile) %></li>
     </ul>
   </div>
 <% end %>
 
 <div class="row profile_page">
   <div class="span12">
-    <div class="row">
-<% @projects.each do |project| %>
-  <div class="search_result project span12 row">
-    <div class="span2 ">
-      <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project) %>
-    </div>
-    <div class="span7 ">
-      <div class="result_name"><%= link_to project.name, project_path(project) %></div>
-      <div class="result_location">
-        <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
-        <%= project.location.city + ", " + project.location.state %>
-      </div>
-      <span class="result_type label"><%= project.project_type.name %></span>
-    </div>
-    <div class="span3 alpha">
-      <div class="result_numbers">
-        <%= project.bids.published.count %> Bids
-        &middot;
-        <%= (project.bidding_end.to_date - Date.today).to_i %> Days Left
-      </div>
-      <%= link_to "Project Scope", project_path(project), :class => "btn info" %>
-    </div>
-  </div>
-<% end %>
+    <div class="search_results">
+      <%= render :partial => "/projects/project", :collection => @projects %>
     </div>
   </div>
   <%= render "sidebar" %>
 </div>
-<% content_for :javascript do %>
-  <%= javascript_include_tag "jquery.lightbox" %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.result_location a').lightBox({
-        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
-        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
-        imageBlank: '/images/lightbox/lightbox-blank.gif'
-      });
-    });
-  </script>
-<% end%>
-
+<%= render "/result_location_lightbox" %>

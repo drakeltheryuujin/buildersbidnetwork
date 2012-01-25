@@ -32,6 +32,7 @@ class Bid < ActiveRecord::Base
 
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
+  scope :accepted, where(:state => :accepted)
 
 # AASM
   aasm_column :state

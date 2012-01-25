@@ -95,6 +95,8 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :line_items, :allow_destroy => :true
 
+  scope :published, where(:state => :published)
+
   def bidding_period?
     return (self.bidding_start <= Time.now) && (Time.now <= self.bidding_end)
   end
