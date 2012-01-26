@@ -220,8 +220,9 @@
       $('div.datetime-field').each(function(i, el) {
         var sels = $(el).find("select:lt(3)");
         var d = new Date(sels[0].value, parseInt(sels[1].value) - 1, sels[2].value);
-        var field = $('<div class="input-append"><input type="date" /><span class="add-on"><img src="/images/calendar.png"/></span></div>');
-        var dateinput = $(field).find('input').dateinput((isValidDate(d) ? { value: d} : {}));
+        var field = $('<div class="input-append"><input type="date" /></div>');
+        //var field = $('<div class="input-append"><input type="date" /><span class="add-on"><img src="/images/calendar.png"/></span></div>');
+        var dateinput = $(field).find('input').dateinput({value: (isValidDate(d) ? d : null), trigger: true, css: {trigger: 'add-on calendar'}});
 
         // Without this, the field is initially blank
         if(isValidDate(d)) dateinput.val(dateinput.data().dateinput.getValue($.tools.dateinput.conf.format));

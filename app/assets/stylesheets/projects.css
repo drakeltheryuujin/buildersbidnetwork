@@ -124,6 +124,10 @@ form.new_project_document {
   font-size: 1em;
   text-align: left;
 }
+.project_form .project_meta .field .add-on.calendar {
+  background:url('/images/calendar.png') no-repeat 5px 5px;
+  height: 17px;
+}
 
 .project_form .project_meta .field.line_item input,
 .project_form .project_meta .field.location select,
