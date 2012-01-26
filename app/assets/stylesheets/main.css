@@ -172,6 +172,7 @@ white-space: nowrap;
 }
 .home-page-navbar-login input {
   background-color:#FFF;
+  color:#000;
   margin-top:2px;
   margin-bottom:2px;
 }
