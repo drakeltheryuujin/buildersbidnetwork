@@ -126,7 +126,6 @@ form.new_project_document {
 }
 .project_form .project_meta .field .add-on.calendar {
   background:url('/images/calendar.png') no-repeat 5px 5px;
-  height: 17px;
 }
 
 .project_form .project_meta .field.line_item input,
