@@ -92,8 +92,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of :estimated_budget, :less_than => 1000000000, :unless => :draft?
   # TODO validate credit_value and estimated_budget are in sync
 
-  validates_associated :location, { :unless => :draft? }
-  validates_associated :project_type
+  validates_associated :location, :project_type 
 
   # TODO Use AASM like with Bid
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ]
