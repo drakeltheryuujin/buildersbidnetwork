@@ -62,29 +62,37 @@ class Project < ActiveRecord::Base
   validates :name,
     :presence => true
   validates :description,
-    :presence => true
+    :presence => true,
+    :unless => :draft?
   validates :bidding_start,
-    :presence => true
+    :presence => true,
     #:date => {:after => (! :created_at.nil? ? :created_at : Proc.new { Time.now })}
+    :date => {:after => Proc.new {Time.now}},
+    :unless => :draft?
   validates :bidding_end,
     :presence => true, 
-    :date => {:after => Proc.new { Time.now }}
+    :date => {:after => Proc.new {self.bidding_start}},
+    :unless => :draft?
   validates :project_start,
     :presence => true, 
-    :date => {:after => Proc.new { Time.now }},
-    :on => :create
+    :date => {:after => Proc.new {self.bidding_end}},
+    :on => :create,
+    :unless => :draft?
   validates :project_end,
     :presence => true, 
-    :date => {:after => Proc.new { Time.now }},
-    :on => :create
+    :date => {:after => Proc.new {self.project_start}},
+    :on => :create,
+    :unless => :draft?
   validates :estimated_budget,
-    :presence => true
+    :presence => true,
+    :unless => :draft?
   validates :terms_of_use, 
-    :acceptance => true
-  validates_numericality_of :estimated_budget, :less_than => 1000000000
+    :acceptance => true,
+    :unless => :draft?
+  validates_numericality_of :estimated_budget, :less_than => 1000000000, :unless => :draft?
   # TODO validate credit_value and estimated_budget are in sync
 
-  validates_associated :location
+  validates_associated :location, { :unless => :draft? }
   validates_associated :project_type
 
   # TODO Use AASM like with Bid
@@ -103,6 +111,10 @@ class Project < ActiveRecord::Base
 
   def award_period?
     return Time.now >= self.bidding_end
+  end
+
+  def draft?
+    self.state.to_s == :draft.to_s
   end
 
   def hold_bids_and_notify_bidders(body)
