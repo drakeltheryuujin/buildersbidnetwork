@@ -17,33 +17,33 @@
     <ul class="line_items">
       <% cnt = 0 %>
       <%= f.fields_for :line_item_bids do |line_item_bid_form| %>
+        <%= line_item_bid_form.hidden_field :line_item_id %>
         <li class="line_item ">
-          <%= line_item_bid_form.hidden_field :line_item_id %>
-          <div class="content span8">
+          <div class="content ">
             <span class="cnt"><%= cnt = cnt + 1 %></span>
             <%= line_item_bid_form.object.line_item.content %>
-            <% if ! line_item_bid_form.object.line_item.units.nil? %>
-              <span class="line_item_units"><%= line_item_bid_form.object.line_item.units %></span>
-            <% end %>
           </div>
-          <div class="units span3 alpha">
-            <% if ! line_item_bid_form.object.line_item.units.nil? %>
-              <div class="input-prepend span3">
+          <div class="units ">
+            <% if line_item_bid_form.object.line_item.units.present? %>
+              <div class="input-prepend ">
                 <span class="add-on">X</span>
                 <%= line_item_bid_form.text_field :unit_cost, :value => number_with_precision(line_item_bid_form.object.unit_cost, :precision => 2), :size => 5, :placeholder => 'Unit Cost', :class => 'line_item_unit_cost ' %>
               </div>
 
-              <div class="input-prepend span3">
+              <div class="input-prepend ">
                 <span class="add-on">$</span>
                 <%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :readonly => 'true', :class => 'line_item_cost calculated_line_item_cost ' %>
               </div>
             <% else %>
-              <div class="input-prepend span3">
+              <div class="input-prepend ">
                 <span class="add-on">$</span>
                 <%= line_item_bid_form.text_field :cost, :value => number_with_precision(line_item_bid_form.object.cost, :precision => 2), :size => 10, :placeholder => 'Cost', :class => 'line_item_cost ' %>
               </div>
             <% end %>
           </div>
+          <% if ! line_item_bid_form.object.line_item.units.nil? %>
+            <span class="line_item_units"><%= line_item_bid_form.object.line_item.units %></span>
+          <% end %>
         </li>
       <% end %>
       <li class="line_item bid_total">

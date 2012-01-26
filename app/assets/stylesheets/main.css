@@ -655,7 +655,7 @@ ul.line_items li div.units > span.unit_cost {
 }
 
 ul.line_items li div.units .input-prepend input {
-  width: 124px
+  width: 88px;
 }
 ul.line_items li span.cnt { 
   font-size: 18px;
@@ -1331,6 +1331,12 @@ ul.line_items li div.units .line_item_total,
 }
 .credits_page .explanation {
   margin: 10px 20px 30px 10px;
+}
+.credits_page .explanation.policy p{
+  color: #999;
+  text-align: justify;
+  font-size: 12px;
+  line-height: 12px;
 }
 .credits_page .credits_box {
   border: 1px solid #ddd;

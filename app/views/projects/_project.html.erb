@@ -1,0 +1,41 @@
+<div class="search_result project ">
+  <div class="result_image ">
+    <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project), :class => 'project_avatar' %>
+  </div>
+  <div class="result_body ">
+    <div class="result_name"><%= link_to project.name, project_path(project) %></div>
+    <div class="result_location">
+      <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
+      <%= project.location.city + ", " + project.location.state %>
+    </div>
+    <span class="result_type sector"><%= project.project_type.name %></span>
+  </div>
+  <div class="result_infos">
+    <div class="result_numbers">
+      <div class="credit_value">
+        <span class="label success"><%= project.credit_value %></span> Credit&nbsp;Value
+      </div>
+      <dl>
+        <dd>
+          <%= project.bids.published.count %> 
+        </dd>
+        <dt>
+          Bids
+        </dt>
+      </dl>
+      <% if project.bidding_end > Time.now %>
+        <dl>
+          <dd>
+            <%= (project.bidding_end.to_date - Date.today).to_i %> 
+          </dd>
+          <dt>
+            Days Left
+          </dt>
+        </dl>
+      <% else %>
+        <em>Ended</em>
+      <% end %>
+      <%= link_to "Project Scope", project_path(project), :class => "btn primary" %>
+    </div>
+  </div>
+</div>

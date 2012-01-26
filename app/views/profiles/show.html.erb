@@ -3,13 +3,13 @@
     <%= render "header" %>
     <ul class="tabs span12">
       <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
-      <li><%= link_to "Awarded Projects", projects_profile_path(@profile) %></li>
+      <li><%= link_to (@profile.user.contractor? ? "Awarded Projects" : "Posted Projects"), projects_profile_path(@profile) %></li>
     </ul>
   </div>
 <% end %>
 
 <div class="row profile_page">
-  <div class="span11 profile_content">
+  <div class="span12 profile_content">
     <h4>Location</h4>
     <div class="row">
       <div class="span6 ">
@@ -34,7 +34,7 @@
           </div>
         </div> <!-- /profile_meta -->
       </div>
-      <div class="span5 ">
+      <div class="span6 ">
         <div class="profile_meta right">
           <% unless @profile.established.blank? %>
             <div class="field">
@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="span11 alpha form-stacked">
+      <div class="span12 alpha form-stacked">
         <div class="profile_meta">
           <h4>Company Description</h4>
           <p class="">

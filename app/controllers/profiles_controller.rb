@@ -95,7 +95,11 @@ class ProfilesController < ApplicationController
   end
 
   def projects
-    @projects = Project.where(:user_id => @profile.user.id) 
+    if @profile.user.developer?
+      @projects = @profile.user.project.published
+    else
+      @projects = Project.joins(:bids).where(:bids => {:user_id => @profile.user.id, :state => :accepted.to_s})
+    end
   end
 
   def contact_owner

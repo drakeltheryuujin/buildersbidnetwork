@@ -108,12 +108,6 @@
   margin-bottom: 5px
 }
  
-.profile_page .span12  {
-  width: 647px;
-  margin-right: 52px;
-}
-  
-
 
 .profile_page .profile_meta  label {
   font-size:12px;
@@ -179,12 +173,9 @@
 
 .profile_sidebar {
   height: 95px;
-  padding: 0 0 0px 0;
   background-color: #FFF;
   border: 2px solid #DDD;
-  float:right;
   margin-bottom: 20px;
-  width: 280px;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;

@@ -29,9 +29,11 @@ class Bid < ActiveRecord::Base
   validates_inclusion_of :state, :in => STATES
 
   validate :sufficient_credits?, :if => :changed_to_published?
+  validates_numericality_of :total, :greater_than => 0
 
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
+  scope :accepted, where(:state => :accepted)
 
 # AASM
   aasm_column :state

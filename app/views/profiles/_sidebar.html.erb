@@ -1,10 +1,10 @@
-<div class="span5 ">
+<div class="span4 ">
   <div class="profile_sidebar">
     <div class="sidebar_box sidebar_number">
-      <% cnt = @profile.user.project.count %>
+      <% cnt = (@profile.user.developer? ? @profile.user.project.published.count : @profile.user.bids.accepted.count) %>
       <div class="head"><h1>Recent Activity</h1></div>
       <strong><%= cnt %></strong>
-      <div>You currently have <span><%=cnt%> active bids</span></div>
+      <div>This company currently has <span><%=cnt%></span> <%= @profile.user.developer? ? "published projects" : "awarded bids" %></div>
     </div>
   </div>
 </div>

@@ -34,6 +34,7 @@ class Search
 	      relation = @q.blank? ? DeveloperProfile.scoped : DeveloperProfile.search(@q)
 	    else
 	      relation = @q.blank? ? Project.scoped : Project.search(@q)
+        relation = relation.where("bidding_end > :now", :now => Time.now)
         unless @type_ids.blank?
           relation = relation.where(:project_type_id => @type_ids)
         end

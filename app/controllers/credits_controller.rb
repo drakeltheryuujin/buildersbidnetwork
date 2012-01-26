@@ -1,7 +1,7 @@
 class CreditsController < ApplicationController
   PricePerCredit = 50
   GroupPackages = [[11, 500], [17, 750], [23, 1000], [30, 1250]]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :index
 
   def index
   end
