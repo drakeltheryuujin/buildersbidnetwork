@@ -58,7 +58,8 @@
         </div>
         <div class="field datetime-field">
           <%= f.label :pre_bid_meeting, "Pre-Bid Meeting (Optional)" %>
-          <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true %>
+          <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
+          <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/cross.png", :alt => "[Clear Date]") %></a>
         </div>
       </div> <!-- /.project_meta -->
 
@@ -211,16 +212,22 @@
   <script type="text/javascript">
     $.tools.dateinput.conf.format = 'mm-dd-yyyy';
     $(document).ready(function() {
+      $('#clear_pre_bid_meeting').click(function(event) {
+        $(this).parent().find("select:lt(4)").each(function(index, elem) { $(elem).val(""); });
+        $(this).parent().find("input").val("");
+        return false;
+      });
       $('div.datetime-field').each(function(i, el) {
         var sels = $(el).find("select:lt(3)");
         var d = new Date(sels[0].value, parseInt(sels[1].value) - 1, sels[2].value);
         var field = $('<div class="input-append"><input type="date" /><span class="add-on"><img src="/images/calendar.png"/></span></div>');
-        var dateinput = $(field).find('input').dateinput({ value: d} );
+        var dateinput = $(field).find('input').dateinput((isValidDate(d) ? { value: d} : {}));
 
         // Without this, the field is initially blank
-        dateinput.val(dateinput.data().dateinput.getValue($.tools.dateinput.conf.format));
+        if(isValidDate(d)) dateinput.val(dateinput.data().dateinput.getValue($.tools.dateinput.conf.format));
 
-        dateinput.change(function(event, date) {
+        //dateinput.change(function(event, date) {
+        dateinput.bind('beforeChange', function(event, date) {
           $(sels[0]).val(date.getFullYear());
           $(sels[1]).val(date.getMonth() + 1);
           $(sels[2]).val(date.getDate());
@@ -255,6 +262,11 @@
 
       function isNumber(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
+      }
+      function isValidDate(d) {
+        if ( Object.prototype.toString.call(d) !== "[object Date]" )
+          return false;
+        return !isNaN(d.getTime());
       }
     });
   </script>

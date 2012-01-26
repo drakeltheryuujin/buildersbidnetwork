@@ -24,10 +24,12 @@
           <label>Bidding Starts</label>
           <span><%= @project.bidding_start.to_formatted_s(:med) %></span>
         </li>
-        <li>
-          <label>Pre-Bid Meeting</label>
-          <span><%= @project.pre_bid_meeting.to_formatted_s(:med) %></span>
-        </li>
+        <% if @project.pre_bid_meeting.present? %>
+          <li>
+            <label>Pre-Bid Meeting</label>
+            <span><%= @project.pre_bid_meeting.to_formatted_s(:med) %></span>
+          </li>
+        <% end %>
         <li>
           <label>Estimated Start</label>
           <span><%= @project.project_start.to_formatted_s(:med) %></span>
