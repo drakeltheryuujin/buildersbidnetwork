@@ -1389,8 +1389,6 @@ ul.line_items li div.units .line_item_total,
   width: 150px;
   border-left: 1px solid #DDD;
   display: inline-block;
-   zoom: 1;            /* Inline-Block Fix for IE 7 */
-  *display: inline;   /* Inline-Block Fix for IE 7 */
   padding: 10px;
   text-align: center;
 }

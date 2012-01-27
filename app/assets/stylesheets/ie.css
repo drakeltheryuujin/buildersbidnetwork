@@ -1,0 +1,8 @@
+.topbar .fill {
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
+}
+
+.credits_page .groups_box .group_box {
+   zoom: 1;            /* Inline-Block Fix for IE 7 */
+  *display: inline;   /* Inline-Block Fix for IE 7 */
+  }
