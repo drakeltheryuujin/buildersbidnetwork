@@ -297,7 +297,7 @@ white-space: nowrap;
   margin-bottom: 20px;
 }
 #top-banner  .tabs {
-  margin-bottom:0;
+  margin-bottom: -1px;
 }
 #top-banner  .tabs > li > a {
   background-color: #42aaf1;

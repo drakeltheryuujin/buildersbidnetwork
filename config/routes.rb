@@ -1,6 +1,7 @@
 Ypn::Application.routes.draw do
 
   ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :projects do
     resources :bids do

@@ -71,17 +71,15 @@ class Project < ActiveRecord::Base
     :unless => :draft?
   validates :bidding_end,
     :presence => true, 
-    :date => {:after => Proc.new {self.bidding_start}},
+    :date => {:after => :bidding_start},
     :unless => :draft?
   validates :project_start,
     :presence => true, 
-    :date => {:after => Proc.new {self.bidding_end}},
-    :on => :create,
+    :date => {:after => :bidding_end},
     :unless => :draft?
   validates :project_end,
     :presence => true, 
-    :date => {:after => Proc.new {self.project_start}},
-    :on => :create,
+    :date => {:after => :project_start},
     :unless => :draft?
   validates :estimated_budget,
     :presence => true,
