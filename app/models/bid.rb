@@ -43,7 +43,7 @@ class Bid < ActiveRecord::Base
   aasm_state :draft
   aasm_state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
   aasm_state :cancelled
-  aasm_state :awarded, :enter => :pending_award_project
+  aasm_state :awarded, :enter => :award_pending_project
   aasm_state :accepted, :enter => :award_project
   aasm_state :held
 
