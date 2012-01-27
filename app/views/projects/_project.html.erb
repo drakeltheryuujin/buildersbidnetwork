@@ -8,7 +8,7 @@
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" %>
       <%= project.location.city + ", " + project.location.state %>
     </div>
-    <span class="result_type sector"><%= project.project_type.name %></span>
+    <span class="result_type sector"><%= project.project_type.name unless project.project_type.blank? %></span>
   </div>
   <div class="result_infos">
     <div class="result_numbers">
