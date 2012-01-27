@@ -26,7 +26,7 @@ class ActivityController < ApplicationController
       if @filter.blank? || ! Bid::STATES.include?(@filter)
         @filter = :published.to_s
       end
-      @bids = Bid.where :user_id => current_user.id, :state => @filter
+      @bids = Bid.joins(:project).where(:user_id => current_user.id, :state => @filter).order('projects.bidding_end')
 
       render :action => "contractor"
     end
