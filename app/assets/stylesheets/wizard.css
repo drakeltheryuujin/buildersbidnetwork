@@ -137,13 +137,14 @@ wizard-steps .active-step strong,
 
 
 /* = HOVER STATES
-----------------------------*/
-.wizard-steps .completed-step:hover p, .wizard-steps .active-step:hover p {
+.wizard-steps .completed-step:hover p, 
+.wizard-steps .active-step:hover p {
     color:#fff;
     background: #8F061E;
     text-shadow:1px 1px 1px rgba(0,0,0, 0.8);
 }
-.wizard-steps .completed-step:hover span, .wizard-steps .active-step:hover span {
+.wizard-steps .completed-step:hover span, 
+.wizard-steps .active-step:hover span {
     color:#8F061E;
 }
 .wizard-steps .completed-step:hover p:before, .wizard-steps .active-step:hover p:before {
@@ -153,3 +154,4 @@ wizard-steps .active-step strong,
 .wizard-steps .completed-step:hover p:after, .wizard-steps .active-step:hover p:after {
     border-left: 12px solid #8F061E;
 }
+----------------------------*/

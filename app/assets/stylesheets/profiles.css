@@ -86,13 +86,15 @@
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;
+}
+.profile_page .sidebar_box h1 {
   padding:5px;
 }
-.sidebar_box.sidebar_number strong,
-.sidebar_box.sidebar_number div {
+.profile_page .sidebar_box.sidebar_number strong,
+.profile_page .sidebar_box.sidebar_number div {
   padding:2px;
 }
-.sidebar_box.sidebar_number strong {
+.profile_page .sidebar_box.sidebar_number strong {
   padding:10px 15px;
 }
 
