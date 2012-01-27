@@ -2,6 +2,14 @@
  * Adapted from http://www.emirplicanic.com/css/css-step-by-step-menu-wizard-style
  */
 
+   
+
+
+
+
+
+ 
+ 
 /* = STEPS CONTAINER
 ----------------------------*/
 .wizard-steps {
@@ -13,10 +21,15 @@
 }
 .wizard-steps div {
     position:relative;
+    margin-right:0;
 }
+
 /* = STEP NUMBERS
 ----------------------------*/
 .wizard-steps span {
+    color:#999999;
+    background:#f2f2f2;
+    border: 2px solid #dddddd;
     display: block;
     float: left;
     font-size: 10px;
@@ -24,9 +37,6 @@
     width:15px;
     margin: 2px 5px 0px 0px;
     line-height:15px;
-    color: #ccc;
-    background: #FFF;
-    border: 2px solid #CCC;
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
     border-radius:10px;
@@ -49,11 +59,9 @@
     text-shadow:1px 1px 1px rgba(255,255,255, 0.8);
 }
 .wizard-steps p:before {
+    border:none;
     width:0px;
     height:0px;
-    border-top: 12px solid #F0EEE3;
-    border-bottom: 12px solid #F0EEE3;
-    border-left:12px solid transparent;
     position: absolute;
     content: "";
     top: 0px;
@@ -62,14 +70,13 @@
 .wizard-steps p:after {
     width: 0;
     height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left:12px solid #F0EEE3;
+    border:none;
     position: absolute;
     content: "";
     top: 0px;
     right: -12px;
 }
+
  
 /* = COMPLETED STEPS
 ----------------------------*/
@@ -105,27 +112,35 @@
     border-left: 12px solid #163038;
 }
 .wizard-steps .active-step span {
-    color: #163038;
+    color: #000;
+    background: #fff;
+    border: 2px solid #ff6600;
     -webkit-box-shadow:0px 0px 2px rgba(0,0,0, 0.8);
     -moz-box-shadow:0px 0px 2px rgba(0,0,0, 0.8);
     box-shadow:0px 0px 2px rgba(0,0,0, 0.8);
     text-shadow:none;
-    border: 2px solid #A3C1C9;
 }
+wizard-steps .active-step strong,
+ .wizard-steps strong{
+  text-transform: uppercase;
+ }
+ 
+
+
 /* = HOVER STATES
 ----------------------------*/
 .wizard-steps .completed-step:hover p, .wizard-steps .active-step:hover p {
     color:#fff;
-    background: #8F061E;
+    background: ##ff6600;
     text-shadow:1px 1px 1px rgba(0,0,0, 0.8);
 }
 .wizard-steps .completed-step:hover span, .wizard-steps .active-step:hover span {
-    color:#8F061E;
+    color:#000;
 }
 .wizard-steps .completed-step:hover p:before, .wizard-steps .active-step:hover p:before {
-    border-top: 12px solid #8F061E;
-    border-bottom: 12px solid #8F061E;
+    border-top: 12px solid #b1b1b1;
+    border-bottom: 12px solid #b1b1b1;
 }
 .wizard-steps .completed-step:hover p:after, .wizard-steps .active-step:hover p:after {
-    border-left: 12px solid #8F061E;
+    border-left: 12px solid #ff6600;;
 }
