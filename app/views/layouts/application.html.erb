@@ -3,10 +3,10 @@
 <head>
   <title>YPN</title>
   <%= stylesheet_link_tag "scaffold", "application", "main" %>
-       <!--[if ie]>
-        <%= stylesheet_link_tag "ie" %>
-      <!--<![endif]-->
-  %= csrf_meta_tag %>
+  <!--[if ie]>
+    <%= stylesheet_link_tag "ie" %>
+  <![endif]-->
+  <%= csrf_meta_tag %>
    
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= yield(:head) %>
