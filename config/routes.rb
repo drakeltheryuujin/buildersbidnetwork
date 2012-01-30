@@ -47,7 +47,7 @@ Ypn::Application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
 
   resources :messages

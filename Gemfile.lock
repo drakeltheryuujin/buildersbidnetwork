@@ -83,6 +83,9 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
+    devise_invitable (0.6.1)
+      devise (>= 1.4.6, < 1.6)
+      rails (~> 3.1.0)
     erubis (2.7.0)
     fastercsv (1.5.4)
     foreigner (1.1.1)
@@ -199,6 +202,7 @@ DEPENDENCIES
   css-bootstrap-rails
   date_validator
   devise
+  devise_invitable
   geocoder
   jquery-rails (>= 1.0.12)
   kaminari

@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :credit_adjustments
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
          :token_authenticatable, :confirmable, :lockable, :timeoutable 
 

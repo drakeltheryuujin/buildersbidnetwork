@@ -15,6 +15,7 @@ gem 'pg'
 
 # users & authentication
 gem 'devise'
+gem 'devise_invitable'
 
 # jquery
 gem 'jquery-rails', '>= 1.0.12'

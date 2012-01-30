@@ -59,7 +59,13 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') }
+        format.html { 
+          if current_user.invited_by.present? && current_user.sign_in_count == 1
+            redirect_to(projects_profile_path(current_user.invited_by.profile), :notice => 'Your profile was successfully created. Here are some projects from the user that invited you.') 
+          else
+            redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') 
+          end
+        }
         format.xml  { render :xml => @profile, :status => :created, :location => @profile }
       else
         format.html { render :action => "new" }
