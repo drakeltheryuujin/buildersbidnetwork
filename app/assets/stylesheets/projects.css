@@ -159,6 +159,9 @@ form.new_project_document {
   margin-bottom: 20px; 
   border: 2px 
   solid #DDD;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
 }
 .project_sidebar .project_timeline h1 {
   border-bottom: 1px solid;

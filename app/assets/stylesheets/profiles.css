@@ -82,24 +82,16 @@
   margin-right: 10px;
 }
 
-.sidebar_box h1 {
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 10px;
-}
-.profile_page .sidebar_box h1 {
-  padding:5px;
-}
 .profile_page .sidebar_box.sidebar_number strong,
 .profile_page .sidebar_box.sidebar_number div {
-  padding:2px;
+  padding: 2px;
 }
 .profile_page .sidebar_box.sidebar_number strong {
-  padding:10px 15px;
+  padding: 10px 15px;
 }
 
 .profile_header h1 {
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
 .profile_header h4 {
   line-height: 28px;
@@ -130,72 +122,8 @@
   text-transform:uppercase;
 }
 
-.sidebar_box.sidebar_number span {
-  color:#686868;
-  font-weight:bold;
-}
-
-.sidebar_box.help_box p {
-  border-bottom: 1px dotted #666;
-  padding-bottom: 10px;
-}
-
-.sidebar_box .sidebar_flag label, 
-.sidebar_box .sidebar_flag {
-  background-color: #666;
-  color: #eee;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-.sidebar_box .sidebar_flag {
-  margin: -10px -20px 10px -20px;
-  padding: 10px;
-  position: relative;
-}
-.sidebar_box .sidebar_flag .sidebar_triangle {
-  width: 0;
-  height: 0;
-  border-bottom: 9px solid transparent;
-  border-top: 9px;
-  position: absolute;
-  bottom: -9px;
-}
-.sidebar_box .sidebar_flag .sidebar_triangle.left {
-  border-right: 9px solid #333;
-  left: 0;
-}
-.sidebar_box .sidebar_flag .sidebar_triangle.right {
-  border-left: 9px solid #333;
-  right: 0;
-}
-.sidebar_box .sidebar_flag label.award,
-.sidebar_box .sidebar_flag span.award {
-  color: orange;
-}
-
-.profile_sidebar {
+.profile_sidebar .sidebar_box {
   height: 95px;
-  background-color: #FFF;
-  border: 2px solid #DDD;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border: 1px solid #D2D2D2;
-  border-image: initial;
 }
 
-.profile_sidebar  .head{
-  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 1)), color-stop(100%,rgba(237, 234, 227, 1)));
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
-  height:27px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border: 1px solid transparent;
-}
+
