@@ -50,12 +50,19 @@
     </div>
   </div>
   <div class="span4">
-    <div class="profile_sidebar">
+    <div class="home_page_sidebar">
       <div class="sidebar_box sidebar_number">
         <div class="head"><h1>Invite Colleagues</h1></div>
-        <%= link_to "Invite", new_user_invitation_path, :class => 'btn large primary' if current_user.present? %>
+        <p>A detailed description of the benefits of using BBN will be included</p>
+        <%= form_for :user, :as => :user, :url => invitation_path(:user), :html => {:method => :post} do |f| %>
+
+          <p><%= f.label :email %></p>
+          <p><%= f.text_field :email %></p>
+
+          <p><%= f.submit "Send an invitation", :class => 'btn success' %></p>
+        <% end %>
       </div>
+      <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
     </div>
-    <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
   </div>
 </div>

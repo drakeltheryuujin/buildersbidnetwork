@@ -3,37 +3,30 @@ class Users::InvitationsController < Devise::InvitationsController
   include ActionView::Helpers::TextHelper
 
   def create
-    y params
     if params[resource_name][:emails].present?
       emails = params[resource_name][:emails].split(/\s*,\s*/)
 
       success = []
       failure = []
       emails.each do |email|
-        puts email
         u = User.invite!({:email => email}, current_inviter)
         if u.errors.empty?
-          puts "suc " + u.to_s
           success << u
         else
-          puts "fail " + u.to_s
           failure << u
         end
       end
       respond_to do |format|
         if failure.empty?
           message = pluralize(success.size(), "invitation") + " sent."
-          puts "WORKED" + message
           format.html {
             set_flash_message :notice, message
             respond_with resource, :location => after_invite_path_for(resource)
           }
           format.text { render :text => message }
         else
-          puts "FAILED"
           message = ""
           failure.each do |f|
-            puts ">>>" + f.to_s
             message += error_for_res(f)
           end
           format.html {
@@ -44,7 +37,14 @@ class Users::InvitationsController < Devise::InvitationsController
         end
       end
     else
-      super
+      self.resource = resource_class.invite!(params[resource_name], current_inviter)
+
+      if resource.errors.empty?
+        set_flash_message :notice, :send_instructions, :email => self.resource.email
+        respond_with resource, :location => after_invite_path_for(resource)
+      else
+        redirect_to after_invite_path_for(resource), :alert => self.resource.email + ' is not a valid email address.'
+      end
     end
   end
 

@@ -512,7 +512,6 @@ white-space: nowrap;
   padding: 0;
   display: inline-block;
 }
-
 .home_page .home_box {
   border: 3px solid #eee;
   padding: 10px;
@@ -527,14 +526,14 @@ white-space: nowrap;
   position:relative;
   z-index:-2;
 }
-.home_page .search_box .background{
-	background:transparent url('../images/search_man.png')0 0 no-repeat; 
-	position:absolute; 
-	left:118px; 
-	top:-40px;
-	width:334px;
-	height:221px;
-	z-index:-1;
+.home_page .search_box .background {
+	background: transparent url('/images/search_man.png')0 0 no-repeat; 
+	position: absolute; 
+	left: 118px; 
+	top: -40px;
+	width: 334px;
+	height: 221px;
+	z-index: -1;
 }
 .home_page .account_box {
   padding:10px 30px;
@@ -546,8 +545,23 @@ white-space: nowrap;
   width:100%;
   text-align:left;
   text-transform:uppercase;
-
 }
+.home_page .home_page_sidebar .btn {
+  width: 180px;
+}
+.home_page .home_page_sidebar .sidebar_box .btn {
+  width: 200px;
+}
+.home_page .home_page_sidebar .sidebar_box label {
+  width: auto;
+}
+.home_page .home_page_sidebar .sidebar_box input {
+  width: 187px;
+}
+.home_page .home_page_sidebar .sidebar_box p {
+  margin: 5px 10px;
+}
+
 .home_page .account_box  .field.text input{
   width:100%;
   padding:4px 0;
@@ -587,6 +601,23 @@ margin-top:20px;
 .home_page .search_box .btn.primary {
   font-weight:normal;
   font-size:12px;
+}
+
+.btn.success {
+  color: #ffffff;
+  background-color: #0064cd;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+  background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+  background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+  background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+  background-image: linear-gradient(top, #049cdb, #0064cd);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#049cdb', endColorstr='#0064cd', GradientType=0);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #0064cd #0064cd #003f81;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 
 .home_page .search_box h2{
