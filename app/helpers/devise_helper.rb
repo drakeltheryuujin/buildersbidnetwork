@@ -1,11 +1,18 @@
 module DeviseHelper
   def devise_error_messages! 
-    return "" if resource.errors.empty? 
+    error_for_res(resource)
+  end 
 
-    messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+
+  def error_for_res(res)
+    return "" if res.errors.empty? 
+
+#messages = res.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    messages = res.errors.full_messages.map { |msg| "<li>#{msg}</li>" }.join
     sentence = I18n.t("errors.messages.not_saved",
-                      :count => resource.errors.count,
-                      :resource => resource.class.model_name.human.downcase)
+                      :count => res.errors.count,
+                      :res => res.class.model_name.human.downcase,
+                      :resource => res.class.model_name.human.downcase)
 
     html = <<-HTML
       <div class="alert-message block-message error">
@@ -15,5 +22,5 @@ module DeviseHelper
     HTML
 
     html.html_safe
-  end 
+  end
 end
