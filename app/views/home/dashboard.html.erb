@@ -1,0 +1,56 @@
+<% content_for :top_banner do %>
+  <div class="container building-relationships-container">
+    <h2> Dashboard </h2>
+    <ul>
+      <li>
+        A new way to <span>find</span> and <span>bid</span> on <span>commercial construction projects</span>
+      </li>
+      <li>
+        <span>Create a profile</span> and start building your professional network today
+      </li>
+      <li>
+        <span>Developers:</span> Find contractors in your area and invite them to bid
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class="home_page row">
+  <div class="span10"> 
+    <div class="search_box home_box row">
+      <h2>Search for Projects</h2>
+      <div class="background">&nbsp;</div>
+      <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+        <%= f.hidden_field :section %>
+        <table class="span3">
+          <tr>
+            <td><strong>Within</strong></td>
+            <td>&nbsp;</td>
+            <td><strong>Your zip</strong></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+            </td>
+            <td>of</td>
+            <td>
+              <%= f.text_field :location, :size => 7, :class => "span2" %>
+            </td>
+          </tr>
+        </table>
+
+        <strong class="span9">Select a Type of Trade</strong>
+        <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
+
+        <div class="span9">
+          <%= f.submit 'Search', :class => 'large btn primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="span6">
+    <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
+    <%= link_to "Invite", new_user_invitation_path, :class => 'btn large primary' if current_user.present? %>
+  </div>
+</div>
