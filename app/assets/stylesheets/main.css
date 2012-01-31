@@ -519,9 +519,6 @@ white-space: nowrap;
   position:relative
   z-index:-2;
 }
-.home_page .home_box img{
- background-image url
-}
 
 .home_page .search_box {
   padding-top:15px;
@@ -538,8 +535,33 @@ white-space: nowrap;
 	width:334px;
 	height:221px;
 	z-index:-1;
-}    
+}
+.home_page .account_box {
+  padding:10px 30px;
+  margin-top:20px;
+  margin-right:20px;
+  width: 432px;
+}
+.home_page .account_box  label{
+  width:100%;
+  text-align:left;
+  text-transform:uppercase;
 
+}
+.home_page .account_box  .field.text input{
+  width:100%;
+  padding:4px 0;
+}
+.home_page .account_box .btn.primary {
+margin-top:20px;
+}
+.home_page .account_box .field_info {
+  float:right;
+  margin-top: -35px;
+}
+.home_page .span10 {
+  width: 474px;    
+}
 .btn.primary {
   background-color:#FFB134;
   color:#fff;

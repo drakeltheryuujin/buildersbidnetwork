@@ -50,19 +50,20 @@
     </div>
   </div>
   <div class="span6">
+   <div class="account_box home_box row">
     <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %>
 
-      <div class="field">
+      <div class="field text">
         <%= f.label :email %>
         <%= f.email_field :email %>
       </div>
 
-      <div class="field">
+      <div class="field text">
         <%= f.label :password %>
         <%= f.password_field :password %>
       </div>
 
-      <div class="field">
+      <div class="field text">
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %>
       </div>
@@ -80,6 +81,7 @@
     <div class="cta">
       Already have an account?
       <%= link_to "Login ", new_user_session_path %>
+    </div>
     </div>
   </div>
 </div>
