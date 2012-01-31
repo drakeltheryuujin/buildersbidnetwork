@@ -447,16 +447,29 @@ white-space: nowrap;
 .home_page .home_box {
   border: 3px solid #eee;
   padding: 10px;
+  position:relative
+  z-index:-2;
 }
+.home_page .home_box img{
+ background-image url
+}
+
 .home_page .search_box {
   padding-top:15px;
   margin: 20px 0 20px 0;
   width:432px;
   position:relative;
+  z-index:-2;
 }
 .home_page .search_box .background{
-  
-} 
+	background:transparent url('../images/home_searchman_copy.png')0 0 no-repeat; 
+	position:absolute; 
+	left:118px; 
+	top:-40px;
+	width:334px;
+	height:221px;
+	z-index:-1;
+}    
 
 .btn.primary {
   background-color:#FFB134;
