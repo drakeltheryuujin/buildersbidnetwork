@@ -531,7 +531,7 @@ white-space: nowrap;
   z-index:-2;
 }
 .home_page .search_box .background{
-	background:transparent url('../images/home_searchman_copy.png')0 0 no-repeat; 
+	background:transparent url('../images/search_man.png')0 0 no-repeat; 
 	position:absolute; 
 	left:118px; 
 	top:-40px;
