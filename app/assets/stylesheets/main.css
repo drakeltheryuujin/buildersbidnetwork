@@ -134,13 +134,12 @@ white-space: nowrap;
 
 .auth_topbar .fill {
   background: #3873af; /* Old browsers */
+  background-color: #3873af; 
   background: -moz-linear-gradient(top,  #3873af 0%, #326092 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3873af), color-stop(100%,#326092)); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top,  #3873af 0%,#326092 100%); /* Chrome10+,Safari5.1+ */
   background: -o-linear-gradient(top,  #3873af 0%,#326092 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #3873af 0%,#326092 100%); /* IE10+ */
   background: linear-gradient(top,  #3873af 0%,#326092 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3873af', endColorstr='#326092',GradientType=0 ); /* IE6-9 */
   height:32px;
 }
 .auth_topbar .dropdown-menu {
