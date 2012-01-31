@@ -50,7 +50,36 @@
     </div>
   </div>
   <div class="span6">
-    <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
-    <%= link_to "Invite", new_user_invitation_path, :class => 'btn large primary' if current_user.present? %>
+    <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div class="field">
+        <%= f.submit "Create Account", :class => "btn large primary" %>
+        <span class="field_info span4">
+          By signing up you agree to our 
+          <%= link_to "User Agreement", content_page_path('agreement') %>
+          and
+          <%= link_to "Terms of Service", content_page_path('terms') %>
+        </span>
+      </div>
+    <% end %>
+    <div class="cta">
+      Already have an account?
+      <%= link_to "Login ", new_user_session_path %>
+    </div>
   </div>
 </div>
