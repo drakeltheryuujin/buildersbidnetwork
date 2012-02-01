@@ -25,9 +25,9 @@
         <%= f.hidden_field :section %>
         <table class="span3">
           <tr>
-            <td><strong>Within</strong></td>
+            <td><strong>Within:</strong></td>
             <td>&nbsp;</td>
-            <td><strong>Your zip</strong></td>
+            <td><strong>Your ZIP:</strong></td>
           </tr>
           <tr>
             <td>
@@ -40,7 +40,7 @@
           </tr>
         </table>
 
-        <strong class="span9">Select a Type of Trade</strong>
+        <strong class="span9">Select a Project Type:</strong>
         <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
 
         <div class="span9">
@@ -51,6 +51,8 @@
   </div>
   <div class="span6">
    <div class="account_box home_box row">
+   <h2>Create an Account- It's Free!</h2>
+   <li>Registering an account is required to view, create, and bid on projects.</li>
     <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %>
 
       <div class="field text">
@@ -85,3 +87,4 @@
     </div>
   </div>
 </div>
+

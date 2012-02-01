@@ -521,10 +521,11 @@ white-space: nowrap;
 
 .home_page .search_box {
   padding-top:15px;
+  height:304px;
   margin: 20px 0 20px 0;
   width:432px;
   position:relative;
-  z-index:-2;
+  z-index:0;
 }
 .home_page .search_box .background {
 	background: transparent url('/images/search_man.png')0 0 no-repeat; 
@@ -541,6 +542,16 @@ white-space: nowrap;
   margin-right:20px;
   width: 432px;
 }
+.home_page .account_box h2 {
+color: #002358;
+font-size: 22px;
+font-weight: bold;
+}
+.home_page .account_box li {
+ list-style:none;
+ padding-bottom:5px;
+}
+
 .home_page .account_box  label{
   width:100%;
   text-align:left;
@@ -632,7 +643,7 @@ width:320px;
 }
 
 .home_page .search_box .type_select {
-  margin: 10px 0;
+  margin: 10px 0 25px 0;
   width:413px;
 }
 
@@ -695,6 +706,7 @@ table td {
 table {
   border-collapse: separate;
   border-spacing: 2px;
+  padding-bottom:42px;
 }
 
 table a.nav {
