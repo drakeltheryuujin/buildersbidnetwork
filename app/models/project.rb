@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   belongs_to :project_type
+  belongs_to :cover_photo, :class_name => 'ProjectDocument'
   
   has_many :line_items
   has_many :bids

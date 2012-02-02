@@ -1,7 +1,5 @@
 <div class="search_result project ">
-  <div class="result_image ">
-    <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project), :class => 'project_avatar' %>
-  </div>
+  <%= render :partial => "/projects/cover_photo", :locals => { :project => project } %>
   <div class="result_body ">
     <div class="result_name"><%= link_to project.name, project_path(project) %></div>
     <div class="result_location">
