@@ -671,9 +671,8 @@ width:320px;
   text-align: center;
 }
 .home_page .span8 {
-  border-bottom: 1px solid #CCC;
-  border-top: 1px solid #CCC;
-  width:auto;
+  border: 3px solid #EEE;
+  width:965px;
   }
 .home_page .perfect_tool_carousel {
  background: transparent url('/images/home_computer.png')0 0 no-repeat;
@@ -688,11 +687,11 @@ width:320px;
 }
 .home_page .perfect_tool_carousel p{
   float:right;
-  padding-left:370px;
+  padding-left:397px;
 }
 .home_page .perfect_tool_carousel .btn.primary {
   float:right;
-  margin-right:412px;
+  margin-right:411px;
 }  
 
 .message {
