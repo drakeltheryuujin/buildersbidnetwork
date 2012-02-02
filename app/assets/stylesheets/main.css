@@ -692,7 +692,87 @@ width:320px;
 .home_page .perfect_tool_carousel .btn.primary {
   float:right;
   margin-right:411px;
-}  
+}
+ /* Subscription Code *********************************************/
+.subscription_box.groups_box {
+  background-color:#EDEDED;
+  margin-top:20px;
+  padding-bottom:5px;
+}
+.subscription_box .groups_box ol li {
+  padding-left:5px;
+}
+.subscription_box li {
+  color:#fa6507;
+  font-size:22px;
+  font-weight:bold;
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+}
+.subscription_box li span {
+  display:block;
+  color:#696969;
+  font-size:14px;
+  font-weight:normal;
+  } 
+.step_one li {
+padding-left:5px;
+padding-right:485px;
+}
+div.step_one li span {
+padding-left:5px;
+}
+.step_one .btn.primary{
+  width:75px;
+  padding: 2px 2px 2px 2px;
+}
+div.step_two li {
+margin-top:-156px;
+padding-left:215px;
+padding-right:210px;
+}
+div.step_two li span {
+padding-left:5px;
+}
+div.step_two ol{
+padding-left:205px;
+}
+.step_two_btn_container{
+  display:block;
+  padding-left:0px;
+  padding-right:445px;
+}
+.step_two .btn.primary{
+  margin-top:5px;
+  width:200px;
+  padding: 2px 2px 2px 2px;
+}
+div.step_three li {
+margin-top:-156px;
+padding-left:445px;
+}
+div.step_three li span {
+padding-left:5px;
+}
+.step_three .btn.primary{
+  padding: 2px 2px 2px 2px;
+}
+subscription_box.groups_box div.step_three ol {
+  padding-left:205px;
+}
+
+.subscription_plans .head {
+  background-color:#edeef0;
+}
+.subscription_plans  {
+  background-color:#fff;
+  border:1px solid #c2c2c2;
+  margin-top:20px;
+}
+.subscription_plans h3{
+  color:#676767;
+}
 
 .message {
   padding: 0.5em;
