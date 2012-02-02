@@ -66,6 +66,8 @@ Ypn::Application.routes.draw do
     end
   end
   
+  resources :subscriptions, :only => [:index, :new, :create, :show]
+
   resources :search, :only => [:index]
 
   resources :activity, :only => [:index]

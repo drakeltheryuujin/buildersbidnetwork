@@ -1,0 +1,27 @@
+<div class="credits_page row">
+  <div class="span4 ">
+    <div class="credits_nav">
+      <h1>Subscriptions</h1>
+      <ul>
+        <li>
+          <%= link_to "Buy Credits", credits_path %>
+        </li>
+        <li>
+          <strong>Buy a Subscription</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="span12">
+    <h1>Buy Credits</h1>
+
+    <div class="explanation">
+      <h3>How do credits work?</h3>
+      <p>Credits are BBN's very own currency.  Purchase credits and spend them whenever you want to submit a bid on a project.  The credit cost of a project depends on its budget, size and complexity.</p>
+    </div>
+
+    <%= link_to "Monthly", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+    <%= link_to "Annual", new_subscription_path(:package => :annual), {:class => 'btn primary large'} %>
+  </div>
+</div>
