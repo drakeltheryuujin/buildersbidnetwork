@@ -52,7 +52,7 @@
           <div class="search_result project">
             <div class="row">
               <div class="span2 ">
-                <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project), :class => 'project_avatar' %>
+                <%= render :partial => "/projects/cover_photo", :locals => { :project => project } %>
               </div>
               <div class="span6 ">
                 <div class="result_name">
