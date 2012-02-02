@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
     return self.profile.present? ? self.profile.contractor_profile? : false
   end
 
+  def subscription_current?
+    return false # TODO make live
+  end
+
 
   # Modified version of send_message from Mailboxer::Modles::Messagable
   def send_message_with_object_and_type(recipients, msg_body, subject, obj = nil, type = nil, sanitize_text = true)
