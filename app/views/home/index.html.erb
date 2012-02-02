@@ -90,12 +90,7 @@
       <div class="perfect_tool_carousel">
         <h2>The Perfect Tool for Bidding in the 21st Century</h2>
           <p>BuildersBidNetwork is a comprehensive marketplace built to give developers and contractors a more efficient way to handle the project bid process. We've built specialized tools to help you create more accurate bids helping to save both sides time and money</p>
-            <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %>
-
-          <div class="field">
-          <%= f.submit "Get Started Now", :class => "btn large primary" %>
-          </div>
-        <% end %>
+          <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
       </div>
    </div>
 </div>
