@@ -53,16 +53,22 @@
       <div class ="head">
         <h3> Choose a subscription that works for you<h3>
       </div>
-    <td>
-    <tr> Month-by-Month</tr>
-    <tr>Yearly</tr> </br>
-    <tr>Plan Price:</tr> </br>
-    <tr>Extras:None</tr>
-    <tr>2 Bid Credits/Year</tr> </br>
-    <tr>
-    <%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-    <%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-    </tr>
+    <table>
+      <tr id="row1">
+        <th><th>Month-by-Month<th>Yearly
+      <tr id="row2">
+        <th>Plan Price:
+          <TD>$89.95/month (1,079.40/Year) 
+          <TD> $79.95/month ($959.40 Total)
+      <tr id="row3">
+        <th>Extras 
+          <TD>None 
+          <TD>2 Bid Credits Year
+      <tr id="row4">
+        <th>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+    </TABLE>
     </div>
       <div class="explanation">
         <h3>What do I get for my Subcription?
