@@ -1722,6 +1722,7 @@ ul.line_items li div.units .line_item_total,
 .credits_page.invoice .order_info label,
 .credits_page.invoice .payment_info label {
   text-align: left;
+  width: 120px;
 }
 .project_page .project_content h4,
 .profile_page .profile_content h4 {

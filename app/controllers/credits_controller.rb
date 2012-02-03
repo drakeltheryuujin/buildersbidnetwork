@@ -29,13 +29,9 @@ class CreditsController < ApplicationController
     @pc = PaymentCredit.new(params[:payment_credit])
     @pc.user_id = current_user.id
     @pc.ip_address = request.remote_ip
-    begin
-      # maybe a transaction here? eg: @pc.transaction do ... end
-		  @pc.save!
-	    @pc.purchase!
+    if @pc.purchase
       redirect_to credit_path(@pc), :notice => "Thank you for your payment." 
-	  rescue Exception => e  
-      flash[:alert] = e.message unless e.class == ActiveRecord::RecordInvalid
+    else
 	    render :action => 'new'
     end
 	end
