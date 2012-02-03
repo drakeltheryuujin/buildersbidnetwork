@@ -699,7 +699,10 @@ width:320px;
   margin-top:20px;
 }
 .subscription_box ol{
+ border: 1px solid #C2C2C2;
  margin-left:0px;
+ padding-bottom:5px;
+ display:table;
 }
 .subscription_box li {
   color:#fa6507;
@@ -729,11 +732,13 @@ width:320px;
   padding: 2px 2px 2px 2px;
 }
 .step_two {
-    width:250px;
-}
+    width:240px;
+    border-left:1px dotted #c2c2c2;
+    padding-left:2px;
+    }
 div.step_two p {
   padding-left: 22px;
-  padding-right: 2px;
+  padding-right: 3px;
 }
 
 .step_two_btn_container{
@@ -741,7 +746,7 @@ div.step_two p {
   padding-left:0px;
   padding-right:445px;
 }
-.step_two_btn_container .btn.primary{
+.step_two .btn.primary{
   font-size: 12px;
   margin-top: 5px;
   margin-left:22px;
@@ -750,7 +755,10 @@ div.step_two p {
   text-align: center;
 }
 .step_three {
-    width:240px;
+    border-left:1px dotted #c2c2c2;
+    width:245px;
+    height:195px;
+    padding-left:3px;
 }
 .step_three p {
 padding-left:22px;
@@ -766,7 +774,7 @@ padding-left:22px;
 }
 .subscription_plans  {
   border:1px solid #c2c2c2;
-  margin-top:250px;
+  margin-top:20px;
 }
 .subscription_plans h3{
   color:#676767;
