@@ -694,86 +694,94 @@ width:320px;
   margin-right:411px;
 }
  /* Subscription Code *********************************************/
-.subscription_box.groups_box {
+.subscription_box{
   background-color:#EDEDED;
   margin-top:20px;
-  padding-bottom:5px;
 }
-.subscription_box .groups_box ol li {
-  padding-left:5px;
+.subscription_box ol{
+ margin-left:0px;
 }
 .subscription_box li {
   color:#fa6507;
+  float: left;
   font-size:22px;
   font-weight:bold;
-  width: 33%;
-  display: inline-block;
   vertical-align: top;
+  list-style-position:inside;
 }
-.subscription_box li span {
+.subscription_box li p {
   display:block;
   color:#696969;
   font-size:14px;
   font-weight:normal;
   } 
-.step_one li {
-padding-left:5px;
-padding-right:485px;
+.step_one {
+    width:200px;
 }
-div.step_one li span {
-padding-left:5px;
+.step_one p {
+  padding-left:22px;
+  padding-right: 33px;
 }
 .step_one .btn.primary{
-  width:75px;
+  font-size:12px;
+  width:48px;
+  margin-left:22px;
   padding: 2px 2px 2px 2px;
 }
-div.step_two li {
-margin-top:-156px;
-padding-left:215px;
-padding-right:210px;
+.step_two {
+    width:230px;
 }
-div.step_two li span {
-padding-left:5px;
+div.step_two p {
+  padding-left: 22px;
+  padding-right: 2px;
 }
-div.step_two ol{
-padding-left:205px;
-}
+
 .step_two_btn_container{
   display:block;
   padding-left:0px;
   padding-right:445px;
 }
-.step_two .btn.primary{
-  margin-top:5px;
-  width:200px;
+.step_two_btn_container .btn.primary{
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left:22px;
+  width: 169px;
   padding: 2px 2px 2px 2px;
+  text-align: center;
 }
-div.step_three li {
-margin-top:-156px;
-padding-left:445px;
+.step_three {
+    width:240px;
 }
-div.step_three li span {
-padding-left:5px;
+.step_three p {
+padding-left:22px;
 }
 .step_three .btn.primary{
+  font-size:12px;
   padding: 2px 2px 2px 2px;
-}
-subscription_box.groups_box div.step_three ol {
-  padding-left:205px;
+  margin-left:22px;
 }
 
 .subscription_plans .head {
   background-color:#edeef0;
 }
 .subscription_plans  {
-  background-color:#fff;
   border:1px solid #c2c2c2;
-  margin-top:20px;
+  margin-top:250px;
 }
 .subscription_plans h3{
   color:#676767;
+  padding-left:5px;
 }
-
+.subscription_plans .btn.primary {
+  font-size: 12px;
+  font-weight:bold;
+  width: 50px;
+  height: 10px;
+}
+.explanation ul li{
+  font-size: 14px;
+  font-weight:normal;
+}
 .message {
   padding: 0.5em;
   font-weight: bold;
