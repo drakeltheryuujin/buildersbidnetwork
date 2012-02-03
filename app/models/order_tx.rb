@@ -14,7 +14,8 @@
 #  updated_at        :datetime
 #
 class OrderTx < ActiveRecord::Base
-	belongs_to :payment_credit
+  belongs_to :user
+
   serialize :params
   
   def response=(response)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130170709) do
+ActiveRecord::Schema.define(:version => 20120203174131) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
 
   create_table "credit_adjustments", :force => true do |t|
     t.integer  "value"
-    t.string   "type",             :null => false
-    t.integer  "user_id",          :null => false
+    t.string   "type",                                              :null => false
+    t.integer  "user_id",                                           :null => false
     t.integer  "order_tx_id"
     t.string   "ip_address"
     t.string   "first_name"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "card_billing_zip"
+    t.decimal  "amount",              :precision => 8, :scale => 2
+    t.string   "card_display_number"
   end
 
   add_index "credit_adjustments", ["bid_id"], :name => "index_credit_adjustments_on_bid_id"
@@ -111,7 +113,6 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
 
   create_table "order_txes", :force => true do |t|
-    t.integer  "payment_credit_id"
     t.string   "action"
     t.integer  "amount"
     t.boolean  "success"
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
     t.text     "params"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "phone_types", :force => true do |t|
