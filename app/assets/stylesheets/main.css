@@ -575,7 +575,7 @@ font-weight: bold;
 
 .home_page .account_box  .field.text input{
   width:100%;
-  padding:4px 0;
+  padding:4px;
 }
 .home_page .account_box .btn.primary {
 margin-top:20px;
@@ -586,6 +586,26 @@ margin-top:20px;
 }
 .home_page .span10 {
   width: 474px;    
+}
+/* Project Page Non-Subscribed View Style */
+.project_page .btn.subscribe {
+  background: transparent url('/images/lock.png')0 no-repeat;
+  background-color:#87C442;
+  background:#87c442;
+  color:#fff;
+  text-shadow:none;
+  }
+  
+.project_page  li.subscribe {
+  color: #87c442;
+  list-style:none;
+}
+
+.project_page li.locked_bid_breakdown {
+  color:#fff;
+  background-color:#87C442;
+  background:#87c442;
+  font-weight:bold;
 }
 .btn.primary {
   background-color:#FFB134;
@@ -609,6 +629,7 @@ margin-top:20px;
   background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
 }
+
 .home_page .search_box .btn.primary {
   font-weight:normal;
   font-size:12px;
