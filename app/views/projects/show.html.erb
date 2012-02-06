@@ -106,7 +106,8 @@
                 </li>
               <% end %>
               <%else%>
-              <li class ="locked_bid_breakdown">Subscribe to View <%=@project.line_items.size()%> Line Items </li>
+              <li class ="locked_bid_breakdown">Subscribe to View 
+              <%= pluralize(@project.line_items.size(), 'Line Item') %></li>
               <%end%>
             </ul>
           </div>
