@@ -238,6 +238,9 @@ white-space: nowrap;
   text-align:center;
   width:20px;
 }
+ .brand_header .li_nav_desc span {
+padding-top: 5px;
+}
 
 .brand_header .nav_topbar ul li {
   height: 65px;
@@ -714,6 +717,7 @@ width:320px;
   float:right;
   margin-right:411px;
 }
+
  /* Subscription Code *********************************************/
 .subscription_box{
   background-color:#EDEDED;

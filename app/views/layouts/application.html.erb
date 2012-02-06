@@ -71,7 +71,7 @@
                   </p>
                 <% end %>
               </li>
-              <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse <span>projects, etc.</span>".html_safe, search_index_path %></li>
+              <li class="li_nav_desc"<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse <span>projects, etc.</span>".html_safe, search_index_path %></li>
               <li class="<%= put_if_current_page('active', activity_index_path) %>">
                 <%= link_to activity_index_path do %>
                   My BBN

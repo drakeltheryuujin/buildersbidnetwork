@@ -39,7 +39,7 @@
             <%= link_to 'Send A Message', contact_creator_project_path(@project), :class => 'btn small message', "data-controls-modal" => "contact-creator-modal", "data-backdrop" => "true" unless @project.user == current_user %>
           <% end %>               
           <% else %>
-                <%= link_to "Subscribe to Unlock", subscription_path(:package => :monthly), {:class => 'btn large subscribe'} %>
+                <%= link_to "Subscribe to Unlock", subscriptions_path, {:class => 'btn large subscribe'} %>
           <% end %>
       <% else %>
         <%= link_to 'Edit Bid', edit_project_bid_path(@project, @project.my_bid(current_user)), :class => 'btn large success edit' if(@project.bidding_period? && has_bid_on_project? && !(current_page? edit_project_bid_path(@project, @project.my_bid(current_user))))%>
