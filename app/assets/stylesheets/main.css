@@ -377,6 +377,10 @@ white-space: nowrap;
 #top-banner .container > h1 {
   padding-top: 16px;
 }
+#top-banner .container > .row {
+  padding-top: 10px;
+  margin-bottom: 5px
+}
 .sector {
   padding: 1px 3px 2px;
   display: inline-block;
