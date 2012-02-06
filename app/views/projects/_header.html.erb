@@ -14,7 +14,7 @@
     <p class="project_meta">
       <%= link_to @project.user.profile.name, profile_path(@project.user.profile), :class => 'profile_link' %>
       <h4>
-        <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link"%>
+       <%= link_to_if(current_user.subscription_current?, (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link")%>
         <%= @project.location.city %>, <%= @project.location.state %>
       </hr>
     </p>
