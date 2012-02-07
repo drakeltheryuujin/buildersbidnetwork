@@ -172,12 +172,15 @@ white-space: nowrap;
 .home-page-navbar-login input {
   background-color:#FFF;
   color:#000;
-  margin-top:2px;
+  margin-top:4px;
+  height:16px;
   margin-bottom:2px;
+  border:none;
 }
 .home-page-navbar-login input[type="submit"] {
   background-color:#3895D7;
   color:#fff;
+  height:24px;
 }
 
 .home-page-navbar-login form{
