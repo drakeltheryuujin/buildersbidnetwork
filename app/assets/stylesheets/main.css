@@ -172,15 +172,15 @@ white-space: nowrap;
 .home-page-navbar-login input {
   background-color:#FFF;
   color:#000;
-  margin-top:4px;
-  height:16px;
+  margin-top:5px;
+  height:14px;
   margin-bottom:2px;
   border:none;
 }
 .home-page-navbar-login input[type="submit"] {
   background-color:#3895D7;
   color:#fff;
-  height:24px;
+  height:22px;
 }
 
 .home-page-navbar-login form{
@@ -566,14 +566,14 @@ white-space: nowrap;
 
 .home_page .search_box {
   padding-top:15px;
-  height:304px;
+  height:315px;
   margin: 20px 0 20px 0;
   width:432px;
   position:relative;
   z-index:0;
 }
 .home_page .search_box .background {
-	background: transparent url('/images/search_man.png')0 0 no-repeat; 
+	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
 	left: 118px; 
 	top: -40px;
@@ -623,11 +623,22 @@ font-weight: bold;
   padding:4px;
 }
 .home_page .account_box .btn.primary {
-margin-top:20px;
+
+margin-right:5px;
+float:left;
 }
-.home_page .account_box .field_info {
-  float:right;
-  margin-top: -35px;
+.home_page .account_box .terms {
+float: right;
+width: 210px;
+font-size: 14px;
+}
+.home_page .account_box .field.register {
+margin-top:20px;
+clear:both;
+padding-bottom:10px;
+}
+.home_page .account_box .cta {
+padding-top:15px;
 }
 .home_page .span10 {
   width: 474px;    
@@ -786,8 +797,12 @@ width:320px;
   font-weight:normal;
   } 
 .step_one {
-    width:205px;
+    width:195px;
 }
+.step_one h3 {
+text-align:center;
+}
+
 .step_one p {
   padding-left:22px;
   padding-right: 33px;
@@ -850,7 +865,7 @@ padding-left:22px;
 .subscription_plans .btn.primary {
   font-size: 12px;
   font-weight:bold;
-  width: 50px;
+  width: 53px;
   height: 10px;
 }
 .explanation ul li{
