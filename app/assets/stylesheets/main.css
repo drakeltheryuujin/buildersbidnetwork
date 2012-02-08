@@ -232,6 +232,9 @@ white-space: nowrap;
   font-size:12px;
   font-weight:normal;
 }
+.brand_header .nav_topbar .active a  span {
+  color: #333;
+}
 .brand_header .nav_topbar .label {
   background-color:#FF6502;
   color:#fff;
