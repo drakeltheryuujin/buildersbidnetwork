@@ -522,6 +522,41 @@ white-space: nowrap;
   padding: 0;
   display: inline-block;
 }
+.db_profile_bids_made_sidebar,
+.db_profile_projects_awarded_sidebar, 
+.db_profile_projects_posted_sidebar,
+.db_track_projects_awarded_sidebar {
+  background:#f8f8f8;
+  width:200px;
+  display:block;
+  margin-left:497px;
+}
+
+.db_profile_bids_made_sidebar .sidebar_box {
+  height:90px;
+  margin-bottom:0px;
+}
+.db_profile_projects_awarded_sidebar .sidebar_box  {
+  height:90px;
+  margin-bottom:0px;
+}
+.db_profile_projects_posted_sidebar .sidebar_box  {
+  height:90px;
+  margin-bottom:0px;
+}
+.db_track_projects_awarded_sidebar .sidebar_box {
+  height:68px;
+}
+
+.db_track_projects_awarded_sidebar .sidebar_box p {
+  color:#6485b2;
+  padding-top:25px;
+  text-align:center;
+}
+.right_search_box_container  {
+  margin-top:-336px;
+  }
+
 .db_subscribe_sidebar,
 .db_invite_sidebar, 
 .db_profile_views_sidebar,
