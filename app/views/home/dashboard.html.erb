@@ -15,8 +15,7 @@
   </div>
 <% end %>
 
-
-<div class="db_page row">
+<div class="<%= current_user.contractor? ? 'home_page' : 'db_page' %> row">
   <div class="span12"> 
     <div class="search_box home_box row">
       <% if current_user.contractor? %>
