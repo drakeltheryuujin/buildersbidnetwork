@@ -532,18 +532,25 @@ white-space: nowrap;
   margin-left:497px;
 }
 
-.db_profile_bids_made_sidebar .sidebar_box {
+.db_profile_bids_made_sidebar .sidebar_box, 
+.db_profile_projects_awarded_sidebar .sidebar_box, 
+.db_profile_projects_posted_sidebar .sidebar_box {
   height:90px;
   margin-bottom:0px;
 }
-.db_profile_projects_awarded_sidebar .sidebar_box  {
-  height:90px;
-  margin-bottom:0px;
+
+.db_profile_bids_made_sidebar .sidebar_box.sidebar_number strong,    
+.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number strong ,  
+.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number strong  {
+  padding-top:20px;
 }
-.db_profile_projects_posted_sidebar .sidebar_box  {
-  height:90px;
-  margin-bottom:0px;
+.db_profile_bids_made_sidebar .sidebar_box.sidebar_number p,    
+.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number p ,  
+.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number p  {
+  padding-top:35px;
+  padding-left:70px;
 }
+
 .db_track_projects_awarded_sidebar .sidebar_box {
   height:68px;
 }
