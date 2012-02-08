@@ -525,7 +525,8 @@ white-space: nowrap;
 .db_subscribe_sidebar,
 .db_invite_sidebar, 
 .db_profile_views_sidebar,
-.db_profile_ad_sidebar {
+.db_profile_member_ad_sidebar,
+.db_profile_your_ad_sidebar {
   background:#fff;
   width:300px;
   margin-top:15px;
