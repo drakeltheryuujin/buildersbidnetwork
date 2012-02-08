@@ -1,4 +1,4 @@
-<div class="credits_page payments_page row">
+<div class="subscriptions_page payments_page row">
   <div class="span4 ">
     <div class="credits_nav">
       <h1>Subscriptions</h1>
@@ -49,22 +49,25 @@
       <div class ="head">
         <h3> Choose a subscription that works for you<h3>
       </div>
-    <table>
-      <tr id="row1">
-        <th><th>Month-by-Month<th>Yearly
-      <tr id="row2">
-        <th>Plan Price:
-          <TD>$89.95/month (1,079.40/Year) 
-          <TD> $79.95/month ($959.40 Total)
-      <tr id="row3">
-        <th>Extras 
-          <TD>None 
-          <TD>2 Bid Credits Year
-      <tr id="row4">
-        <th>
-          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-    </TABLE>
+      <table>
+        <tr id="row1">
+          <th></th><th>Month-by-Month</th><th>Yearly</th>
+        </tr>
+        <tr id="row2">
+          <th>Plan Price:</th>
+          <TD>$89.95/month ($1,079.40/Year)</td>
+          <TD>$79.95/month ($959.40 Total)</td>
+        </tr>
+        <tr id="row3">
+          <th>Extras</th>
+          <TD>None</td>
+          <TD>2 Bid Credits Year</td>
+        <tr id="row4">
+          <th></th>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %></td>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :yearly), {:class => 'btn primary large'} %></td>
+        </tr>
+      </table>
     </div>
       <div class="explanation">
         <h3>What do I get for my Subcription?
