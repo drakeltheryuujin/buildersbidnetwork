@@ -522,6 +522,15 @@ white-space: nowrap;
   padding: 0;
   display: inline-block;
 }
+.home_page .right_search_box_container  {
+  margin-top:-295px;
+  }
+.home_page .db_profile_bids_made_sidebar,
+.home_page .db_profile_projects_awarded_sidebar, 
+.home_page .db_profile_projects_posted_sidebar,
+.home_page .db_track_projects_awarded_sidebar {
+  margin-left:445px;
+} 
 .db_profile_bids_made_sidebar,
 .db_profile_projects_awarded_sidebar, 
 .db_profile_projects_posted_sidebar,
@@ -531,6 +540,7 @@ white-space: nowrap;
   display:block;
   margin-left:497px;
 }
+
 
 .db_profile_bids_made_sidebar .sidebar_box, 
 .db_profile_projects_awarded_sidebar .sidebar_box, 
@@ -571,7 +581,7 @@ white-space: nowrap;
 .db_profile_your_ad_sidebar {
   background:#fff;
   width:300px;
-  margin-top:15px;
+  margin-top:19px;
 }
 
 .db_subscribe_sidebar p {
