@@ -32,9 +32,9 @@ class CreditsController < ApplicationController
     if @pc.purchase
       redirect_to credit_path(@pc), :notice => "Thank you for your payment." 
     else
-	    render :action => 'new'
+      render :action => 'new'
     end
-	end
+  end
 
   def show
     @credit = CreditAdjustment.find(params[:id])

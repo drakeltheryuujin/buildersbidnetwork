@@ -1,0 +1,2 @@
+class AnticipatedPayment < SubscriptionAdjustment
+end
