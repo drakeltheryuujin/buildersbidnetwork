@@ -1,0 +1,158 @@
+.payments_page h1 {
+  border-bottom: 1px solid #ddd;
+  padding-top: 15px;
+  clear: left;
+}
+.payments_page .credits_nav {
+  border-right: 1px solid #ddd;
+  height: 650px;
+}
+.payments_page ul {
+  list-style: none;
+  margin-left: 0;
+}
+.payments_page ul li {
+  padding: 5px;
+}
+.payments_page .explanation {
+  margin: 10px 20px 30px 10px;
+}
+.payments_page .explanation.policy p{
+  color: #999;
+  text-align: justify;
+  font-size: 12px;
+  line-height: 12px;
+}
+.credits_page .credits_box {
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+.credits_page .credits_box h1 {
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 1)), color-stop(100%,rgba(237, 234, 227, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
+  font-size: 18px;
+  line-height: 22px;
+  padding: 5px 15px;
+  margin-bottom: 0;
+  border-left: 1px solid #ddd;
+}
+.credits_page .credits_box select,
+.credits_page .credits_box label,
+.credits_page .credits_box input {
+  width: auto;
+  margin: 0 10px;
+}
+.credits_page .credits_box .btn,
+.credits_page .credits_box label {
+  margin: 10px;
+}
+.credits_page .credits_box .label.price {
+  font-size: 22px;
+  display: block;
+  clear: left;
+  text-align: center;
+  padding: 5px;
+  background-color: #83c444;
+  margin: 10px;
+  width: 60px;
+}
+.credits_page .credits_box .label.price .denom {
+  font-size: 16px;
+  vertical-align: top;
+}
+.credits_page .groups_box .group_box {
+  width: 150px;
+  border-left: 1px solid #DDD;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+.credits_page .groups_box:first-child {
+  border-left: none;
+}
+.credits_page .groups_box .group_box .group_credits {
+  width: 120px;
+  height: 120px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  display: block;
+  background-color: #fe7e11;
+  text-align: center;
+  color: white;
+  margin-left: 15px;
+}
+.credits_page .groups_box .group_box .group_credits span {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.credits_page .groups_box .group_box .group_credits span.number {
+  font-size: 24px;
+  padding-top: 40px;
+}
+.credits_page .groups_box .group_box .bonus {
+  background-color: #DDD;
+  margin: 10px;
+  border: 1px solid #AAA;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px;
+  font-weight: bold;
+  font-style: italic;
+}
+.credits_page .groups_box .group_box .group_deal {
+  margin: 10px;
+}
+.credits_page .groups_box .group_box .group_deal .price {
+  display: block;
+  font-size: 18px;
+}
+.payments_page table tbody tr,
+.payments_page table tbody tr th,
+.payments_page table tbody tr td {
+  border: none;
+}
+.payments_page table tbody tr:first-child th {
+  border-bottom: 1px solid #ddd;
+}
+.payments_page.checkout .payment_info div {
+  padding-bottom: 10px;
+}
+.payments_page.checkout .payment_info div.cards {
+  margin-left: 110px;
+}
+.payments_page.checkout .payment_info div.cards img {
+  margin-right: 10px;
+}
+.payments_page.checkout .payment_info #payment_credit_card_billing_zip {
+  width: 100px;
+}
+.payments_page.checkout .payment_info #payment_credit_card_expires_on_2i {
+  margin-left: 20px;
+}
+
+.payments_page.invoice .invoice_header {
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+.payments_page.invoice .invoice_header h4 {
+  display: inline-block;
+  margin-left: 10px;
+}
+.payments_page.invoice .invoice_header .btn {
+  float: right;
+  margin: 5px;
+}
+.payments_page.invoice .order_info label,
+.payments_page.invoice .payment_info label {
+  text-align: left;
+  width: 120px;
+}
