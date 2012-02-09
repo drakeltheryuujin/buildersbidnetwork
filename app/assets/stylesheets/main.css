@@ -522,13 +522,66 @@ white-space: nowrap;
   padding: 0;
   display: inline-block;
 }
+.home_page .right_search_box_container  {
+  margin-top:-295px;
+  }
+.home_page .db_profile_bids_made_sidebar,
+.home_page .db_profile_projects_awarded_sidebar, 
+.home_page .db_profile_projects_posted_sidebar,
+.home_page .db_track_projects_awarded_sidebar {
+  margin-left:445px;
+} 
+.db_profile_bids_made_sidebar,
+.db_profile_projects_awarded_sidebar, 
+.db_profile_projects_posted_sidebar,
+.db_track_projects_awarded_sidebar {
+  background:#f8f8f8;
+  width:200px;
+  display:block;
+  margin-left:497px;
+}
+
+
+.db_profile_bids_made_sidebar .sidebar_box, 
+.db_profile_projects_awarded_sidebar .sidebar_box, 
+.db_profile_projects_posted_sidebar .sidebar_box {
+  height:90px;
+  margin-bottom:0px;
+}
+
+.db_profile_bids_made_sidebar .sidebar_box.sidebar_number strong,    
+.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number strong ,  
+.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number strong  {
+  padding-top:20px;
+}
+.db_profile_bids_made_sidebar .sidebar_box.sidebar_number p,    
+.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number p ,  
+.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number p  {
+  padding-top:35px;
+  padding-left:70px;
+}
+
+.db_track_projects_awarded_sidebar .sidebar_box {
+  height:68px;
+}
+
+.db_track_projects_awarded_sidebar .sidebar_box p {
+  color:#6485b2;
+  padding-top:25px;
+  text-align:center;
+}
+.right_search_box_container  {
+  margin-top:-336px;
+  }
+
 .db_subscribe_sidebar,
 .db_invite_sidebar, 
 .db_profile_views_sidebar,
-.db_profile_ad_sidebar {
+.db_profile_member_ad_sidebar,
+.db_profile_your_ad_sidebar {
   background:#fff;
   width:300px;
-  margin-top:15px;
+  margin-top:19px;
 }
 
 .db_subscribe_sidebar p {

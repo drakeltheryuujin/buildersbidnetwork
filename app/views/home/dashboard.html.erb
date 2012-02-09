@@ -15,8 +15,7 @@
   </div>
 <% end %>
 
-
-<div class="db_page row">
+<div class="<%= current_user.contractor? ? 'home_page' : 'db_page' %> row">
   <div class="span12"> 
     <div class="search_box home_box row">
       <% if current_user.contractor? %>
@@ -51,9 +50,37 @@
           <%= f.submit 'Search', :class => 'large btn primary' %>
         </div>
       <% end %>
+      
+      <div class ="right_search_box_container">
+        <div class="db_profile_projects_posted_sidebar">
+          <div class="sidebar_box sidebar_number">
+            <strong> 25</strong>
+            <p>projects posted</p>
+          </div>
+        </div>
+          <div class="db_profile_bids_made_sidebar">
+            <div class="sidebar_box sidebar_number">
+              <strong>6 </strong>
+              <p>bids have been made on your projects</p>
+            </div>
+          </div>
+          <div class="db_profile_projects_awarded_sidebar">
+            <div class="sidebar_box sidebar_number">
+              <strong>25 </strong>
+              <p>projects have been awarded in the last 190 days</p>
+            </div>
+          </div>
+           <div class="db_track_projects_awarded_sidebar">
+            <div class="sidebar_box sidebar_number">
+              <p>Track your projects</p>
+            </div>
+          </div>
+      </div>      
     </div>
   </div>
+  
   <div class="span4">
+     <% if current_user.contractor? %>
     <div class="db_subscribe_sidebar">
       <div class="sidebar_box sidebar_number">
         <div class="head"><h1>Subscribe to View and Bid on Projects</h1></div>       
@@ -62,8 +89,10 @@
                 <p><%= f.submit "SUBSCRIBE TODAY", :class => 'btn subscribe' %></p>
                 <p><%= f.submit "VIEW PRICING", :class => 'btn pricing' %></p>
               <% end %>   
-      </div>
+      </div>   
     </div>
+    <%end%>
+    
  
     <div class="db_invite_sidebar">
       <div class="sidebar_box sidebar_number">
@@ -90,15 +119,21 @@
         <div class="head"><h1> Who's View Your Profile?</h1></div>
         <p>Your profile has been viewed 27 times in the last 15 days</p>
       </div>
-      
     </div>
     
-    <div class="db_profile_ad_sidebar">
+     <div class="db_profile_your_ad_sidebar">
       <div class="sidebar_box sidebar_number">
-        <div class="head"><h1> Ad's From BBN Members</h1></div>
+        <div class="head"><h1> Want to See Your Ad on BBN?</h1></div>
         <p>Benefits of Advertising can be listed here. It's really a good idea. Lot's of people will see your product!</p>
       </div>
-      
+    </div>
+    
+    <div class="db_profile_member_ad_sidebar">
+      <div class="sidebar_box sidebar_number">
+        <div class="head"><h1> Ad's From BBN Members</h1></div>
+        <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+      </div>
     </div>
     
   </div>
