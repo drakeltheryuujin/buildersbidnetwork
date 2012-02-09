@@ -16,8 +16,8 @@
 <% end %>
 
 <div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> row">
-  <div class="span12"> 
-    <div class="home_box row">
+  <div class="span11"> 
+    <div class="home_box">
       <div class="search_box">
         <% if current_user.contractor? %>
           <h2>Search for Projects</h2>  
@@ -25,7 +25,7 @@
           <h2>Search for Contractors</h2>
         <% end %>  
         <div class="background">&nbsp;</div>
-        <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+          <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
           <%= f.hidden_field :section %>
           <table class="span3">
             <tr>
@@ -47,41 +47,59 @@
         <strong class="span9">Select a Type of Trade</strong>
         <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
 
-        <div class="span9">
-          <%= f.submit 'Search', :class => 'large btn primary' %>
-        </div>
+          <div class="span9">
+            <%= f.submit 'Search', :class => 'large btn primary' %>
+          </div>            
         <% end %>
-      </div>
+      </div>    
       
       <div class ="right_search_box_container">
-        <div class="db_profile_projects_posted_sidebar">
-          <div class="sidebar_box sidebar_number">
-            <strong> 25</strong>
-            <p>projects posted</p>
-          </div>
-        </div>
-          <div class="db_profile_bids_made_sidebar">
-            <div class="sidebar_box sidebar_number">
-              <strong>6 </strong>
-              <p>bids have been made on your projects</p>
-            </div>
-          </div>
+        <% if current_user.developer? %>
+              <div class="db_profile_projects_posted_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>25</strong>
+                    <p>projects posted</p>
+                  </div>
+                </div>
+                <div class="db_profile_bids_made_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>6 </strong>
+                    <p>bids have been made on your projects</p>
+                  </div>
+                </div>
+                <div class="db_profile_projects_awarded_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>25 </strong>
+                    <p>projects have been awarded in the last 190 days</p>
+                  </div>  
+                </div>
+                <div class="db_track_projects_awarded_sidebar">
+                    <div class="sidebar_box sidebar_number">
+                        <p>Track your projects</p>
+                    </div>
+                </div>
+            <%else current_user.contractor?%>
+           <div class="db_profile_projects_added_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                  <strong>18</strong>
+                  <p>new projects have been added in the past 30 days</p>
+                  </div>
+                </div>  
           <div class="db_profile_projects_awarded_sidebar">
-            <div class="sidebar_box sidebar_number">
-              <strong>25 </strong>
-              <p>projects have been awarded in the last 190 days</p>
-            </div>
-          </div>
+              <div class="sidebar_box sidebar_number">
+                <strong>25 </strong>
+                  <p>projects have been awarded in the last 190 days</p>
+              </div>              
            <div class="db_track_projects_awarded_sidebar">
-            <div class="sidebar_box sidebar_number">
-              <p>Track your projects</p>
-            </div>
-          </div>
-      </div>      
-    </div>
+              <div class="sidebar_box sidebar_number">
+                  <p>Track your bids</p>
+              </div>
+            <%end%>         
+    </div>      
   </div>
+</div>
   
-  <div class="span4">
+  <div class="span5">
      <% if current_user.contractor? %>
     <div class="db_subscribe_sidebar">
       <div class="sidebar_box sidebar_number">

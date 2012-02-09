@@ -523,58 +523,32 @@ white-space: nowrap;
   display: inline-block;
 }
 /* Dashboard Profile Specific CSS Styling */
-.developer_contractor_page .db_profile_bids_made_sidebar,
-.developer_contractor_page .db_profile_projects_awarded_sidebar, 
-.developer_contractor_page .db_profile_projects_posted_sidebar,
-.developer_contractor_page .db_track_projects_awarded_sidebar {
-  margin-left:445px;
-} 
-.db_profile_bids_made_sidebar,
-.db_profile_projects_awarded_sidebar, 
-.db_profile_projects_posted_sidebar,
-.db_track_projects_awarded_sidebar {
+
+.right_search_box_container {
   background:#f8f8f8;
-  width:200px;
-  display:block;
   float:right;
+  width:160px;
 }
-
-.db_profile_bids_made_sidebar .sidebar_box, 
-.db_profile_projects_awarded_sidebar .sidebar_box, 
-.db_profile_projects_posted_sidebar .sidebar_box {
-  height:90px;
+.right_search_box_container .sidebar_box {
+  border: 1px solid #DDD;
+  border-radius:none;
   margin-bottom:0px;
+  padding-top:5px;
+}
+.right_search_box_container .sidebar_box .sidebar_number {
+  padding-top:5px;
 }
 
-.db_profile_bids_made_sidebar .sidebar_box.sidebar_number strong,    
-.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number strong ,  
-.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number strong  {
-  padding-top:20px;
-}
-.db_profile_bids_made_sidebar .sidebar_box.sidebar_number p,    
-.db_profile_projects_awarded_sidebar .sidebar_box.sidebar_number p ,  
-.db_profile_projects_posted_sidebar .sidebar_box.sidebar_number p  {
-  padding-top:35px;
-  padding-left:70px;
-}
-
-.db_track_projects_awarded_sidebar .sidebar_box {
-  height:68px;
+.right_search_box_container .sidebar_number p {
+padding-top:40px;
+padding-left: 15px;
+padding-right:10px
 }
 
 .db_track_projects_awarded_sidebar .sidebar_box p {
   color:#6485b2;
   padding-top:25px;
   text-align:center;
-}
-
-.db_subscribe_sidebar,
-.db_invite_sidebar, 
-.db_profile_views_sidebar,
-.db_profile_member_ad_sidebar,
-.db_profile_your_ad_sidebar {
-  background:#fff;
-  width:300px;
 }
 
 .db_subscribe_sidebar p {
@@ -595,7 +569,8 @@ margin-bottom:50px;
 }
 .btn.large.primary.project {
   text-align:center;
-  width:270px;
+  width:250px;
+  margin-bottom:20px;
 }  
 .home_page .home_box,
 .db_contractor_page .home_box, 
@@ -608,9 +583,7 @@ margin-bottom:50px;
 .db-contractor_page .home_box {
   height:345px;
 }
-.db_developer_page .home_box {
-  width:707px;
-}
+
 .home_page .search_box,
 .db_developer_page .search_box,
 .db_contractor_page .search_box {
@@ -652,8 +625,9 @@ margin-bottom:50px;
 	z-index: -1;
 }
 /* Must be below above css */
+.db_contractor_page .search_box .background,
 .db_developer_page .search_box .background {
-  left:170px;
+  left:140px;
 }
 .home_page .account_box {
   padding:10px 30px;
@@ -786,7 +760,7 @@ padding-top:15px;
 .db_contractor_page .search_box h2,
 .db_developer_page .search_box h2 {
   color:#002358;
-  font-size:32px;
+  font-size:31px;
   font-weight:bold;
 }
 .home_page .search_box .offset6 ,
