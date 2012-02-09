@@ -581,7 +581,7 @@ margin-bottom:50px;
 }
 .db_developer_page .home_box,
 .db-contractor_page .home_box {
-  height:345px;
+  height:335px;
 }
 
 .home_page .search_box,
@@ -608,9 +608,6 @@ margin-bottom:50px;
 .db_contractor_page .search_box table td,
 .db_developer_page .search_box table td {
   border:none;
-}
-.db_track_projects_awarded_sidebar {
-  height:70px;
 }
 
 .home_page .search_box .background,
