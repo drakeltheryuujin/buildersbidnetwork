@@ -15,33 +15,34 @@
   </div>
 <% end %>
 
-<div class="<%= current_user.contractor? ? 'home_page' : 'db_page' %> row">
+<div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> row">
   <div class="span12"> 
-    <div class="search_box home_box row">
-      <% if current_user.contractor? %>
-        <h2>Search for Projects</h2>  
-      <% else %>
-        <h2>Search for Contractors</h2>
-      <% end %>  
-      <div class="background">&nbsp;</div>
-      <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
-        <%= f.hidden_field :section %>
-        <table class="span3">
-          <tr>
-            <td><strong>Within</strong></td>
-            <td>&nbsp;</td>
-            <td><strong>Your zip</strong></td>
-          </tr>
-          <tr>
-            <td>
-              <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
-            </td>
-            <td>of</td>
-            <td>
-              <%= f.text_field :location, :size => 7, :class => "span2" %>
-            </td>
-          </tr>
-        </table>
+    <div class="home_box row">
+      <div class="search_box">
+        <% if current_user.contractor? %>
+          <h2>Search for Projects</h2>  
+        <% else %>
+          <h2>Search for Contractors</h2>
+        <% end %>  
+        <div class="background">&nbsp;</div>
+        <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+          <%= f.hidden_field :section %>
+          <table class="span3">
+            <tr>
+              <td><strong>Within</strong></td>
+              <td>&nbsp;</td>
+              <td><strong>Your zip</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+              </td>
+              <td>of</td>
+              <td>
+                <%= f.text_field :location, :size => 7, :class => "span2" %>
+              </td>
+            </tr>
+          </table>
 
         <strong class="span9">Select a Type of Trade</strong>
         <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
@@ -49,7 +50,8 @@
         <div class="span9">
           <%= f.submit 'Search', :class => 'large btn primary' %>
         </div>
-      <% end %>
+        <% end %>
+      </div>
       
       <div class ="right_search_box_container">
         <div class="db_profile_projects_posted_sidebar">
