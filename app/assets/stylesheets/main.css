@@ -516,7 +516,7 @@ white-space: nowrap;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;
-  padding:5px;
+  padding:4px;
 }
 .field_with_errors {
   padding: 0;
@@ -552,8 +552,7 @@ padding-right:10px
 }
 
 .db_subscribe_sidebar p {
-  padding-left:10px;
-  padding-right:10px;
+  padding: 5px 10px 0 10px;
 }
 .db_subscribe_sidebar form {
   margin-bottom:50px;
@@ -562,11 +561,15 @@ padding-right:10px
 .db_subscribe_sidebar input.btn.subscribe {
   float:left;
   background: #f3cb2d;
+  margin-left: 10px;
+  padding: 5px 2px 5px 2px;
 }
 
 .db_subscribe_sidebar input.btn.pricing {
   float:right;
   background:#f3cb2d;
+  margin-right: 20px;
+  padding: 5px 2px 5px 2px;
 }
 .db_profile_views_sidebar p, 
 .db_profile_views_sidebar .sidebar_number strong {
@@ -598,6 +601,10 @@ padding-right:10px
 }
 .db_profile_member_ad_sidebar p {
    padding: 10px 5px 0px 85px; 
+   border-top:1px solid #ccc;
+}
+.db_profile_member_ad_sidebar p.first {
+   border-top:none;
 }
 .db_profile_member_ad_sidebar li {
   list-style:none;
