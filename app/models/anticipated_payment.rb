@@ -1,2 +1,0 @@
-class AnticipatedPayment < SubscriptionAdjustment
-end

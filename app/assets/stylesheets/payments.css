@@ -132,9 +132,11 @@
 .payments_page.checkout .payment_info div.cards img {
   margin-right: 10px;
 }
+.payments_page.checkout .payment_info #subscription_payment_card_billing_zip,
 .payments_page.checkout .payment_info #payment_credit_card_billing_zip {
   width: 100px;
 }
+.payments_page.checkout .payment_info #subscription_payment_card_expires_on_2i,
 .payments_page.checkout .payment_info #payment_credit_card_expires_on_2i {
   margin-left: 20px;
 }

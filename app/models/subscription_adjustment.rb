@@ -1,6 +1,10 @@
 class SubscriptionAdjustment < ActiveRecord::Base
   belongs_to :subscription
 
+  validates :start_at, :presence => true
+
+  after_save :update_subscription_valid_until
+
   class << self
     def new(attributes = {}, options = {}, &block)
       adjustment_type = attributes.delete(:adjustment_type)
@@ -23,5 +27,11 @@ class SubscriptionAdjustment < ActiveRecord::Base
 
       klass.new(attributes, options, &block)
     end
+  end
+
+  private
+
+  def update_subscription_valid_until
+    subscription.update_valid_until(self)
   end
 end

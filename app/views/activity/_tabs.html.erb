@@ -2,7 +2,7 @@
       <li class="<%= put_if_current_page('active', activity_index_path) %>">
         <%= link_to "Activity", activity_index_path %>
       </li>
-      <li class="<%= put_if_current_page('active', edit_user_registration_path) %> <%= put_if_current_page('active', history_credits_path) %>">
+      <li class="<%= put_if_current_page('active', edit_user_registration_path) %> <%= put_if_current_page('active', history_credits_path) %> <%= put_if_current_page('active', status_subscriptions_path) %>">
         <%= link_to "Account", edit_user_registration_path %>
       </li>
       <li class="<%= put_if_current_page('active', notifications_path) %>">

@@ -25,21 +25,16 @@
 
       <tr>
         <td>
-          Site Subscription - 
-          <% if true %>
-            Monthly
-          <% else %>
-            Yearly
-          <% end %>
+          Site Subscription - <%= @subscription_payment.interval.humanize %>
         </td>
         <td>
           1
         </td>
         <td>
-          unit price
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
         <td>
-          total
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 
@@ -55,7 +50,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>
-          <%= number_to_currency @subscription.subscription_adjustments.first.amount %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 
@@ -70,61 +65,47 @@
         <%= image_tag '/images/cc_icons/amex.png' %>
         <%= image_tag '/images/cc_icons/discover.png' %>
       </div>
-      <%= form_for @subscription, :url => subscriptions_path, :method => :post do |f| %>
-        <%= f.hidden_field :valid_until %>
-        <% if @subscription.errors.any? %>
+      <%= form_for @subscription_payment, :url => subscriptions_path, :method => :post do |f| %>
+        <%= f.hidden_field :amount %>
+        <%= f.hidden_field :interval %>
+        <%= f.hidden_field :adjustment_type, :value => @subscription_payment.type %>
+        <% if @subscription_payment.errors.any? %>
           <div class="alert-message block-message error">
-            <strong><%= pluralize(@subscription.errors.count, "error") %> prohibited this purchase from being completed:</strong>
+            <strong><%= pluralize(@subscription_payment.errors.count, "error") %> prohibited this purchase from being completed:</strong>
       
             <ul>
-            <% @subscription.errors.full_messages.each do |msg| %>
+            <% @subscription_payment.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
             </ul>
           </div>
         <% end %>
-        <% if @subscription.subscription_adjustments.first.errors.any? %>
-          <div class="alert-message block-message error">
-            <strong><%= pluralize(@subscription.subscription_adjustments.first.errors.count, "error") %> prohibited this purchase from being completed:</strong>
-      
-            <ul>
-            <% @subscription.subscription_adjustments.first.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= f.fields_for :subscription_adjustments do |payment_fields| %>
-          <%= payment_fields.hidden_field :amount %>
-          <%= payment_fields.hidden_field :adjustment_type, :value => payment_fields.object.type %>
-          <div class="row">
-            <%= payment_fields.label :card_type, "Type", :class => "span2 " %>
-            <%= payment_fields.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]], {}, :class => "span6 alpha" %>
-          </div>
-          <div class="row">
-            <label class="span2">Name</label>
-            <%= payment_fields.text_field :first_name, :placeholder => "First Name", :class => "span6 alpha" %>
-          </div>
-          <div class="row">
-            <label class="span2">&nbsp;</label>
-            <%= payment_fields.text_field :last_name, :placeholder => "Last Name", :class => "span6 alpha" %>
-          </div>
-          <div class="row">
-            <%= payment_fields.label :card_number, :class => "span2 " %>
-            <%= payment_fields.text_field :card_number,  :placeholder => "Card Number", :class => "span6 alpha" %>
-          </div>
-          <div class="row">
-            <%= payment_fields.label :card_verification, "Security Code", :class => "span2 " %>
-            <%= payment_fields.text_field :card_verification, :size => 4, :placeholder => "CCV", :class => "span2 alpha" %>
-            <%= payment_fields.label :card_billing_zip, "Postal Code", :class => "span2 " %>
-            <%= payment_fields.text_field :card_billing_zip, :size => 6, :placeholder => "Zip", :class => "span2 alpha" %>
-          </div>
-          <div class="row">
-            <%= payment_fields.label :card_expires_on, "Expires", :class => "span2 " %>
-            <%= payment_fields.date_select :card_expires_on, {:discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true}, :class => "span3 alpha " %>
-          </div>
-        <% end %>
+        <div class="row">
+          <%= f.label :card_type, "Type", :class => "span2 " %>
+          <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]], {}, :class => "span6 alpha" %>
+        </div>
+        <div class="row">
+          <label class="span2">Name</label>
+          <%= f.text_field :first_name, :placeholder => "First Name", :class => "span6 alpha" %>
+        </div>
+        <div class="row">
+          <label class="span2">&nbsp;</label>
+          <%= f.text_field :last_name, :placeholder => "Last Name", :class => "span6 alpha" %>
+        </div>
+        <div class="row">
+          <%= f.label :card_number, :class => "span2 " %>
+          <%= f.text_field :card_number,  :placeholder => "Card Number", :class => "span6 alpha" %>
+        </div>
+        <div class="row">
+          <%= f.label :card_verification, "Security Code", :class => "span2 " %>
+          <%= f.text_field :card_verification, :size => 4, :placeholder => "CCV", :class => "span2 alpha" %>
+          <%= f.label :card_billing_zip, "Postal Code", :class => "span2 " %>
+          <%= f.text_field :card_billing_zip, :size => 6, :placeholder => "Zip", :class => "span2 alpha" %>
+        </div>
+        <div class="row">
+          <%= f.label :card_expires_on, "Expires", :class => "span2 " %>
+          <%= f.date_select :card_expires_on, {:discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true}, :class => "span3 alpha " %>
+        </div>
         <p class="row span8 text_align_right"><%= f.submit "Submit Payment", :class => 'btn large primary' %></p>
       <% end %>
     </div>
