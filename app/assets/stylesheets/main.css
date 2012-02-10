@@ -573,8 +573,12 @@ padding-right:10px
   padding-top:10px;
   padding-bottom:10px;
 }
+.db_profile_your_ad_sidebar {
+   background: transparent url('../images/new.png')  0 41px no-repeat;
+   padding-top:5px;
+}  
 .db_profile_your_ad_sidebar p {
-  padding: 10px 5px 0px 85px; 
+  padding: 10px 5px 0px 90px; 
 }
 
 .db_profile_your_ad_sidebar li {
@@ -605,6 +609,7 @@ padding-right:10px
 .db_developer_page .home_box,
 .db-contractor_page .home_box {
   height:335px;
+  border: 1px solid#EEE;
 }
 
 .home_page .search_box,
@@ -646,7 +651,7 @@ padding-right:10px
 /* Must be below above css */
 .db_contractor_page .search_box .background,
 .db_developer_page .search_box .background {
-  left:140px;
+  left:144px;
 }
 .home_page .account_box {
   padding:10px 30px;
