@@ -530,10 +530,12 @@ white-space: nowrap;
   width:160px;
 }
 .right_search_box_container .sidebar_box {
-  border: 1px solid #DDD;
-  border-radius:none;
+  border-bottom: 1px solid #DDD;
   margin-bottom:0px;
   padding-top:5px;
+  border-radius: 1px;
+-moz-border-radius: 1px;
+-webkit-border-radius: 1px;
 }
 .right_search_box_container .sidebar_box .sidebar_number {
   padding-top:5px;
