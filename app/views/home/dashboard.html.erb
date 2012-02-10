@@ -75,7 +75,7 @@
                 </div>
                 <div class="db_track_projects_awarded_sidebar">
                     <div class="sidebar_box sidebar_number">
-                        <p>Track your projects</p>
+                    <p><%= link_to "Track your projects &raquo;".html_safe, activity_index_path %></p>
                     </div>
                 </div>
             <%else current_user.contractor?%>
@@ -92,7 +92,7 @@
               </div>              
            <div class="db_track_projects_awarded_sidebar">
               <div class="sidebar_box sidebar_number">
-                  <p>Track your bids</p>
+                 <p><%= link_to "Track your bids &raquo;".html_safe, activity_index_path %></p>
               </div>
             <%end%>         
     </div>      
@@ -147,7 +147,7 @@
         <div class="head"><h1> Want to See Your Ad on BBN?</h1></div>
           <div class ="db_your_ad_container">
           <p>Benefits of Advertising can be listed here. It's really a good idea. Lot's of people will see your product!</p>
-          <li>Learn More >> </li>
+          <li>Learn More &raquo; </li>
         </div>
       </div>
      </div>
@@ -158,7 +158,7 @@
           <div class ="db_profile_container">
             <p class="first">Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
             <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-            <li>Learn More >> </li>
+            <li>Learn More &raquo; </li>
           <div>  
         </div>
       </div>
