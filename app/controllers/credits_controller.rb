@@ -8,6 +8,9 @@ class CreditsController < ApplicationController
 
   def history
     @credit_adjustments = current_user.credit_adjustments
+    unless current_user.subscription.nil?
+      @subscription_payments = current_user.subscription.subscription_adjustments.where(:type => SubscriptionPayment.to_s)
+    end
   end
 
   def new
@@ -38,6 +41,6 @@ class CreditsController < ApplicationController
 
   def show
     @credit = CreditAdjustment.find(params[:id])
-    # TODO validate ownership
+    return redirect_to(history_credits_path, :alert => 'Access denied.') unless @credit.user == current_user 
   end
 end

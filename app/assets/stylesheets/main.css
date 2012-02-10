@@ -1711,6 +1711,11 @@ ul.line_items li div.units .line_item_total,
   vertical-align: middle;
 }
 
+.settings_page h2 {
+  color: #F77010;
+  font-size: 18px;
+}
+
 .settings_page table {
   border-spacing: 0;
 }
@@ -1722,7 +1727,7 @@ ul.line_items li div.units .line_item_total,
   border: none;
 }
 .settings_page table tbody tr:first-child {
-  border: 1px solid #ddd;
+  border: 1px solid #666;
   background-color: #eee;
 }
 .settings_page table tbody tr:first-child th:first-child {

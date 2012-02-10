@@ -66,7 +66,13 @@ Ypn::Application.routes.draw do
     end
   end
   
-  resources :subscriptions, :only => [:index, :new, :create, :show]
+  resources :subscriptions, :only => [:index, :new, :create, :show] do
+    collection do
+      get 'status'
+      get 'cancel'
+    end
+  end
+
 
   resources :search, :only => [:index]
 
