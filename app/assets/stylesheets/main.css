@@ -556,16 +556,39 @@ padding-right:10px
   padding-right:10px;
 }
 .db_subscribe_sidebar form {
-margin-bottom:50px;
+  margin-bottom:50px;
 }
  
 .db_subscribe_sidebar input.btn.subscribe {
   float:left;
   background: #f3cb2d;
 }
+
 .db_subscribe_sidebar input.btn.pricing {
   float:right;
   background:#f3cb2d;
+}
+.db_profile_views_sidebar p, 
+.db_profile_views_sidebar .sidebar_number strong {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.db_profile_your_ad_sidebar p {
+  padding: 10px 5px 0px 85px; 
+}
+
+.db_profile_your_ad_sidebar li {
+  list-style:none;
+  color:#4a6091;
+  padding: 0 0 5px 175px;
+}
+.db_profile_member_ad_sidebar p {
+   padding: 10px 5px 0px 85px; 
+}
+.db_profile_member_ad_sidebar li {
+  list-style:none;
+  color:#4a6091;
+  padding: 0 0 5px 175px;
 }
 .btn.large.primary.project {
   text-align:center;
@@ -588,9 +611,8 @@ margin-bottom:50px;
 .db_developer_page .search_box,
 .db_contractor_page .search_box {
   padding-top:15px;
-  height:303px;
+  width:60%;
   margin: 20px 0 20px 0;
-  width:450px;
   position:relative;
   z-index:0;
 }
@@ -668,22 +690,21 @@ font-weight: bold;
   padding:4px;
 }
 .home_page .account_box .btn.primary {
-
-margin-right:5px;
-float:left;
+  margin-right:5px;
+  float:left;
 }
 .home_page .account_box .terms {
-float: right;
-width: 210px;
-font-size: 14px;
+  float: right;
+  width: 210px;
+  font-size: 14px;
 }
 .home_page .account_box .field.register {
-margin-top:20px;
-clear:both;
-padding-bottom:10px;
+  margin-top:20px;
+  clear:both;
+  padding-bottom:10px;
 }
 .home_page .account_box .cta {
-padding-top:15px;
+  padding-top:15px;
 }
 .home_page .span10 {
   width: 474px;    
@@ -763,16 +784,16 @@ padding-top:15px;
 .home_page .search_box .offset6 ,
 .db_contractor_page .search_box .offset6,
 .db_contractor_page .search_box .offset6 {
-margin-left:0px;
-margin-top:5px;
-width:320px;
+  margin-left:0px;
+  margin-top:5px;
+  width:320px;
 }
 
 .home_page .search_box .type_select,
 .db_contractor_page .search_box .type_select,
 .db_developer_page .search_box .type_select {
   margin: 10px 0 25px 0;
-  width:413px;
+  width:100%;
 }
 
 .home_page .cta_box {
