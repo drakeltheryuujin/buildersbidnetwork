@@ -573,6 +573,16 @@ padding-right:10px
   padding-top:10px;
   padding-bottom:10px;
 }
+.db_invite_sidebar p {
+  padding: 10px 0 0 20px;
+}
+
+.db_invite_sidebar .btn.success {
+  font-weight:bold;
+  text-transform:uppercase;
+  width:220px;
+}
+
 .db_profile_your_ad_sidebar {
    background: transparent url('../images/new.png')  0 41px no-repeat;
    padding-top:5px;
