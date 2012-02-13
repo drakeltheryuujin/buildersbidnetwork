@@ -3,6 +3,7 @@ class Users::InvitationsController < Devise::InvitationsController
   include ActionView::Helpers::TextHelper
 
   def create
+    # this is a never completed attempt at accepting multiple email addresses at once
     if params[resource_name][:emails].present?
       emails = params[resource_name][:emails].split(/\s*,\s*/)
 
@@ -43,7 +44,7 @@ class Users::InvitationsController < Devise::InvitationsController
         set_flash_message :notice, :send_instructions, :email => self.resource.email
         respond_with resource, :location => after_invite_path_for(resource)
       else
-        redirect_to after_invite_path_for(resource), :alert => self.resource.email + ' is not a valid email address.'
+        redirect_to after_invite_path_for(resource), :alert => (self.resource.email.blank? ? 'Email address required.' : self.resource.email + ' is not a valid email address.')
       end
     end
   end
