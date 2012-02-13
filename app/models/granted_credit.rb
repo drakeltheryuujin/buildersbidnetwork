@@ -1,4 +1,4 @@
-class GrantedSubscription < SubscriptionAdjustment
+class GrantedCredit < CreditAdjustmentCredit
   belongs_to :granted_by, :class_name => "User"
 
   validates :granted_by, :presence => true
@@ -11,4 +11,3 @@ class GrantedSubscription < SubscriptionAdjustment
     end
   end
 end
-

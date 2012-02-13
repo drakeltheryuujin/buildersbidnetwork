@@ -4,3 +4,15 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+#active_admin_content #main_content_wrapper #main_content {
+  margin-right: 420px;
+}
+#active_admin_content #sidebar {
+  width: 400px;
+  margin-left: -400px;
+}
+#granted_credit_value {
+  width: 300px;
+  font-size: 18px;
+  font-weight: bold;
+}
