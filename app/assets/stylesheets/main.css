@@ -1661,6 +1661,9 @@ ul.line_items li div.units .line_item_total,
   float: left;
   padding: 0;
 }
+.login-page .login-box .field label.full-width {
+  width: 100%;
+}
 .login-page .login-box .field.remember {
   padding: 20px;
 }

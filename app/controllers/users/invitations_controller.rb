@@ -43,7 +43,10 @@ class Users::InvitationsController < Devise::InvitationsController
         set_flash_message :notice, :send_instructions, :email => self.resource.email
         respond_with resource, :location => after_invite_path_for(resource)
       else
-        redirect_to after_invite_path_for(resource), :alert => self.resource.email + ' is not a valid email address.'
+        message = ''
+        resource.errors.full_messages.map { |msg| message += msg }.join
+        
+        redirect_to after_invite_path_for(resource), :alert => message + ' is not a valid email address.'
       end
     end
   end
