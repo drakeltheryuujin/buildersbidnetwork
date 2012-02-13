@@ -53,7 +53,7 @@
    <div class="account_box home_box row">
    <h2>Create an Account- It's Free!</h2>
    <li>Registering an account is required to view, create, and bid on projects.</li>
-    <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %>
+    <%= form_for(:user, :as => :user, :url => user_registration_path) do |f| %>
 
       <div class="field text">
         <%= f.label :email %>
@@ -74,12 +74,7 @@
         <%= f.submit "Create Account", :class => "btn large primary" %>
         <div class="terms">
           <span class="field_info span4">
-            By signing up you agree to our
-          </span>
-          <span class="field_info span4">
-            <%= link_to "User Agreement", content_page_path('agreement') %>
-            and
-            <%= link_to "Terms of Service", content_page_path('terms') %>
+            By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
           </span>
          </div>
       </div>
