@@ -120,9 +120,7 @@
           <% if may_admin_project? %>
             <span class="admin-btns">
               <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Photos</a>
-              <!-- Coming soon
               <a href="#" class="btn small select-cover-btn"><%= image_tag "/images/icon_blacksquare_coverphoto.png" %> Select Project Cover Photo</a>
-              -->
             </span>
             <div class="add-asset">
               <a href="#" class="btn small cancel-btn">Cancel</a>
@@ -133,6 +131,14 @@
                 <%= project_doc_form.text_field :description %>
               
                 <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+              <% end %>
+            </div>
+            <div class="select-cover-asset">
+              <a href="#" class="btn small confirm-cover-btn"><%= image_tag "/images/icon_whitesquare_coverphoto.png" %> Confirm Cover Photo Selection</a>
+              <a href="#" class="btn small cancel-btn">Cancel</a>
+              <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+                
+                <%= project_doc_form.submit "Select Cover File", {:class => 'btn primary'} %>
               <% end %>
             </div>
           <% end %>
@@ -168,6 +174,7 @@
           <% if may_admin_project? %>
             <span class="admin-btns">
               <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Documents</a>
+              <a href="#" class="btn small select-cover-btn"><%= image_tag "/images/icon_blacksquare_coverphoto.png" %> Select Project Cover Photo</a>
             </span>
             <div class="add-asset">
               <a href="#" class="btn small cancel-btn">Cancel</a>
@@ -178,6 +185,14 @@
                 <%= project_doc_form.text_field :description %>
               
                 <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+              <% end %>
+            </div>
+            <div class="select-cover-asset">
+              <a href="#" class="btn small confirm-cover-btn"><%= image_tag "/images/icon_whitesquare_coverphoto.png" %> Confirm Cover Photo Selection</a>
+              <a href="#" class="btn small cancel-btn">Cancel</a>
+              <%= form_for [@project, @project.project_documents.build], :html => { :multipart => true } do |project_doc_form| %>
+                
+                <%= project_doc_form.submit "Select Cover File", {:class => 'btn primary'} %>
               <% end %>
             </div>
           <% end %>
@@ -234,7 +249,12 @@
         });
         $('.btn.cancel-btn').click(function() {
           $(this).closest('.editable').removeClass('edit');
+	      $(this).closest('.editable').removeClass('select-cover');
           return false;
+        });
+        $('.btn.select-cover-btn').click(function() {
+          $(this).closest('.editable').addClass('select-cover');
+		  return false;
         });
         $(".project_document form")
           .bind('ajax:complete', function(evt, data, status, xhr){
