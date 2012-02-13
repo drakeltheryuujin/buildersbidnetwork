@@ -1,11 +1,23 @@
-<h2>Send invitation</h2>
+<div class="row login-page">
+  <div class="offset5 span6 form-stacked">
+	<div class="login-box">
+      <div class="login-head">
+        <h2>Send invitation</h2>
+      </div>
+      
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
 
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= text_area_tag 'user[emails]' %>
+        </div>
 
-  <p><%= f.label :email %><br />
-  <%= text_area_tag 'user[emails]' %></p>
+        <div class="field">
+          <%= f.submit "Send an invitation" %></p>
+        </div>
+      <% end %>
 
-  <p><%= f.submit "Send an invitation" %></p>
-<% end %>
-
-<%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+      <%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+	</div>
+  </div>
+</div>
