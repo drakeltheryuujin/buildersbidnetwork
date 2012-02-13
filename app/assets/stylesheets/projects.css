@@ -75,19 +75,23 @@ form.new_project_document {
 .project_page .tab-pane .row .btn img {
   padding-right: 3px;
 }
-.project_page .tab-pane .row .add-asset {
+.project_page .tab-pane .row .add-asset,
+.project_page .tab-pane .row .select-cover-asset {
   display: none;
 }
-.project_page .tab-pane .row .add-asset form {
+.project_page .tab-pane .row .add-asset form,
+.project_page .tab-pane .row .select-cover-asset form {
   margin: 5px 0;
   padding: 20px 40px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
-.project_page .tab-pane .row.edit .add-asset {
+.project_page .tab-pane .row.edit .add-asset,
+.project_page .tab-pane .row.select-cover .select-cover-asset {
   display: block;
 }
-.project_page .tab-pane .row.edit .admin-btns {
+.project_page .tab-pane .row.edit .admin-btns,
+.project_page .tab-pane .row.select-cover .admin-btns {
   display: none;
 }
 
@@ -98,7 +102,8 @@ form.new_project_document {
 .project_page .tab-pane .project_document form.edit_project_document input.small {
   width: 60px;
 }
-.project_page .tab-pane .project_document.edit form.edit_project_document {
+.project_page .tab-pane .project_document.edit form.edit_project_document,
+.project_page .tab-pane .project_document.select-cover form.edit_project_document {
   display: block;
 }
 .project_page .tab-pane .project_document.edit .edit-btns,
