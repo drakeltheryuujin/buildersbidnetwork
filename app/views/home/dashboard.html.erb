@@ -15,45 +15,114 @@
   </div>
 <% end %>
 
-
-<div class="home_page row">
-  <div class="span12"> 
-    <div class="search_box home_box row">
-      <h2>Search for Projects</h2>
-      <div class="background">&nbsp;</div>
-      <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
-        <%= f.hidden_field :section %>
-        <table class="span3">
-          <tr>
-            <td><strong>Within</strong></td>
-            <td>&nbsp;</td>
-            <td><strong>Your zip</strong></td>
-          </tr>
-          <tr>
-            <td>
-              <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
-            </td>
-            <td>of</td>
-            <td>
-              <%= f.text_field :location, :size => 7, :class => "span2" %>
-            </td>
-          </tr>
-        </table>
+<div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> row">
+  <div class="span11"> 
+    <div class="home_box">
+      <div class="search_box">
+        <% if current_user.contractor? %>
+          <h2>Search for Projects</h2>  
+        <% else %>
+          <h2>Search for Contractors</h2>
+        <% end %>  
+        <div class="background">&nbsp;</div>
+          <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+          <%= f.hidden_field :section %>
+          <table class="span3">
+            <tr>
+              <td><strong>Within</strong></td>
+              <td>&nbsp;</td>
+              <td><strong>Your zip</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+              </td>
+              <td>of</td>
+              <td>
+                <%= f.text_field :location, :size => 7, :class => "span2" %>
+              </td>
+            </tr>
+          </table>
 
         <strong class="span9">Select a Type of Trade</strong>
         <%= f.collection_select(:type_ids, ProjectType.all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
 
-        <div class="span9">
-          <%= f.submit 'Search', :class => 'large btn primary' %>
-        </div>
-      <% end %>
-    </div>
+          <div class="span9">
+            <%= f.submit 'Search', :class => 'large btn primary' %>
+          </div>            
+        <% end %>
+      </div>    
+      
+      <div class ="right_search_box_container">
+        <% if current_user.developer? %>
+              <div class="db_profile_projects_posted_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>25</strong>
+                    <p>projects posted</p>
+                  </div>
+                </div>
+                <div class="db_profile_bids_made_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>6 </strong>
+                    <p>bids have been made on your projects</p>
+                  </div>
+                </div>
+                <div class="db_profile_projects_awarded_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                    <strong>25 </strong>
+                    <p>projects have been awarded in the last 190 days</p>
+                  </div>  
+                </div>
+                <div class="db_track_projects_awarded_sidebar">
+                    <div class="sidebar_box sidebar_number">
+                    <p><%= link_to "Track your projects &raquo;".html_safe, activity_index_path %></p>
+                    </div>
+                </div>
+            <%else current_user.contractor?%>
+           <div class="db_profile_projects_added_sidebar">
+                  <div class="sidebar_box sidebar_number">
+                  <strong>18</strong>
+                  <p>new projects have been added in the past 30 days</p>
+                  </div>
+                </div>  
+          <div class="db_profile_projects_awarded_sidebar">
+              <div class="sidebar_box sidebar_number">
+                <strong>25 </strong>
+                  <p>projects have been awarded in the last 190 days</p>
+              </div>              
+           <div class="db_track_projects_awarded_sidebar">
+              <div class="sidebar_box sidebar_number">
+                 <p><%= link_to "Track your bids &raquo;".html_safe, activity_index_path %></p>
+              </div>
+            <%end%>         
+    </div>      
   </div>
-  <div class="span4">
-    <div class="home_page_sidebar">
+</div>
+  
+  <div class="span5">
+     <% if current_user.contractor? %>
+    <div class="db_subscribe_sidebar">
       <div class="sidebar_box sidebar_number">
-        <div class="head"><h1>Invite Colleagues</h1></div>
-        <p>A detailed description of the benefits of using BBN will be included</p>
+        <div class="head"><h1>Subscribe to View and Bid on Projects</h1></div>       
+            <p>Unlock project details and the option to bid on project by subscribing today!</p>
+              <%= form_for :user, :as => :user, :url => invitation_path(:user), :html => {:method => :post} do |f| %>
+                <%= f.submit "SUBSCRIBE TODAY", :class => 'btn subscribe' %>
+                <%= f.submit "VIEW PRICING", :class => 'btn pricing' %>
+              <% end %>   
+      </div>   
+    </div>
+    <%end%>
+    
+ 
+    <div class="db_invite_sidebar">
+      <div class="sidebar_box sidebar_number">
+      <% if current_user.contractor? %>
+        <div class="head"><h1>Invite Colleagues to Join BBN</h1></div>
+      <% else %>
+        <div class="head"><h1>Invite Contractors to Join BBN</h1></div>
+        <p>A detailed description of the benefits of using BBN will be included</p> 
+      <% end %>  
+       
         <%= form_for :user, :as => :user, :url => invitation_path(:user), :html => {:method => :post} do |f| %>
 
           <p><%= f.label :email %></p>
@@ -62,7 +131,39 @@
           <p><%= f.submit "Send an invitation", :class => 'btn success' %></p>
         <% end %>
       </div>
-      <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
     </div>
+    <%= link_to "Post a Project", new_project_path, :class => 'btn large primary project' if current_user.present? && current_user.developer? %>
+    
+    <div class="db_profile_views_sidebar">
+      <div class="sidebar_box sidebar_number">
+        <div class="head"><h1> Who's View Your Profile?</h1></div>
+        <strong>27</strong>
+        <p>Your profile has been viewed 27 times in the last 15 days</p>
+      </div>
+    </div>
+    
+     <div class="db_profile_your_ad_sidebar">
+      <div class="sidebar_box sidebar_number">
+        <div class="head"><h1> Want to See Your Ad on BBN?</h1></div>
+          <div class ="db_your_ad_container">
+          <p>Benefits of Advertising can be listed here. It's really a good idea. Lot's of people will see your product!</p>
+          <li>Learn More &raquo; </li>
+        </div>
+      </div>
+     </div>
+    
+    <div class="db_profile_member_ad_sidebar">
+      <div class="sidebar_box sidebar_number">
+        <div class="head"><h1> Ad's From BBN Members</h1></div>
+          <div class ="db_profile_container">
+            <p class="first">Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+            <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+            <li>Learn More &raquo; </li>
+          <div>  
+        </div>
+      </div>
+    </div>  
+    
   </div>
+</div>
 </div>

@@ -1,4 +1,4 @@
-<div class="credits_page payments_page checkout row">
+<div class="subscriptions_page payments_page checkout row">
   <div class="span4 ">
     <div class="credits_nav">
       <h1>Credits</h1>
@@ -18,28 +18,23 @@
     <table>
       <tr>
         <th>Item</th>
-        <th>Credits</th>
+        <th>Quantity</th>
         <th>Unit Price</th>
         <th>Total</th>
       </tr>
 
       <tr>
         <td>
-          Bid Credits - 
-          <% if @pc.value < 10 %>
-            Individual
-          <% else %>
-            Package
-          <% end %>
+          Site Subscription - <%= @subscription_payment.interval.humanize %>
         </td>
         <td>
-          <%= @pc.value %>
+          1
         </td>
         <td>
-          <%= number_to_currency (@pc.amount.to_i/@pc.value.to_i) %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
         <td>
-          <%= number_to_currency @pc.amount %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 
@@ -55,7 +50,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>
-          <%= number_to_currency @pc.amount %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 
@@ -70,15 +65,16 @@
         <%= image_tag '/images/cc_icons/amex.png' %>
         <%= image_tag '/images/cc_icons/discover.png' %>
       </div>
-      <%= form_for @pc, :url => credits_path, :method => :post do |f| %>
-        <%= f.hidden_field :value %>
+      <%= form_for @subscription_payment, :url => subscriptions_path, :method => :post do |f| %>
         <%= f.hidden_field :amount %>
-        <% if @pc.errors.any? %>
+        <%= f.hidden_field :interval %>
+        <%= f.hidden_field :adjustment_type, :value => @subscription_payment.type %>
+        <% if @subscription_payment.errors.any? %>
           <div class="alert-message block-message error">
-            <strong><%= pluralize(@pc.errors.count, "error") %> prohibited this purchase from being completed:</strong>
+            <strong><%= pluralize(@subscription_payment.errors.count, "error") %> prohibited this purchase from being completed:</strong>
       
             <ul>
-            <% @pc.errors.full_messages.each do |msg| %>
+            <% @subscription_payment.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
             </ul>

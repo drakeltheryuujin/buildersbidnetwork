@@ -1,0 +1,68 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <h1>
+      <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
+      Purchase History
+    </h1>
+    <%= render '/activity/tabs' %>
+  </div>
+<% end %>
+<div class="settings_page row">
+  <div class="span5 ">
+    <div class="track_filters ">
+      <ul>
+        <li>
+          <%= link_to "Settings", edit_user_registration_path %>
+        </li>
+        <li class="active">
+          <%= link_to "Subscription Status", status_subscriptions_path %>
+        </li>
+        <li>
+          <%= link_to "Purchase History", history_credits_path %>
+        </li>
+      </ul>
+
+      <dl>
+        <dt>Last Login:</dt>
+        <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+      </dl>
+
+      <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
+    </div>
+  </div>
+  <div class="span11 ">
+    <% unless @subscription %>
+      <%= link_to 'Get a Subscription', subscriptions_path, :class => 'btn large primary ' %>
+    <% else %>
+      <% if @subscription.errors.any? %>
+        <div class="alert-message block-message error">
+          <strong><%= pluralize(@subscription.errors.count, "error") %> prohibited this cancelation from being completed:</strong>
+    
+          <ul>
+          <% @subscription.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @subscription.upstream_authorization.present? %>
+        <div class="field">
+          <label>Subscription ID:</label>
+          <span><%= @subscription.upstream_authorization %></span>
+        </div>
+      <% end %>
+      <div class="field">
+        <label>Subscriber since:</label>
+        <span><%= @subscription.created_at.to_formatted_s(:long) %></span>
+      </div>
+      <div class="field">
+        <label>Valid until:</label>
+        <span><%= @subscription.valid_until.blank? ? 'Open Ended' : @subscription.valid_until.to_formatted_s(:long) %></span>
+      </div>
+      <% if @subscription.upstream_authorization.present? %>
+        <%= link_to 'Cancel Subscription', cancel_subscriptions_path, :class => 'btn primary float_right', :confirm => 'Are you sure?' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

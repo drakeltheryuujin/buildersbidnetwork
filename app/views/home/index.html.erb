@@ -70,14 +70,18 @@
         <%= f.password_field :password_confirmation %>
       </div>
 
-      <div class="field">
+      <div class="field register">
         <%= f.submit "Create Account", :class => "btn large primary" %>
-        <span class="field_info span4">
-          By signing up you agree to our 
-          <%= link_to "User Agreement", content_page_path('agreement') %>
-          and
-          <%= link_to "Terms of Service", content_page_path('terms') %>
-        </span>
+        <div class="terms">
+          <span class="field_info span4">
+            By signing up you agree to our
+          </span>
+          <span class="field_info span4">
+            <%= link_to "User Agreement", content_page_path('agreement') %>
+            and
+            <%= link_to "Terms of Service", content_page_path('terms') %>
+          </span>
+         </div>
       </div>
     <% end %>
     <div class="cta">

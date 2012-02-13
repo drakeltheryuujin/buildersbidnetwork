@@ -76,7 +76,7 @@
 }
 
 .search_nav select {
-  height: 17px;
+  height: 16px;
   line-height: 16px;
   font-size: 10px;
   border: none;
@@ -172,12 +172,15 @@ white-space: nowrap;
 .home-page-navbar-login input {
   background-color:#FFF;
   color:#000;
-  margin-top:2px;
+  margin-top:5px;
+  height:14px;
   margin-bottom:2px;
+  border:none;
 }
 .home-page-navbar-login input[type="submit"] {
   background-color:#3895D7;
   color:#fff;
+  height:22px;
 }
 
 .home-page-navbar-login form{
@@ -228,6 +231,9 @@ white-space: nowrap;
   display:block;
   font-size:12px;
   font-weight:normal;
+}
+.brand_header .nav_topbar .active a  span {
+  color: #333;
 }
 .brand_header .nav_topbar .label {
   background-color:#FF6502;
@@ -338,6 +344,10 @@ white-space: nowrap;
 }
 #top-banner .container > h1 {
   padding-top: 16px;
+}
+#top-banner .container > .row {
+  padding-top: 10px;
+  margin-bottom: 5px
 }
 .sector {
   padding: 1px 3px 2px;
@@ -506,35 +516,170 @@ white-space: nowrap;
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;
-  padding:5px;
+  padding:4px;
 }
 .field_with_errors {
   padding: 0;
   display: inline-block;
 }
-.home_page .home_box {
-  border: 3px solid #eee;
-  padding: 10px;
-  position:relative
-  z-index:-2;
+/* Dashboard Profile Specific CSS Styling */
+
+.right_search_box_container {
+  background:#f8f8f8;
+  float:right;
+  width:160px;
+}
+.right_search_box_container .sidebar_box {
+  margin-bottom:0px;
+  padding-top:5px;
+  border-radius: 1px;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+}
+.right_search_box_container .sidebar_box .sidebar_number {
+  padding-top:5px;
 }
 
-.home_page .search_box {
+.right_search_box_container .sidebar_number p {
+padding-top:40px;
+padding-left: 15px;
+padding-right:10px
+}
+
+.db_track_projects_awarded_sidebar .sidebar_box p {
+  color:#6485b2;
+  padding-top:25px;
+  text-align:center;
+}
+
+.db_subscribe_sidebar p {
+  padding: 5px 10px 0 10px;
+}
+.db_subscribe_sidebar form {
+  margin-bottom:50px;
+}
+ 
+.db_subscribe_sidebar input.btn.subscribe {
+  float:left;
+  background: #f3cb2d;
+  margin-left: 10px;
+  padding: 5px 2px 5px 2px;
+}
+
+.db_subscribe_sidebar input.btn.pricing {
+  float:right;
+  background:#f3cb2d;
+  margin-right: 20px;
+  padding: 5px 2px 5px 2px;
+}
+.db_profile_views_sidebar p, 
+.db_profile_views_sidebar .sidebar_number strong {
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.db_invite_sidebar p {
+  padding: 10px 0 0 20px;
+}
+
+.db_invite_sidebar .btn.success {
+  font-weight:bold;
+  text-transform:uppercase;
+  width:220px;
+}
+
+.db_profile_your_ad_sidebar {
+   background: transparent url('../images/new.png')  0 41px no-repeat;
+   padding-top:5px;
+}  
+.db_profile_your_ad_sidebar p {
+  padding: 10px 5px 0px 90px; 
+}
+
+.db_profile_your_ad_sidebar li {
+  list-style:none;
+  color:#4a6091;
+  padding: 0 0 5px 175px;
+}
+.db_profile_member_ad_sidebar p {
+   padding: 10px 5px 0px 85px; 
+   border-top:1px solid #ccc;
+}
+.db_profile_member_ad_sidebar p.first {
+   border-top:none;
+}
+.db_profile_member_ad_sidebar li {
+  list-style:none;
+  color:#4a6091;
+  padding: 0 0 5px 175px;
+}
+.btn.large.primary.project {
+  text-align:center;
+  width:250px;
+  margin-bottom:20px;
+}  
+.home_page .home_box,
+.db_contractor_page .home_box, 
+.db_developer_page .home_box {
+  border: 3px solid #eee;
+  position:relative;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 47%, #ededed 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f6f6), color-stop(47%,#ffffff), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* IE10+ */
+  background: linear-gradient(top, # 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+}
+.db_developer_page .home_box,
+.db-contractor_page .home_box {
+  height:335px;
+  border: 1px solid#d3d3d3;
+   border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.home_page .search_box,
+.db_developer_page .search_box,
+.db_contractor_page .search_box {
   padding-top:15px;
-  height:304px;
+  width:60%;
   margin: 20px 0 20px 0;
-  width:432px;
   position:relative;
   z-index:0;
 }
-.home_page .search_box .background {
-	background: transparent url('/images/search_man.png')0 0 no-repeat; 
+.home_page .search_box {
+  padding:10px;
+  height:298px;
+  width:432px;
+}
+
+.db_developer_page .search_box,
+.db_contractor_page .search_box {
+  float:left;
+  padding: 10px;
+}
+.db_contractor_page .search_box table td,
+.db_developer_page .search_box table td {
+  border:none;
+}
+
+.home_page .search_box .background,
+.db_contractor_page .search_box .background,
+.db_developer_page .search_box .background {
+	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
 	left: 118px; 
 	top: -40px;
 	width: 334px;
 	height: 221px;
 	z-index: -1;
+}
+/* Must be below above css */
+.db_contractor_page .search_box .background,
+.db_developer_page .search_box .background {
+  left:144px;
 }
 .home_page .account_box {
   padding:10px 30px;
@@ -575,17 +720,47 @@ font-weight: bold;
 
 .home_page .account_box  .field.text input{
   width:100%;
-  padding:4px 0;
+  padding:4px;
 }
 .home_page .account_box .btn.primary {
-margin-top:20px;
+  margin-right:5px;
+  float:left;
 }
-.home_page .account_box .field_info {
-  float:right;
-  margin-top: -35px;
+.home_page .account_box .terms {
+  float: right;
+  width: 210px;
+  font-size: 14px;
+}
+.home_page .account_box .field.register {
+  margin-top:20px;
+  clear:both;
+  padding-bottom:10px;
+}
+.home_page .account_box .cta {
+  padding-top:15px;
 }
 .home_page .span10 {
   width: 474px;    
+}
+/* Project Page Non-Subscribed View Style */
+.project_page .btn.subscribe {
+  background: transparent url('/images/lock.png')0 no-repeat;
+  background-color:#87C442;
+  background:#87c442;
+  color:#fff;
+  text-shadow:none;
+  }
+  
+.project_page  li.subscribe {
+  color: #87c442;
+  list-style:none;
+}
+
+.project_page li.locked_bid_breakdown {
+  color:#fff;
+  background-color:#87C442;
+  background:#87c442;
+  font-weight:bold;
 }
 .btn.primary {
   background-color:#FFB134;
@@ -609,6 +784,7 @@ margin-top:20px;
   background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
 }
+
 .home_page .search_box .btn.primary {
   font-weight:normal;
   font-size:12px;
@@ -631,20 +807,26 @@ margin-top:20px;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 
-.home_page .search_box h2{
+.home_page .search_box h2,
+.db_contractor_page .search_box h2,
+.db_developer_page .search_box h2 {
   color:#002358;
-  font-size:32px;
+  font-size:31px;
   font-weight:bold;
 }
-.home_page .search_box .offset6 {
-margin-left:0px;
-margin-top:5px;
-width:320px;
+.home_page .search_box .offset6 ,
+.db_contractor_page .search_box .offset6,
+.db_contractor_page .search_box .offset6 {
+  margin-left:0px;
+  margin-top:5px;
+  width:320px;
 }
 
-.home_page .search_box .type_select {
+.home_page .search_box .type_select,
+.db_contractor_page .search_box .type_select,
+.db_developer_page .search_box .type_select {
   margin: 10px 0 25px 0;
-  width:413px;
+  width:100%;
 }
 
 .home_page .cta_box {
@@ -692,8 +874,110 @@ width:320px;
 .home_page .perfect_tool_carousel .btn.primary {
   float:right;
   margin-right:411px;
-}  
+}
 
+ /* Subscription Code *********************************************/
+.subscription_box{
+  margin-top:20px;
+}
+.subscription_box ol{
+  background-color:#EDEDED;
+  border: 1px solid #C2C2C2;
+  margin-left:0px;
+  padding-bottom:5px;
+  padding-right:10px;
+  display:table;
+}
+.subscription_box li {
+  color:#fa6507;
+  float: left;
+  font-size:22px;
+  font-weight:bold;
+  vertical-align: top;
+  list-style-position:inside;
+}
+.subscription_box li p {
+  display:block;
+  color:#696969;
+  font-size:14px;
+  font-weight:normal;
+  } 
+.step_one {
+    width:195px;
+}
+.step_one h3 {
+text-align:center;
+}
+
+.step_one p {
+  padding-left:22px;
+  padding-right: 33px;
+}
+.step_one .btn.primary{
+  font-size:12px;
+  width:48px;
+  margin-left:22px;
+  padding: 2px 2px 2px 2px;
+}
+.step_two {
+    width:240px;
+    border-left:1px dotted #c2c2c2;
+    padding-left:2px;
+    }
+div.step_two p {
+  padding-left: 22px;
+  padding-right: 3px;
+}
+
+.step_two_btn_container{
+  display:block;
+  padding-left:0px;
+  padding-right:445px;
+}
+.step_two .btn.primary{
+  font-size: 12px;
+  margin-top: 5px;
+  margin-left:22px;
+  width: 169px;
+  padding: 2px 2px 2px 2px;
+  text-align: center;
+}
+.step_three {
+    border-left:1px dotted #c2c2c2;
+    width:245px;
+    height:195px;
+    padding-left:3px;
+}
+.step_three p {
+padding-left:22px;
+}
+.step_three .btn.primary{
+  font-size:12px;
+  padding: 2px 2px 2px 2px;
+  margin-left:22px;
+}
+
+.subscription_plans .head {
+  background-color:#edeef0;
+}
+.subscription_plans  {
+  border:1px solid #c2c2c2;
+  margin-top:20px;
+}
+.subscription_plans h3{
+  color:#676767;
+  padding-left:5px;
+}
+.subscription_plans .btn.primary {
+  font-size: 12px;
+  font-weight:bold;
+  width: 53px;
+  height: 10px;
+}
+.explanation ul li{
+  font-size: 14px;
+  font-weight:normal;
+}
 .message {
   padding: 0.5em;
   font-weight: bold;
@@ -1455,6 +1739,11 @@ ul.line_items li div.units .line_item_total,
   vertical-align: middle;
 }
 
+.settings_page h2 {
+  color: #F77010;
+  font-size: 18px;
+}
+
 .settings_page table {
   border-spacing: 0;
 }
@@ -1466,7 +1755,7 @@ ul.line_items li div.units .line_item_total,
   border: none;
 }
 .settings_page table tbody tr:first-child {
-  border: 1px solid #ddd;
+  border: 1px solid #666;
   background-color: #eee;
 }
 .settings_page table tbody tr:first-child th:first-child {
@@ -1486,163 +1775,7 @@ ul.line_items li div.units .line_item_total,
   border-radius: 0px 5px 5px 0px;
 }
 
-.credits_page h1 {
-  border-bottom: 1px solid #ddd;
-  padding-top: 15px;
-  clear: left;
-}
-.credits_page .credits_nav {
-  border-right: 1px solid #ddd;
-  height: 650px;
-}
-.credits_page ul {
-  list-style: none;
-  margin-left: 0;
-}
-.credits_page ul li {
-  padding: 5px;
-}
-.credits_page .explanation {
-  margin: 10px 20px 30px 10px;
-}
-.credits_page .explanation.policy p{
-  color: #999;
-  text-align: justify;
-  font-size: 12px;
-  line-height: 12px;
-}
-.credits_page .credits_box {
-  border: 1px solid #ddd;
-  margin-top: 10px;
-}
-.credits_page .credits_box h1 {
-  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(237, 234, 227, 1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 1)), color-stop(100%,rgba(237, 234, 227, 1)));
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
-  font-size: 18px;
-  line-height: 22px;
-  padding: 5px 15px;
-  margin-bottom: 0;
-  border-left: 1px solid #ddd;
-}
-.credits_page .credits_box select,
-.credits_page .credits_box label,
-.credits_page .credits_box input {
-  width: auto;
-  margin: 0 10px;
-}
-.credits_page .credits_box .btn,
-.credits_page .credits_box label {
-  margin: 10px;
-}
-.credits_page .credits_box .label.price {
-  font-size: 22px;
-  display: block;
-  clear: left;
-  text-align: center;
-  padding: 5px;
-  background-color: #83c444;
-  margin: 10px;
-  width: 60px;
-}
-.credits_page .credits_box .label.price .denom {
-  font-size: 16px;
-  vertical-align: top;
-}
-.credits_page .groups_box .group_box {
-  width: 150px;
-  border-left: 1px solid #DDD;
-  display: inline-block;
-  padding: 10px;
-  text-align: center;
-}
-.credits_page .groups_box:first-child {
-  border-left: none;
-}
-.credits_page .groups_box .group_box .group_credits {
-  width: 120px;
-  height: 120px;
-  -webkit-border-radius: 60px;
-  -moz-border-radius: 60px;
-  border-radius: 60px;
-  display: block;
-  background-color: #fe7e11;
-  text-align: center;
-  color: white;
-  margin-left: 15px;
-}
-.credits_page .groups_box .group_box .group_credits span {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.credits_page .groups_box .group_box .group_credits span.number {
-  font-size: 24px;
-  padding-top: 40px;
-}
-.credits_page .groups_box .group_box .bonus {
-  background-color: #DDD;
-  margin: 10px;
-  border: 1px solid #AAA;
-  border-radius: 5px;
-  font-size: 14px;
-  padding: 5px;
-  font-weight: bold;
-  font-style: italic;
-}
-.credits_page .groups_box .group_box .group_deal {
-  margin: 10px;
-}
-.credits_page .groups_box .group_box .group_deal .price {
-  display: block;
-  font-size: 18px;
-}
-.credits_page table tbody tr,
-.credits_page table tbody tr th,
-.credits_page table tbody tr td {
-  border: none;
-}
-.credits_page table tbody tr:first-child th {
-  border-bottom: 1px solid #ddd;
-}
-.credits_page.checkout .payment_info div {
-  padding-bottom: 10px;
-}
-.credits_page.checkout .payment_info div.cards {
-  margin-left: 110px;
-}
-.credits_page.checkout .payment_info div.cards img {
-  margin-right: 10px;
-}
-.credits_page.checkout .payment_info #payment_credit_card_billing_zip {
-  width: 100px;
-}
-.credits_page.checkout .payment_info #payment_credit_card_expires_on_2i {
-  margin-left: 20px;
-}
 
-.credits_page.invoice .invoice_header {
-  background-color: #ddd;
-  margin-bottom: 10px;
-}
-.credits_page.invoice .invoice_header h4 {
-  display: inline-block;
-  margin-left: 10px;
-}
-.credits_page.invoice .invoice_header .btn {
-  float: right;
-  margin: 5px;
-}
-.credits_page.invoice .order_info label,
-.credits_page.invoice .payment_info label {
-  text-align: left;
-}
 .project_page .project_content h4,
 .profile_page .profile_content h4 {
   border-bottom:1px solid #C0C0C0;

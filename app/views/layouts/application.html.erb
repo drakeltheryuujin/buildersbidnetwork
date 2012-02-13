@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>YPN</title>
-  <%= stylesheet_link_tag "scaffold", "application", "main" %>
+  <%= stylesheet_link_tag "application", "main" %>
   <!--[if ie]>
     <%= stylesheet_link_tag "ie" %>
   <![endif]-->
@@ -71,7 +71,12 @@
                   </p>
                 <% end %>
               </li>
-              <li class="<%= put_if_current_page('active', search_index_path) %>"><%= link_to "Browse <span>projects, etc.</span>".html_safe, search_index_path %></li>
+              <li class="<%= put_if_current_page('active', search_index_path) %>">
+                <%= link_to "Browse 
+                  <p class = 'nav_desc'>
+                  <span>projects, etc.</span>
+                  </p>".html_safe, search_index_path %>
+              </li>
               <li class="<%= put_if_current_page('active', activity_index_path) %>">
                 <%= link_to activity_index_path do %>
                   My BBN

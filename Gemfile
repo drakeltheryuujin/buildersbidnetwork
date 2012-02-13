@@ -63,6 +63,10 @@ gem "meta_search",    '>= 1.1.0.pre'
 # state machine
 gem "aasm"
 
+# model diagrams
+group :development do
+  gem "rails-erd"
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'

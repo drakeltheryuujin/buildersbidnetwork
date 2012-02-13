@@ -3,6 +3,7 @@
   <div class="container">
     <%= render "header" %>
     <ul class="tabs" data-tabs="tabs">
+    <% if current_user.subscription_current? %>
       <li class="active"><a href="#scope">Project Scope</a></li>
       <li>
         <a href="#docs">
@@ -25,6 +26,10 @@
           <%= link_to "My Bid", project_bid_path(@project, @project.my_bid(current_user)) %>
         </li>
       <% end %>
+      <% else %>
+        <li class="active"><a href="#scope">Project Scope</a></li>
+      <li>
+      <%end%>
     </ul>
   </div>
 <% end %>
@@ -37,15 +42,23 @@
           <div class="project_meta left">
             <div class="field ">
               <address>
+               <% if current_user.subscription_current? %>
                 <p><%= @project.location.address1 %></p>
                 <% unless @project.location.address2.blank? %>
                   <p><%= @project.location.address2 %></p>
                 <% end %>
                 <p><%= @project.location.city %>, <%= @project.location.state %>&nbsp; <%= @project.location.post_code %></p>
+              <%else%>
+              <p><%= @project.location.city %>, <%= @project.location.state %>&nbsp; <%= @project.location.post_code %></p>
+              <%end%>
               </address>
-            </div>
+            </div>            
             <div class="field map_snapshot">
+             <% if current_user.subscription_current? %>
               <%= image_tag "http://maps.google.com/maps/api/staticmap?size=271x66&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
+            <%else%>
+            <%= image_tag "/images/locked_map.png" %>
+            <%end%>
             </div>
           </div> <!-- /project_meta -->
         </div>
@@ -61,7 +74,11 @@
           <div class="project_meta">
             <h4>Project Description</h4>
             <p class="">
+             <% if current_user.subscription_current? %>
               <%= simple_format @project.description %>
+              <%else%>
+              <li class ="subscribe"> Subscribe to View More</li>
+              <%end%>
             </p>
           </div>
         </div>
@@ -69,7 +86,11 @@
           <div class="project_meta">
             <h4>Additional Notes and Requirements</h4>
             <p class="">
+             <% if current_user.subscription_current? %>
               <%= simple_format @project.notes %>
+            <%else%>
+            <li class ="subscribe"> Subscribe to View More </li>
+            <%end%>
             </p>
           </div>
         </div>
@@ -77,12 +98,17 @@
           <div class="project_meta">
             <h4>Bid Breakdown By Line</h4>
             <ul class="line_items">
+             <% if current_user.subscription_current? %>
               <% @project.line_items.each_with_index do |line_item, index| %>
                 <li class="line_item">
                   <strong><%= index + 1 %></strong>
                   <span class="content"><%= line_item.content %></span>
                 </li>
               <% end %>
+              <%else%>
+              <li class ="locked_bid_breakdown">Subscribe to View 
+              <%= pluralize(@project.line_items.size(), 'Line Item') %></li>
+              <%end%>
             </ul>
           </div>
         </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130170709) do
+ActiveRecord::Schema.define(:version => 20120207215738) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
 
   create_table "credit_adjustments", :force => true do |t|
     t.integer  "value"
-    t.string   "type",             :null => false
-    t.integer  "user_id",          :null => false
+    t.string   "type",                                              :null => false
+    t.integer  "user_id",                                           :null => false
     t.integer  "order_tx_id"
     t.string   "ip_address"
     t.string   "first_name"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "card_billing_zip"
+    t.decimal  "amount",              :precision => 8, :scale => 2
+    t.string   "card_display_number"
   end
 
   add_index "credit_adjustments", ["bid_id"], :name => "index_credit_adjustments_on_bid_id"
@@ -111,7 +113,6 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
 
   create_table "order_txes", :force => true do |t|
-    t.integer  "payment_credit_id"
     t.string   "action"
     t.integer  "amount"
     t.boolean  "success"
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
     t.text     "params"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "phone_types", :force => true do |t|
@@ -216,6 +218,35 @@ ActiveRecord::Schema.define(:version => 20120130170709) do
   end
 
   add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
+
+  create_table "subscription_adjustments", :force => true do |t|
+    t.integer  "subscription_id",                                      :null => false
+    t.string   "type",                                                 :null => false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "granted_by_id"
+    t.integer  "order_tx_id"
+    t.string   "upstream_authorization"
+    t.decimal  "amount",                 :precision => 8, :scale => 2
+    t.string   "interval"
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "card_type"
+    t.string   "card_display_number"
+    t.string   "card_billing_zip"
+    t.date     "card_expires_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "upstream_authorization"
+    t.datetime "valid_until"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false

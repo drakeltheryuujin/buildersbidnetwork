@@ -8,6 +8,9 @@ class CreditsController < ApplicationController
 
   def history
     @credit_adjustments = current_user.credit_adjustments
+    unless current_user.subscription.nil?
+      @subscription_payments = current_user.subscription.subscription_adjustments.where(:type => SubscriptionPayment.to_s)
+    end
   end
 
   def new
@@ -29,19 +32,15 @@ class CreditsController < ApplicationController
     @pc = PaymentCredit.new(params[:payment_credit])
     @pc.user_id = current_user.id
     @pc.ip_address = request.remote_ip
-    begin
-      # maybe a transaction here? eg: @pc.transaction do ... end
-		  @pc.save!
-	    @pc.purchase!
+    if @pc.purchase
       redirect_to credit_path(@pc), :notice => "Thank you for your payment." 
-	  rescue Exception => e  
-      flash[:alert] = e.message unless e.class == ActiveRecord::RecordInvalid
-	    render :action => 'new'
+    else
+      render :action => 'new'
     end
-	end
+  end
 
   def show
     @credit = CreditAdjustment.find(params[:id])
-    # TODO validate ownership
+    return redirect_to(history_credits_path, :alert => 'Access denied.') unless @credit.user == current_user 
   end
 end

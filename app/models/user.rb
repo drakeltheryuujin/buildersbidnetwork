@@ -27,6 +27,7 @@
 
 class User < ActiveRecord::Base
   has_one :profile, :dependent => :delete
+  has_one :subscription
   has_many :project, :dependent => :nullify
   has_many :bids
   has_many :credit_adjustments
@@ -71,7 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def subscription_current?
-    return false # TODO make live
+    return (self.subscription.present? ? self.subscription.current? : false)
   end
 
 

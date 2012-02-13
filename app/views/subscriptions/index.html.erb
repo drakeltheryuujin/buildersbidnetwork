@@ -1,4 +1,4 @@
-<div class="credits_page row">
+<div class="subscriptions_page payments_page row">
   <div class="span4 ">
     <div class="credits_nav">
       <h1>Subscriptions</h1>
@@ -7,21 +7,73 @@
           <%= link_to "Buy Credits", credits_path %>
         </li>
         <li>
-          <strong>Buy a Subscription</strong>
+          <strong>Buy Subscription</strong>
         </li>
       </ul>
     </div>
   </div>
-
+  
+    
   <div class="span12">
-    <h1>Buy Credits</h1>
-
-    <div class="explanation">
-      <h3>How do credits work?</h3>
-      <p>Credits are BBN's very own currency.  Purchase credits and spend them whenever you want to submit a bid on a project.  The credit cost of a project depends on its budget, size and complexity.</p>
+      <h1>How do you get started?</h1>
+        <li><span>It's easy, just follow these 3 simple steps</span></li>
+          <div class="subscription_box">
+          <ol>
+              <li>
+                <div class ="step_one">
+                  <h3> Create an Account</h3>
+                  <p>You must be a BBN member to subscribe and bid on projects. Start a FREE account today.</p>
+                  <%= link_to "Sign Up", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                </div>
+              </li>
+              <li>
+                <div class ="step_two">
+                  <h3> Subscribe & Buy Credits</h3>
+                  <p>In order to view project details you must be a subscribing member. Once you find a suitable project, it will cost credits to submit a bid.</p>  
+                    <%= link_to "Subscribe Month-by-Month", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                    <%= link_to "Subscribe for the Year", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                    <%= link_to "Buy Credits", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                </div>         
+              </li>
+              <li>
+                <div class ="step_three">
+                  <h3>Search & Bid on Projects</h3>
+                  <p>Use the search bar or general browse from the Dashboard or Browse Pages.</p>
+                  <%= link_to "Search Tips", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                </div>
+              </li>
+          </ol>
     </div>
-
-    <%= link_to "Monthly", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-    <%= link_to "Annual", new_subscription_path(:package => :annual), {:class => 'btn primary large'} %>
+    
+    <div class ="subscription_plans">
+      <div class ="head">
+        <h3> Choose a subscription that works for you<h3>
+      </div>
+      <table>
+        <tr id="row1">
+          <th></th><th>Month-by-Month</th><th>Yearly</th>
+        </tr>
+        <tr id="row2">
+          <th>Plan Price:</th>
+          <TD>$89.95/month ($1,079.40/Year)</td>
+          <TD>$79.95/month ($959.40 Total)</td>
+        </tr>
+        <tr id="row3">
+          <th>Extras</th>
+          <TD>None</td>
+          <TD>2 Bid Credits Year</td>
+        <tr id="row4">
+          <th></th>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %></td>
+          <td><%= link_to "Buy Now", new_subscription_path(:package => :yearly), {:class => 'btn primary large'} %></td>
+        </tr>
+      </table>
+    </div>
+      <div class="explanation">
+        <h3>What do I get for my Subcription?
+          <p>Lorem ipsum dolor sit amet, consectetir adipiscing elit. Aenean ut enim quis eros adipiscing
+          Lorem ipsum dolor sit amet, consectetir adipiscing elit. Aenean ut enim quis eros adipiscing
+          Lorem ipsum dolor sit amet, consectetir adipiscing elit. Aenean ut enim quis eros adipiscing</p>
+      </div>
   </div>
 </div>

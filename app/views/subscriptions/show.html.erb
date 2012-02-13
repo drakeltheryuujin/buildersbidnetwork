@@ -1,4 +1,4 @@
-<div class="credits_page payments_page invoice row">
+<div class="subscriptions_page payments_page invoice row">
   <div class="span4 ">
     <div class="credits_nav">
       <h1>Credits</h1>
@@ -26,19 +26,19 @@
     <div class="span5">
       <div class="payment_info">
         <div class="">
-          <label>Card Type:</label><span><%= @credit.card_type.humanize %></span>
+          <label>Card Type:</label><span><%= @subscription_payment.card_type.humanize %></span>
         </div>
         <div class="">
-          <label>Name on card:</label><span><%= @credit.first_name %> <%= @credit.last_name %></span>
+          <label>Name on card:</label><span><%= @subscription_payment.first_name %> <%= @subscription_payment.last_name %></span>
         </div>
         <div class="">
-          <label>Card Number:</label><span><%= @credit.card_display_number || "&nbsp;".html_safe %></span>
+          <label>Card Number:</label><span><%= @subscription_payment.card_display_number || "&nbsp;".html_safe %></span>
         </div>
         <div class="">
-          <label>Amount:</label><span><%= number_to_currency @credit.amount %></span>
+          <label>Amount:</label><span><%= number_to_currency @subscription_payment.amount %></span>
         </div>
         <div class="">
-          <label>Transaction ID:</label><span><%= @credit.order_tx.authorization %></span>
+          <label>Transaction ID:</label><span><%= @subscription_payment.order_tx.authorization %></span>
         </div>
       </div>
     </div>
@@ -46,13 +46,13 @@
     <div class="span5">
       <div class="order_info">
         <div class="">
-          <label>Profile:</label><span><%= @credit.user.profile.name %></span>
+          <label>Profile:</label><span><%= @subscription_payment.subscription.user.profile.name %></span>
         </div>
         <div class="">
-          <label>Transaction Date:</label><span><%= @credit.created_at.to_formatted_s(:med) %></span>
+          <label>Transaction Date:</label><span><%= @subscription_payment.created_at.to_formatted_s(:med) %></span>
         </div>
         <div class="">
-          <label>Order ID:</label><span><%= @credit.id %></span>
+          <label>Order ID:</label><span><%= @subscription_payment.id %></span>
         </div>
       </div>
     </div>
@@ -70,21 +70,16 @@
 
       <tr>
         <td>
-          Bid Credits - 
-          <% if @credit.value < 10 %>
-            Individual
-          <% else %>
-            Package
-          <% end %>
+          Site Subscription - <%= @subscription_payment.interval.humanize %>
         </td>
         <td>
-          <%= @credit.value %>
+          1
         </td>
         <td>
-          <%= number_to_currency (@credit.amount/@credit.value.to_i) %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
         <td>
-          <%= number_to_currency @credit.amount %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 
@@ -100,7 +95,7 @@
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>
-          <%= number_to_currency @credit.amount %>
+          <%= number_to_currency @subscription_payment.amount %>
         </td>
       </tr>
 

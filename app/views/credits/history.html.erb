@@ -14,6 +14,9 @@
         <li>
           <%= link_to "Settings", edit_user_registration_path %>
         </li>
+        <li>
+          <%= link_to "Subscription Status", status_subscriptions_path %>
+        </li>
         <li class="active">
           <%= link_to "Purchase History", history_credits_path %>
         </li>
@@ -28,6 +31,29 @@
     </div>
   </div>
   <div class="span11 ">
+    <% if @subscription_payments.present? %>
+      <h2>Subscriptions</h2>
+      <table>
+        <tr>
+          <th>Subscription</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Receipt</th>
+          <th>Total</th>
+        </tr>
+
+        <% @subscription_payments.each do |sp| %>
+          <tr>
+            <td><%= sp.upstream_authorization %></td>
+            <td><%= sp.type %></td>
+            <td><%= sp.created_at.to_formatted_s(:long) %></td>
+            <td><%= link_to 'View', subscription_path(sp) %></td>
+            <td><%= number_to_currency (sp.amount) %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+    <h2>Credits</h2>
     <table>
       <tr>
         <th>Credits</th>
@@ -43,7 +69,7 @@
           <td><%= ca.type %></td>
           <td><%= ca.created_at.to_formatted_s(:long) %></td>
           <td><%= link_to 'View', credit_path(ca) %></td>
-          <td><%= number_to_currency (ca.order_txes.first.amount/100) %></td>
+          <td><%= number_to_currency (ca.amount) %></td>
         </tr>
       <% end %>
     </table>
