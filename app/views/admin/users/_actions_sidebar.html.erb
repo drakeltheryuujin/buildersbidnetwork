@@ -1,0 +1,8 @@
+<h3>Grant Credits</h3>
+<%= form_for user.credit_adjustments.build(:adjustment_type => :granted_credit), :url => grant_credits_admin_user_path(user), :method => :post do |grant_form| %>
+  <%= grant_form.hidden_field :adjustment_type, :value => grant_form.object.type %>
+  <%= grant_form.select :value, (1..10).to_a %>
+  <%= grant_form.submit "Grant" %>
+<% end %>
+<h3><%= link_to "Grant Subscription", grant_subscription_admin_user_path(user) %></h3>
+
