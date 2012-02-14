@@ -15,6 +15,7 @@
         <li class="<%= 'active' if @filter == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
         <li class="<%= 'active' if @filter == :held.to_s %>"><%= link_to "On Hold", activity_index_path(:filter => :held) %></li>
         <li class="<%= 'active' if @filter == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
+        <li class="<%= 'active' if @filter == :past.to_s %>"><%= link_to "Past", activity_index_path(:filter => :past) %></li>
       </ul>
       <dl>
         <dt>Lifetime Bids Posted:</dt>

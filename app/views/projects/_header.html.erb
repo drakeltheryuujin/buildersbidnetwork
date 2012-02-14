@@ -12,7 +12,7 @@
     <div class="project_meta">
       <%= link_to @project.user.profile.name, profile_path(@project.user.profile), :class => 'profile_link' %>
       <h4>
-        <%= link_to_if(current_user.subscription_current?, (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link")%>
+        <%= link_to_if(current_user.subscription_current? || may_admin_project?, (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}", :class => "location_link")%>
         <%= @project.location.city %>, <%= @project.location.state %>
       </h4>
     </div>
@@ -30,7 +30,7 @@
         <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit'  %> 
       <% end %>
       <% if current_page? project_path(@project) %>
-          <% if current_user.subscription_current? %>
+          <% if current_user.subscription_current? || may_admin_project? %>
             <% if current_user.contractor? %>
               <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success new' if @project.bidding_period? unless has_bid_on_project? %>
               <%= link_to 'Edit Bid', edit_project_bid_path(@project, @project.my_bid(current_user)), :class => 'btn large success edit' if @project.bidding_period? && has_bid_on_project? %>

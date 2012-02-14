@@ -559,18 +559,17 @@ padding-right:10px
   margin-bottom:50px;
 }
  
-.db_subscribe_sidebar input.btn.subscribe {
-  float:left;
-  background: #f3cb2d;
+.db_subscribe_sidebar .btn {
   margin-left: 10px;
   padding: 5px 2px 5px 2px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 220px;
 }
 
-.db_subscribe_sidebar input.btn.pricing {
+.db_subscribe_sidebar .btn.pricing {
   float:right;
-  background:#f3cb2d;
   margin-right: 20px;
-  padding: 5px 2px 5px 2px;
 }
 .db_profile_views_sidebar p, 
 .db_profile_views_sidebar .sidebar_number strong {
@@ -618,8 +617,7 @@ padding-right:10px
   margin-bottom:20px;
 }  
 .home_page .home_box,
-.db_contractor_page .home_box, 
-.db_developer_page .home_box {
+.db_page .home_box {
   border: 3px solid #eee;
   position:relative;
   background: #ffffff; /* Old browsers */
@@ -631,8 +629,7 @@ padding-right:10px
   background: linear-gradient(top, # 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
 }
-.db_developer_page .home_box,
-.db-contractor_page .home_box {
+.db_page .home_box {
   height:335px;
   border: 1px solid#d3d3d3;
    border-radius: 5px;
@@ -641,8 +638,7 @@ padding-right:10px
 }
 
 .home_page .search_box,
-.db_developer_page .search_box,
-.db_contractor_page .search_box {
+.db_page .search_box {
   padding-top:15px;
   width:60%;
   margin: 20px 0 20px 0;
@@ -655,19 +651,16 @@ padding-right:10px
   width:432px;
 }
 
-.db_developer_page .search_box,
-.db_contractor_page .search_box {
+.db_page .search_box {
   float:left;
   padding: 10px;
 }
-.db_contractor_page .search_box table td,
-.db_developer_page .search_box table td {
+.db_page .search_box table td {
   border:none;
 }
 
 .home_page .search_box .background,
-.db_contractor_page .search_box .background,
-.db_developer_page .search_box .background {
+.db_page .search_box .background {
 	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
 	left: 118px; 
@@ -677,8 +670,7 @@ padding-right:10px
 	z-index: -1;
 }
 /* Must be below above css */
-.db_contractor_page .search_box .background,
-.db_developer_page .search_box .background {
+.db_page .search_box .background {
   left:144px;
 }
 .home_page .account_box {
@@ -804,6 +796,23 @@ font-weight: bold;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#049cdb', endColorstr='#0064cd', GradientType=0);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-color: #0064cd #0064cd #003f81;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+.btn.subscribe {
+  color: #333;
+  background-color: #e6bb2f;
+  background-repeat: repeat-x;
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#fef512), to(#e6bb2f));
+  background-image: -moz-linear-gradient(top, #fef512, #e6bb2f);
+  background-image: -ms-linear-gradient(top, #fef512, #e6bb2f);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fef512), color-stop(100%, #e6bb2f));
+  background-image: -webkit-linear-gradient(top, #fef512, #e6bb2f);
+  background-image: -o-linear-gradient(top, #fef512, #e6bb2f);
+  background-image: linear-gradient(top, #fef512, #e6bb2f);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fef512', endColorstr='#e6bb2f', GradientType=0);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  border-color: #e6bb2f #e6bb2f #fef512;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 
@@ -1601,11 +1610,6 @@ ul.line_items li div.units .line_item_total,
 }
 .search_result.bid.award_cta .btn.large.primary {
   font-weight: bold;
-}
-
-.track_results .profile_avatar,
-.track_results .project_avatar {
-  margin: 10px;
 }
 
 .results_order {

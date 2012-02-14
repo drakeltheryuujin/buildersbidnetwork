@@ -12,10 +12,10 @@
         <span>Developers:</span> Find contractors in your area and invite them to bid
       </li>
     </ul>
-  </div>
+  </div> <!-- /.building-relationships-container -->
 <% end %>
 
-<div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> row">
+<div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> db_page row">
   <div class="span11"> 
     <div class="home_box">
       <div class="search_box">
@@ -51,7 +51,7 @@
             <%= f.submit 'Search', :class => 'large btn primary' %>
           </div>            
         <% end %>
-      </div>
+      </div> <!-- /.search-box -->
       
       <div class ="right_search_box_container">
         <% if current_user.developer? %>
@@ -78,7 +78,7 @@
               <p><%= link_to "Track your projects &raquo;".html_safe, activity_index_path %></p>
             </div>
           </div>
-        <% else current_user.contractor?%>
+        <% else %>
           <div class="db_profile_projects_added_sidebar">
             <div class="sidebar_box sidebar_number">
               <strong>18</strong>
@@ -86,20 +86,20 @@
             </div>
           </div>  
           <div class="db_profile_projects_awarded_sidebar">
-              <div class="sidebar_box sidebar_number">
-                <strong>25 </strong>
-                <p>projects have been awarded in the last 190 days</p>
-              </div>
+            <div class="sidebar_box sidebar_number">
+              <strong>25 </strong>
+              <p>projects have been awarded in the last 190 days</p>
+            </div>
           </div>
           <div class="db_track_projects_awarded_sidebar">
-              <div class="sidebar_box sidebar_number">
-                 <p><%= link_to "Track your bids &raquo;".html_safe, activity_index_path %></p>
-              </div>        
+            <div class="sidebar_box sidebar_number">
+              <p><%= link_to "Track your bids &raquo;".html_safe, activity_index_path %></p>
+            </div>        
           </div> 
         <% end %>         
-      </div>      
-    </div>
-  </div>
+      </div> <!-- /.right_search-box_container -->
+    </div> <!-- /.home_box -->
+  </div> <!-- /.span11 -->
   
   <div class="span5">
     <% if current_user.contractor? %>
@@ -107,10 +107,7 @@
         <div class="sidebar_box sidebar_number">
           <div class="head"><h1>Subscribe to View and Bid on Projects</h1></div>       
           <p>Unlock project details and the option to bid on project by subscribing today!</p>
-          <%= form_for :user, :as => :user, :url => invitation_path(:user), :html => {:method => :post} do |f| %>
-            <%= f.submit "SUBSCRIBE TODAY", :class => 'btn subscribe' %>
-            <%= f.submit "VIEW PRICING", :class => 'btn pricing' %>
-          <% end %>     
+          <p> <%= link_to "Subscribe Today", subscriptions_path, :class => 'btn subscribe' %></p>
         </div>
       </div>
     <%end%>
@@ -136,6 +133,8 @@
     
     <%= link_to "Post a Project", new_project_path, :class => 'btn large primary project' if current_user.present? && current_user.developer? %>
     
+    <!-- 
+
     <div class="db_profile_views_sidebar">
       <div class="sidebar_box sidebar_number">
         <div class="head"><h1> Who's Viewed Your Profile?</h1></div>
@@ -157,11 +156,12 @@
     <div class="db_profile_member_ad_sidebar">
       <div class="sidebar_box sidebar_number">
         <div class="head"><h1> Ads From BBN Members</h1></div>
-          <p class="first">Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-          <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
-          <div>Learn More &raquo; </div>
-        <div>  
+        <p class="first">Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <p>Checkout these new products. Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <div>Learn More &raquo; </div>
       </div>
-    </div>
+    </div> 
 
+    -->
+  </div> <!-- /.span5 -->
 </div>

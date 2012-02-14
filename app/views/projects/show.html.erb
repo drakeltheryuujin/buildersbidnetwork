@@ -3,7 +3,7 @@
   <div class="container">
     <%= render "header" %>
     <ul class="tabs" data-tabs="tabs">
-    <% if current_user.subscription_current? %>
+    <% if current_user.subscription_current? || may_admin_project? %>
       <li class="active"><a href="#scope">Project Scope</a></li>
       <li>
         <a href="#docs">
@@ -42,7 +42,7 @@
           <div class="project_meta left">
             <div class="field ">
               <address>
-               <% if current_user.subscription_current? %>
+               <% if current_user.subscription_current? || may_admin_project? %>
                 <p><%= @project.location.address1 %></p>
                 <% unless @project.location.address2.blank? %>
                   <p><%= @project.location.address2 %></p>
@@ -54,7 +54,7 @@
               </address>
             </div>            
             <div class="field map_snapshot">
-             <% if current_user.subscription_current? %>
+             <% if current_user.subscription_current? || may_admin_project? %>
               <%= image_tag "http://maps.google.com/maps/api/staticmap?size=271x66&sensor=false&zoom=16&markers=#{@project.latitude}%2C#{@project.longitude}" %>
             <%else%>
             <%= image_tag "/images/locked_map.png" %>
@@ -74,7 +74,7 @@
           <div class="project_meta">
             <h4>Project Description</h4>
             <p class="">
-             <% if current_user.subscription_current? %>
+             <% if current_user.subscription_current? || may_admin_project? %>
               <%= simple_format @project.description %>
               <%else%>
               <li class ="subscribe"> Subscribe to View More</li>
@@ -86,7 +86,7 @@
           <div class="project_meta">
             <h4>Additional Notes and Requirements</h4>
             <p class="">
-             <% if current_user.subscription_current? %>
+             <% if current_user.subscription_current? || may_admin_project? %>
               <%= simple_format @project.notes %>
             <%else%>
             <li class ="subscribe"> Subscribe to View More </li>
@@ -98,7 +98,7 @@
           <div class="project_meta">
             <h4>Bid Breakdown By Line</h4>
             <ul class="line_items">
-             <% if current_user.subscription_current? %>
+             <% if current_user.subscription_current? || may_admin_project? %>
               <% @project.line_items.each_with_index do |line_item, index| %>
                 <li class="line_item">
                   <strong><%= index + 1 %></strong>

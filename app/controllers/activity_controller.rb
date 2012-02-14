@@ -23,10 +23,16 @@ class ActivityController < ApplicationController
 
       render :action => "developer"
     else
-      if @filter.blank? || ! Bid::STATES.include?(@filter)
-        @filter = :published.to_s
+      @bids = Bid.joins(:project).where(:user_id => current_user.id).order('projects.bidding_end')
+      if :past.to_s == @filter
+        @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now)
+      else
+        if @filter.blank? || ! Bid::STATES.include?(@filter)
+          @filter = :published.to_s
+        end
+        @bids = @bids.where(:state => @filter)
+        @bids = @bids.where("projects.bidding_end > :now", :now => Time.now) if @filter.to_sym == :published
       end
-      @bids = Bid.joins(:project).where(:user_id => current_user.id, :state => @filter).order('projects.bidding_end')
 
       render :action => "contractor"
     end
