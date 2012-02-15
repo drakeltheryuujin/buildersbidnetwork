@@ -14,6 +14,7 @@ Ypn::Application.routes.draw do
     member do
 	    get 'review'
 	    post 'contact_creator'
+	    post 'update_cover_photo'
 	  end
   end
 

@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review]
+  before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
   
   # GET /projects
@@ -103,6 +103,15 @@ class ProjectsController < ApplicationController
   def review
   end
 
+  def update_cover_photo
+    cover_photo = ProjectDocument.find_by_id params[:selected_project_document_id]
+    if(cover_photo.present? && cover_photo.project == @project)
+      @project.update_attribute(:cover_photo, cover_photo)
+    end
+    
+    redirect_to project_path(@project, :anchor => 'photos')
+  end
+  
   private
 
   def get_project

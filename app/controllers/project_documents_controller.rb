@@ -31,7 +31,7 @@ class ProjectDocumentsController < ApplicationController
     if @project_document.save
       redirect_to(project_path(@project), :notice => 'ProjectDocument was successfully created.')
     else
-      redirect_to(project_path(@project), :alert => 'ProjectDocument could not be created.')
+      redirect_to(project_path(@project), :alert => @project_document.errors.full_messages.join(' ') + 'ProjectDocument could not be created.')
     end
   end
   

@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20120213185754) do
 
   create_table "active_admin_comments", :force => true do |t|
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20120213185754) do
     t.string   "state"
     t.decimal  "estimated_budget", :precision => 11, :scale => 2
     t.integer  "credit_value"
+    t.integer  "cover_photo_id"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"

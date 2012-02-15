@@ -21,7 +21,7 @@
   float: left;
   padding: 4px;
   margin: 0 0 18px 20px;
-  border: 1px solid #DDD;
+  border: 3px solid #DDD;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -31,7 +31,9 @@
   width: 147px;
   text-align: center;
 }
-
+.faux-media-grid li.active {
+  border-color: #42aaf1;
+}
 .project_document {
   display: inline-block;
   width: 100px;
@@ -59,7 +61,8 @@ form.new_project_document {
   padding-bottom: 2em;
 }
 
-.project_page .tab-pane .row .admin-btns {
+.project_page .tab-pane .row .admin-btns,
+.project_page .tab-pane .row.select-cover .select-cover-asset {
   display: block;
   margin: 0 0 5px 0;
   padding: 0 0 5px 0;
@@ -76,13 +79,18 @@ form.new_project_document {
 .project_page .tab-pane .row .select-cover-asset {
   display: none;
 }
-.project_page .tab-pane .row .add-asset form,
-.project_page .tab-pane .row .select-cover-asset form {
+.project_page .tab-pane .row .add-asset form {
   margin: 5px 0;
   padding: 20px 40px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
 }
+.project_page .tab-pane .row .select-cover-asset form {
+	display: inline;
+	margin: 0; 
+	padding: 0;
+}
+
 .project_page .tab-pane .row.edit .add-asset,
 .project_page .tab-pane .row.select-cover .select-cover-asset {
   display: block;
@@ -98,6 +106,9 @@ form.new_project_document {
 }
 .project_page .tab-pane .project_document form.edit_project_document input.small {
   width: 60px;
+}
+.project_page .tab-pane .row.select-cover .select-cover-asset input.small {
+  width: auto;
 }
 .project_page .tab-pane .project_document.edit form.edit_project_document,
 .project_page .tab-pane .project_document.select-cover form.edit_project_document {
