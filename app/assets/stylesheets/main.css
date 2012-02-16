@@ -1523,6 +1523,7 @@ h1.search_header span {
   background: linear-gradient(left, #eeeeee 0%,#ffffff 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=1 );
   border-left: 1px solid #ccc;
+  min-height: 90px;
 }
 .credit_value,
 .credit_value .label {
