@@ -18,7 +18,7 @@
       <% if may_admin_project? && @project.bids.present? %>
         <li>
           <a href="#bids">
-            Bids <%= ("(#{@project.bids.published.size()})") unless @project.bids.published.empty? %>
+            Bids <%= ("(#{@project.bids.visible.size()})") unless @project.bids.visible.empty? %>
           </a>
         </li>
       <% elsif has_bid_on_project? %>
@@ -225,9 +225,9 @@
 
       <% if may_admin_project? %>
         <div class="tab-pane" id="bids">
-          <% if @project.bids.published.nil? %>
+          <% if @project.bids.visible.nil? %>
           <% else %>
-            <% @project.bids.published.each do |bid| %>
+            <% @project.bids.visible.each do |bid| %>
               <%= render :partial => "bid_bubble", :locals => { :bid => bid } %>
             <% end %>
           <% end %>
