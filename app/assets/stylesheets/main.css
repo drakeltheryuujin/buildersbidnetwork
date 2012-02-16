@@ -753,6 +753,8 @@ font-weight: bold;
   background-color:#87C442;
   background:#87c442;
   font-weight:bold;
+  padding: 0 0 0 5px;
+  width: 635px;
 }
 .btn.primary {
   background-color:#FFB134;
@@ -926,7 +928,8 @@ text-align:center;
   font-size:12px;
   width:48px;
   margin-left:22px;
-  padding: 2px 2px 2px 2px;
+  padding: 2px;
+  text-align: center;
 }
 .step_two {
     width:240px;
@@ -1484,9 +1487,16 @@ h1.search_header span {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 14px;
 }
 .notification_result .result_numbers .btn img {
   float: left;
+}
+.notification_result .result_numbers .btn.delete img {
+  margin: 3px 0 0 0;
+}
+.notification_result .result_numbers .btn.add img {
+  margin: 1px 0 0 0;
 }
 .search_result .result_image,
 .search_result .result_body,
@@ -1643,14 +1653,14 @@ ul.line_items li div.units .line_item_total,
   margin-right: 0;
 }
 
-.login-page .login-box {
+.login-page .login-box, .confirmation-page .confirmation-box  {
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-.login-page .login-box .login-head {
+.login-page .login-box .login-head, .confirmation-page .confirmation-box .confirmation-head  {
   border-bottom: 1px solid #ddd;
   padding: 10px 20px;
 }
@@ -1659,7 +1669,7 @@ ul.line_items li div.units .line_item_total,
   line-height: 1em;
 }
 
-.login-page .login-box .field > label {
+.login-page .login-box .field > label, .confirmation-page .confirmation-box .field > label {
   text-transform: uppercase;
   font-weight: normal;
   width: 50%;
@@ -1693,12 +1703,14 @@ ul.line_items li div.units .line_item_total,
   padding: 10px;
   display: block;
 }
-.login-page .cta {
+.login-page .cta, .confirmation-page .cta {
   text-align: center;
   padding: 20px 10px 30px 10px;
 }
 .login-page .login-box .links_field,
-.login-page .login-box .field {
+.login-page .login-box .field,
+.confirmation-page .confirmation-box .links_field,
+.confirmation-page .confirmation-box .field {
   padding: 10px 20px 0;
 }
 .login-page .login-box .field > .field_with_errors { 
@@ -1709,7 +1721,13 @@ ul.line_items li div.units .line_item_total,
 .login-page .login-box .field > select,
 .login-page .login-box .field > .field_with_errors > select,
 .login-page .login-box .field > input,
-.login-page .login-box .field > .field_with_errors > input {
+.login-page .login-box .field > .field_with_errors > input,
+.confirmation-page .confirmation-box .field > textarea,
+.confirmation-page .confirmation-box .field > .field_with_errors > textarea,
+.confirmation-page .confirmation-box .field > select,
+.confirmation-page .confirmation-box .field > .field_with_errors > select,
+.confirmation-page .confirmation-box .field > input,
+.confirmation-page .confirmation-box .field > .field_with_errors > input {
   width: 98%;
 }
 .login-page .login-box .field > input.btn,
