@@ -12,14 +12,13 @@
           </ul>
         </div>
       <% end %>
-      <% unless @project.bidding_start.nil? && @project.bidding_end.nil? %>
-      	<% if @project.bidding_period? %>
-		  <div class="alert-message block-message error">
-	          <strong>Warning:</strong> Any changes made to your project during the bidding
-	          period will cause any previously submitted bids to be placed on hold to give
-	          their owners opportunity to make any necessary changes.
-	        </div>
-		<% end %>
+
+      <% if (current_page? edit_project_path(@project)) && @project.bidding_period? %>
+        <div class="alert-message block-message error">
+          <strong>Warning:</strong> Any changes made to your project during the bidding
+          period will cause any previously submitted bids to be placed on hold to give
+          their owners opportunity to make any necessary changes.
+        </div>
       <% end %>
 
       <div class="project_meta form-stacked">
@@ -37,29 +36,26 @@
         <div class="row">
           <div class="span6 ">
             <div class="field datetime-field">
-              <%= f.label :bidding_start, "Posted" %>
-              <%= f.datetime_select :bidding_start, :ampm => true, :discard_minute => true %>
-            </div>
-            <div class="field datetime-field">
-              <%= f.label :bidding_end, "Closed" %>
+              <%= f.label :bidding_end, "Bidding Closed" %>
               <%= f.datetime_select :bidding_end, :ampm => true, :discard_minute => true %>
             </div>
+            <div class="field datetime-field">
+              <%= f.label :pre_bid_meeting, "Pre-Bid Meeting (Optional)" %>
+              <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
+              <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/cross.png", :alt => "[Clear Date]") %></a>
+            </div>
+
           </div>
           <div class="span3">
             <div class="field datetime-field">
-              <%= f.label :project_start, "Start&nbsp;Date".html_safe %>
+              <%= f.label :project_start, "Estimated&nbsp;Start&nbsp;Date".html_safe %>
               <%= f.date_select :project_start %>
             </div>
             <div class="field datetime-field">
-              <%= f.label :project_end, "End\&nbsp;Date".html_safe %>
+              <%= f.label :project_end, "Estimated&nbsp;End\&nbsp;Date".html_safe %>
               <%= f.date_select :project_end %>
             </div>
           </div>
-        </div>
-        <div class="field datetime-field">
-          <%= f.label :pre_bid_meeting, "Pre-Bid Meeting (Optional)" %>
-          <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
-          <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/cross.png", :alt => "[Clear Date]") %></a>
         </div>
       </div> <!-- /.project_meta -->
 

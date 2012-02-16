@@ -86,7 +86,7 @@ class BidsController < ApplicationController
   end
 
   def verify_bidding_period!
-    redirect_to(project_path(@project), :alert => "Bids accepted for #{@project.name} between #{@project.bidding_start.to_formatted_s(:short)} and #{@project.bidding_end.to_formatted_s(:short)}.") unless @project.bidding_period?
+    redirect_to(project_path(@project), :alert => "Bids accepted for #{@project.name} between #{@project.created_at.to_formatted_s(:short)} and #{@project.bidding_end.to_formatted_s(:short)}.") unless @project.bidding_period?
   end
 
   def update_bid_state!(params)

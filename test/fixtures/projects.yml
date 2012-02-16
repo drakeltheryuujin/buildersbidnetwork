@@ -16,7 +16,6 @@
 #  user_id         :integer         not null
 #  created_at      :datetime
 #  updated_at      :datetime
-#  bidding_start   :datetime        not null
 #  bidding_end     :datetime        not null
 #  pre_bid_meeting :datetime
 #  project_start   :date            not null

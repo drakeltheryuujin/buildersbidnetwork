@@ -10,13 +10,8 @@ class ActivityController < ApplicationController
         @projects = @projects.where :user_id => current_user.id, :state => @filter
       elsif @filter.present? && @filter.to_sym == :past
         @projects = @projects.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
-      elsif @filter.present? && @filter.to_sym == :future
-        @projects = @projects.where(:user_id => current_user.id).where("bidding_start >= ?", Time.now)
       elsif @filter.present? && @filter.to_sym == :current
-        @projects = @projects.
-            where(:user_id => current_user.id).
-            where("bidding_start <= ?", Time.now).
-            where("bidding_end >= ?", Time.now)
+        @projects = @projects.where(:user_id => current_user.id).where("bidding_end >= ?", Time.now)
       else
         @projects = @projects.find_all_by_user_id current_user.id
       end

@@ -20,10 +20,6 @@
       </div>
       <h1>Project Timeline</h1>
       <ul>
-        <li>
-          <label>Bidding Starts</label>
-          <span><%= @project.bidding_start.to_formatted_s(:med) %></span>
-        </li>
         <% if @project.pre_bid_meeting.present? %>
           <li>
             <label>Pre-Bid Meeting</label>
