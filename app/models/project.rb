@@ -67,33 +67,29 @@ class Project < ActiveRecord::Base
 
   validates_associated :location, :project_type 
 
-# AASM
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
-  aasm_column :state
+  aasm :column => :state do
+    state :draft, :initial => true
+    state :published
+    state :cancelled
+    state :award_pending
+    state :awarded
 
-  aasm_initial_state :draft
-
-  aasm_state :draft
-  aasm_state :published
-  aasm_state :cancelled
-  aasm_state :award_pending
-  aasm_state :awarded
-
-  aasm_event :publish do
-    transitions :to => :published, :from => [:draft, :published]
+    event :publish do
+      transitions :to => :published, :from => [:draft, :published]
+    end
+    event :cancel do
+      transitions :to => :cancelled, :from => :published
+    end
+    event :award do
+      transitions :to => :award_pending, :from => :published
+    end
+    event :complete_award do
+      transitions :to => :awarded, :from => :award_pending
+    end
   end
-  aasm_event :cancel do
-    transitions :to => :cancelled, :from => :published
-  end
-  aasm_event :award do
-    transitions :to => :award_pending, :from => :published
-  end
-  aasm_event :complete_award do
-    transitions :to => :awarded, :from => :award_pending
-  end
-# /AASM
   
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)

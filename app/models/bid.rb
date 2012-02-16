@@ -31,40 +31,36 @@ class Bid < ActiveRecord::Base
   validate :sufficient_credits?, :if => :changed_to_published?
   validates_numericality_of :total, :greater_than => 0
 
+  aasm :column => :state do
+    state :draft, :initial => true
+    state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
+    state :cancelled
+    state :awarded, :enter => :award_project
+    state :accepted, :enter => :award_complete
+    state :held
+
+    event :publish do
+      transitions :to => :published, :from => [:draft, :held, :cancelled]
+    end
+    event :cancel do
+      transitions :to => :cancelled, :from => [:draft, :published]
+    end
+    event :award do
+      transitions :to => :awarded, :from => :published
+    end
+    event :accept do
+      transitions :to => :accepted, :from => :awarded
+    end
+    event :hold do
+      transitions :to => :held, :from => :published
+    end
+  end
+
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
   scope :awarded, where(:state => :awarded)
   scope :accepted, where(:state => :accepted)
   scope :visible, where(:state => [:accepted, :awarded, :published])
-
-# AASM
-  aasm_column :state
-
-  aasm_initial_state :draft
-
-  aasm_state :draft
-  aasm_state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
-  aasm_state :cancelled
-  aasm_state :awarded, :enter => :award_project
-  aasm_state :accepted, :enter => :award_complete
-  aasm_state :held
-
-  aasm_event :publish do
-    transitions :to => :published, :from => [:draft, :held, :cancelled]
-  end
-  aasm_event :cancel do
-    transitions :to => :cancelled, :from => [:draft, :published]
-  end
-  aasm_event :award do
-    transitions :to => :awarded, :from => :published
-  end
-  aasm_event :accept do
-    transitions :to => :accepted, :from => :awarded
-  end
-  aasm_event :hold do
-    transitions :to => :held, :from => :published
-  end
-# /AASM
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)
