@@ -33,6 +33,7 @@ class Bid < ActiveRecord::Base
 
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
+  scope :awarded, where(:state => :awarded)
   scope :accepted, where(:state => :accepted)
   scope :visible, where(:state => [:accepted, :awarded, :published])
 
@@ -44,8 +45,8 @@ class Bid < ActiveRecord::Base
   aasm_state :draft
   aasm_state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
   aasm_state :cancelled
-  aasm_state :awarded, :enter => :award_pending_project
-  aasm_state :accepted, :enter => :award_project
+  aasm_state :awarded, :enter => :award_project
+  aasm_state :accepted, :enter => :award_complete
   aasm_state :held
 
   aasm_event :publish do
@@ -94,11 +95,11 @@ class Bid < ActiveRecord::Base
     self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
   end
 
-  def award_pending_project
-    self.project.update_attribute(:state, :award_pending)
+  def award_project
+    self.project.award!
   end
 
-  def award_project
-    self.project.update_attribute(:state, :awarded)
+  def award_complete
+    self.project.complete_award!
   end
 end

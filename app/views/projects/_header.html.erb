@@ -20,11 +20,11 @@
   <div class="span5 ">
     <div class="project_actions">
       <% if may_admin_project? %>
-        <% if @project.state == :draft.to_s %>
+        <% if @project.draft? %>
           <span class="label large warning">Draft</span>
         <% else %>
           <span class="label large">
-            <strong><%= @project.bids.published.count %></strong> Current <%= (@project.bids.published.count == 1 ? "Bid" : "Bids") %>
+            <strong><%= @project.bids.visible.count %></strong> Current <%= (@project.bids.visible.count == 1 ? "Bid" : "Bids") %>
           </span>
         <% end %>
         <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit'  %> 

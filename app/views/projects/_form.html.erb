@@ -13,7 +13,7 @@
         </div>
       <% end %>
 
-      <% if (current_page? edit_project_path(@project)) && @project.bidding_period? %>
+      <% if (@project.id.present? && current_page?(edit_project_path(@project))) && @project.bidding_period? %>
         <div class="alert-message block-message error">
           <strong>Warning:</strong> Any changes made to your project during the bidding
           period will cause any previously submitted bids to be placed on hold to give
@@ -187,7 +187,7 @@
         <% if current_page? new_project_path %>
           <%= f.submit "Save and Continue", :name => :draft, :class => 'btn large primary' %>
         <% else %>
-          <%= f.submit "Save As Draft", :name => :draft, :class => 'btn info' %>
+          <%= f.submit "Save As Draft", :name => :draft, :class => 'btn info' if @project.draft? %>
           <%= f.submit "Publish Project", :name => :publish, :class => 'btn primary' %>
         <% end %>
       </div>

@@ -20,6 +20,8 @@
 #
 
 class Project < ActiveRecord::Base
+  include AASM
+
   belongs_to :user
   belongs_to :location
   belongs_to :project_type
@@ -32,31 +34,9 @@ class Project < ActiveRecord::Base
   geocoded_by :location_address
   after_validation :geocode
   
-  def location_address
-    location.address
-  end
+  accepts_nested_attributes_for :location, :allow_destroy => :true
 
-  def median_bid
-    self.bids.published.average 'total'
-  end
-
-  def may_modify?(user)
-    self.user == user || user.try(:admin?)
-  end
-
-  def my_bid(user)
-    self.bids.where(:user_id => user).first
-  end
-  def has_bid?(user)
-    my_bid(user).present?
-  end
-
-  def winning_bid
-    self.bids.where(:state => :accepted.to_s)
-  end
-  def award_pending_bid
-    self.bids.where(:state => :awarded.to_s)
-  end
+  accepts_nested_attributes_for :line_items, :allow_destroy => :true
 
 
   validates :name,
@@ -83,19 +63,66 @@ class Project < ActiveRecord::Base
     :acceptance => true,
     :unless => :draft?
   validates_numericality_of :estimated_budget, :less_than => 1000000000, :unless => :draft?
-  # TODO validate credit_value and estimated_budget are in sync
+  validate :validate_estimated_budget_credit_value_in_sync
 
   validates_associated :location, :project_type 
 
-  # TODO Use AASM like with Bid
-  STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ]
+# AASM
+  STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
+
+  aasm_column :state
+
+  aasm_initial_state :draft
+
+  aasm_state :draft
+  aasm_state :published
+  aasm_state :cancelled
+  aasm_state :award_pending
+  aasm_state :awarded
+
+  aasm_event :publish do
+    transitions :to => :published, :from => [:draft, :published]
+  end
+  aasm_event :cancel do
+    transitions :to => :cancelled, :from => :published
+  end
+  aasm_event :award do
+    transitions :to => :award_pending, :from => :published
+  end
+  aasm_event :complete_award do
+    transitions :to => :awarded, :from => :award_pending
+  end
+# /AASM
   
-  accepts_nested_attributes_for :location, :allow_destroy => :true
-
-  accepts_nested_attributes_for :line_items, :allow_destroy => :true
-
+  scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
+
+  def location_address
+    location.address
+  end
+
+  def median_bid
+    self.bids.published.average 'total'
+  end
+
+  def may_modify?(user)
+    self.user == user || user.try(:admin?)
+  end
+
+  def my_bid(user)
+    self.bids.where(:user_id => user).first
+  end
+  def has_bid?(user)
+    my_bid(user).present?
+  end
+
+  def winning_bid
+    self.bids.accepted.last
+  end
+  def award_pending_bid
+    self.bids.awarded.last
+  end
 
   def bidding_period?
     return Time.now <= self.bidding_end
@@ -105,15 +132,23 @@ class Project < ActiveRecord::Base
     return Time.now >= self.bidding_end
   end
 
-  def draft?
-    self.state.to_s == :draft.to_s
-  end
-
   def hold_bids_and_notify_bidders(body)
     subject = "Project #{self.name} has changed"
     self.bids.published.each do |bid|
       bid.hold!
       self.user.send_message_with_object_and_type([bid.user], body, subject, bid, :project_change_message)
+    end
+  end
+
+  private
+
+  def validate_estimated_budget_credit_value_in_sync
+    if (estimated_budget > 50000 && credit_value < 2) ||
+       (estimated_budget > 100000 && credit_value < 3) ||
+       (estimated_budget > 250000 && credit_value < 4) ||
+       (estimated_budget > 500000 && credit_value < 5) ||
+       (credit_value.blank?)
+      errors[:base] << "Invalid credit value."
     end
   end
 end

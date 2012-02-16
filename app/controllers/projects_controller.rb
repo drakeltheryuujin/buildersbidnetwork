@@ -45,7 +45,6 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
-    @project.state = :draft
 
     respond_to do |format|
       if @project.save and @project.location.save
@@ -61,7 +60,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.xml
   def update
-    @project.state = (@project.state.blank? ? :draft : (params[:publish] ? :published : :draft))
+    @project.publish if params[:publish].present?
 
     respond_to do |format|
       if @project.update_attributes(params[:project])
