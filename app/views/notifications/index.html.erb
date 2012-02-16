@@ -43,12 +43,12 @@
           <div class="span2 alpha">
             <div class="result_numbers">
               <%= notification.created_at.to_date.to_s(:tiny) %>
-              <%= link_to(notification_path(notification), :class => "btn small", :confirm => 'Are you sure?', :method => :delete) do %>
-                <%= image_tag "/images/icon_X_delete.png" %> Delete
+              <%= link_to(notification_path(notification), :class => "btn small delete", :confirm => 'Are you sure?', :method => :delete) do %>
+                <%= image_tag "/images/icon_X_delete.png" %>Delete
               <% end %>
               <% unless notification.type.blank? %>
-                <%= link_to(conversation_path(notification.conversation), :class => "btn small") do %>
-                  <%= image_tag "/images/icon_plus_add.png" %> View
+                <%= link_to(conversation_path(notification.conversation), :class => "btn small add") do %>
+                  <%= image_tag "/images/icon_plus_add.png" %>View
                 <% end %>
               <% end %>
             </div>

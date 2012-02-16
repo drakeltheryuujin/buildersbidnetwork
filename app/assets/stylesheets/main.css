@@ -1488,6 +1488,12 @@ h1.search_header span {
 .notification_result .result_numbers .btn img {
   float: left;
 }
+.notification_result .result_numbers .btn.delete img {
+  margin: 3px 0 0 0;
+}
+.notification_result .result_numbers .btn.add img {
+  margin: 1px 0 0 0;
+}
 .search_result .result_image,
 .search_result .result_body,
 .search_result .result_infos {
