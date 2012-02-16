@@ -107,7 +107,7 @@
                 <%= link_to "Home", root_path %>
               </li>-->
               <!-- TODO: Fix Link destinations & content_page_path -->
-              <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "How<span>it works</span>".html_safe, content_page_path('help') %></li>
+              <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "How<span>it works</span>".html_safe, content_page_path('how') %></li>
               <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "What<span>is BBN?</span>".html_safe, content_page_path('about') %></li>
               <li class="<%= put_if_current_page('active', content_page_path('About')) %>"><%= link_to "Browse<span>projects, etc.</span>".html_safe, search_index_path %></li>
               <li class="<%= put_if_current_page('active', content_page_path('Contact')) %>"><%= link_to "Questions?<span>contact us</span>".html_safe, content_page_path('contact') %></li>
@@ -149,7 +149,7 @@
           <li> | </li>
           <li><%= link_to "Contact Us", content_page_path('contact')%></li>
           <li> | </li>
-          <li><%= link_to "Help", content_page_path('help') %></li>
+          <li><%= link_to "FAQs", content_page_path('help') %></li>
           <li> | </li>
           <li><%= link_to "About", content_page_path('about') %></li>
           <li> | </li>
