@@ -27,7 +27,6 @@
         <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
         <li class="<%= 'active' if params[:filter] == :past.to_s %>"><%= link_to "Past Projects", activity_index_path(:filter => :past) %></li>
         <li class="<%= 'active' if params[:filter] == :current.to_s %>"><%= link_to "Current Projects", activity_index_path(:filter => :current) %></li>
-        <li class="<%= 'active' if params[:filter] == :future.to_s %>"><%= link_to "Future Projects", activity_index_path(:filter => :future) %></li>
       </ul>
       <dl>
         <dt>Lifetime Projects Posted:</dt>

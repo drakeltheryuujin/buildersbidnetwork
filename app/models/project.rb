@@ -7,7 +7,6 @@
 #  user_id         :integer         not null
 #  created_at      :datetime
 #  updated_at      :datetime
-#  bidding_start   :datetime        not null
 #  bidding_end     :datetime        not null
 #  pre_bid_meeting :datetime
 #  project_start   :date            not null
@@ -65,14 +64,9 @@ class Project < ActiveRecord::Base
   validates :description,
     :presence => true,
     :unless => :draft?
-  validates :bidding_start,
-    :presence => true,
-    #:date => {:after => (! :created_at.nil? ? :created_at : Proc.new { Time.now })}
-    :date => {:after => Proc.new {Time.now}},
-    :unless => :draft?
   validates :bidding_end,
     :presence => true, 
-    :date => {:after => :bidding_start},
+    :date => {:after => Proc.new {Time.now}},
     :unless => :draft?
   validates :project_start,
     :presence => true, 
@@ -104,7 +98,7 @@ class Project < ActiveRecord::Base
   scope :published, where(:state => :published)
 
   def bidding_period?
-    return (self.bidding_start <= Time.now) && (Time.now <= self.bidding_end)
+    return Time.now <= self.bidding_end
   end
 
   def award_period?

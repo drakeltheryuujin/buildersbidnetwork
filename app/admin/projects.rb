@@ -5,7 +5,6 @@ ActiveAdmin.register Project do
   filter :state, :as => :select, :collection => Project::STATES
   filter :created_at
   filter :updated_at
-  filter :bidding_start
   filter :bidding_end
   filter :pre_bid_meeting
   filter :project_start
@@ -22,7 +21,6 @@ ActiveAdmin.register Project do
     column :state
     column :created_at
     column :updated_at
-    column :bidding_start
     column :bidding_end
 
     column :pre_bid_meeting
