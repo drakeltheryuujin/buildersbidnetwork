@@ -753,6 +753,8 @@ font-weight: bold;
   background-color:#87C442;
   background:#87c442;
   font-weight:bold;
+  padding: 0 0 0 5px;
+  width: 635px;
 }
 .btn.primary {
   background-color:#FFB134;
