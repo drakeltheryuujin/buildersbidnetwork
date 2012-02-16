@@ -926,7 +926,8 @@ text-align:center;
   font-size:12px;
   width:48px;
   margin-left:22px;
-  padding: 2px 2px 2px 2px;
+  padding: 2px;
+  text-align: center;
 }
 .step_two {
     width:240px;
@@ -1484,6 +1485,7 @@ h1.search_header span {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 14px;
 }
 .notification_result .result_numbers .btn img {
   float: left;
