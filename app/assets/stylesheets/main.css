@@ -1652,14 +1652,14 @@ ul.line_items li div.units .line_item_total,
   margin-right: 0;
 }
 
-.login-page .login-box {
+.login-page .login-box, .confirmation-page .confirmation-box  {
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-.login-page .login-box .login-head {
+.login-page .login-box .login-head, .confirmation-page .confirmation-box .confirmation-head  {
   border-bottom: 1px solid #ddd;
   padding: 10px 20px;
 }
@@ -1668,7 +1668,7 @@ ul.line_items li div.units .line_item_total,
   line-height: 1em;
 }
 
-.login-page .login-box .field > label {
+.login-page .login-box .field > label, .confirmation-page .confirmation-box .field > label {
   text-transform: uppercase;
   font-weight: normal;
   width: 50%;
@@ -1702,12 +1702,14 @@ ul.line_items li div.units .line_item_total,
   padding: 10px;
   display: block;
 }
-.login-page .cta {
+.login-page .cta, .confirmation-page .cta {
   text-align: center;
   padding: 20px 10px 30px 10px;
 }
 .login-page .login-box .links_field,
-.login-page .login-box .field {
+.login-page .login-box .field,
+.confirmation-page .confirmation-box .links_field,
+.confirmation-page .confirmation-box .field {
   padding: 10px 20px 0;
 }
 .login-page .login-box .field > .field_with_errors { 
@@ -1718,7 +1720,13 @@ ul.line_items li div.units .line_item_total,
 .login-page .login-box .field > select,
 .login-page .login-box .field > .field_with_errors > select,
 .login-page .login-box .field > input,
-.login-page .login-box .field > .field_with_errors > input {
+.login-page .login-box .field > .field_with_errors > input,
+.confirmation-page .confirmation-box .field > textarea,
+.confirmation-page .confirmation-box .field > .field_with_errors > textarea,
+.confirmation-page .confirmation-box .field > select,
+.confirmation-page .confirmation-box .field > .field_with_errors > select,
+.confirmation-page .confirmation-box .field > input,
+.confirmation-page .confirmation-box .field > .field_with_errors > input {
   width: 98%;
 }
 .login-page .login-box .field > input.btn,
