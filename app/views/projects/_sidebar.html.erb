@@ -2,6 +2,7 @@
     <div class="sidebar_box project_timeline">
       <div class="sidebar_number">
         <strong><%= @project.award_period? ? "Ended" : (@project.bidding_end.to_date - Date.today).to_i %></strong> 
+        <%= link_to_if may_admin_project?, "Invite Only", manage_access_project_path(@project), :class => "private_flag" do |name| content_tag(:span, name, :class => "private_flag") end if @project.private %>
         <p>
           <span><%= "Days Left To Bid" unless @project.award_period? %></span>
           <em><label>Posted on:</label> <%= @project.created_at.to_date.to_formatted_s(:short) %></em>

@@ -210,6 +210,10 @@ form.new_project_document {
   float: right;
   font-size: 11px;
 }
+.project_timeline .sidebar_number .private_flag {
+  float: right;
+}
+
 .project_timeline label {
   width: auto;
   float: none;

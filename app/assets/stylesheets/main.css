@@ -380,7 +380,7 @@ white-space: nowrap;
   color: #E56F01;
   padding: 3px 5px 3px 21px;
   border: 1px solid #DDD;
-  background: transparent url('../images/lock_grey.png') 5px 5px no-repeat;
+  background: #fff url('../images/lock_grey.png') 5px 5px no-repeat;
 }
 .project_avatar,
 .profile_avatar {

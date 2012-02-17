@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo]
+  before_filter :check_may_access!, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
   
   # GET /projects
@@ -110,11 +111,18 @@ class ProjectsController < ApplicationController
     
     redirect_to project_path(@project, :anchor => 'photos')
   end
+
+  def manage_access
+  end
   
   private
 
   def get_project
     @project = Project.find(params[:id])
+  end
+
+  def check_may_access!
+    redirect_to(search_index_path, :alert => "Access denied.") unless @project.may_access? current_user
   end
 
   def check_may_modify!
