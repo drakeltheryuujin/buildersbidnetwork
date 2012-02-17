@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
   has_many :project, :dependent => :nullify
   has_many :bids
   has_many :credit_adjustments
+
+  has_many :project_privileges
+  has_many :accessible_projects, :through => :project_privileges, :source => :project
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -39,6 +43,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
   
   def name
     return self.profile.present? ? self.profile.name : self.email 

@@ -30,6 +30,9 @@ class Project < ActiveRecord::Base
   has_many :line_items
   has_many :bids
   has_many :project_documents
+
+  has_many :project_privileges
+  has_many :privileged_users, :through => :project_privileges, :source => :user
   
   geocoded_by :location_address
   after_validation :geocode
@@ -94,6 +97,10 @@ class Project < ActiveRecord::Base
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
 
+  scope :accessible_by, lambda { |user|
+    joins(:project_privileges).where(:project_privileges => { :user_id => user.id })
+  }
+
   def location_address
     location.address
   end
@@ -104,6 +111,10 @@ class Project < ActiveRecord::Base
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)
+  end
+
+  def may_access?(user)
+    self.private == false || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)

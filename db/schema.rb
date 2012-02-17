@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216174539) do
+ActiveRecord::Schema.define(:version => 20120217201454) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -177,6 +177,16 @@ ActiveRecord::Schema.define(:version => 20120216174539) do
 
   add_index "project_documents", ["project_id"], :name => "index_project_documents_on_project_id"
 
+  create_table "project_privileges", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_privileges", ["project_id"], :name => "index_project_privileges_on_project_id"
+  add_index "project_privileges", ["user_id"], :name => "index_project_privileges_on_user_id"
+
   create_table "project_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -202,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20120216174539) do
     t.decimal  "estimated_budget", :precision => 11, :scale => 2
     t.integer  "credit_value"
     t.integer  "cover_photo_id"
+    t.boolean  "private"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"
