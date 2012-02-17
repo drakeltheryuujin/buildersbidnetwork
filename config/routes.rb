@@ -77,7 +77,11 @@ Ypn::Application.routes.draw do
 
   resources :search, :only => [:index]
 
-  resources :activity, :only => [:index]
+  resources :activity, :only => [:index] do
+    collection do
+      get 'private'
+    end
+  end
 
   match 'home/:page' => 'home#show', :as => :content_page
   get "home/index"

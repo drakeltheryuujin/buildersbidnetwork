@@ -315,9 +315,17 @@ white-space: nowrap;
   -moz-border-radius: 0;
   border-radius: 0;
 }
-#top-banner .tabs .active > a, #top-banner .tabs .active > a:hover {
+#top-banner .tabs .active > a, 
+#top-banner .tabs .active > a:hover {
   background-color: #fff;
   color: #1e316b;
+}
+#top-banner  .tabs > li.private_projects > a {
+  background: #ff6600 url('../images/lock_white.png') 12px 8px no-repeat;
+}
+#top-banner  .tabs > li.active.private_projects > a {
+  background: #fff url('../images/lock_orange.png') 12px 8px no-repeat;
+  color: #ff6600;
 }
 
 #top-banner .building-relationships-container h2 {
@@ -366,6 +374,13 @@ white-space: nowrap;
   background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #F4F9F5), color-stop(1, #EBF1D5)); /* Webkit (Safari/Chrome 10) */ 
   background-image: -webkit-linear-gradient(top right, #F4F9F5 0%, #EBF1D5 100%); /* Webkit (Chrome 11+) */  
   background-image: linear-gradient(top right, #F4F9F5 0%, #EBF1D5 100%); /* Proposed W3C Markup */
+}
+
+.private_flag {
+  color: #E56F01;
+  padding: 3px 5px 3px 21px;
+  border: 1px solid #DDD;
+  background: transparent url('../images/lock_grey.png') 5px 5px no-repeat;
 }
 .project_avatar,
 .profile_avatar {
@@ -1508,9 +1523,22 @@ h1.search_header span {
 .search_result .result_image {
   margin: 12px;
 }
-.search_result .result_body {
+.span12 .search_result .result_body {
   width: 400px;
 }
+.span11 .search_result .result_body {
+  width: 340px;
+}
+.search_result .result_body {
+  min-height: 124px;
+  position: relative;
+}
+.search_result .result_body .private_flag {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+}
+
 .search_result .result_infos {
   width: 158px;
 }

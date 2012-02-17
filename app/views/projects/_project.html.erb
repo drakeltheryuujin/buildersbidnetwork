@@ -7,6 +7,9 @@
       <%= project.location.city + ", " + project.location.state %>
     </div>
     <span class="result_type sector"><%= project.project_type.name unless project.project_type.blank? %></span>
+    <% if project.private? %>
+      <span class="private_flag">Invite Only</span>
+    <% end %>
   </div>
   <div class="result_infos">
     <div class="result_numbers">

@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  scope :privileged_on, lambda { |project|
+    joins(:project_privileges).where(:project_privileges => { :project_id => project.id })
+  }
+
   
   def name
     return self.profile.present? ? self.profile.name : self.email 
@@ -78,6 +82,10 @@ class User < ActiveRecord::Base
 
   def subscription_current?
     return (self.subscription.present? ? self.subscription.current? : false)
+  end
+
+  def has_private_privileges?
+    return self.project_privileges.present?
   end
 
 

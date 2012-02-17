@@ -32,4 +32,8 @@ class ActivityController < ApplicationController
       render :action => "contractor"
     end
   end
+
+  def private
+    @projects = current_user.accessible_projects
+  end
 end

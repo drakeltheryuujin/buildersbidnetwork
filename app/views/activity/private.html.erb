@@ -1,0 +1,44 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <div class="track_header row">
+      <div class="span11">
+        <h1>
+          <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
+          Track My Projects
+        </h1>
+      </div>
+      <div class="span5">
+        <div class="track_actions">
+          <%= link_to "Post a Project", new_project_path, :class => 'btn large primary' if current_user.present? && current_user.developer? %>
+        </div>
+      </div>
+    </div>
+    <%= render 'tabs' %>
+  </div>
+<% end %>
+<div class="track-page track-projects-page row ">
+  <div class="span5 ">
+    <div class="track_filters ">
+      <ul>
+        <li class="active"><%= link_to "All Projects", private_activity_index_path %></li>
+      </ul>
+      <dl>
+        <dt>Last Login:</dt>
+        <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="span11 ">
+    <div class="track_results ">
+      <% if @projects.blank? %>
+        <div class="span11">
+          <div class="search_result no_result project ">
+            <h4>No private projects found.</h4>
+          </div>
+        </div>
+      <% end %>
+      <%= render :partial => "/projects/project", :collection => @projects %>
+    </div>
+  </div>
+</div>
+<%= render "/result_location_lightbox" %>
