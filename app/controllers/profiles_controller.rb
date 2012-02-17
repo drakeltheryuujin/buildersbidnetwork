@@ -102,9 +102,9 @@ class ProfilesController < ApplicationController
 
   def projects
     if @profile.user.developer?
-      @projects = @profile.user.project.published
+      @projects = @profile.user.project.published.where(:private => false)
     else
-      @projects = Project.joins(:bids).where(:bids => {:user_id => @profile.user.id, :state => :accepted.to_s})
+      @projects = Project.joins(:bids).where(:private => false, :bids => {:user_id => @profile.user.id, :state => :accepted.to_s})
     end
   end
 
