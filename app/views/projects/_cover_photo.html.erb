@@ -1,3 +1,9 @@
 <div class="result_image ">
-  <%= link_to (image_tag "/images/project_square.png", :alt => "Project"), project_path(project), :class => 'project_avatar' %>
+  <%
+    url = '/images/project_square.png'
+    if(project.cover_photo.present?)
+	  url = project.cover_photo.asset
+	end
+  %>
+  <%= link_to (image_tag url, :alt => "Project"), project_path(project), :class => 'project_avatar' %>
 </div>
