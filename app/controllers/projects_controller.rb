@@ -105,7 +105,7 @@ class ProjectsController < ApplicationController
 
   def update_cover_photo
     cover_photo = ProjectDocument.find_by_id params[:selected_project_document_id]
-    if(cover_photo.present? && cover_photo.project == @project)
+    if(cover_photo.present? && cover_photo.project == @project && cover_photo.project.user.id == @project.user.id)
       @project.update_attribute(:cover_photo, cover_photo)
     end
     
