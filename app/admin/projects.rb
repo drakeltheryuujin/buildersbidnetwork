@@ -31,4 +31,18 @@ ActiveAdmin.register Project do
 
     default_actions
   end
+  
+  member_action :end_bidding, :method => :post do
+    project = Project.find(params[:id])
+    
+    project.update_attribute :bidding_end, Time.now()
+    
+    if project.save(:validate => false)
+      redirect_to({:action => :show}, :notice => "Bidding Ended!")
+    else
+      redirect_to({:action => :show}, :alert => project.errors.full_messages.join(', '))
+    end
+  end
+  
+  sidebar :actions, :only => :show
 end
