@@ -1,0 +1,35 @@
+<div id="invite-modal" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">×</a>
+    <h3>Invite: <%= @profile.name %></h3>
+  </div> 
+  <%= form_tag(invite_profile_path(@profile), :remote => true, "data-type" => "text" )  do %>
+    <div class="private_projects">
+      <%= render :partial => "invite_project_wrapper", :collection => current_user.project.private.active, :as => :project %>
+    </div>
+    <div class="modal-body form-stacked">
+      <label>Message Body</label>
+      <%= text_area_tag :message_body %>
+    </div> 
+    <div class="modal-footer">
+      <%= submit_tag "Send", :class => "btn primary" %>
+    </div> 
+  <% end %>
+</div>
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#invite-modal form")
+        .bind('ajax:complete', function(evt, data, status, xhr){
+          $("#invite-modal").modal('hide');
+        })
+        .bind('ajax:success', function(evt, data, status, xhr){
+          $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+        })
+        .bind('ajax:error', function(evt, xhr, status, error){
+          $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+        });
+    });
+  </script>
+<% end %>
+

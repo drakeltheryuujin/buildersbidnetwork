@@ -23,6 +23,7 @@ Ypn::Application.routes.draw do
     member do
 	    get 'projects'
 	    post 'contact_owner'
+	    post 'invite'
 	  end
     collection do
 	    get 'settings'

@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner]
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
@@ -122,6 +122,34 @@ class ProfilesController < ApplicationController
         format.text { render :text => message }
       else
         message = 'Must include a message to send.'
+        format.html { redirect_to(@profile, :alert => message) }
+        format.text { render :text => message, :status => :bad_request }
+      end
+    end
+  end
+
+  def invite
+    invitee = @profile.user
+    sender_name = current_user.name
+    body = params[:message_body] || "You've been invited to bid on a project."
+    project = Project.find(params[:project_id])
+    respond_to do |format|
+      if project.present? && project.user == current_user && project.private?
+        pp = project.project_privileges.build(:user => invitee)
+        if pp.save
+          subject = "Invitation to bid from #{sender_name}"
+          current_user.send_message_with_object_and_type([invitee], body, subject, project, :project_invite)
+
+          message = 'User invited.'
+          format.html { redirect_to(@profile, :notice => message) }
+          format.text { render :text => message }
+        else
+          message = pp.errors.full_messages.join(', ')
+          format.html { redirect_to(@profile, :alert => message) }
+          format.text { render :text => message, :status => :bad_request }
+        end
+      else
+        message = 'Invalid project'
         format.html { redirect_to(@profile, :alert => message) }
         format.text { render :text => message, :status => :bad_request }
       end
