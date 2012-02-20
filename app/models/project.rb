@@ -114,7 +114,7 @@ class Project < ActiveRecord::Base
   end
 
   def may_access?(user)
-    self.private == false || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
+    self.private == false || self.may_modify?(user) || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)

@@ -129,7 +129,7 @@ form.new_project_document {
 }
 .project_form .project_meta .field select.type_select,
 .project_form .project_meta .field textarea,
-.project_form .project_meta .field input {
+.project_form .project_meta .field input[type=text] {
   width: 98%;
 }
 .project_form .project_meta .field input.date {
@@ -164,6 +164,33 @@ form.new_project_document {
 
 .project_form .project_meta.project_budget div.input-prepend {
   display: inline;
+}
+
+.project_form .project_meta.public_private {
+  padding-left: 20px;
+}
+.project_form .project_meta.public_private .field {
+  border: 1px solid #f60;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+}
+.project_form .project_meta.public_private .field label {
+  width: auto;
+  font-size: 16px;
+}
+.project_form .project_meta.public_private .field > div {
+  display: inline-block;
+  width: 45%;
+}
+.project_form .project_meta.public_private .field > div .explain {
+  font-size: 10px;
+  display: inline-block;
+  width: 43%;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .project_sidebar .sidebar_box {

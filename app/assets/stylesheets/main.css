@@ -1533,10 +1533,10 @@ h1.search_header span {
   min-height: 124px;
   position: relative;
 }
-.search_result .result_body .private_flag {
+.search_result .result_body .project_flags {
   position: absolute;
   right: 0;
-  bottom: 12px;
+  bottom: 0;
 }
 
 .search_result .result_infos {
