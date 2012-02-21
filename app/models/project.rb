@@ -66,7 +66,7 @@ class Project < ActiveRecord::Base
     :acceptance => true,
     :unless => :draft?
   validates_numericality_of :estimated_budget, :less_than => 1000000000, :unless => :draft?
-  validate :validate_estimated_budget_credit_value_in_sync
+  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
   validates_associated :location, :project_type 
 
