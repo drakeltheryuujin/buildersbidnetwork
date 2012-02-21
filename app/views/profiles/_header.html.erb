@@ -18,7 +18,12 @@
         <%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn small edit') %>
       <% end %>
       <% if @profile.user != current_user %>
-        <!-- <a href="#" class="btn large invite"><span>Invite to Bid</span></a> -->
+        <% if current_user.developer? && current_user.project.private.active.present? %>
+          <%= link_to invite_profile_path(@profile), :class => "btn large invite", "data-controls-modal" => "invite-modal", "data-backdrop" => "true" do %>
+            <span>Invite to Bid</span>
+          <% end %>
+          <%= render "invite" %>
+        <% end %>
         <%= link_to('Send A Message', contact_owner_profile_path(@profile), :class => 'btn small message', "data-controls-modal" => "contact-profile-modal", "data-backdrop" => "true") %>
         <!-- <a class="btn small save" href="#"><span>Save</span></a>  -->
       <% end %>
@@ -26,34 +31,4 @@
   </div>
 </div>
 
-<div id="contact-profile-modal" class="modal hide fade">
-  <div class="modal-header">
-    <a href="#" class="close">×</a>
-    <h3>Contact: <%= @profile.name %></h3>
-  </div> 
-  <%= form_tag(contact_owner_profile_path(@profile), :remote => true, "data-type" => "text" )  do %>
-    <div class="modal-body form-stacked">
-      <label>Message Body</label>
-      <%= text_area_tag :message_body %>
-    </div> 
-    <div class="modal-footer">
-      <%= submit_tag "Send", :class => "btn primary" %>
-    </div> 
-  <% end %>
-</div>
-<% content_for :javascript do %>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#contact-profile-modal form")
-        .bind('ajax:complete', function(evt, data, status, xhr){
-          $("#contact-profile-modal").modal('hide');
-        })
-        .bind('ajax:success', function(evt, data, status, xhr){
-          $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
-        })
-        .bind('ajax:error', function(evt, xhr, status, error){
-          $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
-        });
-    });
-  </script>
-<% end %>
+<%= render "contact" %>

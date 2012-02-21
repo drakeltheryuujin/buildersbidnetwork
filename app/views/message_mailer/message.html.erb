@@ -8,6 +8,8 @@
   <% content_for :top_head, "Your bid award was accepted!" %>
 <% elsif @message.notification_type == :bid_placed_message %>
   <% content_for :top_head, "A bid has been placed!" %>
+<% elsif @message.notification_type == :project_invite %>
+  <% content_for :top_head, "You've been invited!" %>
 <% else %>
   <% content_for :top_head, "You have a new message!" %>
 <% end %>
@@ -31,6 +33,12 @@
 
   <p class="message_actions">
     <%= link_to 'Accept or Decline', project_bid_url(@message.notified_object.project, @message.notified_object), :class => 'btn primary' %>
+  </p>
+<% elsif @message.notification_type == :project_invite %>
+  <p><%= raw @message.body %></p>
+
+  <p class="message_actions">
+    <%= link_to 'View Project Details', project_url(@message.notified_object), :class => 'btn primary' %>
   </p>
 <% else %>
   <p><%= raw @message.body %></p>

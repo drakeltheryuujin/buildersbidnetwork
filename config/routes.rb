@@ -16,6 +16,8 @@ Ypn::Application.routes.draw do
 	    post 'contact_creator'
 	    post 'update_cover_photo'
       get 'manage_access'
+      delete 'revoke_access'
+      post 'invite_by_email'
 	  end
   end
 
@@ -23,6 +25,7 @@ Ypn::Application.routes.draw do
     member do
 	    get 'projects'
 	    post 'contact_owner'
+	    post 'invite'
 	  end
     collection do
 	    get 'settings'

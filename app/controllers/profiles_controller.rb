@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner]
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
@@ -60,7 +60,9 @@ class ProfilesController < ApplicationController
     respond_to do |format|
       if @profile.save
         format.html { 
-          if current_user.invited_by.present? && current_user.sign_in_count == 1
+          if(current_user.sign_in_count == 1 && current_user.invited_project.present?)
+            redirect_to(project_path(current_user.invited_project), :notice => 'Your profile was successfully created. Here are is the project you were invited to bid on.') 
+          elsif(current_user.sign_in_count == 1 && current_user.invited_by.present?) 
             redirect_to(projects_profile_path(current_user.invited_by.profile), :notice => 'Your profile was successfully created. Here are some projects from the user that invited you.') 
           else
             redirect_to(profile_path(@profile), :notice => 'Profile was successfully created.') 
@@ -125,6 +127,27 @@ class ProfilesController < ApplicationController
         format.html { redirect_to(@profile, :alert => message) }
         format.text { render :text => message, :status => :bad_request }
       end
+    end
+  end
+
+  def invite
+    invitee = @profile.user
+    project = Project.find(params[:project_id])
+    respond_to do |format|
+      if project.present?
+        project_privilege = project.project_privileges.build(:user => invitee, :message_body => params[:message_body])
+        if project_privilege.save
+          message = 'User invited.'
+          format.html { return redirect_to(@profile, :notice => message) }
+          format.text { return render :text => message }
+        else
+          message = project_privilege.errors.full_messages.join(', ')
+        end
+      else
+        message = 'Invalid project'
+      end
+      format.html { redirect_to(@profile, :alert => message) }
+      format.text { render :text => message, :status => :bad_request }
     end
   end
 

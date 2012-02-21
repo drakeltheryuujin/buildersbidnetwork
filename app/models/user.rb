@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :project_privileges
   has_many :accessible_projects, :through => :project_privileges, :source => :project
 
+  belongs_to :invited_project, :class_name => 'Project'
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -42,11 +43,15 @@ class User < ActiveRecord::Base
          :token_authenticatable, :confirmable, :lockable, :timeoutable 
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessor :message_body
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :message_body
 
   scope :privileged_on, lambda { |project|
     joins(:project_privileges).where(:project_privileges => { :project_id => project.id })
   }
+
+  scope :has_logged_in, where("sign_in_count > 0")
+  scope :never_logged_in, where("sign_in_count = 0")
 
   
   def name

@@ -129,7 +129,7 @@ form.new_project_document {
 }
 .project_form .project_meta .field select.type_select,
 .project_form .project_meta .field textarea,
-.project_form .project_meta .field input {
+.project_form .project_meta .field input[type=text] {
   width: 98%;
 }
 .project_form .project_meta .field input.date {
@@ -164,6 +164,33 @@ form.new_project_document {
 
 .project_form .project_meta.project_budget div.input-prepend {
   display: inline;
+}
+
+.project_form .project_meta.public_private {
+  padding-left: 20px;
+}
+.project_form .project_meta.public_private .field {
+  border: 1px solid #f60;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+}
+.project_form .project_meta.public_private .field label {
+  width: auto;
+  font-size: 16px;
+}
+.project_form .project_meta.public_private .field > div {
+  display: inline-block;
+  width: 45%;
+}
+.project_form .project_meta.public_private .field > div .explain {
+  font-size: 10px;
+  display: inline-block;
+  width: 43%;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .project_sidebar .sidebar_box {
@@ -232,3 +259,42 @@ form.new_project_document {
   padding: 0 15px;
 }
 
+
+#invite-modal { width: 590px; }
+#invite-modal .private_projects { padding: 10px; }
+#invite-modal .private_projects .search_result { width: auto; vertical-align: middle; margin-bottom: 10px; }
+
+.search_result.manage_access_result {
+  border-width: 1px 0 0 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-style: dotted;
+}
+
+.manage_access_page h3 {
+  color: #f60;
+}
+.manage_access_result .result_infos .btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 10px;
+  float: right;
+  padding: 5px 30px;
+}
+
+.manage_access_page .invite_by_email input,
+.manage_access_page .invite_by_email textarea {
+  width: 98%;
+  margin: 5px 0;
+}
+.manage_access_page .invite_by_email input.btn {
+  width: auto;
+  float: right;
+}
+.manage_access_page .invited_emails {
+  padding: 20px 10px;
+}
+.manage_access_page .invited_emails .btn {
+  margin: 5px;
+}

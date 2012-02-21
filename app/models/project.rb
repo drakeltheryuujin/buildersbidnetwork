@@ -97,6 +97,10 @@ class Project < ActiveRecord::Base
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
 
+  scope :active, lambda { where("bidding_end >= :now", :now => Time.now) }
+
+  scope :private, where(:private => true)
+
   scope :accessible_by, lambda { |user|
     joins(:project_privileges).where(:project_privileges => { :user_id => user.id })
   }
@@ -114,7 +118,7 @@ class Project < ActiveRecord::Base
   end
 
   def may_access?(user)
-    self.private == false || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
+    self.private == false || self.may_modify?(user) || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)
