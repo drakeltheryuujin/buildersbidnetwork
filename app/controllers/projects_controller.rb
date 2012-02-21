@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo]
+  before_filter :get_project, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo, :manage_access, :revoke_access, :invite_by_email]
   before_filter :check_may_access!, :only => [:show, :update, :edit, :destroy, :contact_creator, :review, :update_cover_photo]
-  before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
+  before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review, :manage_access, :revoke_access]
   
   # GET /projects
   # GET /projects.xml
@@ -113,6 +113,44 @@ class ProjectsController < ApplicationController
   end
 
   def manage_access
+  end
+  
+  def revoke_access
+    user = User.find params[:user_id]
+    pp = ProjectPrivilege.find_by_user_id_and_project_id(user.id, @project.id)
+    unless pp.blank?
+      pp.destroy
+      flash[:notice] = 'Access revoked'
+    end
+    redirect_to manage_access_project_path(@project), :notice => 'Access revoked'
+  end
+
+  def invite_by_email
+    skip_invite = false
+    user = User.find_by_email params[:email_address]
+    unless user.present?
+      user = User.invite!({:email => params[:email_address], :message_body => params[:message_body]}, current_user) do |invited_user|
+        invited_user.invited_project = @project
+      end
+      skip_invite = true
+    end
+    if user.errors.empty?
+      project_privilege = ProjectPrivilege.where(:user_id => user.id, :project_id => @project.id)
+      unless project_privilege
+        project_privilege = ProjectPrivilege.new(:user => user, :project => @project, :message_body => params[:message_body], :skip_invite => skip_invite)
+        if project_privilege.save
+          flash[:notice] = 'User invited.'
+        else
+          flash[:alert] = project_privilege.errors.full_messages.join(', ')
+        end
+      else
+        flash[:alert] = 'Already invited.'
+      end
+    else
+      flash[:alert] = user.errors.full_messages.join(', ')
+    end
+
+    redirect_to manage_access_project_path(@project)
   end
   
   private

@@ -1,0 +1,23 @@
+<ul class="tabs" data-tabs="tabs">
+  <li><%= link_to 'Project Scope', project_path(@project, :anchor => 'scope') %></li>
+  <li>
+    <%= link_to project_path(@project, :anchor => 'docs') do %>
+      Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to project_path(@project, :anchor => 'photos') do %>
+      Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+    <% end %>
+  </li>
+  <% if may_admin_project? && @project.bids.visible.present? %>
+    <li class="<%= put_if_current_page('active', {:action => :show}) %>">
+      <%= link_to project_path(@project, :anchor => 'bids') do %>
+        Bids <%= ("(#{@project.bids.visible.size()})") unless @project.bids.visible.empty? %>
+      <% end %>
+    </li>
+  <% elsif @bid.present? && @bid.user == current_user %>
+    <li class="active"><a href="#my_bid">My Bid</a></li>
+  <% end %>
+</ul>
+

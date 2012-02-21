@@ -263,3 +263,38 @@ form.new_project_document {
 #invite-modal { width: 590px; }
 #invite-modal .private_projects { padding: 10px; }
 #invite-modal .private_projects .search_result { width: auto; vertical-align: middle; margin-bottom: 10px; }
+
+.search_result.manage_access_result {
+  border-width: 1px 0 0 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-style: dotted;
+}
+
+.manage_access_page h3 {
+  color: #f60;
+}
+.manage_access_result .result_infos .btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 10px;
+  float: right;
+  padding: 5px 30px;
+}
+
+.manage_access_page .invite_by_email input,
+.manage_access_page .invite_by_email textarea {
+  width: 98%;
+  margin: 5px 0;
+}
+.manage_access_page .invite_by_email input.btn {
+  width: auto;
+  float: right;
+}
+.manage_access_page .invited_emails {
+  padding: 20px 10px;
+}
+.manage_access_page .invited_emails .btn {
+  margin: 5px;
+}

@@ -97,6 +97,10 @@ class Project < ActiveRecord::Base
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
 
+  scope :active, lambda { where("bidding_end >= :now", :now => Time.now) }
+
+  scope :private, where(:private => true)
+
   scope :accessible_by, lambda { |user|
     joins(:project_privileges).where(:project_privileges => { :user_id => user.id })
   }
