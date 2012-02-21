@@ -32,7 +32,7 @@ ActiveAdmin.register Project do
     default_actions
   end
   
-  member_action :end_bidding, :method => :post do
+  member_action :end_bidding do
     project = Project.find(params[:id])
     
     project.update_attribute :bidding_end, Time.now()
