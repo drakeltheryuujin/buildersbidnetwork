@@ -782,6 +782,7 @@ font-weight: bold;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
   background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
+  -webkit-transform-style: flat;
 }
 .btn.primary:hover {
   background-position: 0;
