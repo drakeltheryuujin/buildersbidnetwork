@@ -470,6 +470,7 @@ white-space: nowrap;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  padding: 10px;
 }
 .sidebar_box  .head{
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
@@ -1000,7 +1001,6 @@ padding-left:22px;
   font-size: 12px;
   font-weight:bold;
   width: 53px;
-  height: 10px;
 }
 .explanation ul li{
   font-size: 14px;
