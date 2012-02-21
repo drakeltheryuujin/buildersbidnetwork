@@ -1,4 +1,2 @@
 <h3>End Bidding on Project</h3>
-<%= form_for project, :url => end_bidding_admin_project_path(project), :method => :post do |end_bidding_form| %>
-  <%= end_bidding_form.submit "End Bidding", :confirm => "Are you sure you want to end bidding on this project?" %>
-<% end %>
+<h3><%= link_to "End Bidding", end_bidding_admin_project_path(project), :confirm => "Are you sure you want to end bidding on this project?" %></h3>
