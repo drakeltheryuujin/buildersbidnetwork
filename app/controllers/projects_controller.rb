@@ -136,7 +136,7 @@ class ProjectsController < ApplicationController
     end
     if user.errors.empty?
       project_privilege = ProjectPrivilege.where(:user_id => user.id, :project_id => @project.id)
-      unless project_privilege
+      unless project_privilege.present?
         project_privilege = ProjectPrivilege.new(:user => user, :project => @project, :message_body => params[:message_body], :skip_invite => skip_invite)
         if project_privilege.save
           flash[:notice] = 'User invited.'
