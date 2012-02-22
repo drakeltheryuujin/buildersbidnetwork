@@ -357,6 +357,15 @@ white-space: nowrap;
   padding-top: 10px;
   margin-bottom: 5px
 }
+h1.page_head {
+  font-size:20px;
+  color:#FF6502;
+}
+span.faq_span,
+span.faq_span a {
+  color:#FF6502;
+}
+  
 .sector {
   padding: 1px 3px 2px;
   display: inline-block;
@@ -470,7 +479,6 @@ white-space: nowrap;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  padding: 10px;
 }
 .sidebar_box  .head{
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
@@ -528,12 +536,21 @@ white-space: nowrap;
 .sidebar_box .sidebar_flag span.award {
   color: orange;
 }
-.sidebar_box h1 {
+
+
+.sidebar_box .head h1 {
   font-size: 14px;
   line-height: 20px;
   margin-bottom: 10px;
   padding:4px;
+  font-weight: bold;
+  color: #404040;
 }
+
+.help_box {
+  padding: 10px;
+}
+
 .field_with_errors {
   padding: 0;
   display: inline-block;
