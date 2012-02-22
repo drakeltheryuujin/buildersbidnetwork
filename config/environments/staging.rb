@@ -47,8 +47,8 @@ Ypn::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'buildersbidnetwork.com' }
-  config.action_mailer.asset_host = 'http://buildersbidnetwork.com/'
+  config.action_mailer.default_url_options = { :host => 'ypn.heroku.com' }
+  config.action_mailer.asset_host = 'http://ypn.heroku.com'
 
   config.action_mailer.smtp_settings = {
     :address              => "mail.htmlfive.org",
@@ -64,14 +64,14 @@ Ypn::Application.configure do
   PAPERCLIP_STORAGE_OPTIONS = {
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :bucket => 'PROD-project-document-bucket'
+    :bucket => 'project-document-bucket'
   }
   
 	config.after_initialize do
-    LOGIN_ID = '6XBw9KqWW5sy'
-    TRANSACTION_KEY = '67w85gyRQW29kYy7' 
-    ActiveMerchant::Billing::Base.mode = :production
-    #ActiveMerchant::Billing::Base.mode = :test
+    LOGIN_ID = '2n4C4Heq'
+    TRANSACTION_KEY = '6D46P5gn46tak4Qs' 
+    #ActiveMerchant::Billing::Base.mode = :production
+    ActiveMerchant::Billing::Base.mode = :test
     ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
       :login  => LOGIN_ID,
       :password => TRANSACTION_KEY
