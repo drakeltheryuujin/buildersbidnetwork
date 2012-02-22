@@ -358,14 +358,28 @@ white-space: nowrap;
   margin-bottom: 5px
 }
 h1.page_head {
-  font-size:20px;
+  font-size:18px;
+  font-weight:normal;
   color:#FF6502;
 }
 span.faq_span,
 span.faq_span a {
   color:#FF6502;
 }
-  
+h2.faq,
+h3.faq {
+  font-weight:normal;
+   color:#002666;
+}
+h2.faq {
+ color:#FF6502;
+ font-weight:normal;
+}
+li.faq,
+p.faq {
+ color:#002666;
+}
+ 
 .sector {
   padding: 1px 3px 2px;
   display: inline-block;
