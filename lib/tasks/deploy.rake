@@ -23,10 +23,12 @@ namespace :deploy do
     releases = `git tag`.split("\n").select { |t| t[0..6] == 'staged-' }.sort
     staged_release = releases.last
     if staged_release
+      puts "Backing up production database..."
+      run "heroku pgbackups:capture --app #{PRODUCTION_APP}"
+      puts "Pushing #{staged_release} to production..."
       run "git push git@heroku.com:#{PRODUCTION_APP}.git #{staged_release}^{}:master"
     else
       puts "No staged release tags found"
     end
   end
-
 end
