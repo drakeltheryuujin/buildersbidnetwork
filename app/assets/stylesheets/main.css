@@ -359,25 +359,48 @@ white-space: nowrap;
 }
 h1.page_head {
   font-size:18px;
-  font-weight:normal;
+  font-weight:bold;
   color:#FF6502;
 }
 span.faq_span,
 span.faq_span a {
   color:#FF6502;
 }
-h2.faq,
+
 h3.faq {
   font-weight:normal;
-   color:#002666;
+  color:#002666;
+  font-size:18px;
 }
 h2.faq {
  color:#FF6502;
- font-weight:normal;
-}
+ font-weight:bold;
+ font-size:18px; 
+ }
 li.faq,
 p.faq {
  color:#002666;
+}
+
+h2.terms {
+  color:#FF6502;
+  font-weight:bold;
+  font-size:18px;
+}
+h3.terms {
+ color: #002666;
+ font-size:18px;
+ font-weight:normal;
+}
+ 
+li.terms {
+ color: #002666;
+}
+
+h2.privacy {
+  color:#002666;
+  font-weight:bold;
+  font-size:18px; 
 }
  
 .sector {
@@ -1386,14 +1409,17 @@ ul.search_tabs li.selected {
   padding: 0 5px 0 0;
 }
 strong.strong_privacy {
+  color:#FF6502;
   float:left;
   padding-right:5px;
-  padding-top:2px;
+  padding-top:2px;  
 }
 li.li_privacy  {
   list-style:none;
 }
-
+a.link {
+  color:#FF6502;
+}
 .track_filters ul,
 .search_filters ul {
   list-style: none;
