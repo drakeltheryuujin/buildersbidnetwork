@@ -351,12 +351,13 @@ white-space: nowrap;
   padding-left:20px;
 }
 #top-banner .container > h1 {
-  padding-top: 16px;
+  padding-top: 20px;
 }
 #top-banner .container > .row {
-  padding-top: 10px;
+  padding-top: 20px;
   margin-bottom: 5px
 }
+
 h1.page_head {
   font-size:18px;
   font-weight:bold;
