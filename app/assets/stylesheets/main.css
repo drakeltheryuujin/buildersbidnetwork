@@ -367,42 +367,34 @@ span.faq_span a {
   color:#FF6502;
 }
 
-h3.faq {
-  font-weight:normal;
-  color:#002666;
-  font-size:18px;
-}
-h2.faq {
- color:#FF6502;
- font-weight:bold;
- font-size:18px; 
- }
 li.faq,
 p.faq {
  color:#002666;
 }
 
-h2.terms {
+h2.terms,
+h2.faq {
   color:#FF6502;
   font-weight:bold;
   font-size:18px;
 }
-h3.terms {
- color: #002666;
- font-size:18px;
- font-weight:normal;
-}
- 
-li.terms {
- color: #002666;
-}
-
 h2.privacy {
   color:#002666;
   font-weight:bold;
   font-size:18px; 
 }
- 
+
+h3.terms,
+h3.faq,
+h3.how {
+ color: #002666;
+ font-size:18px;
+ font-weight:normal;
+}
+li.terms {
+ color: #002666;
+}
+  
 .sector {
   padding: 1px 3px 2px;
   display: inline-block;
