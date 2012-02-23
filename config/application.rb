@@ -44,5 +44,7 @@ module Ypn
     config.to_prepare do
       Devise::Mailer.layout "email" # email.haml or email.erb
     end
+
+    config.force_ssl = false
   end
 end

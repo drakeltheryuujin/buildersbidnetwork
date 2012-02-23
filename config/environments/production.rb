@@ -77,4 +77,6 @@ Ypn::Application.configure do
       :password => TRANSACTION_KEY
     )
   end
+
+  config.force_ssl = true
 end
