@@ -64,7 +64,7 @@ Ypn::Application.configure do
   PAPERCLIP_STORAGE_OPTIONS = {
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :bucket => 'PROD-project-document-bucket'
+    :bucket => 'bbn-project-document-bucket'
   }
   
 	config.after_initialize do

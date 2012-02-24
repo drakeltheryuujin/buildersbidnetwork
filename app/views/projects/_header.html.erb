@@ -27,7 +27,7 @@
             <strong><%= @project.bids.visible.count %></strong> Current <%= (@project.bids.visible.count == 1 ? "Bid" : "Bids") %>
           </span>
         <% end %>
-        <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit'  %> 
+        <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit' unless @project.award_period?  %> 
       <% end %>
       <% if current_page? project_path(@project) %>
           <% if current_user.subscription_current? || may_admin_project? %>

@@ -33,11 +33,11 @@ class Bid < ActiveRecord::Base
 
   aasm :column => :state do
     state :draft, :initial => true
-    state :published, :enter => :charge_credits_and_notify_creator, :exit => :refund_credits
+    state :published, :enter => :charge_credits_and_notify_creator
     state :cancelled
     state :awarded, :enter => :award_project
     state :accepted, :enter => :award_complete
-    state :held
+    state :held, :enter => :refund_credits
 
     event :publish do
       transitions :to => :published, :from => [:draft, :held, :cancelled]

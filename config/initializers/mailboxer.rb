@@ -4,7 +4,7 @@ Mailboxer.setup do |config|
   config.uses_emails = true
   
   #Configures the default from for the email sent for Messages and Notifications of Mailboxer
-  config.default_from = "no-reply@ypn.heroku.com"
+  config.default_from = "no-reply@buildersbidnetwork.com"
   
   config.email_method = :mailboxer_email
   config.name_method = :mailboxer_name

@@ -23,7 +23,7 @@ class SubscriptionsController < ApplicationController
     @subscription_payment.ip_address = request.remote_ip
     @subscription_payment.start_at = @subscription.valid_until || Time.now # start at the end of the current subscription
     if @subscription_payment.purchase!(@subscription)
-      redirect_to subscription_path(@subscription), :notice => "Thank you for your payment." 
+      redirect_to subscription_path(@subscription_payment), :notice => "Thank you for your payment." 
     else
       render :action => 'new'
     end

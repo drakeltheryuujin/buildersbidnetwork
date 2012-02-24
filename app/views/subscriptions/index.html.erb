@@ -23,7 +23,7 @@
                 <div class ="step_one">
                   <h3> Create an Account</h3>
                   <p>You must be a BBN member to subscribe and bid on projects. Start a FREE account today.</p>
-                  <%= link_to "Sign Up", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                  <%= link_to "Sign Up", new_user_registration_path, {:class => 'btn primary large'} %>
                 </div>
               </li>
               <li>
@@ -31,15 +31,15 @@
                   <h3> Subscribe & Buy Credits</h3>
                   <p>In order to view project details you must be a subscribing member. Once you find a suitable project, it will cost credits to submit a bid.</p>  
                     <%= link_to "Subscribe Month-by-Month", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-                    <%= link_to "Subscribe for the Year", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
-                    <%= link_to "Buy Credits", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                    <%= link_to "Subscribe for the Year", new_subscription_path(:package => :yearly), {:class => 'btn primary large'} %>
+                    <%= link_to "Buy Credits", credits_path, {:class => 'btn primary large'} %>
                 </div>         
               </li>
               <li>
                 <div class ="step_three">
                   <h3>Search & Bid on Projects</h3>
                   <p>Use the search bar or general browse from the Dashboard or Browse Pages.</p>
-                  <%= link_to "Search Tips", new_subscription_path(:package => :monthly), {:class => 'btn primary large'} %>
+                  <%= link_to "Search Tips", search_index_path, {:class => 'btn primary large'} %>
                 </div>
               </li>
           </ol>
