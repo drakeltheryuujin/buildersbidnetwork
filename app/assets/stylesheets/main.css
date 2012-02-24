@@ -1728,14 +1728,14 @@ ul.line_items li div.units .line_item_total,
   margin-right: 0;
 }
 
-.login-page .login-box, .confirmation-page .confirmation-box , .forgot-password-page .login-box, .unlock-page .unlock-box {
+.login-page .login-box, .confirmation-page .confirmation-box , .forgot-password-page .login-box, .unlock-page .unlock-box, .change-pw-page .change-pw-box {
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-.login-page .login-box .login-head, .confirmation-page .confirmation-box .confirmation-head, .forgot-password-page .login-head , .unlock-page .unlock-head {
+.login-page .login-box .login-head, .confirmation-page .confirmation-box .confirmation-head, .forgot-password-page .login-head , .unlock-page .unlock-head , .change-pw-page .change-pw-head{
   border-bottom: 1px solid #ddd;
   padding: 10px 20px;
 }
@@ -1773,14 +1773,15 @@ ul.line_items li div.units .line_item_total,
 }
 .login-page .login-box .links_field a,
 .forgot-password-page .login-box .links_field a, 
-.unlock-page .unlock-box .link_fields a {
+.unlock-page .unlock-box .link_fields a,
+.change-pw-page .change-pw-box .link_fields a, {
   border-style: dotted;
   border-color: #ddd;
   border-width: 1px 0;
   padding: 10px;
   display: block;
 }
-.login-page .cta, .confirmation-page .cta, .forgot-password-page .cta, .unlock-page .cta {
+.login-page .cta, .confirmation-page .cta, .forgot-password-page .cta, .unlock-page .cta, .change-pw-page .cta {
   text-align: center;
   padding: 20px 10px 30px 10px;
 }
@@ -1791,7 +1792,9 @@ ul.line_items li div.units .line_item_total,
 .forgot-password-page .login-box .links_field,
 .forgot-password-page .login-box .field,
 .unlock-page .unlock-box .links_field,
-.unlock-page .unlock-box .field {
+.unlock-page .unlock-box .field,
+.change-pw-page .change-pw-box .links_field,
+.change-pw-page .change-pw-box .field {
   padding: 10px 20px 0;
 }
 .login-page .login-box .field > .field_with_errors { 
@@ -1827,7 +1830,8 @@ ul.line_items li div.units .line_item_total,
 }
 .btn.large.forgot_pw,
 .btn.large.confirm,
-.btn.large.unlock {
+.btn.large.unlock,
+.btn.large.change-pw {
 	margin: 10px 0 0 0px;
 	width:auto;
 }
