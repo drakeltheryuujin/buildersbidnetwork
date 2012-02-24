@@ -36,11 +36,11 @@
         <div class="row">
           <div class="span6 ">
             <div class="field datetime-field">
-              <%= f.label :bidding_end, "Bidding Closed" %>
+              <%= f.label :bidding_end, "Bidding End Date" %>
               <%= f.datetime_select :bidding_end, :ampm => true, :discard_minute => true %>
             </div>
             <div class="field datetime-field">
-              <%= f.label :pre_bid_meeting, "Pre-Bid Meeting (Optional)" %>
+              <%= f.label :pre_bid_meeting, "Onsite Meeting (Optional)" %>
               <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
               <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/cross.png", :alt => "[Clear Date]") %></a>
             </div>
@@ -48,11 +48,11 @@
           </div>
           <div class="span3">
             <div class="field datetime-field">
-              <%= f.label :project_start, "Estimated&nbsp;Start&nbsp;Date".html_safe %>
+              <%= f.label :project_start, "Estimated&nbsp;Project&nbsp;Start&nbsp;Date".html_safe %>
               <%= f.date_select :project_start %>
             </div>
             <div class="field datetime-field">
-              <%= f.label :project_end, "Estimated&nbsp;End\&nbsp;Date".html_safe %>
+              <%= f.label :project_end, "Estimated&nbsp;Project&nbsp;End&nbsp;Date".html_safe %>
               <%= f.date_select :project_end %>
             </div>
           </div>
