@@ -7,7 +7,7 @@ class ActivityController < ApplicationController
       @projects = Project.where(:user_id => current_user.id).order(:bidding_end)
 
       if :past.to_s == @filter
-        @projects = @projects.where("bidding_end <= ?", Time.now)
+        @projects = @projects.where("bidding_end <= ?", Time.now).reverse_order
       else
         @projects = @projects.where("bidding_end > ?", Time.now)
         if @filter.present? && Project::STATES.include?(@filter)
@@ -21,8 +21,9 @@ class ActivityController < ApplicationController
     else
       @bids = Bid.joins(:project).where(:user_id => current_user.id).order('projects.bidding_end')
       if :past.to_s == @filter
-        @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now)
+        @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now).reverse_order
       else
+        @bids = @bids.where("projects.bidding_end > :now", :now => Time.now)
         if @filter.blank? || ! Bid::STATES.include?(@filter)
           @filter = :published.to_s
         end
