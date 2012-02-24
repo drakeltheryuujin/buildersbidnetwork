@@ -9,13 +9,13 @@
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
+  <div class="field">
+	<div><%= f.label :email %><br />
+	<%= f.email_field :email %></div>
+	
   <div><%= f.submit "Send me reset password instructions", :class => "btn large forgot_pw" %></div>
 <% end %>
-
+  </div>
 </div>
     <div class="cta">
       <%= render :partial => "devise/shared/links" %>  

@@ -1811,7 +1811,7 @@ ul.line_items li div.units .line_item_total,
 .forgot-password-page .login-box .field > select,
 .forgot-password-page .login-box .field > .field_with_errors > select,
 .forgot-password-page .login-box .field > input,
-.forgot-password-page .login-box .field > .field_with_errors > input, {
+.forgot-password-page .login-box .field > .field_with_errors > input {
   width: 98%;
 }
 .login-page .login-box .field > input.btn,
@@ -1826,10 +1826,6 @@ ul.line_items li div.units .line_item_total,
 .btn.large.confirm {
 	margin: 10px 0 0 0px;
 	width:auto;
-}
-
-.forgot-password-page a {
-	text-align:center;
 }
 
 .tabs .active >a,
