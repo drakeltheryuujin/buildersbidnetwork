@@ -19,8 +19,7 @@ module ApplicationHelper
   end
   
   def get_satisfaction_js
-    if Rails.env.development?
-      <<-END.html_safe
+    <<-END.html_safe
 <script type="text/javascript" charset="utf-8">
   var is_ssl = ("https:" == document.location.protocol);
   var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
@@ -38,7 +37,6 @@ module ApplicationHelper
 
   var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
 </script>
-      END
-    end
+    END
   end
 end
