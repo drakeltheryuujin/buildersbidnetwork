@@ -6,7 +6,7 @@ class ActivityController < ApplicationController
     if current_user.developer?
       @projects = Project.order(:bidding_end)
 
-      if @filter.present? && Project::STATES.include?(@filter.to_sym)
+      if @filter.present? && Project::STATES.include?(@filter)
         @projects = @projects.where :user_id => current_user.id, :state => @filter
       elsif @filter.present? && @filter.to_sym == :past
         @projects = @projects.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
