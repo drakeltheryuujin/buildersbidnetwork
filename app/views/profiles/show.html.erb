@@ -45,7 +45,7 @@
           <% unless @profile.website.blank? %>
             <div class="field">
               <label class="span2">Website:</label>
-              <span><%= link_to @profile.website, @profile.website %></span>
+              <span><%= link_to @profile.website, @profile.website, :target => '_blank' %></span>
             </div>
           <% end %>
         </div> <!-- /profile_meta -->
