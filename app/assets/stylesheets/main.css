@@ -373,13 +373,9 @@ p.faq {
  color:#002666;
 }
 
+h2.privacy,
 h2.terms,
 h2.faq {
-  color:#FF6502;
-  font-weight:bold;
-  font-size:18px;
-}
-h2.privacy {
   color:#002666;
   font-weight:bold;
   font-size:18px; 
