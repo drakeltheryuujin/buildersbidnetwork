@@ -30,7 +30,7 @@
             </div>
           <% end %>
           <div class="field map_snapshot">
-            <%= image_tag "http://maps.google.com/maps/api/staticmap?size=271x66&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
+            <%= link_to (image_tag "http://maps.google.com/maps/api/staticmap?size=271x66&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}", :alt => "Map"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
           </div>
         </div> <!-- /profile_meta -->
       </div>
@@ -69,6 +69,11 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.profile_header h4 a').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+      $('.profile_meta .map_snapshot a').lightBox({
         imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
         imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
         imageBlank: '/images/lightbox/lightbox-blank.gif'
