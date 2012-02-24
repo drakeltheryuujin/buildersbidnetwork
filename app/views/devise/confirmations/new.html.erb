@@ -1,24 +1,25 @@
 <div class="row confirmation-page">
   <div class="offset4 span8 form-stacked">
     <div class="confirmation-box">
-        <div class="confirmation-head">
-            <h2>Resend confirmation instructions</h2> 
-        </div>
-        <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+      <div class="confirmation-head">
+        <h2>Resend confirmation instructions</h2> 
+      </div>
+      
+      <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
         <%= devise_error_messages! %>
-          <div class="field">
-              <%= f.label :email %>
-              <%= f.email_field :email %>
-          </div>
-          <div class="field">
-          <%= f.submit "Resend confirmation instructions", :class => "btn large confirm"%>
-          </div>
-         <% end %>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </div>
+        <div class="field">
+          <%= f.submit "Resend confirmation instructions", :class => "btn large confirm primary"%>
+        </div>
+      <% end %>
     </div>
     <div class="cta">
       <%= render :partial => "devise/shared/links" %>  
     </div> 
-   </div>
+  </div>
 </div>
 
 
