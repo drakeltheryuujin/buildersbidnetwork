@@ -1,12 +1,23 @@
-<h2>Resend unlock instructions</h2>
-
+<div class="row unlock-page">
+  <div class="offset4 span8 form-stacked">
+    <div class="unlock-box">
+        <div class="unlock-head">
+			<h2>Resend unlock instructions</h2>
+		</div>
+		
 <%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
   <%= devise_error_messages! %>
+    <div class="field">
+		<div><%= f.label :email %><br />
+		<%= f.email_field :email %></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+		<div><%= f.submit "Resend unlock instructions" , :class => "btn large unlock" %></div>
+	<% end %>
+	</div>
 
-  <div><%= f.submit "Resend unlock instructions" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+</div>
+    <div class="cta">
+      <%= render :partial => "devise/shared/links" %>  
+    </div> 
+   </div>
+</div>
