@@ -3,6 +3,7 @@
   padding-top: 15px;
   clear: left;
 }
+
 .payments_page .credits_nav {
   border-right: 1px solid #ddd;
   height: 650px;
@@ -36,11 +37,16 @@
   background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
   background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(237, 234, 227, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   padding: 5px 15px;
   margin-bottom: 0;
   border-left: 1px solid #ddd;
+}
+
+.credits_page .credits_box h1 strong {
+  font-weight: normal;
+  font-size: 12px;
 }
 .credits_page .credits_box select,
 .credits_page .credits_box label,
@@ -66,6 +72,25 @@
   font-size: 16px;
   vertical-align: top;
 }
+
+.credits_page .explanation_box > div {
+  display: inline-block;
+}
+.credits_page .explanation_box .chart_image {
+  width: 100px;
+  padding: 0 10px;
+}
+.credits_page .explanation_box .credit_schedule {
+  border-left: 1px solid #DDD;
+  width: 273px;
+}
+.credits_page .explanation_box .credit_schedule ul {
+  margin-bottom: -1px;
+}
+.credits_page .explanation_box .credit_schedule ul li {
+  border-bottom: 1px solid #DDD;
+}
+
 .credits_page .groups_box .group_box {
   width: 150px;
   border-left: 1px solid #DDD;

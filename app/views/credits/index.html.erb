@@ -21,35 +21,52 @@
       <p>Credits are BBN's very own currency.  Purchase credits and spend them whenever you want to submit a bid on a project.  The credit cost of a project depends on its budget, size and complexity.</p>
     </div>
 
-    <div class="span5">
-      <div class="credits_box direct_purchase">
-        <h1>1 Bid Credit = $<%= CreditsController::PricePerCredit %></h1>
-        <%= form_tag(new_credit_path, :method => :get, :class => 'row') do %>
-          <div class="span2">
-            <label>Quantity:</label>
-            <%= select_tag(
-                :value, 
-                options_for_select(
-                  [
-                    ["1 Bid Credit", 1], 
-                    ["2 Bid Credits", 2],
-                    ["3 Bid Credits", 3],
-                    ["4 Bid Credits", 4],
-                    ["5 Bid Credits", 5],
-                    ["6 Bid Credits", 6],
-                    ["7 Bid Credits", 7],
-                    ["8 Bid Credits", 8],
-                    ["9 Bid Credits", 9]
-                  ])) %>
+    <div class="row">
+      <div class="span5">
+        <div class="credits_box direct_purchase">
+          <h1>1 Bid Credit = $<%= CreditsController::PricePerCredit %></h1>
+          <%= form_tag(new_credit_path, :method => :get, :class => 'row') do %>
+            <div class="span2">
+              <label>Quantity:</label>
+              <%= select_tag(
+                  :value, 
+                  options_for_select(
+                    [
+                      ["1 Bid Credit", 1], 
+                      ["2 Bid Credits", 2],
+                      ["3 Bid Credits", 3],
+                      ["4 Bid Credits", 4],
+                      ["5 Bid Credits", 5],
+                      ["6 Bid Credits", 6],
+                      ["7 Bid Credits", 7],
+                      ["8 Bid Credits", 8],
+                      ["9 Bid Credits", 9]
+                    ])) %>
+            </div>
+            <div class="span2 ">
+              <label>Price:</label>
+              <span class="label price"><span class="denom">$</span><span class="number"><%= CreditsController::PricePerCredit %></span></span>
+            </div>
+            <div class="span5 ">
+              <%= submit_tag 'Buy Now', :class => 'btn large primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="span7">
+        <div class="credits_box explanation_box">
+          <h1>How much do projects cost? <strong>(Credits Per Est. Budget)</strong></h1>
+          <div class="chart_image"><%= image_tag '/images/credit_per_budget_image.png', :alt => 'Credits Per Estimated Budget' %></div>
+          <div class="credit_schedule">
+            <ul>
+              <li><strong>1 Credit =</strong>$1&mdash;$50,000</li>
+              <li><strong>2 Credits =</strong>$50,001&mdash;$100,000</li>
+              <li><strong>3 Credits =</strong>$100,001&mdash;$250,000</li>
+              <li><strong>4 Credits =</strong>$250,001&mdash;$500,000</li>
+              <li><strong>5 Credits =</strong>$500,001 and Up</li>
+            </ul>
           </div>
-          <div class="span2 ">
-            <label>Price:</label>
-            <span class="label price"><span class="denom">$</span><span class="number"><%= CreditsController::PricePerCredit %></span></span>
-          </div>
-          <div class="span5 ">
-            <%= submit_tag 'Buy Now', :class => 'btn large primary' %>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
 
