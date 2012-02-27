@@ -70,6 +70,8 @@ class Project < ActiveRecord::Base
 
   validates_associated :location, :project_type 
 
+  validate :must_have_line_items, :unless => :draft?
+
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
@@ -160,6 +162,12 @@ class Project < ActiveRecord::Base
        (estimated_budget > 500000 && credit_value < 5) ||
        (credit_value.blank?)
       errors[:base] << "Invalid credit value."
+    end
+  end
+
+  def must_have_line_items
+    if line_items.empty? or line_items.all? {|line_item| line_item.marked_for_destruction? }
+      errors[:base] << "Projects must include at least one Line Item."
     end
   end
 end
