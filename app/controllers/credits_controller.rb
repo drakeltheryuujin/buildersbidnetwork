@@ -7,7 +7,7 @@ class CreditsController < ApplicationController
   end
 
   def history
-    @credit_adjustments = current_user.credit_adjustments
+    @credit_adjustments = current_user.credit_adjustments.payment
     unless current_user.subscription.nil?
       @subscription_payments = current_user.subscription.subscription_adjustments.where(:type => SubscriptionPayment.to_s)
     end

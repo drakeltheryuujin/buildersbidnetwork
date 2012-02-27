@@ -4,24 +4,26 @@ class ActivityController < ApplicationController
   def index
     @filter = params[:filter]
     if current_user.developer?
-      @projects = Project.order(:bidding_end)
+      @projects = Project.where(:user_id => current_user.id).order(:bidding_end)
 
-      if @filter.present? && Project::STATES.include?(@filter.to_sym)
-        @projects = @projects.where :user_id => current_user.id, :state => @filter
-      elsif @filter.present? && @filter.to_sym == :past
-        @projects = @projects.where(:user_id => current_user.id).where("bidding_end <= ?", Time.now)
-      elsif @filter.present? && @filter.to_sym == :current
-        @projects = @projects.where(:user_id => current_user.id).where("bidding_end >= ?", Time.now)
+      if :past.to_s == @filter
+        @projects = @projects.where("bidding_end <= ?", Time.now).reverse_order
       else
-        @projects = @projects.find_all_by_user_id current_user.id
+        @projects = @projects.where("bidding_end > ?", Time.now)
+        if @filter.present? && Project::STATES.include?(@filter)
+          @projects = @projects.where :state => @filter
+        else
+          @projects = @projects.find_all_by_user_id current_user.id
+        end
       end
 
       render :action => "developer"
     else
       @bids = Bid.joins(:project).where(:user_id => current_user.id).order('projects.bidding_end')
       if :past.to_s == @filter
-        @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now)
+        @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now).reverse_order
       else
+        @bids = @bids.where("projects.bidding_end > :now", :now => Time.now)
         if @filter.blank? || ! Bid::STATES.include?(@filter)
           @filter = :published.to_s
         end

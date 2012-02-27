@@ -50,7 +50,7 @@ class Project < ActiveRecord::Base
   validates :bidding_end,
     :presence => true, 
     :date => {:after => Proc.new {Time.now}},
-    :unless => :draft?
+    :if => :published?
   validates :project_start,
     :presence => true, 
     :date => {:after => :bidding_end},
