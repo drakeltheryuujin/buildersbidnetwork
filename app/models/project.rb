@@ -65,7 +65,7 @@ class Project < ActiveRecord::Base
   validates :terms_of_use, 
     :acceptance => true,
     :unless => :draft?
-  validates_numericality_of :estimated_budget, :less_than => 1000000000, :unless => :draft?
+  validates_numericality_of :estimated_budget, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
   validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
   validates_associated :location, :project_type 
@@ -156,11 +156,12 @@ class Project < ActiveRecord::Base
   private
 
   def validate_estimated_budget_credit_value_in_sync
-    if (estimated_budget > 50000 && credit_value < 2) ||
+    if (estimated_budget == nil) ||
+       (estimated_budget > 50000 && credit_value < 2) ||
        (estimated_budget > 100000 && credit_value < 3) ||
        (estimated_budget > 250000 && credit_value < 4) ||
        (estimated_budget > 500000 && credit_value < 5) ||
-       (credit_value.blank?)
+       (credit_value.blank?) 
       errors[:base] << "Invalid credit value."
     end
   end
