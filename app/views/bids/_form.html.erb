@@ -74,7 +74,7 @@
         bind: "keyup",
         selector: "#bid_total",
         oncalc: function(value, settings) {
-            $(settings.selector).val(value.toFixed(2));
+          $(settings.selector).val(value.toFixed(2));
         }
       });
       
@@ -90,7 +90,7 @@
           }, 
           function ($this){ 
             var sum = $("input.line_item_cost").sum(); 
-            $("#bid_total").text( sum.toFixed(2) ); 
+            $("#bid_total").val( sum.toFixed(2) ); 
           } 
         );
       }
