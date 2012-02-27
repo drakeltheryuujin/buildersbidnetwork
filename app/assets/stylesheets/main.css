@@ -1927,4 +1927,30 @@ input, textarea {
 .text_align_right { text-align: right; }
 .float_right { float: right; }
   
+.error_wrapper {
+  text-align: center;
+}
+.dialog {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  margin: 20px auto;
+  padding: 20px 50px;
+  width: 580px;
 
+  -moz-border-radius-topleft: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+}
+
+.dialog h1 {
+  font-size: 24px; color: #000; line-height: 24px; margin: 0; padding: 0; font-weight: normal;
+}
+
+.error_wrapper img {
+	display: block;
+	margin: 0 auto;
+	padding: 20px 0;
+}
