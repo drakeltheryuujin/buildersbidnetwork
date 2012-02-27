@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :credit_adjustments
 
   has_many :project_privileges
-  has_many :accessible_projects, :through => :project_privileges, :source => :project
+  has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
   belongs_to :invited_project, :class_name => 'Project'
   # Include default devise modules. Others available are:
