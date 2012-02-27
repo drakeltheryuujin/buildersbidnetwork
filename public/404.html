@@ -4,7 +4,21 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <style type="text/css">
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    div.fill {
+      background-color: #3768a3;
+      height:30px;
+    }
+    div.header {
+      background: transparent url(../images/BuildersBidNetwork_Logo.png) 150px 20px no-repeat;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #C2C2C2;
+      padding: 1em;
+      margin-bottom: 39px;
+      color: white; 
+      height: 30px;
+    }
     div.dialog {
+      background-color: #f4f4f4;
       width: 25em;
       padding: 0 4em;
       margin: 4em auto 0 auto;
@@ -12,15 +26,106 @@
       border-right-color: #999;
       border-bottom-color: #999;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    h1 { font-size: 20px; color: #000; line-height: 45px; }
+    div.working_dog {
+     background-image: url(../images/404_dog_helmet.png);
+     height:430px;
+     width:480px;
+     margin-left:640px;
+     margin-top:100px;
+     }
+     p.not_found {
+     color: #000;
+     font-size:13px;
+     font-weight:normal;
+     }
+    button[type="button"] {
+    background-color:#FFB134;
+    color:#fff;
+    border-color:#E56F01;
+    padding: 9px 14px 9px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF8013', endColorstr='#FFB134'); /* IE6 & IE7 */
+    background-image: -ms-linear-gradient(top, #FF8013 0%, #FFB134 100%);   /* IE*/  
+    background-image: -moz-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Mozilla Firefox */
+    background-image: -o-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Opera */  
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
+    background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
+    -webkit-transform-style: flat;
+    font-size:14px;
+    font-weight:bold;
+    }
+    div.footer {
+    border-width: 2px 0 0 0;
+    border-style: solid;
+    border-color: #DDD;
+    margin: 10px 0 0 0;
+    font-size: 10px;
+    background-color: #EDEDED;
+    background-image: -ms-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);
+    background-image: -moz-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);
+    background-image: -o-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #EDEDED), color-stop(1, #FCFCFC));
+    background-image: -webkit-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);
+    background-image: linear-gradient(top, #EDEDED 0%, #FCFCFC 100%);
+    height:50px;
+    }
+    div.footer li.bbn,
+    div.footer li.site {
+    color: #c9c9c9;
+    text-align:left;
+    list-style:none;
+    margin-top:10px;
+    margin-left:150px;
+    }
+    div.footer li.bbn {
+    font-weight:bold;
+    font-size:18px;
+    }
+    div.footer li.site {
+    font-size:12px;
+    font-weight:normal;
+    }
+    div.right {
+    text-align:right;
+    color: #69b6ea;
+    font-size:18px;
+    font-weight:normal;
+    list-style:none;
+    padding-right:50px;
+    margin-top: -35px;
+    }
+    div.right li {
+    display:inline;
+    padding-left:20px;
+    }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
+  <div class ="fill" </div>
+  <div class ="header" </div>
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
+    <h1>404 Error: Sorry Boss, couldn't find that.</h1>
+  </div> 
+  <p class ="not_found">We hate to say it, but we couldn't find the page or file you were looking for. Please try again.</p>
+  <button type="button">Back to Work</button> 
+  <div class="working_dog"> </div>
+  <div class ="footer"> 
+    <li class ="bbn"> BuildersBidNetwork </li>
+    <li class ="site"> ©2012 BuildersBitNetwork.com </li>
+      <div class ="right"  
+        <li>Terms of Use </li>
+        <li>Privacy Policy </li>
+        <li>About </li>
+        <li>Faq's </li>
+        <li>Contact Us </li>
+        <li>Advertise </li>
+      </div>
+  </div> 
 </body>
 </html>

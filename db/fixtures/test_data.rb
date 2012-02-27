@@ -62,7 +62,7 @@ DAY_IN_SECONDS = (60 * 60 * 24)
 
 
 # ADMIN
-email = "admin@builderbidnetwork.com"
+email = "contact@builderbidnetwork.com"
 u_admin = User.find_or_create_by_email(email, :password => email)
 u_admin.update_attribute :admin, true
 location_admin = Location.find_or_create_by_address1("36 Cooper Sq", 
