@@ -91,4 +91,6 @@ Ypn::Application.routes.draw do
   get "home/index"
 
   root :to => "home#index"
+
+  match '*a', :to => 'errors#routing'  
 end
