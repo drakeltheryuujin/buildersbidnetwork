@@ -77,7 +77,10 @@ class Bid < ActiveRecord::Base
   end
 
   def sufficient_credits?
-    self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." unless ((self.user.credits.blank? ? 0 : self.user.credits) >= self.project.credit_value)
+    unless ((self.user.credits.blank? ? 0 : self.user.credits) >= self.project.credit_value)
+      self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." 
+      return false
+    end
   end
 
   def refund_credits 
@@ -85,10 +88,12 @@ class Bid < ActiveRecord::Base
   end
 
   def charge_credits_and_notify_creator
-    self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value))) unless self.state_was == :published.to_s
-    subject = "Bid from #{self.user.profile.name}"
-    body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
-    self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
+    if sufficient_credits?
+      self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value))) unless self.state_was == :published.to_s
+      subject = "Bid from #{self.user.profile.name}"
+      body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
+      self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
+    end
   end
 
   def award_project
