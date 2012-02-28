@@ -1577,13 +1577,14 @@ h1.search_header span {
   width: 340px;
 }
 .search_result .result_body {
-  min-height: 124px;
-  position: relative;
+  min-height: 122px;
+}
+.private_projects .search_result .result_body {
+  width: 300px;
 }
 .search_result .result_body .project_flags {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  float: right;
+  display: block;
 }
 
 .search_result .result_infos {
