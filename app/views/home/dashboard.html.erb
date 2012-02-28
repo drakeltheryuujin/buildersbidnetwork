@@ -57,19 +57,19 @@
         <% if current_user.developer? %>
           <div class="db_profile_projects_posted_sidebar">
             <div class="sidebar_box sidebar_number">
-              <strong>25</strong>
+              <strong><%= users_projects_count %></strong>
               <p>projects posted</p>
             </div>
           </div>
           <div class="db_profile_bids_made_sidebar">
             <div class="sidebar_box sidebar_number">
-              <strong>6 </strong>
+              <strong><%= bids_on_users_projects_count %></strong>
               <p>bids have been made on your projects</p>
             </div>
           </div>
           <div class="db_profile_projects_awarded_sidebar">
             <div class="sidebar_box sidebar_number">
-              <strong>25 </strong>
+              <strong><%= projects_awarded_in_days_count(190) %></strong>
               <p>projects have been awarded in the last 190 days</p>
             </div>  
           </div>
@@ -81,13 +81,13 @@
         <% else %>
           <div class="db_profile_projects_added_sidebar">
             <div class="sidebar_box sidebar_number">
-              <strong>18</strong>
+              <strong><%= projects_posted_in_days_count(30) %></strong>
               <p>new projects have been added in the past 30 days</p>
             </div>
           </div>  
           <div class="db_profile_projects_awarded_sidebar">
             <div class="sidebar_box sidebar_number">
-              <strong>25 </strong>
+              <strong><%= projects_awarded_in_days_count(190) %></strong>
               <p>projects have been awarded in the last 190 days</p>
             </div>
           </div>
