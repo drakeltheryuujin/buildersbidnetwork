@@ -13,5 +13,5 @@
 class LineItem < ActiveRecord::Base
   belongs_to :project
   
-  has_many :line_item_bids
+  has_many :line_item_bids, :dependent => :destroy
 end
