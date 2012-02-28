@@ -9,7 +9,7 @@ development:
   pool: 5
   username: ypn 
   password: ypn
-  port: 5433
+ 
 
 #development:
 #  adapter: sqlite3
