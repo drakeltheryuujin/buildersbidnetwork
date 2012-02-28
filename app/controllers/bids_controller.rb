@@ -2,6 +2,7 @@ class BidsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award, :accept]
   before_filter :get_project, :only => [:new, :create]
+  before_filter :verify_detail_access!, :only => [:new, :create, :edit, :update]
   before_filter :verify_bidding_period!, :only => [:new, :create, :edit, :update]
   before_filter :check_may_modify!, :only => [:update, :edit]
   
@@ -92,6 +93,10 @@ class BidsController < ApplicationController
 
   def verify_bidding_period!
     redirect_to(project_path(@project), :alert => "Bids accepted for #{@project.name} between #{@project.created_at.to_formatted_s(:short)} and #{@project.bidding_end.to_formatted_s(:short)}.") unless @project.bidding_period?
+  end
+
+  def verify_detail_access!
+    redirect_to(project_path(@project), :alert => "Must be subscribed or invited to bid.") unless @project.may_view_details? current_user
   end
 
   def update_bid_state!(params)
