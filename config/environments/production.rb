@@ -80,3 +80,7 @@ Ypn::Application.configure do
 
   config.force_ssl = true
 end
+Ypn::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[BBN EXCEPTION] ",
+  :sender_address => %{"notifier" <notifier@buildersbidnetwork.com>},
+  :exception_recipients => %w{micah@domandtom.com}
