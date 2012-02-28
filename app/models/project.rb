@@ -44,6 +44,8 @@ class Project < ActiveRecord::Base
 
   validates :name,
     :presence => true
+  validates :project_type,
+    :presence => true
   validates :description,
     :presence => true,
     :unless => :draft?
@@ -68,7 +70,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of :estimated_budget, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
   validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
-  validates_associated :location, :project_type 
+  validates_associated :location, :project_type, :line_items
 
   validate :must_have_line_items, :unless => :draft?
 
