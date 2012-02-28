@@ -15,7 +15,7 @@ body {
      .topbar .logo, .sender_name a {
       display: block !important;
       }
-    .footer ul li, .nav, .secondary-nav, .tabs, .track_filters, input, textarea, .btn, select {
+    .footer ul li, .nav, .secondary-nav, .tabs, .track_filters, input, textarea, .btn, select, .credits_nav, .invoice_header {
       display: none;
     }
     
