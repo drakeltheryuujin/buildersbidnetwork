@@ -160,4 +160,17 @@ class ProfilesController < ApplicationController
   def check_may_modify!
     redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
   end
+  
+  def add_cover_photo
+    profile = Profile.find_by_id params[:profile_id]
+    if profile.present?
+      profile.update_attribute(:asset, params[:asset])
+    end
+    
+    if profile.save!
+      redirect_to profile_path(@profile), :notice => 'Profile was successfully updated.'
+    else
+      redirect_to profile_path(@profile), :alert => 'Profile was not successfully updated.'
+    end
+  end
 end
