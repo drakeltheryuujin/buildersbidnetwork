@@ -10,17 +10,11 @@
     </div>
   <% end %>
 
-  <div class="field ">
-    <%= f.label :name, :class => "" %>
-    <%= f.text_field :name, :class => "" %>
-  </div>
   <div class="row">
     <div class="span9">
       <div class="field ">
-        <%= f.label :type, "Industry Role", :class => "" %>
-        <%= f.select(:type, [
-          ['Developer (Creates Projects)', DeveloperProfile],
-          ['Contractor (Bids on Projects)', ContractorProfile]], :class => "") %>
+        <%= f.label :name, :class => "" %>
+        <%= f.text_field :name, :class => "" %>
       </div>
     </div>
     <div class="span3 alpha">
@@ -30,6 +24,14 @@
       </div>
     </div>
   </div>
+  <% if @profile.new_record? %>
+    <div class="field ">
+      <%= f.label :type, "Industry Role", :class => "" %>
+      <%= f.select(:type, [
+        ['Developer (Creates Projects)', DeveloperProfile],
+        ['Contractor (Bids on Projects)', ContractorProfile]], :class => "") %>
+    </div>
+  <% end %>
   <%= f.fields_for :location do |location_form| %>
     <div class="field ">
       <%= location_form.label :address1, "Address", :class => "" %>
