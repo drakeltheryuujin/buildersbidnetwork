@@ -63,9 +63,10 @@ gem "meta_search",    '>= 1.1.0.pre'
 # state machine
 gem "aasm"
 
+# production
 gem "heroku"
-
 gem 'exception_notification'
+gem 'rack-rewrite'
 
 group :development do
 # model diagrams
@@ -74,6 +75,10 @@ group :development do
 # gem 'ruby-debug'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 # gem 'ruby-debug-ide'
+end
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Use unicorn as the web server
