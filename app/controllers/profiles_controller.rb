@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite]
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite, :add_cover_photo]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
@@ -150,7 +150,19 @@ class ProfilesController < ApplicationController
       format.text { render :text => message, :status => :bad_request }
     end
   end
-
+  
+  def add_cover_photo
+    if @profile.present?
+      @profile.update_attribute(:asset, params[:asset])
+    end
+    
+    if @profile.save!
+      redirect_to profile_path(@profile), :notice => 'Profile was successfully updated.'
+    else
+      redirect_to profile_path(@profile), :alert => 'Profile was not successfully updated.'
+    end
+  end
+  
   private
 
   def get_profile
@@ -159,18 +171,5 @@ class ProfilesController < ApplicationController
 
   def check_may_modify!
     redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
-  end
-  
-  def add_cover_photo
-    profile = Profile.find_by_id params[:profile_id]
-    if profile.present?
-      profile.update_attribute(:asset, params[:asset])
-    end
-    
-    if profile.save!
-      redirect_to profile_path(@profile), :notice => 'Profile was successfully updated.'
-    else
-      redirect_to profile_path(@profile), :alert => 'Profile was not successfully updated.'
-    end
   end
 end

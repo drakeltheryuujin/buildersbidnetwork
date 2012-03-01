@@ -93,5 +93,5 @@ Ypn::Application.routes.draw do
 
   root :to => "home#index"
 
-  match '*a', :to => 'errors#routing'  
+  #match '*a', :to => 'errors#routing'  
 end

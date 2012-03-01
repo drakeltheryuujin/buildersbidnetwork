@@ -1,4 +1,4 @@
 <%
-  (profile.asset.present?) ? url = project.cover_photo.asset : url = '/images/project_square.png'
+  (profile.asset.present?) ? url = profile.asset : url = '/images/company_square.png'
 %>
 <%= link_to (image_tag url, :alt => "Profile"), profile_path(profile), :class => 'profile_avatar' %>

@@ -25,7 +25,7 @@
     <% @project.privileged_users.has_logged_in.each do |user| %>
       <div class="search_result manage_access_result contractor ">
         <div class="result_image ">
-          <%= link_to (image_tag "/images/company_square.png", :alt => "Contractor"), profile_path(user.profile), :class => 'profile_avatar' %>
+          <%= render :partial => "/profiles/cover_photo", :locals => { :profile => user.profile } %>
         </div>
         <div class="result_body">
           <div class="result_name"><%= link_to_if user.profile.present?, user.name, profile_path(user.profile) %></div>
