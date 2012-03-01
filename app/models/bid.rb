@@ -32,6 +32,7 @@ class Bid < ActiveRecord::Base
   validate :total_matches_line_item_bids?
 
   validates_associated :line_item_bids
+  validates_numericality_of :total, :greater_than => 0
 
   aasm :column => :state do
     state :draft, :initial => true
