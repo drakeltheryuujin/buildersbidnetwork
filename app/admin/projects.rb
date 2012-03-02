@@ -45,4 +45,19 @@ ActiveAdmin.register Project do
   end
   
   sidebar :actions, :only => :show
+
+  sidebar :bids, :only => :show do
+    table do
+      tr do
+        th 'Total'
+        th 'Bidder'
+      end
+      project.bids.collect do |bid|
+        tr do
+          td link_to(number_to_currency(bid.total), admin_bid_path(bid))
+          td link_to(bid.user.name, admin_user_path(bid.user))
+        end
+      end
+    end
+  end
 end
