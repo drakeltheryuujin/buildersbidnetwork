@@ -2,7 +2,7 @@
     <div class="search_result bid ">
       <div class="row">
         <div class="span2 ">
-          <%= link_to (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(bid.user.profile), :class => 'profile_avatar' %>
+          <%= render :partial => "/profiles/cover_photo", :locals => { :profile => bid.user.profile } %>
         </div>
         <div class="span6 ">
           <% unless current_page? activity_index_path(@project) %>

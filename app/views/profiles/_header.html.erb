@@ -1,7 +1,7 @@
 <div class="profile_header row">
   <div class="span2">
-    <div class="profile_avatar box ">
-      <%= image_tag "/images/company_square.png", :alt => "Avatar" %>
+    <div class="box ">
+      <%= render :partial => "/profiles/cover_photo", :locals => { :profile => @profile } %>
     </div>
   </div>
   <div class="span9 ">  
