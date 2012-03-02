@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221195913) do
+ActiveRecord::Schema.define(:version => 20120229183320) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -162,6 +162,10 @@ ActiveRecord::Schema.define(:version => 20120221195913) do
     t.string   "established"
     t.text     "description"
     t.string   "website"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
   end
 
   create_table "project_documents", :force => true do |t|

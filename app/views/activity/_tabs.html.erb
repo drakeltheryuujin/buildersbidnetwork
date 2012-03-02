@@ -4,7 +4,7 @@
       </li>
       <% if current_user.contractor? && current_user.project_privileges.present? %>
         <li class="private_projects <%= put_if_current_page('active', private_activity_index_path) %>">
-          <%= link_to "Invite Only (#{current_user.project_privileges.count})", private_activity_index_path %>
+          <%= link_to "Invite Only (#{current_user.accessible_projects.count})", private_activity_index_path %>
         </li>
       <% end %>
       <li class="<%= put_if_current_page('active', edit_user_registration_path) %> <%= put_if_current_page('active', history_credits_path) %> <%= put_if_current_page('active', status_subscriptions_path) %>">

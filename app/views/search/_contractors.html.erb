@@ -5,7 +5,7 @@
 <% @search.results.each do |contractor| %>
   <div class="search_result contractor ">
     <div class="result_image ">
-      <%= link_to (image_tag "/images/company_square.png", :alt => "Contractor"), profile_path(contractor), :class => 'profile_avatar' %>
+      <%= render :partial => "/profiles/cover_photo", :locals => { :profile => contractor } %>
     </div>
     <div class="result_body">
       <div class="result_name"><%= link_to contractor.name, profile_path(contractor) %></div>

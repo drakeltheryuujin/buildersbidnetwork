@@ -44,6 +44,8 @@ class Project < ActiveRecord::Base
 
   validates :name,
     :presence => true
+  validates :project_type,
+    :presence => true
   validates :description,
     :presence => true,
     :unless => :draft?
@@ -68,7 +70,7 @@ class Project < ActiveRecord::Base
   validates_numericality_of :estimated_budget, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
   validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
-  validates_associated :location, :project_type 
+  validates_associated :location, :project_type, :line_items
 
   validate :must_have_line_items, :unless => :draft?
 
@@ -120,7 +122,15 @@ class Project < ActiveRecord::Base
   end
 
   def may_access?(user)
-    self.private == false || self.may_modify?(user) || ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
+    self.private == false || self.may_modify?(user) || self.has_privilege?(user)
+  end
+
+  def may_view_details?(user)
+    user.subscription_current? || self.may_modify?(user) || self.has_privilege?(user)
+  end
+
+  def has_privilege?(user)
+    ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)

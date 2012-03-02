@@ -14,7 +14,10 @@
 #  established :string(255)
 #  description :text
 #  website     :string(255)
-#
+#  asset_file_name    :string(255)
+#  asset_content_type :string(255)
+#  asset_file_size    :integer
+#  asset_updated_at   :datetime
 
 class Profile < ActiveRecord::Base
   belongs_to :user
@@ -22,6 +25,11 @@ class Profile < ActiveRecord::Base
   
   has_many :profile_phones
   has_many :phones, :through => :profile_phones
+  
+  attr_accessible :asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at
+  has_attached_file :asset, {
+    :styles => { :thumb  => "100x100", :large => "600x400" }
+  }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   geocoded_by :location_address
   after_validation :geocode

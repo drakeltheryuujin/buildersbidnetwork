@@ -9,7 +9,7 @@ ActiveAdmin.register User do
   end
   
   action_item :only => :show do
-    link_to "View Profile", profile_path(user.profile)
+    link_to "View Profile", profile_path(user.profile) unless user.profile.blank?
   end
 
   member_action :grant_credits, :method => :post do
@@ -40,7 +40,7 @@ ActiveAdmin.register User do
 
   sidebar :relations, :only => :show do
     attributes_table_for user do
-      row("Profile") { link_to user.profile.name, admin_profile_path(user.profile) }
+      row("Profile") { (user.profile.present? ? link_to(user.profile.name, admin_profile_path(user.profile)) : "No Profile Yet") }
       row("Subscription") {
         if user.subscription.present?
           link_to (user.subscription.valid_until.nil? ? "Ongoing" : user.subscription.valid_until.to_date.to_formatted_s(:short)), admin_subscription_path(user.subscription) 

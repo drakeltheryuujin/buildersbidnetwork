@@ -14,4 +14,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :project
   
   has_many :line_item_bids, :dependent => :destroy
+
+  validates_numericality_of :units, :greater_than => 0, :allow_nil => true
 end

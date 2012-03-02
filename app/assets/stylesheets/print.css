@@ -1,0 +1,34 @@
+body {
+  background: white; 
+  color: #000;
+  font-size: 12pt; 
+ }
+  .wrapper{
+    background: transparent; 
+    border: 0;
+    color: black; 
+    float: none !important;
+    margin: 0 5%;
+    padding: 0;
+    width: auto; 
+  }
+     .topbar .logo, .sender_name a {
+      display: block !important;
+      }
+    .footer ul li, .nav, .secondary-nav, .tabs, .track_filters, input, textarea, .btn, select, .credits_nav, .invoice_header {
+      display: none;
+    }
+    
+    .footer ul li.left_side {
+      display: block;
+      list-style-type:none;
+      text-align: center;
+    }
+    
+    a:link, a:visited {
+      color: #520;
+      background: transparent;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    

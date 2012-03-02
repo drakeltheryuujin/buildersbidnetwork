@@ -26,6 +26,7 @@ Ypn::Application.routes.draw do
 	    get 'projects'
 	    post 'contact_owner'
 	    post 'invite'
+	    post 'add_cover_photo'
 	  end
     collection do
 	    get 'settings'
@@ -92,5 +93,5 @@ Ypn::Application.routes.draw do
 
   root :to => "home#index"
 
-  match '*a', :to => 'errors#routing'  
+  #match '*a', :to => 'errors#routing'  
 end

@@ -134,7 +134,9 @@ class ProjectsController < ApplicationController
       end
       skip_invite = true
     end
-    if user.errors.empty?
+    if user.developer?
+      flash[:alert] = "#{user.email} is registered as a Developer on BBN.  Only Contractors can Bid on Projects."
+    elsif user.errors.empty?
       project_privilege = ProjectPrivilege.where(:user_id => user.id, :project_id => @project.id)
       unless project_privilege.present?
         project_privilege = ProjectPrivilege.new(:user => user, :project => @project, :message_body => params[:message_body], :skip_invite => skip_invite)

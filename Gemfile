@@ -63,9 +63,17 @@ gem "meta_search",    '>= 1.1.0.pre'
 # state machine
 gem "aasm"
 
-# model diagrams
+gem "heroku"
+
+gem 'exception_notification'
+
 group :development do
+# model diagrams
   gem "rails-erd"
+# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
+# gem 'ruby-debug'
+# gem 'ruby-debug19', :require => 'ruby-debug'
+# gem 'ruby-debug-ide'
 end
 
 # Use unicorn as the web server
@@ -74,9 +82,6 @@ end
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
