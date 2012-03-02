@@ -49,7 +49,7 @@ class Search
       when :distance.to_s
         relation = relation.order(:distance)
       when :value.to_s
-        relation = relation.order(:id) # TODO project values
+        relation = relation.order(:credit_value) 
       when :time_left.to_s
         relation = relation.order(:bidding_end)
       else
