@@ -29,7 +29,7 @@ class CreditAdjustment < ActiveRecord::Base
     self.user.update_attribute(:credits, self.user.credit_adjustments.sum(:value)) 
   end
 
-  scope :payment, where(:type => PaymentCredit.to_s)
+  scope :payment, where(:type => "PaymentCredit")
 
   class << self
     def new(attributes = {}, options = {}, &block)
