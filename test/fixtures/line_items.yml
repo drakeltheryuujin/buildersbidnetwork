@@ -1,14 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% ('a'..'e').each do |a| %>
+<% (1..5).each do |j| %>
+<% (1..10).each do |i| %>
+p_d<%= a.capitalize %><%= j %>_Li<%= i %>:
+  content: p_d<%= a.capitalize %><%= j %>_Li<%= i %>
+  units: <%= (rand(3) != 0 ? 1 + rand(1000) : '') %>
+  project: project_d<%= a.capitalize %><%= i %>
+<% end %>
+<% end %>
+<% end %>
 
-one:
-  content: MyString
-  units: 1
-  project: 
-
-two:
-  content: MyString
-  units: 1
-  project: 
 # == Schema Information
 #
 # Table name: line_items

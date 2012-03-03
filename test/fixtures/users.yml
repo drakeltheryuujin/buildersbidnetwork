@@ -1,14 +1,24 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-#one: {}
-# column: value
-#
-#two: {}
-#  column: value
+one:
+  id: 1
+  email: test@user.com
+
+admin:
+  id: 2
+  email: admin@admin.com
+  admin: true
+
+<% ('a'..'e').each do |a| %> 
+developer_<%= a %>:
+  email: user@developer<%= a %>.com
+
+<% end %>
+<% ['i', 'ii', 'iii', 'iv', 'v'].each do |a| %>
+contractor_<%= a %>:
+  email: user@contractor<%= a %>.com
+
+<% end %>
 # == Schema Information
 #
 # Table name: users

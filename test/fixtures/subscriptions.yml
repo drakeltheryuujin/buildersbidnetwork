@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  valid_until: 2012-02-07 16:39:52
+
+two:
+  valid_until: 2012-02-07 16:39:52
