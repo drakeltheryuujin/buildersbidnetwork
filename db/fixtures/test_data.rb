@@ -45,13 +45,17 @@ def populate_and_save_bid!(bid)
     if li.units.present?
       uc = (1 + rand(100))
       c = uc * li.units
+      puts "(#{c})\t[#{li.units}]\t{#{uc}}"
       bid.line_item_bids.build({:line_item => li, :unit_cost => uc, :cost => c})
     else
       c = (1 + rand(100))
+      puts "(#{c})"
       bid.line_item_bids.build({:line_item => li, :cost => c})
     end
     bid.total += c
+    puts bid.total
   end
+  puts "--"
   bid.save!
   bid.publish!
 end
@@ -65,8 +69,7 @@ DAY_IN_SECONDS = (60 * 60 * 24)
 email = "contact@builderbidnetwork.com"
 u_admin = User.find_or_create_by_email(email, :password => email)
 u_admin.update_attribute :admin, true
-location_admin = Location.find_or_create_by_address1("36 Cooper Sq", 
-  :city => "New York", :state => "NY", :post_code => "10003")
+location_admin = Location.find_or_create_by_address1("36 Cooper Sq", :city => "New York", :state => "NY", :post_code => "10003")
 profile_admin = ContractorProfile.create_or_update_by_name("Admin Profile", 
   :user_id => u_admin.id, :location_id => location_admin.id)
 
@@ -294,7 +297,7 @@ u_dB = User.find_or_create_by_email(email, :password => email)
 location_dB = Location.find_or_create_by_address1("145 West 44th St", 
   :city => "New York", :state => "NY", :post_code => "10036")
 profile_dB = DeveloperProfile.create_or_update_by_name("Developer B Profile", 
-  :user_id => u_dB.id, :location => location_dB, :description => "Bark") 
+  :user_id => u_dB.id, :location_id => location_dB.id, :description => "Bark") 
 
 randomize_offsets
 location_dB1 = Location.find_or_create_by_address1("40 Enterprise Avenue North",
