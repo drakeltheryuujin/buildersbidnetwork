@@ -87,7 +87,7 @@ Ypn::Application.configure do
 
   config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
     r301 %r{.*}, 'https://www.buildersbidnetwork.com$&', :if => Proc.new {|rack_env|
-      rack_env['SERVER_NAME'] != 'www.buildersbidnetwork.com'
+      (rack_env['SERVER_NAME'] != 'www.buildersbidnetwork.com') || (rack_env['rack.url_scheme'] != 'https' )
     }
   end
 end
