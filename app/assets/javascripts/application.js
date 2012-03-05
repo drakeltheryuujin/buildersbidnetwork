@@ -7,8 +7,9 @@
 //= require jquery.lightbox
 //= require jquery.calculation
 //= require jquery.tools.min
+//= require jquery.placeholder.min
 
-   jQuery(document).ready(function($) {
-        $(":input[placeholder]").placeholder();
-    });
+jQuery(document).ready(function($) {
+  $(":input[placeholder]").placeholder();
+});
       
