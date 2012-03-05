@@ -928,11 +928,12 @@ font-weight: bold;
   width:965px;
   }
 .home_page .perfect_tool_carousel {
- background: transparent url('/images/home_computer.png')0 0 no-repeat;
+ background: transparent url('/images/home_computer.png') 0 0 no-repeat;
  float:left;
  height:248px;
  margin-top:20px;
  padding-right:20px;
+ width:945px;
 }
 
 .home_page .perfect_tool_carousel h2{

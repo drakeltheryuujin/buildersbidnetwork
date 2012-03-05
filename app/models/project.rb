@@ -118,18 +118,22 @@ class Project < ActiveRecord::Base
   end
 
   def may_modify?(user)
+    return false unless user.present?
     self.user == user || user.try(:admin?)
   end
 
   def may_access?(user)
+    return false unless user.present?
     self.private == false || self.may_modify?(user) || self.has_privilege?(user)
   end
 
   def may_view_details?(user)
+    return false unless user.present?
     user.subscription_current? || self.may_modify?(user) || self.has_privilege?(user)
   end
 
   def has_privilege?(user)
+    return false unless user.present?
     ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
   end
 
@@ -161,6 +165,11 @@ class Project < ActiveRecord::Base
       bid.hold!
       self.user.send_message_with_object_and_type([bid.user], body, subject, bid, :project_change_message)
     end
+  end
+
+
+  def cover_photo_square_thumb_url(default = '/images/project_square.png')
+    (self.cover_photo.present?) ? self.cover_photo.asset(:square_thumb) : default
   end
 
   private

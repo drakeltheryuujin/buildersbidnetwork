@@ -2,6 +2,7 @@
 *= require scaffold
 *= require bootstrap
 *= require jquery.lightbox
+*= require jquery.placeholder.min
 *= require wizard
 *= require jquery.tools_dateinput
 *= require projects
