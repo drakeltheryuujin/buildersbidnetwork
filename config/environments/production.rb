@@ -78,7 +78,7 @@ Ypn::Application.configure do
     )
   end
 
-  config.force_ssl = true
+  #config.force_ssl = true
 
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[BBN EXCEPTION] ",
