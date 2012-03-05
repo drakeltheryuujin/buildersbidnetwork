@@ -167,6 +167,11 @@ class Project < ActiveRecord::Base
     end
   end
 
+
+  def cover_photo_square_thumb_url(default = '/images/project_square.png')
+    (self.cover_photo.present?) ? self.cover_photo.asset(:square_thumb) : default
+  end
+
   private
 
   def validate_estimated_budget_credit_value_in_sync

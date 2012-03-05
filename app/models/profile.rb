@@ -26,29 +26,12 @@ class Profile < ActiveRecord::Base
   has_many :profile_phones
   has_many :phones, :through => :profile_phones
   
-  attr_accessible :asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at
   has_attached_file :asset, {
-    :styles => { :thumb  => "100x100", :large => "600x400" }
+    :styles => { :square_thumb  => "94x94#", :thumb => "100x100", :large => "600x400" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
   
   geocoded_by :location_address
   after_validation :geocode
-  
-  def location_address
-    location.address
-  end
-
-  def may_modify?(user)
-    self.user == user || user.try(:admin?)
-  end
-
-  # Overriden by subclasses
-  def developer_profile?
-    return false
-  end
-  def contractor_profile?
-    return false
-  end
   
   validates :name, :presence => true
 
@@ -61,4 +44,26 @@ class Profile < ActiveRecord::Base
   
   accepts_nested_attributes_for :phones, :allow_destroy => :true
   accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
+
+  def location_address
+    location.address
+  end
+
+  def may_modify?(user)
+    self.user == user || user.try(:admin?)
+  end
+
+  def cover_photo_square_thumb_url(default = '/images/company_square.png')
+    (self.asset.present?) ? self.asset(:square_thumb) : default
+  end
+
+
+  # Overriden by subclasses
+  def developer_profile?
+    return false
+  end
+  def contractor_profile?
+    return false
+  end
+
 end

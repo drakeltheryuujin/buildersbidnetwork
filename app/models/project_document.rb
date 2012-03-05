@@ -3,7 +3,7 @@ class ProjectDocument < ActiveRecord::Base
   
   attr_accessible :asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at, :description
   has_attached_file :asset, {
-	  :styles => { :thumb  => "100x100", :large => "600x400" }
+	  :styles => { :thumb  => "100x100", :large => "600x400", :square_thumb => "94x94#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
   scope :image, where(["asset_content_type LIKE ?", "image%"])
