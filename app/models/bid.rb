@@ -31,6 +31,9 @@ class Bid < ActiveRecord::Base
   validate :sufficient_credits?, :if => :changed_to_published?
   validate :total_matches_line_item_bids?
 
+  validates_associated :line_item_bids
+  validates_numericality_of :total, :greater_than => 0
+
   aasm :column => :state do
     state :draft, :initial => true
     state :published, :enter => :charge_credits_and_notify_creator

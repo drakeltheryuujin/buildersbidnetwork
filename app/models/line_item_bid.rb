@@ -14,4 +14,7 @@
 class LineItemBid < ActiveRecord::Base
   belongs_to :bid
   belongs_to :line_item
+
+  validates_numericality_of :unit_cost, :greater_than => 0, :allow_nil => true
+  validates_numericality_of :cost, :greater_than => 0
 end

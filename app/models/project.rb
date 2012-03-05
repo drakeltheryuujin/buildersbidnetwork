@@ -67,7 +67,7 @@ class Project < ActiveRecord::Base
   validates :terms_of_use, 
     :acceptance => true,
     :unless => :draft?
-  validates_numericality_of :estimated_budget, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
+  validates_numericality_of :estimated_budget, :allow_nil => false, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
   validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
   validates_associated :location, :project_type, :line_items
@@ -166,19 +166,19 @@ class Project < ActiveRecord::Base
   private
 
   def validate_estimated_budget_credit_value_in_sync
-    if (estimated_budget == nil) ||
-       (estimated_budget > 50000 && credit_value < 2) ||
-       (estimated_budget > 100000 && credit_value < 3) ||
-       (estimated_budget > 250000 && credit_value < 4) ||
-       (estimated_budget > 500000 && credit_value < 5) ||
-       (credit_value.blank?) 
-      errors[:base] << "Invalid credit value."
+    if (estimated_budget.blank? || credit_value.blank? || credit_value > 5) ||
+       (estimated_budget <= 50000 && credit_value != 1) ||
+       (estimated_budget > 50000  && estimated_budget <= 100000 && credit_value != 2) ||
+       (estimated_budget > 100000 && estimated_budget <= 250000 && credit_value != 3) ||
+       (estimated_budget > 250000 && estimated_budget <= 500000 && credit_value != 4) ||
+       (estimated_budget > 500000 && credit_value != 5)
+      errors[:credit_value] << "Invalid credit value."
     end
   end
 
   def must_have_line_items
     if line_items.empty? or line_items.all? {|line_item| line_item.marked_for_destruction? }
-      errors[:base] << "Projects must include at least one Line Item."
+      errors[:line_items] << "Projects must include at least one Line Item."
     end
   end
 end

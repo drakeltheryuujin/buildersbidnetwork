@@ -1,6 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
+  id: 1
   address1: 36 Cooper Sq
   address2: Dom & Tom
   city: New York
@@ -8,6 +9,7 @@ one:
   post_code: 10003
 
 two:
+  id: 2
   address1: 97 Bond St
   address2: 1R
   city: Brooklyn
@@ -15,6 +17,7 @@ two:
   post_code: 11217
   
 three:
+  id: 3
   address1: 520 Court St
   address2: Third Floor
   city: Brooklyn
@@ -22,6 +25,7 @@ three:
   post_code: 11231
   
 four:
+  id: 4
   address1: 200 Varick St
   address2: Legion
   city: New York
@@ -29,19 +33,70 @@ four:
   post_code: 10014
   
 five:
-  address1: 594 Broadway
-  address2: Flavorpill
-  city: New York
-  state: NY
-  post_code: 10012
-  
-five:
+  id: 5
   address1: 444 Broadway
   address2: Swell
   city: New York
   state: NY
   post_code: 10013
   
+six:
+  id: 6
+  address1: 547 West 27th St
+  city: New York
+  state: NY
+  post_code: 100013
+  
+six:
+  id: 6
+  address1: 122 East 42nd St
+  city: New York
+  state: NY
+  post_code: 100168
+  
+seven:
+  id: 7
+  address1: 45 Christopher St
+  city: New York
+  state: NY
+  post_code: 10014
+  
+eight:
+  id: 8
+  address1: 4 East 81st Street
+  city: New York
+  state: NY
+  post_code: 10028
+  
+nine:
+  id: 9
+  address1: 625 West 51st Street
+  city: New York
+  state: NY
+  post_code: 10019
+  
+ten:
+  id: 10
+  address1: 21 Astor Pl
+  city: New York
+  state: NY
+  post_code: 10003
+  
+eleven:
+  id: 11
+  address1: 120 State Rde 17
+  city: East Rutherford
+  state: NJ
+  post_code: 07073
+  
+twelve:
+  id: 12
+  address1: 500 US Highway 46
+  city: Clifton
+  state: NJ
+  post_code: 07011
+  
+
 # == Schema Information
 #
 # Table name: locations

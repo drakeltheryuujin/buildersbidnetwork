@@ -53,6 +53,8 @@ class User < ActiveRecord::Base
   scope :has_logged_in, where("sign_in_count > 0")
   scope :never_logged_in, where("sign_in_count = 0")
 
+  validate :email_immutable, :on => :update
+
   
   def name
     return self.profile.present? ? self.profile.name : self.email 
@@ -118,5 +120,11 @@ class User < ActiveRecord::Base
     response.recipients = response.recipients.uniq
     response.recipients.delete(self)
     return response.deliver true,sanitize_text
+  end
+
+  private
+
+  def email_immutable
+    errors[:base] << "E-mail cannot be changed after registration." if self.email_changed?  && !self.new_record?
   end
 end

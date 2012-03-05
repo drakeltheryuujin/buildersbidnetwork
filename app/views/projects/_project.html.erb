@@ -3,7 +3,7 @@
   <div class="result_body ">
     <div class="result_name"><%= link_to project.name, project_path(project) %></div>
     <div class="result_location">
-      <%= link_to_if((current_user.present? && current_user.subscription_current?), (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}") %>
+      <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" if may_view_project_details? project %>
       <%= project.location.city + ", " + project.location.state %>
     </div>
     <span class="result_type sector"><%= project.project_type.name unless project.project_type.blank? %></span>

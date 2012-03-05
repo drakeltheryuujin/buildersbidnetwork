@@ -397,7 +397,6 @@ li.terms {
   display: inline-block;
   font-weight: bold;
   color: #8DC04A;
-  white-space: nowrap;
   background-color: #f0fdec;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -409,6 +408,7 @@ li.terms {
   background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #F4F9F5), color-stop(1, #EBF1D5)); /* Webkit (Safari/Chrome 10) */ 
   background-image: -webkit-linear-gradient(top right, #F4F9F5 0%, #EBF1D5 100%); /* Webkit (Chrome 11+) */  
   background-image: linear-gradient(top right, #F4F9F5 0%, #EBF1D5 100%); /* Proposed W3C Markup */
+  max-width: 150px;
 }
 
 .private_flag {

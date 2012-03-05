@@ -1,12 +1,20 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% ('a'..'e').each_with_index do |a, i| %>
+developer_<%= a %>:
+  name: Developer <%= a.capitalize %> Profile
+  user: developer_<%= a %>
+  location_id: <%= 1 + i %>
+<% end %>
+<% ['i', 'ii', 'iii', 'iv', 'v'].each_with_index do |a, i| %>
+contractor_<%= a %>:
+  name: Contractor_ <%= a.capitalize %> Profile
+  user: contractor_<%= a %>
+  location_id: <%= 6 + i %>
+<% end %>
 
 one:
-  name: MyString
-  user: 
-
-two:
-  name: MyString
-  user: 
+  name: Test Profile
+  user: one
+  location: one
 # == Schema Information
 #
 # Table name: profiles
