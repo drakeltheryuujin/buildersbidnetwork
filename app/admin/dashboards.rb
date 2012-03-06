@@ -1,5 +1,22 @@
 ActiveAdmin::Dashboards.build do
 
+  credit_bl = PaymentCredit.sum(:amount)
+  subscription_bl = SubscriptionPayment.sum(:amount)
+  section "Bottom Line" do
+    h3 do
+      span "Credit Purchases"
+      strong number_to_currency(credit_bl) 
+    end
+    h3 do 
+      span "Subscription Purchases"
+      strong number_to_currency(subscription_bl) 
+    end
+    h1 do
+      span "Total"
+      strong number_to_currency(credit_bl + subscription_bl) 
+    end
+  end
+
   section "Recent Projects" do
     table do
       tr do
