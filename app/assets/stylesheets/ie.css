@@ -12,3 +12,7 @@
   background-color: #3873af;  
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3873af', endColorstr='#326092',GradientType=0 ); /* IE6-9 */ 
 }
+.credits_page .explanation_box > div {
+  zoom: 1;             /* Inline-Block Fix for IE 7 */
+  *display:inline;     /* Inline-Block Fix for IE 7 */
+ }
