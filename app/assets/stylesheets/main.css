@@ -364,10 +364,26 @@ h1.page_head {
   color:#FF6502;
 }
 span.faq_span,
-span.faq_span a {
+span.faq_span a,
+span.how_span1,
+span.how_span2,
+span.how_span1 a,
+span.how_span2 a {
   color:#FF6502;
 }
-
+span.how_span1,
+span.how_span2,
+span.how_span1 a,
+span.how_span2 a {
+  display:block;
+  float:right;
+  }
+span.how_span1 a {
+margin-top: -45px;
+}
+span.how_span2 a {
+margin-top: -25px;
+}
 li.faq,
 p.faq {
  color:#002666;
