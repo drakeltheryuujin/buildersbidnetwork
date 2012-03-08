@@ -67,6 +67,7 @@ gem "aasm"
 gem "heroku"
 gem 'exception_notification'
 gem 'rack-rewrite'
+gem 'newrelic_rpm'
 
 group :development do
 # model diagrams
