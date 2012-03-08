@@ -23,7 +23,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   
-  has_many :profile_phones
+  has_many :profile_phones, :dependent => :destroy
   has_many :phones, :through => :profile_phones
   
   has_attached_file :asset, {
@@ -44,6 +44,11 @@ class Profile < ActiveRecord::Base
   
   accepts_nested_attributes_for :phones, :allow_destroy => :true
   accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
 
   def location_address
     location.address

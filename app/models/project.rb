@@ -27,11 +27,11 @@ class Project < ActiveRecord::Base
   belongs_to :project_type
   belongs_to :cover_photo, :class_name => 'ProjectDocument'
   
-  has_many :line_items
-  has_many :bids
-  has_many :project_documents
+  has_many :line_items, :dependent => :destroy
+  has_many :bids, :dependent => :destroy
+  has_many :project_documents, :dependent => :destroy
 
-  has_many :project_privileges
+  has_many :project_privileges, :dependent => :destroy
   has_many :privileged_users, :through => :project_privileges, :source => :user
   
   geocoded_by :location_address
@@ -52,7 +52,8 @@ class Project < ActiveRecord::Base
   validates :bidding_end,
     :presence => true, 
     :date => {:after => Proc.new {Time.now}},
-    :if => :published?
+    :if => :published?,
+    :unless => :is_deleted?
   validates :project_start,
     :presence => true, 
     :date => {:after => :bidding_end},
@@ -68,11 +69,11 @@ class Project < ActiveRecord::Base
     :acceptance => true,
     :unless => :draft?
   validates_numericality_of :estimated_budget, :allow_nil => false, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
-  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
+  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?, :if => :not_deleted?
 
   validates_associated :location, :project_type, :line_items
 
-  validate :must_have_line_items, :unless => :draft?
+  validate :must_have_line_items, :unless => :draft?, :if => :not_deleted?
 
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
@@ -96,6 +97,17 @@ class Project < ActiveRecord::Base
     event :complete_award do
       transitions :to => :awarded, :from => :award_pending
     end
+  end
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
+  def not_deleted?
+    :deleted_at.blank?
+  end
+  def is_deleted?
+    :deleted_at.present?
   end
   
   scope :draft, where(:state => :draft)

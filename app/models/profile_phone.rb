@@ -12,4 +12,9 @@
 class ProfilePhone < ActiveRecord::Base
   belongs_to :profile
   belongs_to :phone
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
 end

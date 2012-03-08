@@ -16,20 +16,20 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 
-  has_many :line_item_bids
+  has_many :line_item_bids, :dependent => :destroy
   has_many :credit_adjustments
   
   accepts_nested_attributes_for :line_item_bids, :allow_destroy => :true
 
 
   validates :user, :presence => true
-  validates :project, :presence => true
+  validates :project, :presence => true, :if => :not_deleted?
 
   STATES = [ :draft, :published, :cancelled, :awarded, :accepted, :held ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
   validate :sufficient_credits?, :if => :changed_to_published?
-  validate :total_matches_line_item_bids?
+  validate :total_matches_line_item_bids?, :if => :not_deleted?
 
   validates_associated :line_item_bids
   validates_numericality_of :total, :greater_than => 0
@@ -64,6 +64,14 @@ class Bid < ActiveRecord::Base
   scope :awarded, where(:state => :awarded)
   scope :accepted, where(:state => :accepted)
   scope :visible, where(:state => [:accepted, :awarded, :published])
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
+  def not_deleted?
+    :deleted_at.blank?
+  end
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)

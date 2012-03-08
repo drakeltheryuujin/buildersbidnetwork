@@ -26,13 +26,13 @@
 #
 
 class User < ActiveRecord::Base
-  has_one :profile, :dependent => :delete
-  has_one :subscription
-  has_many :project, :dependent => :nullify
-  has_many :bids
-  has_many :credit_adjustments
+  has_one :profile, :dependent => :destroy
+  has_one :subscription, :dependent => :destroy
+  has_many :project, :dependent => :destroy
+  has_many :bids, :dependent => :destroy
+  has_many :credit_adjustments, :dependent => :destroy
 
-  has_many :project_privileges
+  has_many :project_privileges, :dependent => :destroy
   has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
   belongs_to :invited_project, :class_name => 'Project'
@@ -45,6 +45,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessor :message_body
   attr_accessible :email, :password, :password_confirmation, :remember_me, :message_body
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
 
   scope :privileged_on, lambda { |project|
     joins(:project_privileges).where(:project_privileges => { :project_id => project.id })

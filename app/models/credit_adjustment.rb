@@ -22,11 +22,19 @@
 class CreditAdjustment < ActiveRecord::Base
   belongs_to :user
 
-  validates :user, :presence => true
+  validates :user, :presence => true, :if => :not_deleted?
 
-  after_save :update_user_credits
+  after_save :update_user_credits, :if => :not_deleted?
   def update_user_credits
     self.user.update_attribute(:credits, self.user.credit_adjustments.sum(:value)) 
+  end
+
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
+  def not_deleted?
+    :deleted_at.blank?
   end
 
   scope :payment, where(:type => "PaymentCredit")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120229183320) do
+ActiveRecord::Schema.define(:version => 20120307225406) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",                                    :default => "draft"
+    t.datetime "deleted_at"
   end
 
   create_table "conversations", :force => true do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.decimal  "amount",              :precision => 8, :scale => 2
     t.string   "card_display_number"
     t.integer  "granted_by_id"
+    t.datetime "deleted_at"
   end
 
   add_index "credit_adjustments", ["bid_id"], :name => "index_credit_adjustments_on_bid_id"
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "line_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "line_items", :force => true do |t|
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "locations", :force => true do |t|
@@ -145,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "phone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "profile_phones", ["phone_id"], :name => "index_profile_phones_on_phone_id"
@@ -158,7 +163,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "type"
-    t.integer  "location_id", :null => false
+    t.integer  "location_id",        :null => false
     t.string   "established"
     t.text     "description"
     t.string   "website"
@@ -166,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "project_documents", :force => true do |t|
@@ -177,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "project_documents", ["project_id"], :name => "index_project_documents_on_project_id"
@@ -186,6 +193,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "project_privileges", ["project_id"], :name => "index_project_privileges_on_project_id"
@@ -217,6 +225,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "credit_value"
     t.integer  "cover_photo_id"
     t.boolean  "private",                                         :default => false
+    t.datetime "deleted_at"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"
@@ -293,6 +302,7 @@ ActiveRecord::Schema.define(:version => 20120229183320) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invited_project_id"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

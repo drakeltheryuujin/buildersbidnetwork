@@ -155,6 +155,8 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    permanent_records (2.1.2)
+      activerecord
     pg (0.11.0)
     pg (0.11.0-x86-mingw32)
     polyamorous (0.5.0)
@@ -269,6 +271,7 @@ DEPENDENCIES
   nested_form!
   newrelic_rpm
   paperclip
+  permanent_records
   pg
   rack-rewrite
   rails (= 3.1.1)

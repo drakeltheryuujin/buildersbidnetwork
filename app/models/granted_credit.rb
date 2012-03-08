@@ -1,8 +1,8 @@
 class GrantedCredit < CreditAdjustmentCredit
   belongs_to :granted_by, :class_name => "User"
 
-  validates :granted_by, :presence => true
-  validate :granted_by_admin
+  validates :granted_by, :presence => true, :if => :not_deleted?
+  validate :granted_by_admin, :if => :not_deleted?
 
   private
   def granted_by_admin

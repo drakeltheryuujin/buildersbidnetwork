@@ -63,6 +63,9 @@ gem "meta_search",    '>= 1.1.0.pre'
 # state machine
 gem "aasm"
 
+# soft delete
+gem "permanent_records"
+
 # production
 gem "heroku"
 gem 'exception_notification'

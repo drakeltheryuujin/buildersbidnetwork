@@ -6,6 +6,11 @@ class ProjectDocument < ActiveRecord::Base
 	  :styles => { :thumb  => "100x100", :large => "600x400", :square_thumb => "94x94#" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
+
   scope :image, where(["asset_content_type LIKE ?", "image%"])
   scope :doc, where(["asset_content_type NOT LIKE ?", "image%"])
 

@@ -8,6 +8,11 @@ class ProjectPrivilege < ActiveRecord::Base
 
   after_create :send_invite
 
+  default_scope where(:deleted_at => nil)
+  def self.deleted
+    self.unscoped.where('deleted_at IS NOT NULL')
+  end
+
   private
 
   def send_invite
