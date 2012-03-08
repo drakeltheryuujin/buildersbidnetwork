@@ -138,11 +138,11 @@
                 <%= hidden_field_tag 'selected_project_document_id', @project.cover_photo.nil? ? 0 : @project.cover_photo.id %>
                 <%= submit_tag 'Confirm Cover Photo Selection', {:class => 'btn small primary confirm-cover-btn'} %>
               <% end %>
-			  <a href="#" class="btn small cancel-btn">Cancel</a>
+              <a href="#" class="btn small cancel-btn">Cancel</a>
             </div>
-		  <% end %>
+          <% end %>
           
-		  <ul class="faux-media-grid">
+          <ul class="faux-media-grid">
             <% @project.project_documents.image.each do |project_document| %>
               <li class="project_document editable <%= @project.cover_photo.present? ? project_document.id == @project.cover_photo.id ? 'active' : '' : '' %>">
                 <%= link_to project_document.asset(:original), {:class => 'lightbox_thumb', :title => project_document.asset_file_name} do %>
@@ -152,7 +152,7 @@
                 <% if may_admin_project? %>
                   <%= form_for [@project, project_document], :remote => true, "data-type" => "text" do |project_doc_form| %>
                     <%= project_doc_form.hidden_field :id %>
-					<%= project_doc_form.text_field :description %>
+                    <%= project_doc_form.text_field :description %>
                     <a href="#" class="btn small cancel-btn">Cancel</a>
                     <%= project_doc_form.submit "Save", {:class => 'btn small'} %>
                   <% end %>
