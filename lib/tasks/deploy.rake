@@ -25,7 +25,6 @@ namespace :deploy do
     tag_name = "staged-#{iso_date}"
     puts "Tagging #{tag_name}..."
     run "git tag #{tag_name}"
-    run "git push origin #{tag_name}"
     maint(STAGING_APP)
     puts "Pushing #{tag_name} to STAGE..."
     run "git push git@heroku.com:#{STAGING_APP}.git #{tag_name}^{}:master"
@@ -33,6 +32,7 @@ namespace :deploy do
     puts "Setting DEPLOYED_VERSION to #{tag_name} on STAGE..."
     run "heroku config:add DEPLOYED_VERSION=#{tag_name} --app #{STAGING_APP}"
     maint(STAGING_APP, "off")
+    run "git push origin --tags"
   end
 
   desc "Promote the last staged build to production."
@@ -41,10 +41,10 @@ namespace :deploy do
     staged_release = releases.last
     if staged_release
       maint(PRODUCTION_APP)
-      puts "Backing up production database..."
-      run "heroku pgbackups:capture --app #{PRODUCTION_APP}"
+      #puts "Backing up production database..."
+      #run "heroku pgbackups:capture --app #{PRODUCTION_APP}"
       puts "Pushing #{staged_release} to PROD..."
-      run "git push git@heroku.com:#{PRODUCTION_APP}.git #{staged_release}^{}:master"
+      run "git push git@heroku.com:#{PRODUCTION_APP}.git +#{staged_release}^{}:master"
       migrate(PRODUCTION_APP)
       maint(PRODUCTION_APP, "off")
     else
