@@ -16,3 +16,17 @@
   zoom: 1;             /* Inline-Block Fix for IE 7 */
   *display:inline;     /* Inline-Block Fix for IE 7 */
  }
+ 
+.right_search_box_container .sidebar_number p {
+ padding-top:21px;
+ padding-right:10px;
+ padding-left:50px;
+ }
+ 
+ .db_track_projects_awarded_sidebar .sidebar_box p {
+color: #6485B2;
+}
+
+.db_page .search_box .background {
+left: 140px;
+}
