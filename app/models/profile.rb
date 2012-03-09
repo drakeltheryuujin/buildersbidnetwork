@@ -45,6 +45,9 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :allow_destroy => :true
   accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
 
+  scope :hidden, where(:hidden => true)
+  scope :visible, where(:hidden => false)
+
   def location_address
     location.address
   end

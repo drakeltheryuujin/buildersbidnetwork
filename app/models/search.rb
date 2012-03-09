@@ -29,9 +29,9 @@ class Search
   def results
     case @section
 	    when :contractors.to_s
-	      relation = @q.blank? ? ContractorProfile.scoped : ContractorProfile.search(@q)
+	      relation = @q.blank? ? ContractorProfile.visible : ContractorProfile.visible.search(@q)
 	    when :developers.to_s
-	      relation = @q.blank? ? DeveloperProfile.scoped : DeveloperProfile.search(@q)
+	      relation = @q.blank? ? DeveloperProfile.visible : DeveloperProfile.visible.search(@q)
 	    else
 	      relation = @q.blank? ? Project.scoped : Project.search(@q)
         relation = relation.where("bidding_end > :now", :now => Time.now)

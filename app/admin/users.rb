@@ -4,7 +4,10 @@ ActiveAdmin.register User do
   index do
     column :id
     column :email
-    column :failed_attempts
+    column :sign_in_count
+    column :invited_by
+    column :created_at
+    column :confirmed_at
     default_actions
   end
   
