@@ -1,2 +1,2 @@
-<%= radio_button_tag :project_id, project.id, true %>
+<%= check_box_tag 'project_ids[]', project.id, false %>
 <%= render :partial => "/projects/project", :locals => { :project => project } %>

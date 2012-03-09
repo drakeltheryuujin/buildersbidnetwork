@@ -132,25 +132,28 @@ class ProfilesController < ApplicationController
 
   def invite
     invitee = @profile.user
-    project = Project.find(params[:project_id])
-    respond_to do |format|
-      if project.present?
+    pids = params['project_ids']
+    if pids.present?
+      projects = pids.collect { |pid| Project.find pid }
+      privs = []
+      projects.each do |project|
         project_privilege = project.project_privileges.build(:user => invitee, :message_body => params[:message_body])
-        if project_privilege.save
-          message = 'User invited.'
-          format.html { return redirect_to(@profile, :notice => message) }
-          format.text { return render :text => message }
-        else
-          message = project_privilege.errors.full_messages.join(', ')
-        end
-      else
-        message = 'Invalid project'
+        privs << project_privilege if project_privilege.save
       end
-      format.html { redirect_to(@profile, :alert => message) }
-      format.text { render :text => message, :status => :bad_request }
+      message = "User invited to: " + privs.collect { |priv| priv.project.name }.join(', ')
+      respond_to do |format|
+        format.html { return redirect_to(@profile, :notice => message) }
+        format.text { return render :text => message }
+      end
+    else
+      message = "Please select one or more project to invite this user to."
+      respond_to do |format|
+        format.html { return redirect_to(@profile, :alert => message) }
+        format.text { return render :text => message, :status => :bad_request }
+      end
     end
   end
-  
+
   def add_cover_photo
     if @profile.present?
       @profile.update_attribute(:asset, params[:asset])
