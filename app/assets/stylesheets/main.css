@@ -1589,7 +1589,8 @@ h1.search_header span {
   text-transform: none;
 }
 .notification_result .result_numbers {
-  text-align: right;
+  padding-top:10px;
+  text-align: right;  
 }
 .notification_result .result_numbers .btn {
   width: 55px;
