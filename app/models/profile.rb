@@ -25,6 +25,7 @@ class Profile < ActiveRecord::Base
   
   has_many :profile_phones
   has_many :phones, :through => :profile_phones
+  has_many :profile_documents
   
   has_attached_file :asset, {
     :styles => { :square_thumb  => "94x94#", :thumb => "100x100", :large => "600x400" }

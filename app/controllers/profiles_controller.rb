@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite, :add_cover_photo]
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite, :add_cover_photo, :documents]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
@@ -171,5 +171,9 @@ class ProfilesController < ApplicationController
 
   def check_may_modify!
     redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
+  end
+
+  def documents 
+    
   end
 end
