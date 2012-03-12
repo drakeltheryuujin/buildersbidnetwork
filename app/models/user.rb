@@ -75,6 +75,18 @@ class User < ActiveRecord::Base
       return nil
 	  end
   end
+  def notifications(filter)
+    notifs = Notification.recipient(self).order("notifications.created_at DESC")
+    if filter.present? && filter.to_sym == :unread
+      notifs = notifs.unread
+    elsif filter.present? && filter.to_sym == :trash
+      notifs = notifs.where('receipts.trashed' => true)
+    elsif filter.present? && filter.to_sym == :sent
+      notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
+    else
+      notifs = notifs.not_trashed.where('receipts.mailbox_type' => 'inbox')
+    end
+  end
 
   def unread_message_count
     notifs = Notification.recipient(self).unread.count
