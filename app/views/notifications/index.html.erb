@@ -36,7 +36,7 @@
                 <% end %>
               </h6>
               <p class="message_preview">
-                <%= raw(truncate(strip_tags(notification.body), :length => 50)) %>
+                <%= raw(truncate(strip_tags(notification.body), :length => 175)) %>
               </p>
               <% if notification.notification_type == :project_award_message.to_s %>
                 <p class="message_actions">
@@ -48,7 +48,7 @@
                 </p>
               <% elsif notification.notification_type == :project_invite.to_s %>
                 <p class="message_actions">
-                  <%= link_to 'View Project Details', project_path(notification.notified_object), :class => 'btn primary' %>
+                  <%= link_to 'PROJECT SCOPE', project_path(notification.notified_object), :class => 'btn primary' %>
                 </p>
               <% end %>
             </div>
