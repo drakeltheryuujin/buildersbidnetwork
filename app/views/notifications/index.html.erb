@@ -50,9 +50,6 @@
                 <p class="message_actions">
                   <%= link_to 'View Project Details', project_path(notification.notified_object), :class => 'btn primary' %>
                 </p>
-              < elseif notification.notification_type == :project_message.to_s %>
-                <p class="message_actions">
-                <%= link_to 'View Project Details', project_path(notification.notified_object), :class => 'btn primary' %>
               <% end %>
             </div>
           </div>
