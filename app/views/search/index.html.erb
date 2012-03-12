@@ -57,15 +57,15 @@
           </table>
         </div>
 
-        <% if @search.section_matches?(:projects) %>
+        <% if true || @search.section_matches?(:projects) %>
           <div class="filter filter_type">
             <h6>Type:</h6>
             <ul class="inputs-list">
-              <% ProjectType.order(:name).each do |pt| %>
+              <% ProjectType.order(:type_name).each do |pt| %>
                 <li> 
                   <label>
                     <%= check_box_tag 'search[type_ids][]', pt.id, @search.type_ids.include?(pt.id.to_s) %> 
-                    <span><%= pt.name %></span>
+                    <span><%= pt.type_name %></span>
                   </label> 
                 </li>
               <% end %>

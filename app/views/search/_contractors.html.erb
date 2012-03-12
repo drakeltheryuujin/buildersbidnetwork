@@ -13,6 +13,9 @@
         <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{contractor.latitude}%2C#{contractor.longitude}" %>
         <%= contractor.location.city + ", " + contractor.location.state %>
       </div>
+      <% contractor.project_types.each do |project_type| %>
+        <span class="result_type sector"><%= project_type.type_name %></span>
+      <% end %>
     </div>
     <div class="result_infos">
       <div class="result_numbers">

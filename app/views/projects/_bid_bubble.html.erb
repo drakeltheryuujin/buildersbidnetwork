@@ -28,7 +28,7 @@
               <%= bid.project.location.city + ", " + bid.project.location.state %>
             </div>
           <% end %>
-          <span class="result_type sector"><%= bid.project.project_type.name %></span>
+          <span class="result_type sector"><%= bid.project.project_type.type_name %></span>
           <p class="posted"><%= image_tag "/images/calendar.png" %><strong>Posted:</strong> <%= bid.created_at.to_formatted_s(:short) %></p>
         </div>
         <div class="span3 ">

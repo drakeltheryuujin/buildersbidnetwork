@@ -79,9 +79,12 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
+    # FIXME There's probably a better way to manage STI.
+    profile_params = (@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
+    profile_params[:project_type_ids] ||= []
+
     respond_to do |format|
-      # FIXME There's probably a better way to do this.
-      if @profile.update_attributes(@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
+      if @profile.update_attributes(profile_params)
         format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully updated.') }
         format.xml  { head :ok }
       else

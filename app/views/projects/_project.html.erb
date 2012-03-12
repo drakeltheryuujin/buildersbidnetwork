@@ -6,7 +6,7 @@
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" if may_view_project_details? project %>
       <%= project.location.city + ", " + project.location.state %>
     </div>
-    <span class="result_type sector"><%= project.project_type.name unless project.project_type.blank? %></span>
+    <span class="result_type sector"><%= project.project_type.type_name unless project.project_type.blank? %></span>
     <span class="project_flags">
       <% if project.private? %>
         <p class="private_flag">Invite Only</p>
