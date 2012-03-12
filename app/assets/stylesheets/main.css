@@ -2003,3 +2003,8 @@ input, textarea {
 	margin: 0 auto;
 	padding: 20px 0;
 }
+
+.modal.fade {
+	-webkit-transform-style: flat;
+}
+
