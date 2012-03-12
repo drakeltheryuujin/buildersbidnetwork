@@ -57,21 +57,19 @@
           </table>
         </div>
 
-        <% if true || @search.section_matches?(:projects) %>
-          <div class="filter filter_type">
-            <h6>Type:</h6>
-            <ul class="inputs-list">
-              <% ProjectType.order(:type_name).each do |pt| %>
-                <li> 
-                  <label>
-                    <%= check_box_tag 'search[type_ids][]', pt.id, @search.type_ids.include?(pt.id.to_s) %> 
-                    <span><%= pt.type_name %></span>
-                  </label> 
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        <div class="filter filter_type">
+          <h6>Type:</h6>
+          <ul class="inputs-list">
+            <% ProjectType.order(:type_name).each do |pt| %>
+              <li> 
+                <label>
+                  <%= check_box_tag 'search[type_ids][]', pt.id, @search.type_ids.include?(pt.id.to_s) %> 
+                  <span><%= pt.type_name %></span>
+                </label> 
+              </li>
+            <% end %>
+          </ul>
+        </div>
         <div class="filter filter_submit">
           <%= f.submit 'Search', :class => 'float_right btn primary' %>
         </div>
