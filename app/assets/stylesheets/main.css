@@ -1352,6 +1352,10 @@ label span.message.bad_address {
     font-weight:normal;
 }
 
+p.message_preview {
+ padding: 2px 112px 2px 0px;
+}
+
 .track-page .tabs,
 .search-page .tabs { 
   margin-bottom: 0; 

@@ -37,8 +37,7 @@
               </h6>
               <p class="message_preview">
                 <%= raw(truncate(strip_tags(notification.body), :length => 175)) %>
-              </p>
-              <% if notification.notification_type == :project_award_message.to_s %>
+                <% if notification.notification_type == :project_award_message.to_s %>
                 <p class="message_actions">
                   <%= link_to 'Accept or Decline', project_bid_path(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
                 </p>
@@ -51,6 +50,7 @@
                   <%= link_to 'PROJECT SCOPE', project_path(notification.notified_object), :class => 'btn primary' %>
                 </p>
               <% end %>
+              </p>
             </div>
           </div>
           <div class="span2 alpha">
