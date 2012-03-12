@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
       return nil
 	  end
   end
-  def notifications(filter)
+  def notifications(filter = nil)
     notifs = Notification.recipient(self).order("notifications.created_at DESC")
     if filter.present? && filter.to_sym == :unread
       notifs = notifs.unread
