@@ -876,16 +876,6 @@ font-weight: bold;
   width: 635px;
 }
 .btn.primary {
-  background-position: 0;
-  background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
-  background-image: -moz-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Mozilla Firefox */
-  background-image: -o-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Opera */  
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFB134), color-stop(1, #FF8013)); /* Webkit (Safari/Chrome 10) */ 
-  background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
-  background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
-  border-color:#E56F01;
-  }
-.btn.primary:hover {
   background-color:#FFB134;
   color:#fff;
   border-color:#E56F01;
@@ -897,6 +887,16 @@ font-weight: bold;
   background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
   -webkit-transform-style: flat;
+}
+.btn.primary:hover {
+  background-position: 0;
+
+  background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFB134), color-stop(1, #FF8013)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
 }
 
 .home_page .search_box .btn.primary {
