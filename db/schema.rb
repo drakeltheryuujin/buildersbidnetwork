@@ -140,6 +140,19 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
 
   add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
 
+  create_table "profile_documents", :force => true do |t|
+    t.string   "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profile_documents", ["profile_id"], :name => "index_profile_documents_on_profile_id"
+
   create_table "profile_phones", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "phone_id"

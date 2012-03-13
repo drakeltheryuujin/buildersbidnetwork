@@ -25,6 +25,7 @@ class Profile < ActiveRecord::Base
   
   has_many :profile_phones
   has_many :phones, :through => :profile_phones
+  has_many :profile_documents
   
   has_and_belongs_to_many :project_types
 
