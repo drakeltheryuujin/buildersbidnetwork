@@ -22,8 +22,10 @@ Ypn::Application.routes.draw do
   end
 
   resources :profiles do
+    resources :profile_documents
     member do
 	    get 'projects'
+      get 'documents'
 	    post 'contact_owner'
 	    post 'invite'
 	    post 'add_cover_photo'
@@ -34,6 +36,7 @@ Ypn::Application.routes.draw do
   end
 
   resources :developer_profiles do
+    resources :profile_documents
     member do
 	    get 'projects'
 	    get 'contact_owner'
@@ -44,6 +47,7 @@ Ypn::Application.routes.draw do
   end
 
   resources :contractor_profiles do
+    resources :profile_documents
     member do
 	    get 'projects'
 	    get 'contact_owner'

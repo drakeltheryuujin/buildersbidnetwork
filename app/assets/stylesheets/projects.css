@@ -34,22 +34,26 @@
 .faux-media-grid li.active {
   border-color: #42aaf1;
 }
-.project_document {
+.project_document,
+.profile_document {
   display: inline-block;
   width: 100px;
   padding: 1em;
 }
-.project_document img {
+.project_document img,
+.profile_document img {
   min-height: 100px;
   min-width: 100px;
 }
-.project_document .btn img {
+.project_document .btn img,
+.profile_document .btn img {
   min-height: 8px;
   min-width: 8px;
   max-height: 8px;
   max-width: 8px;
 }
-.project_document .description {
+.project_document .description,
+.profile_document .description {
   color: #333;
   font-weight: bold;
   text-align: left;
@@ -57,29 +61,35 @@
   padding: 4px;
   display: block;
 }
-form.new_project_document {
+form.new_project_document,
+form.new_profile_document {
   padding-bottom: 2em;
 }
 
 .project_page .tab-pane .row .admin-btns,
+.profile_page .row .admin-btns,
 .project_page .tab-pane .row.select-cover .select-cover-asset {
   display: block;
   margin: 0 0 5px 0;
   padding: 0 0 5px 0;
   border-bottom: 1px solid #eee;
 }
-.project_page .tab-pane .row .btn {
+.project_page .tab-pane .row .btn,
+.profile_page .row .btn {
   text-transform: uppercase;
   font-weight: bold;
 }
-.project_page .tab-pane .row .btn img {
+.project_page .tab-pane .row .btn img,
+.profile_page .row .btn img {
   padding-right: 3px;
 }
 .project_page .tab-pane .row .add-asset,
+.profile_page .row .add-asset,
 .project_page .tab-pane .row .select-cover-asset {
   display: none;
 }
-.project_page .tab-pane .row .add-asset form {
+.project_page .tab-pane .row .add-asset form,
+.profile_page .row .add-asset form {
   margin: 5px 0;
   padding: 20px 40px;
   border-top: 1px solid #eee;
@@ -92,33 +102,42 @@ form.new_project_document {
 }
 
 .project_page .tab-pane .row.edit .add-asset,
+.profile_page .row.edit .add-asset,
 .project_page .tab-pane .row.select-cover .select-cover-asset {
   display: block;
 }
 .project_page .tab-pane .row.edit .admin-btns,
+.profile_page .row.edit .admin-btns,
 .project_page .tab-pane .row.select-cover .admin-btns {
   display: none;
 }
 
-.project_page .tab-pane .project_document form.edit_project_document {
+.project_page .tab-pane .project_document form.edit_project_document,
+.profile_page .profile_document form.edit_profile_document {
   display: none;
   margin-bottom: 0;
 }
-.project_page .tab-pane .project_document form.edit_project_document input.small {
+.project_page .tab-pane .project_document form.edit_project_document input.small,
+.profile_page .profile_document form.edit_profile_document input.small {
   width: 60px;
 }
-.project_page .tab-pane .row.select-cover .select-cover-asset input.small {
+.project_page .tab-pane .row.select-cover .select-cover-asset input.small,
+.profile_page .row.select-cover .select-cover-asset input.small {
   width: auto;
 }
 .project_page .tab-pane .project_document.edit form.edit_project_document,
+.profile_page .profile_document.edit form.edit_profile_document,
 .project_page .tab-pane .project_document.select-cover form.edit_project_document {
   display: block;
 }
 .project_page .tab-pane .project_document.edit .edit-btns,
-.project_page .tab-pane .project_document.edit .description {
+.profile_page .profile_document.edit .edit-btns,
+.project_page .tab-pane .project_document.edit .description,
+.profile_page .profile_document.edit .description {
   display: none;
 }
-.project_page .tab-pane .project_document form.edit_project_document input[type="text"] {
+.project_page .tab-pane .project_document form.edit_project_document input[type="text"],
+.profile_page .profile_document form.edit_profile_document input[type="text"] {
   width: 135px;
   display: block;
   margin-bottom: 5px;

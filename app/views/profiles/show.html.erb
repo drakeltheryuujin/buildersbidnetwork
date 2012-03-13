@@ -4,6 +4,11 @@
     <ul class="tabs span12">
       <li class="active"><%= link_to "Company Overview", profile_path(@profile) %></li>
       <li><%= link_to (@profile.user.contractor? ? "Awarded Projects" : "Posted Projects"), projects_profile_path(@profile) %></li>
+      <li>
+        <%= link_to documents_profile_path(@profile) do %>
+          Documents <%= ("(#{@profile.profile_documents.doc.size()})") unless @profile.profile_documents.doc.empty? %>
+	      <% end %>
+	    </li>
     </ul>
   </div>
 <% end %>
