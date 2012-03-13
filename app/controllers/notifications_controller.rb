@@ -7,19 +7,7 @@ class NotificationsController < ApplicationController
   def index
     filter = params[:filter]
 
-    notifs = Notification.recipient(@actor).order("notifications.created_at DESC")
-#if (options[:read].present? and options[:read]==false) or (options[:unread].present? and options[:unread]==true)
-#notifs = notifs.unread
-#end
-    if filter.present? && filter.to_sym == :unread
-      notifs = notifs.unread
-    elsif filter.present? && filter.to_sym == :trash
-      notifs = notifs.where('receipts.trashed' => true)
-    elsif filter.present? && filter.to_sym == :sent
-      notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
-    else
-      notifs = notifs.not_trashed.where('receipts.mailbox_type' => 'inbox')
-    end
+    notifs = @actor.notifications(filter)
 
     @notifications = notifs.page(params[:page]).per(10)
   end

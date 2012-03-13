@@ -1,6 +1,6 @@
 <div class="row login-page">
   <div class="offset5 span6 form-stacked">
-	<div class="login-box">
+  <div class="login-box">
       <div class="login-head">
         <h2>Set your BBN password</h2>
       </div>
@@ -10,18 +10,18 @@
         <%= f.hidden_field :invitation_token %>
 
         <div class="field">
-	    	<%= f.label :password %><br />
-	        <%= f.password_field :password %>
-		</div>
-	    
+          <%= f.label :password %><br />
+          <%= f.password_field :password %>
+        </div>
+      
         <div class="field">
-		  <%= f.label :password_confirmation, :class => "full-width" %><br />
+          <%= f.label :password_confirmation, :class => "full-width" %><br />
           <%= f.password_field :password_confirmation %>
         </div>
 
         <div class="field">
-		    <%= f.submit "Set my password", :class => "btn large primary" %>
-		</div>
+          <%= f.submit "Set my password", :disable_with => "Saving...", :class => "btn large primary" %>
+        </div>
       <% end %>
     </div>
   </div>

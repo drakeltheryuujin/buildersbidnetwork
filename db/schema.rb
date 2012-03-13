@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312144329) do
+ActiveRecord::Schema.define(:version => 20120312182021) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(:version => 20120312144329) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "type"
-    t.integer  "location_id",        :null => false
+    t.integer  "location_id",                           :null => false
     t.string   "established"
     t.text     "description"
     t.string   "website"
@@ -179,7 +179,16 @@ ActiveRecord::Schema.define(:version => 20120312144329) do
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.boolean  "hidden",             :default => false
   end
+
+  create_table "profiles_project_types", :id => false, :force => true do |t|
+    t.integer "profile_id"
+    t.integer "project_type_id"
+  end
+
+  add_index "profiles_project_types", ["profile_id"], :name => "index_profiles_project_types_on_profile_id"
+  add_index "profiles_project_types", ["project_type_id"], :name => "index_profiles_project_types_on_project_type_id"
 
   create_table "project_documents", :force => true do |t|
     t.string   "description"
@@ -205,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20120312144329) do
   add_index "project_privileges", ["user_id"], :name => "index_project_privileges_on_user_id"
 
   create_table "project_types", :force => true do |t|
-    t.string   "name"
+    t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

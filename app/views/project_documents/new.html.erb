@@ -17,7 +17,7 @@
           <%= project_doc_form.file_field :asset %>
           <div>
             <%= project_doc_form.text_field :description, :placeholder => "Add title..." %>
-            <%= project_doc_form.submit "Upload" %>
+            <%= project_doc_form.submit "Upload", :disable_with => "Uploading..." %>
           </div>
         <% end %>
       </div>

@@ -66,7 +66,7 @@
           <div class="project_meta">
             <div class="field">
               <label class="span2">Project Type</label>
-              <span class="sector"><%= @project.project_type.name %></span>
+              <span class="sector"><%= @project.project_type.type_name %></span>
             </div>
           </div> <!-- /project_meta -->
         </div>
@@ -130,7 +130,7 @@
                 <%= project_doc_form.label :description %>
                 <%= project_doc_form.text_field :description %>
               
-                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+                <%= project_doc_form.submit "Upload File", :disable_with => "Uploading...", :class => 'btn primary' %>
               <% end %>
             </div>
             <div class="select-cover-asset">
@@ -138,11 +138,11 @@
                 <%= hidden_field_tag 'selected_project_document_id', @project.cover_photo.nil? ? 0 : @project.cover_photo.id %>
                 <%= submit_tag 'Confirm Cover Photo Selection', {:class => 'btn small primary confirm-cover-btn'} %>
               <% end %>
-			  <a href="#" class="btn small cancel-btn">Cancel</a>
+              <a href="#" class="btn small cancel-btn">Cancel</a>
             </div>
-		  <% end %>
+          <% end %>
           
-		  <ul class="faux-media-grid">
+          <ul class="faux-media-grid">
             <% @project.project_documents.image.each do |project_document| %>
               <li class="project_document editable <%= @project.cover_photo.present? ? project_document.id == @project.cover_photo.id ? 'active' : '' : '' %>">
                 <%= link_to project_document.asset(:original), {:class => 'lightbox_thumb', :title => project_document.asset_file_name} do %>
@@ -152,9 +152,9 @@
                 <% if may_admin_project? %>
                   <%= form_for [@project, project_document], :remote => true, "data-type" => "text" do |project_doc_form| %>
                     <%= project_doc_form.hidden_field :id %>
-					<%= project_doc_form.text_field :description %>
+                    <%= project_doc_form.text_field :description %>
                     <a href="#" class="btn small cancel-btn">Cancel</a>
-                    <%= project_doc_form.submit "Save", {:class => 'btn small'} %>
+                    <%= project_doc_form.submit "Save", :disable_with => "Saving...", :class => 'btn small' %>
                   <% end %>
                   <span class="edit-btns">
                     <%= link_to [@project, project_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
@@ -183,7 +183,7 @@
                 <%= project_doc_form.label :description %>
                 <%= project_doc_form.text_field :description %>
               
-                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+                <%= project_doc_form.submit "Upload File", :disable_with => "Uploading...", :class => 'btn primary' %>
               <% end %>
             </div>
           <% end %>

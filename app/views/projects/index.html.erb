@@ -14,7 +14,7 @@
   <tr>
     <td><%= link_to project.name, project %></td>
     <td><%= project.user.email %></td>
-    <td><%= project.project_type.name %></td>
+    <td><%= project.project_type.type_name %></td>
     <td><%= project.bidding_end.to_formatted_s(:long) %></td>
     <td><%= link_to 'Edit', edit_project_path(project), :class => 'nav nav-edit' %></td>
     <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete, :class => 'nav nav-destroy' %></td>

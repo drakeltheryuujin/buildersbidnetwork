@@ -82,6 +82,18 @@
   margin-right: 10px;
 }
 
+.profile_page .profile-form .field ul.specialties {
+  list-style: none;
+  margin: 0;
+}
+.profile_page .profile-form .field ul.specialties li {
+  float: left;
+  width: 33%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .profile_page .sidebar_box.sidebar_number strong,
 .profile_page .sidebar_box.sidebar_number div {
   padding: 2px;

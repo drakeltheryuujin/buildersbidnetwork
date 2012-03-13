@@ -5,7 +5,7 @@
       <%= link_to_unless(message.sender.profile.blank?, message.sender.name, profile_path(message.sender.profile)) %>
     </div>
     <div class="date">
-      about <%= time_ago_in_words(message.updated_at) %> ago
+    <%= time_ago_in_words(message.updated_at) %> ago
     </div>
   </div>
   <div class="body span9">

@@ -110,7 +110,7 @@
           <%= f.label :card_expires_on, "Expires", :class => "span2 " %>
           <%= f.date_select :card_expires_on, {:discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true}, :class => "span3 alpha " %>
         </div>
-        <p class="row span8 text_align_right"><%= f.submit "Submit Payment", :class => 'btn large primary' %></p>
+        <p class="row span8 text_align_right"><%= f.submit "Submit Payment", :disable_with => "Submitting...", :class => 'btn large primary' %></p>
       <% end %>
     </div>
   </div>

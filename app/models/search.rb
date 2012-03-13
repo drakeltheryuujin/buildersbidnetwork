@@ -29,9 +29,15 @@ class Search
   def results
     case @section
 	    when :contractors.to_s
-	      relation = @q.blank? ? ContractorProfile.scoped : ContractorProfile.search(@q)
+	      relation = @q.blank? ? ContractorProfile.distinct_visible : ContractorProfile.distinct_visible.search(@q)
+        unless @type_ids.blank?
+          relation = relation.joins(:project_types).where(:profiles_project_types => {:project_type_id => @type_ids})
+        end
 	    when :developers.to_s
-	      relation = @q.blank? ? DeveloperProfile.scoped : DeveloperProfile.search(@q)
+	      relation = @q.blank? ? DeveloperProfile.distinct_visible : DeveloperProfile.distinct_visible.search(@q)
+        unless @type_ids.blank? # FIXME DRY-out
+          relation = relation.joins(:project_types).where(:profiles_project_types => {:project_type_id => @type_ids})
+        end
 	    else
 	      relation = @q.blank? ? Project.scoped : Project.search(@q)
         relation = relation.where("bidding_end > :now", :now => Time.now)

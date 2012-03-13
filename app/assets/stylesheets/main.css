@@ -364,10 +364,26 @@ h1.page_head {
   color:#FF6502;
 }
 span.faq_span,
-span.faq_span a {
+span.faq_span a,
+span.how_span1,
+span.how_span2,
+span.how_span1 a,
+span.how_span2 a {
   color:#FF6502;
 }
-
+span.how_span1,
+span.how_span2,
+span.how_span1 a,
+span.how_span2 a {
+  display:block;
+  float:right;
+  }
+span.how_span1 a {
+margin-top: -45px;
+}
+span.how_span2 a {
+margin-top: -25px;
+}
 li.faq,
 p.faq {
  color:#002666;
@@ -425,6 +441,16 @@ li.terms {
   width: 94px;
   height: 94px;
 } 
+.notification_result .profile_avatar {
+ margin-top:10px;
+ margin-bottom:10px;
+}
+
+.notification_result .btn.primary {
+  float:right;
+  margin-top:-15px;
+}
+
 .profile_header .profile_actions,
 .project_header .project_actions {
   padding-top: 8px;
@@ -1064,9 +1090,6 @@ padding-left:22px;
 .message {
   padding: 0.5em;
   font-weight: bold;
-  -webkit-border-radius: 0.5em;
-  -moz-border-radius: 0.5em;
-  border-radius: 0.5em;
 }
 .message.alert {
   background-color: #E44;
@@ -1299,13 +1322,13 @@ label span.message.bad_address {
 .conversation .message {
   font-weight: normal;
   border-bottom: 1px solid #ddd;
+  margin-left:0px;
 } 
 .conversation .message p {
-  padding: 5px 0;
+  padding: 5px 75px 10px 0;
 }
 .conversation .message p.message_actions {
   padding: 10px;
-  border-top: 1px solid #ddd;
 }
 .conversation .actions {
   margin-top: 0;
@@ -1314,11 +1337,21 @@ label span.message.bad_address {
   font-size: 18px;
   line-height: 22px;
   color: #42AAF1;
-}
+  padding-left:148px;
+  }
 .conversation_full .action .btn {
   text-transform: uppercase;
+  float:right;
+  margin-top:5px;
+  }
+.sender_name {
+    font-size:10px;
+    font-weight:normal;
 }
 
+p.message_preview {
+ padding: 2px 112px 2px 0px;
+}
 
 .track-page .tabs,
 .search-page .tabs { 
@@ -1553,7 +1586,8 @@ h1.search_header span {
   text-transform: none;
 }
 .notification_result .result_numbers {
-  text-align: right;
+  padding-top:10px;
+  text-align: right;  
 }
 .notification_result .result_numbers .btn {
   width: 55px;

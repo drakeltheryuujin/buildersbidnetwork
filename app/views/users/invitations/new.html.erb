@@ -1,26 +1,26 @@
 <div class="row login-page">
   <div class="offset5 span6 form-stacked">
-	<div class="login-box">
-      <div class="login-head">
-        <h2>Send invitation</h2>
-      </div>
-      
-      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
-
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= text_area_tag 'user[emails]' %>
+    <div class="login-box">
+        <div class="login-head">
+          <h2>Send invitation</h2>
         </div>
+        
+        <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
 
-        <div class="field">
-          <%= f.submit "Send an invitation", :class => "btn large primary" %>
-        </div>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= text_area_tag 'user[emails]' %>
+          </div>
 
-        <div class="field">
-          <%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
-        </div>
-      <% end %>
+          <div class="field">
+            <%= f.submit "Send an invitation", :disable_with => "Saving...", :class => "btn large primary" %>
+          </div>
 
-	</div>
+          <div class="field">
+            <%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
+          </div>
+        <% end %>
+
+    </div>
   </div>
 </div>

@@ -25,7 +25,7 @@
         </div>
 
         <div class="field">
-          <%= f.submit "Create Account", :class => "btn large primary" %>
+          <%= f.submit "Create Account", :disable_with => "Creating...", :class => "btn large primary" %>
           <span class="field_info span4">
             By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
           </span>

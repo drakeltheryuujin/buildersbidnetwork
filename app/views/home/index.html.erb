@@ -41,7 +41,7 @@
         </table>
 
         <strong class="span9">Select a Project Type:</strong>
-        <%= f.collection_select(:type_ids, ProjectType.order(:name).all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
+        <%= f.collection_select(:type_ids, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select span9"}) %>
 
         <div class="span9">
           <%= f.submit 'Search', :class => 'large btn primary' %>
