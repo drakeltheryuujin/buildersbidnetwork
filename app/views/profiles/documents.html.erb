@@ -35,10 +35,10 @@
         <% end %>
 
         <ul class="faux-media-grid">
-          <% @profile.profile_documents.each do |profile_document| %>
+          <% @profile.profile_documents.where(["asset_content_type IS NOT NULL"]).each do |profile_document| %>
             <li class="profile_document editable">
-              <%= link_to profile_document.asset(:original) do %>
-                <%= image_tag(doc_icon_path(profile_document), :alt => profile_document.asset_file_name) %>
+              <%= link_to profile_document.asset(:original), {:class => "#{profile_document.is_image? ? 'lightbox_thumb' : ''}"} do %>
+                <%= image_tag((profile_document.is_image? ? profile_document.asset(:thumb) : doc_icon_path(profile_document)), :alt => profile_document.asset_file_name) %>
                 <span class="description"><%= profile_document.description || "&nbsp;".html_safe %></span>
               <% end %>
               <% if may_admin_profile? %>
