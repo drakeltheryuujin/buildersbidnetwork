@@ -713,7 +713,7 @@ padding-right:10px
   margin-bottom:20px;
 }  
 .home_page .home_box,
-.db_page .home_box ,.home_page #grey_box {
+.db_page .home_box ,.home_page #grey_box, .db_page #grey_box {
   border: 3px solid #eee;
   position: relative;
   background: #ffffff; /* Old browsers */
@@ -726,10 +726,21 @@ padding-right:10px
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
   
 }
-.db_page .home_box {
+.db_page {
+  position: relative;
+}
+.db_page .home_box, .home_page .search_box {
+  background: transparent;
+  filter: 0;
   height:335px;
-  border: 1px solid#d3d3d3;
-   border-radius: 5px;
+  border:0;
+}
+.db_page #grey_box{
+  position: absolute;
+  width: 638px;
+  height:335px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
@@ -739,7 +750,6 @@ padding-right:10px
   padding: 10px;
   top: 20px;
   width: 432px;
-  
 }
 .home_page .search_box,
 .db_page .search_box {
@@ -750,9 +760,6 @@ padding-right:10px
   z-index:0;
 }
 .home_page .search_box {
-  background: transparent;
-  border: 0;
-  filter: 0;
   padding:10px;
   height:298px;
   top: 20px;
@@ -769,22 +776,20 @@ padding-right:10px
 }
 
 .home_page .searching_man,
-.db_page .search_box .searching_man {
+.db_page .searching_man {
 	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
-	left: 118px; 
-	top: -40px;
+	left: 121px;
+  top: -1px;
 	width: 334px;
 	height: 221px;
 }
-.home_page .searching_man{
-  left: 121px;
-  top: -1px;
+.db_page .searching_man{
+  left: 166px; 
+  top: -21px;
 }
-/* Must be below above css */
-.db_page .search_box .background {
-  left:144px;
-}
+
+
 .home_page .account_box {
   padding:10px 30px;
   margin-top:20px;

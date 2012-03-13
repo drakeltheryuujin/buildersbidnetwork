@@ -16,15 +16,18 @@
 <% end %>
 
 <div class="<%= current_user.contractor? ? 'db_contractor_page' : 'db_developer_page' %> db_page row">
-  <div class="span11"> 
+  <div class="span11">
+      <div id="grey_box">&nbsp;</div>
+      <div class="searching_man">&nbsp;</div>
     <div class="home_box">
+      
       <div class="search_box">
         <% if current_user.contractor? %>
           <h2>Search for Projects</h2>  
         <% else %>
           <h2>Search for Contractors</h2>
         <% end %>  
-        <div class="background">&nbsp;</div>
+        
         <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
           <%= f.hidden_field :section %>
           <table class="span3">
