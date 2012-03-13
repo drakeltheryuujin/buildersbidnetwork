@@ -30,7 +30,9 @@ color: #6485B2;
 .db_page .search_box .background {
 left: 140px;
 }
-
+.brand_header .search_nav {
+  margin-top: 0;
+}
 .subscription_box ol {
   background-color: #EDEDED;
   border: 1px solid #C2C2C2;
