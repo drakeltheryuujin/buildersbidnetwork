@@ -8,10 +8,9 @@
  * #2A5E41
  **/
 .brand_header {
-  padding: 1em;
-  margin-bottom: 39px;
+  margin-top: 33px;
   color: white;
-  height: 30px;
+  height: 65px;
 }
 
 .brand_header .header_container {
@@ -208,6 +207,7 @@ white-space: nowrap;
   top: 33px;
   position: absolute;
   z-index: inherit;
+  height: 65px;
 }
 .brand_header .nav_topbar .fill {
   background: #ffffff; /* Old browsers */
