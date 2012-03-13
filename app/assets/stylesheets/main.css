@@ -8,9 +8,10 @@
  * #2A5E41
  **/
 .brand_header {
-  margin-top: 33px;
+  padding: 1em;
+  margin-bottom: 39px;
   color: white;
-  height: 65px;
+  height: 30px;
 }
 
 .brand_header .header_container {
@@ -125,7 +126,7 @@ white-space: nowrap;
 
 .auth_topbar {
   color: #fff;
-  height: 33px;
+  height: 2px;
 }
 .topbar .fill {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
@@ -206,8 +207,7 @@ white-space: nowrap;
 .brand_header .nav_topbar {
   top: 33px;
   position: absolute;
-  z-index: inherit;
-  height: 65px;
+  z-index: 1;
 }
 .brand_header .nav_topbar .fill {
   background: #ffffff; /* Old browsers */
