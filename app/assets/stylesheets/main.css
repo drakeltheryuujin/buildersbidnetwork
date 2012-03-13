@@ -126,7 +126,7 @@ white-space: nowrap;
 
 .auth_topbar {
   color: #fff;
-  height: 20px;
+  height: 33px;
 }
 .topbar .fill {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
@@ -157,6 +157,7 @@ white-space: nowrap;
 .auth_topbar li {
   line-height: 24px;
   color: #ddd;
+  display: block;
 }
 .auth_topbar.topbar div > ul a { 
   display: inline; 
@@ -247,7 +248,7 @@ white-space: nowrap;
 
 .brand_header .nav_topbar ul li {
   height: 65px;
-  border-right:1px solid #eee;
+  border-right:1px  solid #eee;
 }  
 .brand_header .nav_topbar ul li:first-child {
   border-left: 1px solid #eee;
