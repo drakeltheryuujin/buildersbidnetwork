@@ -37,15 +37,15 @@
               </h6>
               <p class="message_preview">
                 <%= raw(truncate(strip_tags(notification.body), :length => 175)) %>
-                <% if notification.notification_type == :project_award_message.to_s %>
+                <% if notification.notification_type == :project_award_message.to_s && notification.notified_object.present? %>
                 <p class="message_actions">
                   <%= link_to 'Accept or Decline', project_bid_path(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
                 </p>
-              <% elsif notification.notification_type == :bid_placed_message.to_s %>
+              <% elsif notification.notification_type == :bid_placed_message.to_s && notification.notified_object.present? %>
                 <p class="message_actions">
                   <%= link_to 'View Bid', project_bid_url(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
                 </p>
-              <% elsif notification.notification_type == :project_invite.to_s %>
+              <% elsif notification.notification_type == :project_invite.to_s && notification.notified_object.present? %>
                 <p class="message_actions">
                   <%= link_to 'PROJECT SCOPE', project_path(notification.notified_object), :class => 'btn primary' %>
                 </p>

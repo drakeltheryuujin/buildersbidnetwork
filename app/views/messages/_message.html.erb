@@ -10,15 +10,15 @@
   </div>
   <div class="body span9">
   	<p><%= raw(message.body) %></p>
-    <% if message.notification_type == :project_award_message.to_s %>
+    <% if message.notification_type == :project_award_message.to_s && message.notified_object.present? %>
       <p class="message_actions">
         <%= link_to 'Accept or Decline', project_bid_path(message.notified_object.project, message.notified_object), :class => 'btn primary' %>
       </p>
-    <% elsif message.notification_type == :bid_placed_message.to_s %>
+    <% elsif message.notification_type == :bid_placed_message.to_s && message.notified_object.present? %>
       <p class="message_actions">
         <%= link_to 'View Bid', project_bid_url(message.notified_object.project, message.notified_object), :class => 'btn primary' %>
       </p>
-    <% elsif message.notification_type == :project_invite.to_s %>
+    <% elsif message.notification_type == :project_invite.to_s && message.notified_object.present? %>
       <p class="message_actions">
         <%= link_to 'View Project Details', project_path(message.notified_object), :class => 'btn primary' %>
       </p>
