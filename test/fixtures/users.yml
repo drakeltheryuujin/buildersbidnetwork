@@ -1,22 +1,36 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
+<% pepper = nil %>
+<% cost = 10 %>
 one:
+  <% email = "test@user.com" %>
   id: 1
-  email: test@user.com
+  email: <%= email %>
+  encrypted_password: <%= ::BCrypt::Password.create("#{email}#{pepper}", :cost => cost).to_s %>
+  confirmed_at: <%= Time.now %>
 
 admin:
+  <% email = "admin@admin.com" %>
   id: 2
-  email: admin@admin.com
+  email: <%= email %>
+  encrypted_password: <%= ::BCrypt::Password.create("#{email}#{pepper}", :cost => cost).to_s %>
+  confirmed_at: <%= Time.now %>
   admin: true
 
 <% ('a'..'e').each do |a| %> 
 developer_<%= a %>:
-  email: user@developer<%= a %>.com
+  <% email = "user@developer#{ a }.com" %>
+  email: <%= email %>
+  encrypted_password: <%= ::BCrypt::Password.create("#{email}#{pepper}", :cost => cost).to_s %>
+  confirmed_at: <%= Time.now %>
 
 <% end %>
 <% ['i', 'ii', 'iii', 'iv', 'v'].each do |a| %>
 contractor_<%= a %>:
-  email: user@contractor<%= a %>.com
+  <% email = "user@contractor#{ a }.com" %>
+  email: <%= email %>
+  encrypted_password: <%= ::BCrypt::Password.create("#{email}#{pepper}", :cost => cost).to_s %>
+  confirmed_at: <%= Time.now %>
 
 <% end %>
 # == Schema Information
