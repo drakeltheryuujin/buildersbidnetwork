@@ -256,7 +256,7 @@ form.new_profile_document {
   float: right;
   font-size: 11px;
 }
-.project_timeline .sidebar_number .private_flag {
+.project_timeline .sidebar_number .project_action {
   float: right;
 }
 
@@ -276,6 +276,9 @@ form.new_profile_document {
   display: block;
   float: left;
   padding: 0 15px;
+}
+.project_timeline .sidebar_number .private_project {
+  float: right;
 }
 
 

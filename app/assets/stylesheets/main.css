@@ -428,11 +428,14 @@ li.terms {
   max-width: 150px;
 }
 
+
 .private_flag {
-  color: #E56F01;
-  padding: 3px 5px 3px 21px;
-  border: 1px solid #DDD;
-  background: #fff url('../images/lock_grey.png') 5px 5px no-repeat;
+  padding: 3px 5px 3px 21px !important;
+  background: url('../images/lock_grey.png') 5px 5px no-repeat !important;
+}
+.share_flag {
+  padding: 3px 5px 3px 21px !important;
+  background: url('../images/share_icon_grey.png') 0 4px no-repeat !important;
 }
 
 .profile_avatar {
@@ -479,6 +482,7 @@ li.terms {
   margin: 5px 5px 0 0;
   width: 111px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 
@@ -1602,6 +1606,10 @@ h1.search_header span {
   padding-top: 6px;
   font-size: 26px;
   line-height: 32px;
+}
+.search_result.project .result_name .private_project {
+  float: right;
+  padding: 5px;
 }
 .notification_result .result_name h6 {
   font-size: 16px;
