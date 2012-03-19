@@ -62,6 +62,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project.publish if params[:publish].present?
+    @project.cancel if params[:cancel].present?
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

@@ -5,7 +5,7 @@
   </div> 
   <%= form_tag(invite_profile_path(@profile), :remote => true, "data-type" => "text" )  do %>
     <div class="private_projects">
-      <%= render :partial => "invite_project_wrapper", :collection => current_user.project.private.active, :as => :project %>
+      <%= render :partial => "invite_project_wrapper", :collection => current_user.project.active, :as => :project %>
     </div>
     <div class="modal-body form-stacked">
       <label>Message Body</label>

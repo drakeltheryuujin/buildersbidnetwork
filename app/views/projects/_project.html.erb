@@ -1,16 +1,16 @@
 <div class="search_result project ">
   <%= render :partial => "/projects/cover_photo", :locals => { :project => project } %>
   <div class="result_body ">
-    <div class="result_name"><%= link_to project.name, project_path(project) %></div>
+    <div class="result_name">
+      <%= link_to project.name, project_path(project) %>
+      <%= image_tag "/images/circle_lock.png", :alt => "Private Project", :class => "private_project" if project.private? %>
+    </div>
     <div class="result_location">
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{project.latitude}%2C#{project.longitude}" if may_view_project_details? project %>
       <%= project.location.city + ", " + project.location.state %>
     </div>
     <span class="result_type sector"><%= project.project_type.type_name unless project.project_type.blank? %></span>
     <span class="project_flags">
-      <% if project.private? %>
-        <p class="private_flag">Invite Only</p>
-      <% end %>
       <p class="posted"><%= image_tag "/images/calendar.png" %><strong>Posted:</strong> <%= project.created_at.to_formatted_s(:short) %></p>
     </span>
   </div>

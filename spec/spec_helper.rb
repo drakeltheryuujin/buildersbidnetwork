@@ -12,6 +12,23 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+module Geocoder::Store
+  module ActiveRecord
+    def geocode
+      fetch_coordinates if $TEST_GEOCODING
+    end
+  end
+end
+
+shared_examples_for "presence of" do |property|
+  it "requires a value for #{property}" do
+    record = new_valid_record
+    record.send(:"#{property}=", nil)
+    record.should_not be_valid
+    record.errors[property.to_sym].should include("can't be blank")
+  end
+end
+
 RSpec.configure do |config|
   Capybara.default_driver = :selenium
   Capybara.server_port = 3001
@@ -36,4 +53,6 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+  config.alias_it_should_behave_like_to :it_validates, "a model that validates"
 end

@@ -24,7 +24,7 @@
         <%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn small edit') %>
       <% end %>
       <% if @profile.user != current_user %>
-        <% if @profile.contractor_profile? && current_user.developer? && current_user.project.private.active.present? %>
+        <% if @profile.contractor_profile? && current_user.developer? %>
           <%= link_to invite_profile_path(@profile), :class => "btn large invite", "data-controls-modal" => "invite-modal", "data-backdrop" => "true" do %>
             <span>Invite to Bid</span>
           <% end %>

@@ -206,8 +206,9 @@
         <% if current_page? new_project_path %>
           <%= f.submit "Save and Continue", :disable_with => "Saving...", :name => :draft, :class => 'btn large primary' %>
         <% else %>
-          <%= f.submit "Save As Draft", :disable_with => "Saving...", :name => :draft, :class => 'btn info' if @project.draft? %>
           <%= f.submit "Publish Project", :disable_with => "Saving...", :name => :publish, :class => 'btn primary' %>
+          <%= f.submit "Save As Draft", :disable_with => "Saving...", :name => :draft, :class => 'btn info' if @project.draft? %>
+          <%= f.submit "Cancel Project", :disable_with => "Saving...", :confirm => "Are you sure?", :name => :cancel, :class => 'btn danger' if @project.published? %>
         <% end %>
       </div>
     </div> <!-- /.span11 -->
