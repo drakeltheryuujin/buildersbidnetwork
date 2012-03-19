@@ -13,7 +13,8 @@ class ActivityController < ApplicationController
         if @filter.present? && Project::STATES.include?(@filter)
           @projects = @projects.where :state => @filter
         else
-          @projects = @projects.find_all_by_user_id current_user.id
+          @projects = @projects.where :state => :published.to_s
+          #@projects = @projects.find_all_by_user_id current_user.id
         end
       end
 

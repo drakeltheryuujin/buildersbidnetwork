@@ -212,6 +212,11 @@ form.new_profile_document {
   vertical-align: middle;
 }
 
+.project_form .btn { 
+  float: right; 
+  margin-left: 5px;
+}
+
 .project_sidebar .sidebar_box {
   padding: 10px; 
   background: #edebe1; 

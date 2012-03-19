@@ -48,7 +48,7 @@ class Project < ActiveRecord::Base
     :presence => true
   validates :description,
     :presence => true,
-    :unless => :draft?
+    :unless => :draft_or_cancelled?
   validates :bidding_end,
     :presence => true, 
     :date => {:after => Proc.new {Time.now}},
@@ -56,23 +56,23 @@ class Project < ActiveRecord::Base
   validates :project_start,
     :presence => true, 
     :date => {:after => :bidding_end},
-    :unless => :draft?
+    :unless => :draft_or_cancelled?
   validates :project_end,
     :presence => true, 
     :date => {:after => :project_start},
-    :unless => :draft?
+    :unless => :draft_or_cancelled?
   validates :estimated_budget,
     :presence => true,
-    :unless => :draft?
+    :unless => :draft_or_cancelled?
   validates :terms_of_use, 
     :acceptance => true,
-    :unless => :draft?
-  validates_numericality_of :estimated_budget, :allow_nil => false, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
-  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
+    :unless => :draft_or_cancelled?
+  validates_numericality_of :estimated_budget, :allow_nil => false, :greater_than => 0, :less_than => 1000000000, :unless => :draft_or_cancelled?
+  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft_or_cancelled?
 
   validates_associated :location, :project_type, :line_items
 
-  validate :must_have_line_items, :unless => :draft?
+  validate :must_have_line_items, :unless => :draft_or_cancelled?
 
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
@@ -157,6 +157,10 @@ class Project < ActiveRecord::Base
 
   def award_period?
     return Time.now >= self.bidding_end
+  end
+
+  def draft_or_cancelled?
+    return self.draft? || self.cancelled?
   end
 
   def hold_bids_and_notify_bidders(body)
