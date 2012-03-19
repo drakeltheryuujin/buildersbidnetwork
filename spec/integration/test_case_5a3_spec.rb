@@ -20,6 +20,7 @@ fixtures:all
     page.find('#calnext').click
     page.find('div.span3 > div.field.datetime-field:nth-child(2) > div.input-append > a.add-on.calendar').click
     page.find('#calnext').click
+    page.find('#project_location_attributes_address1').click
     fill_in 'project_estimated_budget', :with => '20000'
     fill_in 'project_location_attributes_address1', :with => '123 Anywhere Lane'
     fill_in 'project_location_attributes_address2', :with => 'Suite 2122'
