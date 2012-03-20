@@ -1,3 +1,4 @@
+# TODO project_documents and cover_photo, project_privileges, may_* functions, *_bid* functions, hold_bids_and_notify_bidders
 require 'spec_helper'
 
 describe Project do
