@@ -14,12 +14,15 @@ fixtures:all
     page.should have_content('Post a Project')
     fill_in 'project_name', :with => 'Test Private Project 1a'
     select('Demolition', :from => 'project_project_type_id')
-    page.find('div.span3 > div.field.datetime-field > div.input-append > a.add-on.calendar').click
+    page.find('div.field.datetime-field > div.input-append > a.add-on.calendar').click
     page.find('#calnext').click
+    click_link '21'
     page.find('div.span3 > div.field.datetime-field:nth-child(1) > div.input-append > a.add-on.calendar').click
     page.find('#calnext').click
+    click_link '24'
     page.find('div.span3 > div.field.datetime-field:nth-child(2) > div.input-append > a.add-on.calendar').click
     page.find('#calnext').click
+    click_link '26'
     page.find('#project_location_attributes_address1').click
     fill_in 'project_estimated_budget', :with => '20000'
     fill_in 'project_location_attributes_address1', :with => '123 Anywhere Lane'
