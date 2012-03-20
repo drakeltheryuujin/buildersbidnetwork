@@ -38,6 +38,9 @@ fixtures:all
     assert_equal 'Illinois', 'Illinois'
     assert_equal '60126', '60126'
     assert_equal 'I Develop Mobile Applications, and Websites', 'I Develop Mobile Applications, and Websites'  
-    find('.alert-message').should have_content('Project was successfully created')  
+    click_link 'Continue'
+    find(:css, "#project_terms_of_use[value='1']").set(true)
+    click_button 'Publish Project'
+    find('.alert-message').should have_content('Project was successfully created')
     end
  end
