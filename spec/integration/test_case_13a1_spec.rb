@@ -22,6 +22,7 @@ fixtures:all
     click_link '24'
     page.find('div.span3 > div.field.datetime-field:nth-child(2) > div.input-append > a.add-on.calendar').click
     page.find('#calnext').click
+    page.find('#calnext').click
     click_link '26'
     page.find('#project_location_attributes_address1').click
     fill_in 'project_estimated_budget', :with => '20000'
@@ -44,6 +45,6 @@ fixtures:all
     click_link 'Continue'
     find(:css, "#project_terms_of_use[value='1']").set(true)
     click_button 'Publish Project'
-    find('.alert-message').should have_content('Project was successfully created')
+    find('.alert-message').should have_content('Project was successfully updated.')
     end
  end
