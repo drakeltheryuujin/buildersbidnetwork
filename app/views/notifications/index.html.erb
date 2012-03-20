@@ -19,40 +19,46 @@
 
       <div class="notification_result ">
         <div class="row">
-          <div class="span2 ">
-            <% if notification.sender.present? && notification.sender.profile.present? %>
-              <%= render :partial => "/profiles/cover_photo", :locals => { :profile => notification.sender.profile } %>
-            <% else %>
-              <%= image_tag "/images/company_square.png", :alt => "System" %>
-            <% end %>
-          </div>
-          <div class="span8 ">
-            <div class="result_name">
-              <h6>
-                <% if notification.type.present? %>
-                  <%= link_to(notification.subject, conversation_path(notification.conversation)) %>
-                <% else %>
-                  <strong>System Notification</strong>
-                <% end %>
-              </h6>
-              <p class="message_preview">
-                <%= raw(truncate(strip_tags(notification.body), :length => 175)) %>
-                <% if notification.notification_type == :project_award_message.to_s && notification.notified_object.present? %>
-                <p class="message_actions">
-                  <%= link_to 'Accept or Decline', project_bid_path(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
-                </p>
-              <% elsif notification.notification_type == :bid_placed_message.to_s && notification.notified_object.present? %>
-                <p class="message_actions">
-                  <%= link_to 'View Bid', project_bid_url(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
-                </p>
-              <% elsif notification.notification_type == :project_invite.to_s && notification.notified_object.present? %>
-                <p class="message_actions">
-                  <%= link_to 'PROJECT SCOPE', project_path(notification.notified_object), :class => 'btn primary' %>
-                </p>
+          <% if notification.sender.present? %>
+            <div class="span2 ">
+              <% if notification.sender.profile.present? %>
+                <%= render :partial => "/profiles/cover_photo", :locals => { :profile => notification.sender.profile } %>
+              <% else %>
+                <%= image_tag "/images/company_square.png", :alt => "System" %>
               <% end %>
-              </p>
             </div>
-          </div>
+            <div class="span8 ">
+              <div class="result_name">
+                <h6>
+                  <%= link_to_if(notification.conversation.present?, notification.subject, conversation_path(notification.conversation)) %>
+                </h6>
+                <p class="message_preview">
+                  <%= raw(truncate(strip_tags(notification.body), :length => 175)) %>
+                  <% if notification.notification_type == :project_award_message.to_s && notification.notified_object.present? %>
+                    <p class="message_actions">
+                      <%= link_to 'Accept or Decline', project_bid_path(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
+                    </p>
+                  <% elsif notification.notification_type == :bid_placed_message.to_s && notification.notified_object.present? %>
+                    <p class="message_actions">
+                      <%= link_to 'View Bid', project_bid_url(notification.notified_object.project, notification.notified_object), :class => 'btn primary' %>
+                    </p>
+                  <% elsif notification.notification_type == :project_invite.to_s && notification.notified_object.present? %>
+                    <p class="message_actions">
+                      <%= link_to 'PROJECT SCOPE', project_path(notification.notified_object), :class => 'btn primary' %>
+                    </p>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          <% else %>
+            <div class="span10 ">
+              <% if notification.notification_type.present? %>
+                <%= render notification.notification_type.to_s %>
+              <% else %>
+                <%= notification.body %>
+              <% end %>
+            </div>
+          <% end %>
           <div class="span2 alpha">
             <div class="result_numbers">
               <%= notification.created_at.to_date.to_s(:tiny) %>
@@ -63,6 +69,8 @@
                 <%= link_to(conversation_path(notification.conversation), :class => "btn small add") do %>
                   <%= image_tag "/images/icon_plus_add.png" %>View
                 <% end %>
+              <% else %>
+                <%= link_to("Mark As Read", notification_path(notification, {:read => 'Read'}), :class => 'btn small', :method => :put) %>
               <% end %>
             </div>
           </div>

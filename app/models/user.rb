@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
     elsif filter.present? && filter.to_sym == :sent
       notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
     else
-      notifs = notifs.not_trashed.where('receipts.mailbox_type' => 'inbox')
+      notifs = notifs.not_trashed
     end
   end
 
@@ -133,6 +133,13 @@ class User < ActiveRecord::Base
     response.recipients.delete(self)
     return response.deliver true,sanitize_text
   end
+
+  def send_welcome_notification
+    notification = Notification.new({:body => "Welcome!", :subject => "Welcome to BBN!", :notification_type => :welcome_notification})
+    notification.recipients = [self]
+    return notification.deliver false
+  end
+
 
   private
 
