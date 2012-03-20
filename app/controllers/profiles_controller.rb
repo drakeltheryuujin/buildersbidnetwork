@@ -59,6 +59,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+        @profile.user.send_welcome_notification
         format.html { 
           if(current_user.sign_in_count == 1 && current_user.invited_project.present?)
             redirect_to(project_path(current_user.invited_project), :notice => 'Your profile was successfully created. Here are is the project you were invited to bid on.') 

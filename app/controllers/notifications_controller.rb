@@ -29,8 +29,11 @@ class NotificationsController < ApplicationController
   end
 
   def update
+    y params
     if params[:read].present?
+      puts "foo"
       if params[:read].eql?("Read")
+        puts "bar"
         @actor.read @notification
       elsif params[:read].eql?("Unread")
         @actor.unread @notification
