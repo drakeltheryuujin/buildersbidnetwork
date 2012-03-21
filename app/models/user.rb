@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
     elsif filter.present? && filter.to_sym == :sent
       notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
     else
-      notifs = notifs.not_trashed
+      notifs = notifs.not_trashed.where("\"receipts\".\"mailbox_type\" = 'inbox' OR \"receipts\".\"mailbox_type\" is null")
     end
   end
 
