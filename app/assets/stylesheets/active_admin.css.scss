@@ -17,6 +17,11 @@
   font-weight: bold;
 }
 
+#subject,
+#body { width: 350px; }
+
+.send_message_form { text-align: right; }
+
 table.dashboard .dashboard_section h1 { @include section-header; font-size: 3.0em; }
 table.dashboard .dashboard_section h1 strong,
 table.dashboard .dashboard_section h3 strong { float: right; }

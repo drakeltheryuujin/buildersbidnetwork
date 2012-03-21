@@ -1,8 +1,10 @@
 <%= div_for(message, :class => read_class + " row") do%>
   <div class="span2">
     <div class="sender_name">
-      <%= link_to_unless(message.sender.profile.blank?, (image_tag "/images/company_square.png", :alt => "Profile"), profile_path(message.sender.profile)) %>
-      <%= link_to_unless(message.sender.profile.blank?, message.sender.name, profile_path(message.sender.profile)) %>
+      <% unless message.sender.profile.blank? %>
+        <%= render :partial => "/profiles/cover_photo", :locals => { :profile => message.sender.profile } %>
+        <%= link_to(message.sender.name, profile_path(message.sender.profile)) %>
+      <% end %>
     </div>
     <div class="date">
     <%= time_ago_in_words(message.updated_at) %> ago
