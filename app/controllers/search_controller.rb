@@ -2,14 +2,9 @@ class SearchController < ApplicationController
   helper :all
 
   def index
-    @params = params[:search]
-    if params[:page].blank?
-      @params['page'] = 1
-    else
-      @params['page'] = params[:page]
-    end
-    
-    @search = Search.new(@params)
+    params[:search] ||= {}
+    params[:search][:page] = params[:page]
+    @search = Search.new(params[:search])
   end
 
 end
