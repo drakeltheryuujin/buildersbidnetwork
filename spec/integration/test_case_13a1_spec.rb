@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe 'Test Case 13a1 Creating a Private Project' do
+describe 'Test Case 13a1-13a4 Creating a Private Project and Viewing a Private Project to those who have access' do
 fixtures:all
-  it 'Creates Private Project and Verifies only Invited People and Project Owner Can view this project' do
+  it 'Creates Project and Verifies only Invited People and Project Owner Can view this project' do
     visit '/'
     fill_in 'user_email', :with => 'user@developera.com'
     find_field('user_email').value.should == 'user@developera.com' 
@@ -35,16 +35,31 @@ fixtures:all
     choose('project_private_true')
     find(:css, "#project_terms_of_use[value='1']").set(true)
     click_button 'Save and Continue'
-    assert_equal 'Test Private Project 1a', 'Test Private Project 1a' 
-    assert_equal '123 Anywhere Lane', '123 Anywhere Lane'
-    assert_equal 'Suite 2122', 'Suite 2122'
-    assert_equal 'Chicago' , 'Chicago'
-    assert_equal 'Illinois', 'Illinois'
-    assert_equal '60126', '60126'
-    assert_equal 'I Develop Mobile Applications, and Websites', 'I Develop Mobile Applications, and Websites'  
     click_link 'Continue'
     find(:css, "#project_terms_of_use[value='1']").set(true)
     click_button 'Publish Project'
     find('.alert-message').should have_content('Project was successfully updated.')
+    click_link "My BBN"
+    click_link "Test Private Project 1a"
+    click_link "Invite Only"
+    fill_in 'email_address', :with => 'user@contractori.com'
+    fill_in 'message_body', :with => 'Here is a Private Project which I think might be something of interest to you. Take a look'
+    click_button 'Send E-Mail'
+    find('.alert-message').should have_content('User invited.')
+    page.find('a.dropdown-toggle').click
+    click_link "Logout"
+    visit '/'
+    fill_in 'user_email', :with => 'user@contractori.com'
+    find_field('user_email').value.should == 'user@contractori.com' 
+    fill_in 'Password', :with => 'user@contractori.com'
+    find_field('Password').value.should == 'user@contractori.com' 
+    click_button 'Login'
+    page.should have_content('Dashboard')
+    click_link "My BBN"
+    click_link "Notifications"
+    click_link "Invitation to bid from Developer A Profile"
+    click_link "Invite Only"
+    click_link "Test Private Project 1a"
+    click_link "Browse"
     end
  end
