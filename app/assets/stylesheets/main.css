@@ -858,6 +858,19 @@ font-weight: bold;
   width: 474px;    
 }
 /* Project Page Non-Subscribed View Style */
+.project_page .tab-pane .row .btn, .profile_page .row .btn {
+  display: block;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.profile_page .form-stacked label {
+  padding-left:20px;
+}
+
+.profile_page select, input[type="file"] {
+  padding-left:20px;
+}
+
 .project_page .btn.subscribe {
   background: transparent url('/images/lock.png')0 no-repeat;
   background-color:#87C442;
