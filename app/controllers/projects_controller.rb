@@ -114,6 +114,15 @@ class ProjectsController < ApplicationController
   end
 
   def manage_access
+    @privileged_users = []
+    @privileged_profiles = []
+    @project.privileged_users.each do |user|
+      if user.profile.present?
+        @privileged_profiles << user.profile
+      else
+        @privileged_users << user
+      end
+    end
   end
   
   def revoke_access
