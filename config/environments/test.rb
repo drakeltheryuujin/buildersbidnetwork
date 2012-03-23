@@ -38,8 +38,17 @@ Ypn::Application.configure do
 
   PAPERCLIP_STORAGE_OPTIONS = {}
   
+#  config.after_initialize do
+#    ActiveMerchant::Billing::Base.mode = :test
+#    ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+#  end
   config.after_initialize do
-	  ActiveMerchant::Billing::Base.mode = :test
-	  ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
-	end
+    LOGIN_ID = '2n4C4Heq'
+    TRANSACTION_KEY = '6D46P5gn46tak4Qs' 
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+      :login  => LOGIN_ID,
+      :password => TRANSACTION_KEY
+    )
+  end
 end
