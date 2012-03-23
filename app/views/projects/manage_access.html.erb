@@ -16,29 +16,27 @@
       <% end %>
     </div>
     <div class="invited_emails">
-      <% @project.privileged_users.never_logged_in.each do |user| %>
+      <% @privileged_users.each do |user| %>
         <%= link_to revoke_access_project_path(@project, { :user_id => user.id }), :method => :delete, :confirm => 'Are you sure?', :class => 'btn small delete' do %>
           <%= user.email %> <%= image_tag '/images/icon_X_delete.png' %> 
         <% end %>
       <% end %>
     </div>
-    <% @project.privileged_users.has_logged_in.each do |user| %>
+    <% @privileged_profiles.each do |profile| %>
       <div class="search_result manage_access_result contractor ">
         <div class="result_image ">
-          <%= render :partial => "/profiles/cover_photo", :locals => { :profile => user.profile } %>
+          <%= render :partial => "/profiles/cover_photo", :locals => { :profile => profile } %>
         </div>
         <div class="result_body">
-          <div class="result_name"><%= link_to_if user.profile.present?, user.name, profile_path(user.profile) %></div>
-            <% if user.profile.present? %>
+          <div class="result_name"><%= link_to profile.name, profile_path(profile) %></div>
             <div class="result_location">
-              <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{user.profile.latitude}%2C#{user.profile.longitude}" %>
-              <%= user.profile.location.city + ", " + user.profile.location.state %>
+              <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{profile.latitude}%2C#{profile.longitude}" %>
+              <%= profile.location.city + ", " + profile.location.state %>
             </div>
-            <span class="sector"><%= user.profile.type_name %></span>
-          <% end %>
+            <span class="sector"><%= profile.type_name %></span>
         </div>
         <div class="result_infos">
-          <%= link_to revoke_access_project_path(@project, { :user_id => user.id }), :method => :delete, :confirm => 'Are you sure?', :class => 'btn small delete' do %>
+          <%= link_to revoke_access_project_path(@project, { :user_id => profile.user.id }), :method => :delete, :confirm => 'Are you sure?', :class => 'btn small delete' do %>
             <%= image_tag '/images/icon_X_delete.png' %> Remove
           <% end %>
         </div>

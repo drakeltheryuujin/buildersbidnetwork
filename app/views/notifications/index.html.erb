@@ -52,7 +52,7 @@
             </div>
           <% else %>
             <div class="span10 ">
-              <% if notification.notification_type.present? %>
+              <% if notification.notification_type.present? && notification.notification_type == :welcome_notification.to_s %>
                 <%= render notification.notification_type.to_s %>
               <% else %>
                 <%= notification.body %>
