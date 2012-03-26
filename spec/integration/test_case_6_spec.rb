@@ -40,12 +40,12 @@ fixtures:all
     click_link "Browse"
     click_link "Developer B Project 5"
     click_link "Enter Bid"
-    fill_in 'bid_line_items_bids_attributes_0_unit_cost', :with => '500'
-    fill_in 'bid_line_items_bids_attributes_1_unit_cost', :with => '400'
-    fill_in 'bid_line_items_bids_attributes_2_unit_cost', :with => '300'
-    fill_in 'bid_line_items_bids_attributes_3_unit_cost', :with => '200'
-    fill_in 'bid_line_items_bids_attributes_0_unit_cost', :with => '100'
+    fill_in 'bid_line_item_bids_attributes_0_unit_cost', :with => '500'
+    fill_in 'bid_line_item_bids_attributes_1_unit_cost', :with => '400'
+    fill_in 'bid_line_item_bids_attributes_2_unit_cost', :with => '300'
+    fill_in 'bid_line_item_bids_attributes_3_unit_cost', :with => '200'
+    fill_in 'bid_line_item_bids_attributes_0_unit_cost', :with => '100'
     click_button "Publish Bid"
-    find('.alert-message').should have_content('Bid was successfully created.')
+    find('.alert-message').should have_content('Bid was successfully created')
     end
  end
