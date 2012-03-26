@@ -10,6 +10,7 @@ fixtures:all
     find_field('Password').value.should == 'user@developera.com' 
     click_button 'Login'
     page.should have_content('Dashboard')
+    
     click_link "Browse"
     click_link "Developer B Project 2"
     click_link "Send a Message"
@@ -18,4 +19,5 @@ fixtures:all
     find('.alert-message success').should have_content('Message Sent')
     
     click_link "Notifications"
-    click_link "
+  end
+end
