@@ -4,7 +4,7 @@
 p_d<%= a.capitalize %><%= j %>_Li<%= i %>:
   content: p_d<%= a.capitalize %><%= j %>_Li<%= i %>
   units: <%= (rand(3) != 0 ? 1 + rand(1000) : '') %>
-  project: project_d<%= a.capitalize %><%= i %>
+  project: project_d<%= a.capitalize %><%= j %>
 <% end %>
 <% end %>
 <% end %>
