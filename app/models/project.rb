@@ -85,7 +85,7 @@ class Project < ActiveRecord::Base
     state :awarded
 
     event :publish do
-      transitions :to => :published, :from => [:draft, :published]
+      transitions :to => :published, :from => [:draft, :cancelled, :published]
     end
     event :cancel do
       transitions :to => :cancelled, :from => :published
