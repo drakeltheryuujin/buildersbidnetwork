@@ -30,6 +30,7 @@ contractor_<%= a %>:
   <% email = "user@contractor#{ a }.com" %>
   email: <%= email %>
   encrypted_password: <%= ::BCrypt::Password.create("#{email}#{pepper}", :cost => cost).to_s %>
+  credits: 50
   confirmed_at: <%= Time.now %>
 
 <% end %>

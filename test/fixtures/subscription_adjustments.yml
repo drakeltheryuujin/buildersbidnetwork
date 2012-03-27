@@ -1,13 +1,8 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+<% ['i', 'ii', 'iii'].each do |a| %>
+contractor_<%= a %>_subscription_adjustment:
+  subscription: contractor_<%= a %>_subscription
+  type: GrantedSubscription
+  start_at: <%= Time.now %>
+  end_at: <%= Time.now + 1.year %>
 
-one:
-  subscription: one
-  type: SubscriptionPayment
-  start_at: 2012-02-07 16:57:38
-  end_at: 2012-02-07 16:57:38
-
-two:
-  subscription: two
-  type: SubscriptionPayment
-  start_at: 2012-02-07 16:57:38
-  end_at: 2012-02-07 16:57:38
+<% end %>
