@@ -1,4 +1,4 @@
-<% ('a'..'e').each do |a| %>
+<% ('a'..'d').each do |a| %>
 <% (1..5).each do |j| %>
 <% (1..10).each do |i| %>
 p_d<%= a.capitalize %><%= j %>_Li<%= i %>:
@@ -6,6 +6,15 @@ p_d<%= a.capitalize %><%= j %>_Li<%= i %>:
   units: <%= (rand(3) != 0 ? 1 + rand(1000) : '') %>
   project: project_d<%= a.capitalize %><%= j %>
 <% end %>
+<% end %>
+<% end %>
+
+<% (1..5).each do |j| %>
+<% (1..10).each do |i| %>
+p_dE<%= j %>_Li<%= i %>:
+  content: p_dE<%= j %>_Li<%= i %>
+  units: <%= (i % 2 == 0 ? 1 + rand(1000) : '') %>
+  project: project_dE<%= j %>
 <% end %>
 <% end %>
 
