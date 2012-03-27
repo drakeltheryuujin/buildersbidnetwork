@@ -8,7 +8,7 @@
   <% content_for :top_head, "Your bid award was accepted!" %>
 <% elsif @message.notification_type == :bid_placed_message %>
   <% content_for :top_head, "A bid has been placed!" %>
-<% elsif @message.notification_type == :project_invite %>
+<% elsif @message.notification_type == :project_invite || @message.notification_type == :site_invite %>
   <% content_for :top_head, "You've been invited!" %>
 <% else %>
   <% content_for :top_head, "You have a new message!" %>
@@ -47,6 +47,23 @@
 
   <p class="message_actions">
     <%= link_to 'View Project Details', project_url(@message.notified_object), :class => 'btn primary' %>
+    <% if @receiver.invitation_token.present? && @receiver.invitation_accepted_at.blank? %>
+      <%= link_to 'Accept invitation', accept_invitation_url(@receiver, :invitation_token => @receiver.invitation_token), :class => 'btn primary' %>
+    <% end %>
+  </p>
+  <% if @receiver.invitation_token.present? && @receiver.invitation_accepted_at.blank? %>
+    <p>
+      If you don't want to accept the invitation, please ignore this email.<br />
+      Your account won't be created until you access the link above and set your password.
+    </p>
+  <% end %>
+<% elsif @message.notification_type == :site_invite %>
+  <p>
+    <%= @message.sender.name %> has invited you to BuildersBidNetwork.
+    You can accept the invitation through the link below.
+  </p>
+
+  <p class="message_actions">
     <% if @receiver.invitation_token.present? && @receiver.invitation_accepted_at.blank? %>
       <%= link_to 'Accept invitation', accept_invitation_url(@receiver, :invitation_token => @receiver.invitation_token), :class => 'btn primary' %>
     <% end %>

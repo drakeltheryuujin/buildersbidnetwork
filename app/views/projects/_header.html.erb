@@ -29,10 +29,12 @@
             <strong><%= @project.bids.visible.count %></strong> Current <%= (@project.bids.visible.count == 1 ? "Bid" : "Bids") %>
           </span>
         <% end %>
-        <% if @project.private %>
-          <%= link_to content_tag(:span, "Invite Only", :class => "private_flag"), manage_access_project_path(@project), :class => "btn small" unless (current_page? manage_access_project_path(@project)) %>
-        <% elsif may_admin_project? %>
-          <%= link_to content_tag(:span, "Share Project", :class => "share_flag"), manage_access_project_path(@project), :class => "btn small" unless (current_page? manage_access_project_path(@project)) %>
+        <% if @project.published? %>
+          <% if @project.private %>
+            <%= link_to content_tag(:span, "Invite Only", :class => "private_flag"), manage_access_project_path(@project), :class => "btn small" unless (current_page? manage_access_project_path(@project)) %>
+          <% elsif may_admin_project? %>
+            <%= link_to content_tag(:span, "Share Project", :class => "share_flag"), manage_access_project_path(@project), :class => "btn small" unless (current_page? manage_access_project_path(@project)) %>
+          <% end %>
         <% end %>
         <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit' unless @project.award_period?  %> 
       <% end %>
