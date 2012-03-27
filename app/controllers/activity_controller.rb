@@ -3,7 +3,7 @@ class ActivityController < ApplicationController
 
   def index
     @filter = params[:filter]
-    @page = 1 unless params[:page]
+    @page = params[:page] || 1
     
     if current_user.developer?
       @projects = Project.where(:user_id => current_user.id).order(:bidding_end).page(@page)
@@ -19,7 +19,7 @@ class ActivityController < ApplicationController
           #@projects = @projects.find_all_by_user_id current_user.id
         end
       end
-
+          
       render :action => "developer"
     else
       @bids = Bid.joins(:project).where(:user_id => current_user.id).order('projects.bidding_end').page(@page)

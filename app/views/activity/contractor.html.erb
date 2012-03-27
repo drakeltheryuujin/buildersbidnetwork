@@ -38,6 +38,7 @@
       <% @bids.each do |bid| %>
         <%= render :partial => "/projects/bid_bubble", :locals => { :bid => bid } %>
       <% end %>
+      <%= paginate @bids %>
     </div>
   </div>
 </div>
