@@ -21,7 +21,7 @@
     <div id="grey_box">&nbsp;</div>
     <div class="searching_man">&nbsp;</div>
     
-    <div class="search_box home_box row">
+    <div class="search_box home_box row" id="search_box">
       <h2>Search for Projects</h2>
       
       <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
