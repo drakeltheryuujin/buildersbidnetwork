@@ -784,10 +784,10 @@ padding-right:10px
 .db_page .searching_man {
 	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
-	left: 121px;
+	left: 205px;
   top: -1px;
-	width: 334px;
-	height: 221px;
+	width: 251px;
+	height: 166px;
 }
 .db_page .searching_man{
   left: 166px; 
@@ -812,7 +812,7 @@ font-weight: bold;
 }
 
 .home_page .account_box  label{
-  font-weight: normal;
+  font-weight: normal ;
   width:100%;
   text-align:left;
   text-transform:uppercase;
