@@ -2,7 +2,14 @@ require 'spec_helper'
 
 describe 'Test Case 3 Test Profile Registration' do
 fixtures:all
-  it 'Verifies the User can Successfully View a Profile' do
+  before(:all) do
+    Capybara.current_driver = :rack_test
+  end
+  after(:all) do
+    Capybara.use_default_driver
+  end
+
+  it 'Verifies the User can Successfully View a Profile', :js => false do
   
     # 3a1 Test registration e-mail and password validation
     visit '/'
