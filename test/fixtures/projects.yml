@@ -4,8 +4,8 @@
 project_d<%= a.capitalize %><%= i %>:
   name: "Developer <%= a.capitalize %> Project <%= i %>"
   user: developer_<%= a %>
-  location_id: <%= rand(12) %>
-  project_type_id: <%= rand(45) %>
+  location_id: <%= 1 + rand(11) %>
+  project_type_id: <%= 1+ rand(44) %>
   description: "Developer <%= a.capitalize %> Project <%= i %> Description"
   notes: "Developer <%= a.capitalize %> Project <%= i %> Notes"
   estimated_budget: <%= e_b %>

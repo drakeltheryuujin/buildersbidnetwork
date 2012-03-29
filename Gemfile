@@ -80,6 +80,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'capybara-email'
 end
 
 # Use unicorn as the web server

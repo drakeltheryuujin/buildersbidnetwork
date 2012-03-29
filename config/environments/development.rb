@@ -49,13 +49,13 @@ Ypn::Application.configure do
 #    :bucket => 'project-document-bucket'
 #  }
 
-	config.after_initialize do
+  config.after_initialize do
     LOGIN_ID = '2n4C4Heq'
-		TRANSACTION_KEY = '6D46P5gn46tak4Qs' 
-	  ActiveMerchant::Billing::Base.mode = :test
-	  ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-	    :login  => LOGIN_ID,
-	    :password => TRANSACTION_KEY
+    TRANSACTION_KEY = '6D46P5gn46tak4Qs' 
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+      :login  => LOGIN_ID,
+      :password => TRANSACTION_KEY
     )
-	end
+  end
 end

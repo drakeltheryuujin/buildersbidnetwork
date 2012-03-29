@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
 
     notifs = @actor.notifications(filter)
 
-    @notifications = notifs.page(params[:page]).per(10)
+    @notifications = notifs.page(params[:page])
   end
 
   def show

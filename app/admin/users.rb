@@ -41,6 +41,12 @@ ActiveAdmin.register User do
     end
   end
 
+  member_action :send_message, :method => :post do
+    user = User.find(params[:id])
+    current_user.send_message_with_object_and_type([user], params[:body], params[:subject], nil, :admin_message)
+    redirect_to({:action => :show}, :notice => "Message sent!")
+  end
+
   sidebar :relations, :only => :show do
     attributes_table_for user do
       row("Profile") { (user.profile.present? ? link_to(user.profile.name, admin_profile_path(user.profile)) : "No Profile Yet") }

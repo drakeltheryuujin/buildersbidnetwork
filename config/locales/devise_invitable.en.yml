@@ -7,4 +7,4 @@ en:
       no_invitations_remaining: "No invitations remaining"
     mailer:
       invitation_instructions:
-        subject: "[BBN] You\'ve Been Invited"
+        subject: "[BBN] You've Been Invited"

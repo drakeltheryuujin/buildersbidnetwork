@@ -212,6 +212,11 @@ form.new_profile_document {
   vertical-align: middle;
 }
 
+.project_form .btn { 
+  float: right; 
+  margin-left: 5px;
+}
+
 .project_sidebar .sidebar_box {
   padding: 10px; 
   background: #edebe1; 
@@ -256,7 +261,7 @@ form.new_profile_document {
   float: right;
   font-size: 11px;
 }
-.project_timeline .sidebar_number .private_flag {
+.project_timeline .sidebar_number .project_action {
   float: right;
 }
 
@@ -276,6 +281,9 @@ form.new_profile_document {
   display: block;
   float: left;
   padding: 0 15px;
+}
+.project_timeline .sidebar_number .private_project {
+  float: right;
 }
 
 

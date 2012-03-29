@@ -38,9 +38,13 @@ class Users::InvitationsController < Devise::InvitationsController
         end
       end
     else
-      self.resource = resource_class.invite!(params[resource_name], current_inviter)
+      self.resource = resource_class.invite!(params[resource_name], current_inviter) do |u|
+        u.skip_invitation = true
+      end
 
       if resource.errors.empty?
+        subject = "You've Been Invited"
+        current_inviter.send_message_with_object_and_type([self.resource], subject, subject, nil, :site_invite)
         set_flash_message :notice, :send_instructions, :email => self.resource.email
         respond_with resource, :location => after_invite_path_for(resource)
       else

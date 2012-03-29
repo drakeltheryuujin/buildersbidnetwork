@@ -1,10 +1,10 @@
   <div class="span4 ">
     <div class="track_filters ">
       <ul>
-        <li class="<%= 'active' if ((current_page? notifications_path) && (! params[:filter])) %>"><%= link_to "All (#{@actor.notifications().count})"%></li>
-        <li class="<%= 'active' if params[:filter] == :unread.to_s %>"><%= link_to "Unread (#{@actor.notifications(:unread).count})"%></li>
-        <li class="<%= 'active' if params[:filter] == :trash.to_s %>"><%= link_to "Deleted (#{@actor.notifications(:trash).count})"%></li>
-        <li class="<%= 'active' if params[:filter] == :sent.to_s %>"><%= link_to "Sent (#{@actor.notifications(:sent).count})"%></li>
+        <li class="<%= 'active' if ((current_page? notifications_path) && (! params[:filter])) %>"><%= link_to "All (#{@actor.notifications().count})", notifications_path %></li>
+        <li class="<%= 'active' if params[:filter] == :unread.to_s %>"><%= link_to "Unread (#{@actor.notifications(:unread).count})", notifications_path(:filter => :unread)%></li>
+        <li class="<%= 'active' if params[:filter] == :trash.to_s %>"><%= link_to "Deleted (#{@actor.notifications(:trash).count})", notifications_path(:filter => :trash)%></li>
+        <li class="<%= 'active' if params[:filter] == :sent.to_s %>"><%= link_to "Sent (#{@actor.notifications(:sent).count})", notifications_path(:filter => :sent)%></li>
       </ul>
     </div>
   </div>
