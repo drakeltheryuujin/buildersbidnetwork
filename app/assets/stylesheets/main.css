@@ -41,7 +41,7 @@
 }
 .brand_header .search_nav {
   float: right;
-  padding-top: 20px;
+  margin-top: 20px;
 }
 .brand_header .search_nav input.search {
   color:#B2B2B2;
