@@ -784,10 +784,10 @@ padding-right:10px
 .db_page .searching_man {
 	background: transparent url('/images/search_man.png') 0 0 no-repeat;
 	position: absolute; 
-	left: 205px;
+	left: 179px;
   top: -1px;
-	width: 251px;
-	height: 166px;
+	width: 276px;
+	height: 183px;
 }
 .db_page .searching_man{
   left: 166px; 
