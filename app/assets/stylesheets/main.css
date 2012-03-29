@@ -1002,29 +1002,34 @@ font-weight: bold;
 .home_page .info_box .btn {
   text-align: center;
 }
-.home_page .span8 {
-  border: 3px solid #EEE;
+.bottombar.span8 {
+  margin: 0 auto;
   width:965px;
+  height: 254px;
   }
-.home_page .perfect_tool_carousel {
+.bottombar nav {float: right;}
+.bottombar nav a {-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;float: left; margin: 0 5px; width: 10px; height: 10px; display: block; background-color: gray; }
+.bottombar nav a.activeSlide {background-color: #E56F01;}
+.bottombar nav a span {display: none;}
+.perfect_tool_carousel {
  background: transparent url('/images/home_computer.png') 0 0 no-repeat;
- float:left;
- height:248px;
- margin-top:20px;
- padding-right:20px;
- width:945px;
+ float: left;
+ height:234px;
+ width: 414px;
+ margin:20px 20px 0 0;
 }
 
-.home_page .perfect_tool_carousel h2{
+.bottombar h2, .bottombar p{
   float:right;
+  font-weight: normal;
+  width: 531px;
 }
-.home_page .perfect_tool_carousel p{
-  float:right;
-  padding-left:397px;
-}
+
+.bottombar h2 {border-bottom: 1px dotted #ccc; padding: 0 0 5px 0px; margin: 0 0 15px 0;}
+  .bottombar span {font-weight: bold;}
+
 .home_page .perfect_tool_carousel .btn.primary {
   float:right;
-  margin-right:411px;
 }
 
  /* Subscription Code *********************************************/

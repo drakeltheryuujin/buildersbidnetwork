@@ -89,11 +89,43 @@
     </div>
   </div>  
     <div class="span8">
-      <div class="perfect_tool_carousel">
-        <h2>The Perfect Tool for Bidding in the 21st Century</h2>
-          <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
-          <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
-      </div>
+     
    </div>
 </div>
+</div> <!-- end #wrapper for home page-->
+<div class="span8 bottombar" >
+    <nav></nav>
+  <div class="carousel">
+    <div class="slide">
+      <div class="perfect_tool_carousel"></div>
+      <h2>The <span>Perfect Tool</span> for <span>Bidding</span><br>in the 21st Century</h2>
+      <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
+      <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
+    </div>
+    <div class="slide">
+      <div class="perfect_tool_carousel"></div>
+      <h2>The <span>Perfect Tool</span> for <span>Bidding</span><br>in the 21st Century</h2>
+      <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
+      <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
+    </div>
+    <div class="slide">
+      <div class="perfect_tool_carousel"></div>
+      <h2>The <span>Perfect Tool</span> for <span>Bidding</span><br>in the 21st Century</h2>
+      <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
+      <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
+    </div>
+  </div><!--carousel-->
+  <% content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.carousel').cycle({
+        fx: 'scrollRight',
+        delay: 5000, 
+        pager: 'nav'
+      });
+    });
+  </script>
+  <% end -%>
+</div>
+
 

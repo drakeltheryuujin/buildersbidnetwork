@@ -8,6 +8,8 @@
 //= require jquery.calculation
 //= require jquery.tools.min
 //= require jquery.placeholder.min
+//= require jquery.cycle.min
+
 
 jQuery(document).ready(function($) {
   $(":input[placeholder]").placeholder();
