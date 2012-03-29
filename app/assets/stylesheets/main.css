@@ -812,6 +812,7 @@ font-weight: bold;
 }
 
 .home_page .account_box  label{
+  font-weight: normal;
   width:100%;
   text-align:left;
   text-transform:uppercase;
