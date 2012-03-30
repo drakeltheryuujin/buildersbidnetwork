@@ -895,19 +895,44 @@ font-weight: bold;
   width: 635px;
 }
 .btn.primary {
+  background-color:#FF8013;
+  color:#fff;
+  border-color:#E56F01;
+  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FFB134', endColorstr='#FF8013'); /* IE6 & IE7 */
+  background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFB134), color-stop(1, #FF8013)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Proposed W3C Markup */
+  outline: 0;
+  text-shadow: #333 0.1em 0.1em 0.2em;
+}
+.btn.primary:hover {
+  background-color:#f16315;
+  color:#fff;
+  border-color:#E56F01;
+  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f88c11', endColorstr='#f16315'); /* IE6 & IE7 */
+  background-image: -ms-linear-gradient(top, #f88c11 0%, #f16315 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #f88c11 0%, #f16315 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #f88c11 0%, #f16315 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f88c11), color-stop(1, #f16315)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #f88c11 0%, #f16315 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #f88c11 0%, #f16315 100%); /* Proposed W3C Markup */
+}
+.btn.primary:active {
   background-color:#FFB134;
   color:#fff;
   border-color:#E56F01;
-  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FF8013', endColorstr='#FFB134'); /* IE6 & IE7 */
-  background-image: -ms-linear-gradient(top, #FF8013 0%, #FFB134 100%);   /* IE*/  
-  background-image: -moz-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Mozilla Firefox */
-  background-image: -o-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Opera */  
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FF8013), color-stop(1, #FFB134)); /* Webkit (Safari/Chrome 10) */ 
-  background-image: -webkit-linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Webkit (Chrome 11+) */ 
-  background-image: linear-gradient(top, #FF8013 0%, #FFB134 100%); /* Proposed W3C Markup */
-  -webkit-transform-style: flat;
+  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f47b20', endColorstr='#faa21b'); /* IE6 & IE7 */
+  background-image: -ms-linear-gradient(top, #f47b20 0%, #faa21b 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #f47b20 0%, #faa21b 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #f47b20 0%, #faa21b 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f47b20), color-stop(1, #faa21b)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #f47b20 0%, #faa21b 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #f47b20 0%, #faa21b 100%); /* Proposed W3C Markup */
 }
-.btn.primary:hover {
+.btn.primary {
   background-position: 0;
 
   background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
@@ -1006,8 +1031,9 @@ font-weight: bold;
   margin: 0 auto;
   width:965px;
   height: 254px;
+  padding: 0 0 25px 0;
   }
-.bottombar nav {float: right;}
+.bottombar nav {float: right; margin-bottom: 10px;}
 .bottombar nav a {-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;float: left; margin: 0 5px; width: 10px; height: 10px; display: block; background-color: gray; }
 .bottombar nav a.activeSlide {background-color: #E56F01;}
 .bottombar nav a span {display: none;}
@@ -1020,12 +1046,13 @@ font-weight: bold;
 }
 
 .bottombar h2, .bottombar p{
+  color: #5c5c5c;
   float:right;
   font-weight: normal;
   width: 531px;
 }
 
-.bottombar h2 {border-bottom: 1px dotted #ccc; padding: 0 0 5px 0px; margin: 0 0 15px 0;}
+.bottombar h2 {border-bottom: 1px dotted #ccc; color: #262626; padding: 0 0 5px 0px; margin: 0 0 10px 0;}
   .bottombar span {font-weight: bold;}
 
 .home_page .perfect_tool_carousel .btn.primary {
