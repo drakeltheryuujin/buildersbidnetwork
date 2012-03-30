@@ -489,6 +489,7 @@ li.terms {
   border-width: 2px 0 0 0;
   border-style: solid;
   border-color: #ddd;
+  color: #ababab;
   margin: 10px 0 0 0;
   font-size: 10px;
   background-color: #EDEDED;
@@ -508,6 +509,7 @@ li.terms {
   font-weight:normal;
 }
 .footer ul li {
+  color: #ababab;
   float: right;
   padding: 3px 6px;
 }
@@ -525,6 +527,7 @@ li.terms {
   position:relative;
 }
 .footer ul li span.left_sidebottom {
+  color: #5d5d5d;
   font-size:12px;
   font-weight:normal;
   margin-top:5px;
