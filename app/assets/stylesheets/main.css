@@ -300,7 +300,6 @@ white-space: nowrap;
   background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(237,234,227,1) 100%);
   border-bottom: 1px solid #C2C2C2;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edeae3',GradientType=0 );
-  margin-bottom: 20px;
 }
 #top-banner  .tabs {
   margin-bottom: -1px;
@@ -500,6 +499,7 @@ li.terms {
   background-image: -webkit-linear-gradient(top, #EDEDED 0%, #FCFCFC 100%); /* Webkit (Chrome 11+) */ 
   background-image: linear-gradient(top, #EDEDED 0%, #FCFCFC 100%); /* Proposed W3C Markup */
 }
+.footer .fill {width:100%; height: 100%; background: transparent url(../images/footer_bkgd.png) repeat scroll 0 0;}
 
 .footer ul {
   list-style: none;
@@ -721,15 +721,29 @@ padding-right:10px
 .db_page .home_box ,.home_page #grey_box, .db_page #grey_box {
   border: 3px solid #eee;
   position: relative;
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 47%, #ededed 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f6f6), color-stop(47%,#ffffff), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #f6f6f6 0%,#ffffff 47%,#ededed 100%); /* IE10+ */
-  background: linear-gradient(top, # 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+  background: #f6f6f6; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff),color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 100%); /* IE10+ */
+  background: linear-gradient(top, # 0%,#ffffff 47%,#f6f6f6 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
   
+}
+.home_interior_wrap {
+  background-color:#f3f3f3;
+  filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f6f6f6', endColorstr='#f3f3f3'); /* IE6 & IE7 */
+  background-image: -ms-linear-gradient(top, #f6f6f6 0%, #f3f3f3 100%);   /* IE*/  
+  background-image: -moz-linear-gradient(top, #f6f6f6 0%, #f3f3f3 100%); /* Mozilla Firefox */
+  background-image: -o-linear-gradient(top, #f6f6f6 0%, #f3f3f3 100%); /* Opera */  
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f6f6f6), color-stop(1, #f3f3f3)); /* Webkit (Safari/Chrome 10) */ 
+  background-image: -webkit-linear-gradient(top, #f6f6f6 0%, #f3f3f3 100%); /* Webkit (Chrome 11+) */ 
+  background-image: linear-gradient(top, #f6f6f6 0%, #f3f3f3 100%); /* Proposed W3C Markup */
+  border-bottom: 3px solid #eee;
+  height: 100%;
+  padding:0;
+  width: 100%;
 }
 .db_page {
   position: relative;
@@ -897,7 +911,7 @@ font-weight: bold;
 .btn.primary {
   background-color:#FF8013;
   color:#fff;
-  border-color:#E56F01;
+  border-color:#db7e00;
   filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FFB134', endColorstr='#FF8013'); /* IE6 & IE7 */
   background-image: -ms-linear-gradient(top, #FFB134 0%, #FF8013 100%);   /* IE*/  
   background-image: -moz-linear-gradient(top, #FFB134 0%, #FF8013 100%); /* Mozilla Firefox */
@@ -1031,7 +1045,7 @@ font-weight: bold;
   margin: 0 auto;
   width:965px;
   height: 254px;
-  padding: 0 0 25px 0;
+  padding: 25px 0;
   }
 .bottombar nav {float: right; margin-bottom: 10px;}
 .bottombar nav a {-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;float: left; margin: 0 5px; width: 10px; height: 10px; display: block; background-color: gray; }
