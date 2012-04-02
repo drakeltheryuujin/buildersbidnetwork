@@ -62,22 +62,47 @@ current_email.should have_content 'Welcome'
 current_email.save_and_open
 current_email.click_link 'Confirm my account'
 page.should have_content 'test@test.com'
-find('.alert-message').should have_content("Your account was successfully confirmed. You are now signed in.")
+find('.alert-message').should have_content("Your account was successfully confirmed")
+
 
 #3c1 Complete registration
-visit '/'
+ Capybara.use_default_driver
+  visit '/'
 click_link "Log In"
 within ".login-box" do
-fill_in 'user_email', :with => 'test@test.com'
-fill_in 'user_password', :with => 'test1234'
+fill_in 'user_email', :with => 'user@developera.com'
+fill_in 'user_password', :with => 'user@developera.com'
 end
 click_button 'Log in'
-find('.alert-message').should have_content("Password is too short (minimum is 6 characters)")
+find('.alert-message').should have_content("Signed in successfully.")
 
 #3d1 Test Profile update with invalid fields
-
-
+Capybara.use_default_driver
+    click_link "Profile"
+      click_link "Edit Profile"
+         fill_in 'developer_profile_name', :with => ''
+         fill_in "developer_profile_location_attributes_address1", :with => ''
+         fill_in "developer_profile_location_attributes_address2", :with => ''
+         fill_in "developer_profile_location_attributes_city", :with => ''
+         select('Illinois', :from => 'developer_profile_location_attributes_state')
+         fill_in "developer_profile_location_attributes_post_code", :with => ''
+         fill_in "developer_profile_description", :with => ''
+      click_button 'Save Profile'
+      find('.alert-message').should have_content("errors prohibited this profile from being saved:")
+      
 #3d2 Test Profile update with valid fields
+Capybara.use_default_driver
+    click_link "Profile"
+      click_link "Edit Profile"
+         fill_in 'developer_profile_name', :with => 'test@test.com  '
+         fill_in "developer_profile_location_attributes_address1", :with => '123 Anywhere Lane'
+         fill_in "developer_profile_location_attributes_address2", :with => ''
+         fill_in "developer_profile_location_attributes_city", :with => 'Anywhere'
+         select('Illinois', :from => 'developer_profile_location_attributes_state')
+         fill_in "developer_profile_location_attributes_post_code", :with => '60101'
+         fill_in "developer_profile_description", :with => 'This is a test profile.'
+      click_button 'Save Profile'
+      find('.alert-message').should have_content("Profile was successfully updated.")
     
    end
 end
