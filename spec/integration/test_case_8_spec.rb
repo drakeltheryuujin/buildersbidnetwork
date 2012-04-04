@@ -36,16 +36,27 @@ fixtures:all
       click_button 'Login'
        visit '/admin/projects/962142065'  
       click_link "End Bidding"
-          click_button 'OK'
+         alert=page.driver.browser.switch_to.alert
+         alert.accept
             find('.flash_notice').should have_content("Bidding Ended!")
-    page.find('a.dropdown-toggle').click
     click_link "Logout"
     # 1. Project Owner are able to AWARD BID to a Contractor 
+    visit '/'
+       fill_in 'user_email', :with => 'user@developere.com'
+         find_field('user_email').value.should == 'user@developere.com' 
+       fill_in 'Password', :with => 'user@developere.com'
+         find_field('Password').value.should == 'user@developere.com' 
+      click_button 'Login'
+     page.should have_content('Dashboard')
       click_link "My BBN"
-        click_link "Developer A Project 1"
-          click_link "Bids"
-            click_button 'Bid Details'
-              click_button 'Award Project'
+        click_link "Past Projects"
+          click_link "Developer E Project 5"
+            click_link "Bids"
+              click_link 'Bid Details'
+                click_link 'Award Project'
+                 wait_until { page.find('#award-project-modal').visible? }
+                click_button "Send"
+                 find('.alert-message').should have_content("Bid Awarded")
       page.find('a.dropdown-toggle').click
         click_link "Logout"     
     # 2. Contractor able to VIEW BID AWARD NOTIFICATION
@@ -57,47 +68,42 @@ fixtures:all
       click_button 'Login'
     page.should have_content('Dashboard')
       click_link "Notifications"
-      click_link "Activity"
-      click_link "Active"
-      click_link "Developer E Project 5"
-      click_link 'Send A Message'
-        page.find('#contact-creator-modal').visible?
-          fill_in "message_body", :with => 'This is a Test Message to Verify the Send Message Notification is working correctly'
-        click_link "Send"
-      click_link "Notifications"
-    
+          click_link "Unread"
+              click_link "You've been awarded Developer E Project 5"
+                click_link 'Send A Message'
+  
     # 3. Contractor able to NAVIGATE TO BID AWARD PROJECT from NOTIFICATION
         visit '/'
         page.should have_content('Dashboard')
           click_link "Notifications"
-            click_link "You've been awarded Test Private Project 1a"
+            click_link "You've been awarded Developer E Project 5"
               click_link "Accept or Decline"
-                click_button 'Accept Project' 
-                  click_button 'Send' 
+ 
     # 4. Contractor able to ACCEPT BID AWARD for a PROJECT
-        click_link "You've been awarded Test Private Project 1a"
+        click_link "You've been awarded Developer E Project 5"
           click_link "Accept or Decline"
             click_button 'Accept Project'
-              fill_in "message_body", :with => 'I have decided to Accept the bid award on this project.' 
+              page.find('#contact-creator-modal').visible?
+                fill_in "message_body", :with => 'I have decided to Accept the bid award on this project.' 
             click_button 'Send' 
             find('.alert-message').should have_content("Bid Accepted")
     # 5. Contractor able to DECLINE BID AWARD for a PROJECT
-        click_link "You've been awarded Test Private Project 1a"
-          click_link "Accept or Decline"
-            click_button 'Decline Project'
-              fill_in "message_body", :with => 'I have decided to Decline the bid award on this project. Thanks for keeping me in mind for this project.' 
-          click_button 'Send' 
-            find('.alert-message').should have_content("Bid Declined")
-        page.find('a.dropdown-toggle').click
-          click_link "Logout"  
+        # click_link "You've been awarded Test Private Project 1a"
+          # click_link "Accept or Decline"
+            # click_button 'Decline Project'
+              # fill_in "message_body", :with => 'I have decided to Decline the bid award on this project. Thanks for keeping me in mind for this project.' 
+          # click_button 'Send' 
+            # find('.alert-message').should have_content("Bid Declined")
+        # page.find('a.dropdown-toggle').click
+          # click_link "Logout"  
     # 6. Project Owner receive BID DECLINED NOTIFICATION when CONTRACTOR DECLINES BID AWARD 
-      visit '/'
-        fill_in 'user_email', :with => 'user@contractori.com'
-          find_field('user_email').value.should == 'user@contractori.com' 
-        fill_in 'Password', :with => 'user@contractori.com'
-          find_field('Password').value.should == 'user@contractori.com' 
-        click_button 'Login'
-      page.should have_content('Dashboard')
+      # visit '/'
+        # fill_in 'user_email', :with => 'user@developere.com'
+          # find_field('user_email').value.should == 'user@developere.com' 
+        # fill_in 'Password', :with => 'user@developere.com'
+          # find_field('Password').value.should == 'user@developere.com' 
+        # click_button 'Login'
+      # page.should have_content('Dashboard')
     # 7. Project Owner are able to RE-AWARD BID to a Contractor (same as Test 8.1) 
     end
 end
