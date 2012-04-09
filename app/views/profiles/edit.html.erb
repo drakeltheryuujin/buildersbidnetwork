@@ -3,9 +3,7 @@
   <div class="span12">
     <%= render "header" %>
     <div class="row form-stacked profile-form">
-      <%= nested_form_for @profile, :url => profile_path(@profile) do |f| %>
-        <%= render :partial => 'form', :locals => { :f => f } %>
-      <% end %>
+      <%= render :partial => 'form' %>
       <%= form_for @profile, :url => add_cover_photo_profile_path(@profile), :method => :post, :html => { :multipart => true } do |f| %>
         <%= render :partial => 'form_cover_photo', :locals => { :f => f } %>
       <% end %>

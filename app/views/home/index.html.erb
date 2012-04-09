@@ -14,83 +14,108 @@
     </ul>
   </div>
 <% end %>
+</div><!-- end #wrap for home page -->
+<div class="home_interior_wrap">
+  <div class="container">
+    <div class="home_page row">
+      <div class="span10"> 
+        <div id="grey_box">&nbsp;</div>
+        <div class="searching_man">&nbsp;</div>
+        
+        <div class="search_box home_box row" id="search_box">
+          <h2>Search for Projects</h2>
+          
+          <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
+            <%= f.hidden_field :section %>
+            <table class="span3">
+              <tr>
+                <td><strong>Within:</strong></td>
+                <td>&nbsp;</td>
+                <td><strong>Your ZIP:</strong></td>
+              </tr>
+              <tr>
+                <td>
+                  <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
+                </td>
+                <td>of</td>
+                <td>
+                  <%= f.text_field :location, :size => 7, :class => "span2" %>
+                </td>
+              </tr>
+            </table>
 
+            <strong class="span9">Select a Project Type:</strong>
+            <%= f.collection_select(:type_ids, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select span9"}) %>
 
-<div class="home_page row">
-  <div class="span10"> 
-    <div class="search_box home_box row">
-      <h2>Search for Projects</h2>
-      <div class="background">&nbsp;</div>
-      <%= form_for Search.new(:section => :projects), :url => search_index_path, :method => :get do |f| %>
-        <%= f.hidden_field :section %>
-        <table class="span3">
-          <tr>
-            <td><strong>Within:</strong></td>
-            <td>&nbsp;</td>
-            <td><strong>Your ZIP:</strong></td>
-          </tr>
-          <tr>
-            <td>
-              <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100]], {}, {:class => "span3"} %>
-            </td>
-            <td>of</td>
-            <td>
-              <%= f.text_field :location, :size => 7, :class => "span2" %>
-            </td>
-          </tr>
-        </table>
-
-        <strong class="span9">Select a Project Type:</strong>
-        <%= f.collection_select(:type_ids, ProjectType.order(:name).all, :id, :name, {:prompt => true}, {:class => "type_select span9"}) %>
-
-        <div class="span9">
-          <%= f.submit 'Search', :class => 'large btn primary' %>
+            <div class="span9">
+              <%= f.submit 'Search', :class => 'large btn primary' %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
+      <div class="span6">
+       <div class="account_box home_box row">
+       <h2>Create an Account- It's Free!</h2>
+       <li>Registering an account is required to view, create, and bid on projects.</li>
+        <%= form_for(:user, :as => :user, :url => user_registration_path) do |f| %>
+
+          <div class="field text">
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+          </div>
+
+          <div class="field text">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+
+          <div class="field text">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+
+          <div class="field register">
+            <%= f.submit "Create Account", :class => "btn large primary" %>
+            <div class="terms">
+              <span class="field_info span4">
+                By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
+              </span>
+             </div>
+          </div>
+        <% end %>
+        <div class="cta">
+          Already have an account?
+          <%= link_to "Login ", new_user_session_path %>
+        </div>
+        </div>
+      </div>  
+        <div class="span8">
+         
+       </div>
     </div>
-  </div>
-  <div class="span6">
-   <div class="account_box home_box row">
-   <h2>Create an Account- It's Free!</h2>
-   <li>Registering an account is required to view, create, and bid on projects.</li>
-    <%= form_for(:user, :as => :user, :url => user_registration_path) do |f| %>
-
-      <div class="field text">
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-      </div>
-
-      <div class="field text">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-      </div>
-
-      <div class="field text">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-      </div>
-
-      <div class="field register">
-        <%= f.submit "Create Account", :class => "btn large primary" %>
-        <div class="terms">
-          <span class="field_info span4">
-            By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
-          </span>
-         </div>
-      </div>
-    <% end %>
-    <div class="cta">
-      Already have an account?
-      <%= link_to "Login ", new_user_session_path %>
+  </div> <!-- end .container for home page-->
+</div> <!--end .home interior wrap -->
+<div class="span8 bottombar" >
+    <nav></nav>
+  <div class="carousel">
+    <div class="slide">
+      <div class="perfect_tool_carousel"></div>
+      <h2>The <span>Perfect Tool</span> for <span>Bidding</span><br>in the 21st Century</h2>
+      <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
+      <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
     </div>
-    </div>
-  </div>  
-    <div class="span8">
-      <div class="perfect_tool_carousel">
-        <h2>The Perfect Tool for Bidding in the 21st Century</h2>
-          <p>Builders Bid Network is a centralized marketplace for developer projects. Bringing together the best contractors and the best projects in the same place. We reduce the time and money spent handling bids, and simplify requests for proposals- creating an efficient and streamlined approach to the entire process! Our clients can focus on work instead of paperwork. Feel free to sign up and take a look at how our system can help your business!</p>
-          <%= link_to "Get Started Now", new_user_registration_path, :class => "btn large primary" %>
-      </div>
-   </div>
+  </div><!--carousel-->
+  <% content_for :javascript do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function($){
+      $('.carousel').cycle({
+        fx: 'scrollLeft',
+        delay: 5000, 
+        pager: 'nav'
+      });
+    });
+  </script>
+  <% end -%>
 </div>
+
 

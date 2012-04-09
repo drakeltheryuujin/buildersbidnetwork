@@ -10,7 +10,13 @@
       <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{@profile.latitude}%2C#{@profile.longitude}" %>
       <%= @profile.location.city %>, <%= @profile.location.state %>
     </h4>
-    <span class="sector"><%= @profile.type_name %></span>
+    <% if @profile.project_types.blank? %>
+      <span class="sector"><%= @profile.type_name %></span>
+    <% else %>
+      <% @profile.project_types.each do |project_type| %>
+        <span class="sector"><%= project_type.type_name %></span>
+      <% end %>
+    <% end %>
   </div>
   <div class="span5">
     <div class="profile_actions">
@@ -18,7 +24,7 @@
         <%= link_to('Edit Profile', edit_profile_path(@profile), :class => 'btn small edit') %>
       <% end %>
       <% if @profile.user != current_user %>
-        <% if @profile.contractor_profile? && current_user.developer? && current_user.project.private.active.present? %>
+        <% if @profile.contractor_profile? && current_user.developer? %>
           <%= link_to invite_profile_path(@profile), :class => "btn large invite", "data-controls-modal" => "invite-modal", "data-backdrop" => "true" do %>
             <span>Invite to Bid</span>
           <% end %>

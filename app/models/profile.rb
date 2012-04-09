@@ -27,7 +27,10 @@ class Profile < ActiveRecord::Base
   
   has_many :profile_phones, :dependent => :destroy, :conditions => {:deleted_at => nil}
   has_many :phones, :through => :profile_phones
+  has_many :profile_documents
   
+  has_and_belongs_to_many :project_types
+
   has_attached_file :asset, {
     :styles => { :square_thumb  => "94x94#", :thumb => "100x100", :large => "600x400" }
   }.merge(PAPERCLIP_STORAGE_OPTIONS)
@@ -47,6 +50,13 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :phones, :allow_destroy => :true
   accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
 
+  accepts_nested_attributes_for :project_types, :allow_destroy => :true
+
+  scope :hidden, where(:hidden => true)
+  scope :visible, where(:hidden => false)
+
+  scope :distinct_visible, select('DISTINCT profiles.*').visible
+
   def location_address
     location.address
   end
@@ -57,6 +67,10 @@ class Profile < ActiveRecord::Base
 
   def cover_photo_square_thumb_url(default = '/images/company_square.png')
     (self.asset.present?) ? self.asset(:square_thumb) : default
+  end
+
+  def specialty?(project_type)
+    self.project_types.include?(project_type)
   end
 
 

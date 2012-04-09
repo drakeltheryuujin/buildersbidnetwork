@@ -29,7 +29,7 @@ class BidsController < ApplicationController
     update_bid_state! params
     
     if @bid.save
-      redirect_to(project_path(@project), :notice => 'Bid was successfully created.')
+      redirect_to(project_path(@project), :notice => 'Bid was successfully created as Draft.')
     else
       render :action => "new"
     end

@@ -45,7 +45,7 @@
 "Windows"].each_with_index do |name, i| %>
 <%= name.gsub(/[^0-9a-z ]/i, '').gsub(/ /, '_').underscore %>:
   id: <%= i + 1 %>
-  name: <%= name %>
+  type_name: <%= name %>
   
 <% end %>
 # == Schema Information

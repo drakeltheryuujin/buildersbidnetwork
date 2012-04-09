@@ -1,12 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+<% ['i', 'ii', 'iii', 'iv'].each do |a| %>
+contractor_<%= a %>_granted_credits:
+  value: 50
+  type: GrantedCredit
+  user: contractor_<%= a %>
+  granted_by_id: 2
 
-#one:
-#  value: 1
-#  user: 
-
-#two:
-#  value: 1
-#  user: 
+<% end %>
 # == Schema Information
 #
 # Table name: credit_adjustments

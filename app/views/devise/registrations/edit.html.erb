@@ -54,7 +54,7 @@
         <%= f.password_field :current_password %>
       </div>
 
-      <div><%= f.submit "Update", :class => 'btn large primary float_right' %></div>
+      <div><%= f.submit "Update", :disable_with => "Updating...", :class => 'btn large primary float_right' %></div>
     <% end %>
 
   </div> <!-- /.track_results -->

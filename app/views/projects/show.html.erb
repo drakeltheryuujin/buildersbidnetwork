@@ -66,7 +66,7 @@
           <div class="project_meta">
             <div class="field">
               <label class="span2">Project Type</label>
-              <span class="sector"><%= @project.project_type.name %></span>
+              <span class="sector"><%= @project.project_type.type_name %></span>
             </div>
           </div> <!-- /project_meta -->
         </div>
@@ -130,7 +130,7 @@
                 <%= project_doc_form.label :description %>
                 <%= project_doc_form.text_field :description %>
               
-                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+                <%= project_doc_form.submit "Upload File", :disable_with => "Uploading...", :class => 'btn primary' %>
               <% end %>
             </div>
             <div class="select-cover-asset">
@@ -154,7 +154,7 @@
                     <%= project_doc_form.hidden_field :id %>
                     <%= project_doc_form.text_field :description %>
                     <a href="#" class="btn small cancel-btn">Cancel</a>
-                    <%= project_doc_form.submit "Save", {:class => 'btn small'} %>
+                    <%= project_doc_form.submit "Save", :disable_with => "Saving...", :class => 'btn small' %>
                   <% end %>
                   <span class="edit-btns">
                     <%= link_to [@project, project_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
@@ -183,7 +183,7 @@
                 <%= project_doc_form.label :description %>
                 <%= project_doc_form.text_field :description %>
               
-                <%= project_doc_form.submit "Upload File", {:class => 'btn primary'} %>
+                <%= project_doc_form.submit "Upload File", :disable_with => "Uploading...", :class => 'btn primary' %>
               <% end %>
             </div>
           <% end %>

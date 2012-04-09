@@ -8,6 +8,10 @@
   <!--[if ie]>
     <%= stylesheet_link_tag "ie" %>
   <![endif]-->
+    
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <%= csrf_meta_tag %>
    
   <link rel="shortcut icon" href="/favicon.ico" />
@@ -29,7 +33,7 @@
             <%= form_for(:user, :as => :user, :url => user_session_path) do |f| %> 
               Username: <%= f.email_field :email %>
               Password: <%= f.password_field :password %>
-              <%= f.submit "Login", :class => "" %>
+              <%= f.submit "Log In", :class => "" %>
             <% end %> 
           </div>
         <% end %>
@@ -101,7 +105,7 @@
               </li>
             </ul>
           <% else %>
-            <ul class="nav ">
+            <ul class="nav">
               <!--<li class="<%= put_if_current_page('active', root_path) %>">
                 <%= link_to "Home", root_path %>
               </li>-->
@@ -133,18 +137,17 @@
   <div id = "top-banner">
     <%= yield :top_banner %>
   </div>
-  
-  <div id="wrapper" class="container">
-    <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
-    <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
+    <div id="wrapper" class="container">
+      <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
+      <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
 
-    <%= yield %>
-  </div>
+      <%= yield %>
+    </div>
   <div class="footer">
     <div class="fill">
       <div class="container footer_container">
         <ul>
-          <li><%= link_to "Advertise", content_page_path('advertise') %></li>
+          <li><%= link_to "How it Works", content_page_path('how') %></li>
           <li> | </li>
           <li><%= link_to "Contact Us", content_page_path('contact')%></li>
           <li> | </li>

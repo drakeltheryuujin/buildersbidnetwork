@@ -82,6 +82,18 @@ class User < ActiveRecord::Base
       return nil
 	  end
   end
+  def notifications(filter = nil)
+    notifs = Notification.recipient(self).order("notifications.created_at DESC")
+    if filter.present? && filter.to_sym == :unread
+      notifs = notifs.unread
+    elsif filter.present? && filter.to_sym == :trash
+      notifs = notifs.where('receipts.trashed' => true)
+    elsif filter.present? && filter.to_sym == :sent
+      notifs = notifs.where('receipts.mailbox_type' => 'sentbox', 'receipts.trashed' => false)
+    else
+      notifs = notifs.not_trashed.where("\"receipts\".\"mailbox_type\" = 'inbox' OR \"receipts\".\"mailbox_type\" is null")
+    end
+  end
 
   def active_for_authentication?
     super && self.deleted_at.blank?
@@ -132,6 +144,13 @@ class User < ActiveRecord::Base
     response.recipients.delete(self)
     return response.deliver true,sanitize_text
   end
+
+  def send_welcome_notification
+    notification = Notification.new({:body => "Welcome!", :subject => "Welcome to BBN!", :notification_type => :welcome_notification})
+    notification.recipients = [self]
+    return notification.deliver false
+  end
+
 
   private
 

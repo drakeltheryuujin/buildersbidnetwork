@@ -4,7 +4,10 @@ ActiveAdmin.register User do
   index do
     column :id
     column :email
-    column :failed_attempts
+    column :sign_in_count
+    column :invited_by
+    column :created_at
+    column :confirmed_at
     default_actions
   end
   
@@ -36,6 +39,12 @@ ActiveAdmin.register User do
     else
       redirect_to({:action => :show}, :alert => subscription.errors.full_messages.join(', '))
     end
+  end
+
+  member_action :send_message, :method => :post do
+    user = User.find(params[:id])
+    current_user.send_message_with_object_and_type([user], params[:body], params[:subject], nil, :admin_message)
+    redirect_to({:action => :show}, :notice => "Message sent!")
   end
 
   sidebar :relations, :only => :show do

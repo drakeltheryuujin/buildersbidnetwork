@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite, :add_cover_photo]
+  before_filter :get_profile, :only => [:show, :update, :edit, :destroy, :projects, :contact_owner, :invite, :add_cover_photo, :documents]
   before_filter :check_may_modify!, :only => [:update, :edit, :destroy, :review]
 
   # GET /profiles
@@ -59,6 +59,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+        @profile.user.send_welcome_notification
         format.html { 
           if(current_user.sign_in_count == 1 && current_user.invited_project.present?)
             redirect_to(project_path(current_user.invited_project), :notice => 'Your profile was successfully created. Here are is the project you were invited to bid on.') 
@@ -79,9 +80,12 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
+    # FIXME There's probably a better way to manage STI.
+    profile_params = (@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
+    profile_params[:project_type_ids] ||= []
+
     respond_to do |format|
-      # FIXME There's probably a better way to do this.
-      if @profile.update_attributes(@profile.type == DeveloperProfile.to_s ? params[:developer_profile] : params[:contractor_profile])
+      if @profile.update_attributes(profile_params)
         format.html { redirect_to(profile_path(@profile), :notice => 'Profile was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -132,25 +136,28 @@ class ProfilesController < ApplicationController
 
   def invite
     invitee = @profile.user
-    project = Project.find(params[:project_id])
-    respond_to do |format|
-      if project.present?
+    pids = params['project_ids']
+    if pids.present?
+      projects = pids.collect { |pid| Project.find pid }
+      privs = []
+      projects.each do |project|
         project_privilege = project.project_privileges.build(:user => invitee, :message_body => params[:message_body])
-        if project_privilege.save
-          message = 'User invited.'
-          format.html { return redirect_to(@profile, :notice => message) }
-          format.text { return render :text => message }
-        else
-          message = project_privilege.errors.full_messages.join(', ')
-        end
-      else
-        message = 'Invalid project'
+        privs << project_privilege if project_privilege.save
       end
-      format.html { redirect_to(@profile, :alert => message) }
-      format.text { render :text => message, :status => :bad_request }
+      message = "User invited to: " + privs.collect { |priv| priv.project.name }.join(', ')
+      respond_to do |format|
+        format.html { return redirect_to(@profile, :notice => message) }
+        format.text { return render :text => message }
+      end
+    else
+      message = "Please select one or more project to invite this user to."
+      respond_to do |format|
+        format.html { return redirect_to(@profile, :alert => message) }
+        format.text { return render :text => message, :status => :bad_request }
+      end
     end
   end
-  
+
   def add_cover_photo
     if @profile.present?
       @profile.update_attribute(:asset, params[:asset])
@@ -171,5 +178,9 @@ class ProfilesController < ApplicationController
 
   def check_may_modify!
     redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
+  end
+
+  def documents 
+    
   end
 end

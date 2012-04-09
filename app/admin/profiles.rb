@@ -8,5 +8,6 @@ ActiveAdmin.register ContractorProfile do
 end
 
 ActiveAdmin.register DeveloperProfile do
+  config.comments = false
   menu :parent => "Profiles"
 end

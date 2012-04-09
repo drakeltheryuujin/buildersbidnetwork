@@ -1,7 +1,6 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+<% ['i', 'ii', 'iii'].each do |a| %>
+contractor_<%= a %>_subscription:
+  user: contractor_<%= a %>
+  valid_until: <%= Time.now + 1.year %>
 
-one:
-  valid_until: 2012-02-07 16:39:52
-
-two:
-  valid_until: 2012-02-07 16:39:52
+<% end %>

@@ -1,3 +1,4 @@
+<%= nested_form_for @profile, :url => (@profile.new_record? ? nil : profile_path(@profile)) do |f| %>
   <% if @profile.errors.any? %>
     <div class="alert-message block-message error">
       <strong><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</strong>
@@ -127,9 +128,18 @@
     <p><%= f.link_to_add "Add a Phone Number", :phones %></p>
   </div>
   <div class="field form-stacked">
+    <%= f.label "Specialties" %><br/>
+    <ul class="specialties">
+      <% ProjectType.order(:type_name).each do |pt| %>
+        <li><%= check_box_tag "#{f.object_name}[project_type_ids][]", pt.id, @profile.specialty?(pt) %> <%= pt.type_name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="field form-stacked">
     <%= f.label :description, "Description" %><br/>
     <%= f.text_area :description, :class => "", :rows => "5" %>
   </div>
   <div class="field">
-    <%= f.submit "Save Profile", :class => "btn large primary" %>
+    <%= f.submit "Save Profile", :disable_with => "Saving...", :class => "btn large primary" %>
   </div>
+<% end %>
