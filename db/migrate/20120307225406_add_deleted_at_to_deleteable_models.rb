@@ -1,6 +1,8 @@
 class AddDeletedAtToDeleteableModels < ActiveRecord::Migration
   def change
     add_column :users, :deleted_at, :datetime
+    add_column :subscriptions, :deleted_at, :datetime
+    add_column :subscription_adjustments, :deleted_at, :datetime
     add_column :profiles, :deleted_at, :datetime
     add_column :profile_phones, :deleted_at, :datetime
     add_column :projects, :deleted_at, :datetime

@@ -2,21 +2,26 @@
 #
 # Table name: projects
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)     not null
-#  user_id         :integer         not null
-#  created_at      :datetime
-#  updated_at      :datetime
-#  bidding_end     :datetime        not null
-#  pre_bid_meeting :datetime
-#  project_start   :date            not null
-#  project_end     :date            not null
-#  description     :text            not null
-#  notes           :text
-#  location_id     :integer         not null
-#  project_type_id :integer         not null
-#  latitude        :float
-#  longitude       :float
+#  id               :integer         not null, primary key
+#  name             :string(255)     not null
+#  user_id          :integer         not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  bidding_end      :datetime        not null
+#  pre_bid_meeting  :datetime
+#  project_start    :date            not null
+#  project_end      :date            not null
+#  description      :text            not null
+#  notes            :text
+#  location_id      :integer         not null
+#  project_type_id  :integer         not null
+#  latitude         :float
+#  longitude        :float
+#  state            :string(255)
+#  estimated_budget :decimal(11, 2)
+#  credit_value     :integer
+#  cover_photo_id   :integer
+#  private          :boolean         default(FALSE)
 #
 
 class Project < ActiveRecord::Base
@@ -27,11 +32,11 @@ class Project < ActiveRecord::Base
   belongs_to :project_type
   belongs_to :cover_photo, :class_name => 'ProjectDocument'
   
-  has_many :line_items, :dependent => :destroy
-  has_many :bids, :dependent => :destroy
-  has_many :project_documents, :dependent => :destroy
+  has_many :line_items, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :bids, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :project_documents, :dependent => :destroy, :conditions => {:deleted_at => :nil}
 
-  has_many :project_privileges, :dependent => :destroy
+  has_many :project_privileges, :dependent => :destroy, :conditions => {:deleted_at => :nil}
   has_many :privileged_users, :through => :project_privileges, :source => :user
   
   geocoded_by :location_address
@@ -52,8 +57,7 @@ class Project < ActiveRecord::Base
   validates :bidding_end,
     :presence => true, 
     :date => {:after => Proc.new {Time.now}},
-    :if => :published?,
-    :unless => :is_deleted?
+    :if => :published?
   validates :project_start,
     :presence => true, 
     :date => {:after => :bidding_end},
@@ -69,11 +73,11 @@ class Project < ActiveRecord::Base
     :acceptance => true,
     :unless => :draft?
   validates_numericality_of :estimated_budget, :allow_nil => false, :greater_than => 0, :less_than => 1000000000, :unless => :draft?
-  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?, :if => :not_deleted?
+  validate :validate_estimated_budget_credit_value_in_sync, :unless => :draft?
 
   validates_associated :location, :project_type, :line_items
 
-  validate :must_have_line_items, :unless => :draft?, :if => :not_deleted?
+  validate :must_have_line_items, :unless => :draft?
 
   STATES = [ :draft, :published, :cancelled, :award_pending, :awarded ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
@@ -99,17 +103,6 @@ class Project < ActiveRecord::Base
     end
   end
 
-  default_scope where(:deleted_at => nil)
-  def self.deleted
-    self.unscoped.where('deleted_at IS NOT NULL')
-  end
-  def not_deleted?
-    :deleted_at.blank?
-  end
-  def is_deleted?
-    :deleted_at.present?
-  end
-  
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
 

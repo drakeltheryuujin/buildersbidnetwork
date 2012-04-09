@@ -16,9 +16,4 @@ class LineItem < ActiveRecord::Base
   has_many :line_item_bids, :dependent => :destroy
 
   validates_numericality_of :units, :greater_than => 0, :allow_nil => true
-
-  default_scope where(:deleted_at => nil)
-  def self.deleted
-    self.unscoped.where('deleted_at IS NOT NULL')
-  end
 end

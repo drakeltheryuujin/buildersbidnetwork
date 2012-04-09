@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307225406) do
+ActiveRecord::Schema.define(:version => 20120312182021) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -144,6 +144,19 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
 
   add_index "phones", ["phone_type_id"], :name => "index_phones_on_phone_type_id"
 
+  create_table "profile_documents", :force => true do |t|
+    t.string   "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profile_documents", ["profile_id"], :name => "index_profile_documents_on_profile_id"
+
   create_table "profile_phones", :force => true do |t|
     t.integer  "profile_id"
     t.integer  "phone_id"
@@ -163,7 +176,7 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "type"
-    t.integer  "location_id",        :null => false
+    t.integer  "location_id",                           :null => false
     t.string   "established"
     t.text     "description"
     t.string   "website"
@@ -171,8 +184,17 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
+    t.boolean  "hidden",             :default => false
     t.datetime "deleted_at"
   end
+
+  create_table "profiles_project_types", :id => false, :force => true do |t|
+    t.integer "profile_id"
+    t.integer "project_type_id"
+  end
+
+  add_index "profiles_project_types", ["profile_id"], :name => "index_profiles_project_types_on_profile_id"
+  add_index "profiles_project_types", ["project_type_id"], :name => "index_profiles_project_types_on_project_type_id"
 
   create_table "project_documents", :force => true do |t|
     t.string   "description"
@@ -200,7 +222,7 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
   add_index "project_privileges", ["user_id"], :name => "index_project_privileges_on_user_id"
 
   create_table "project_types", :force => true do |t|
-    t.string   "name"
+    t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -263,6 +285,7 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
     t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -271,6 +294,7 @@ ActiveRecord::Schema.define(:version => 20120307225406) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "users", :force => true do |t|

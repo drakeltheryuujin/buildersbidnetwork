@@ -2,28 +2,30 @@
 #
 # Table name: profiles
 #
-#  id          :integer         not null, primary key
-#  name        :string(255)
-#  user_id     :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#  latitude    :float
-#  longitude   :float
-#  type        :string(255)
-#  location_id :integer         not null
-#  established :string(255)
-#  description :text
-#  website     :string(255)
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  user_id            :integer
+#  created_at         :datetime
+#  updated_at         :datetime
+#  latitude           :float
+#  longitude          :float
+#  type               :string(255)
+#  location_id        :integer         not null
+#  established        :string(255)
+#  description        :text
+#  website            :string(255)
 #  asset_file_name    :string(255)
 #  asset_content_type :string(255)
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
+#  hidden             :boolean         default(FALSE)
+#
 
 class Profile < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   
-  has_many :profile_phones, :dependent => :destroy
+  has_many :profile_phones, :dependent => :destroy, :conditions => {:deleted_at => nil}
   has_many :phones, :through => :profile_phones
   
   has_attached_file :asset, {
@@ -44,11 +46,6 @@ class Profile < ActiveRecord::Base
   
   accepts_nested_attributes_for :phones, :allow_destroy => :true
   accepts_nested_attributes_for :profile_phones, :allow_destroy => :true
-
-  default_scope where(:deleted_at => nil)
-  def self.deleted
-    self.unscoped.where('deleted_at IS NOT NULL')
-  end
 
   def location_address
     location.address

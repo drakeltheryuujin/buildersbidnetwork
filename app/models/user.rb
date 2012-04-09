@@ -4,7 +4,7 @@
 #
 #  id                     :integer         not null, primary key
 #  email                  :string(255)     default(""), not null
-#  encrypted_password     :string(128)     default(""), not null
+#  encrypted_password     :string(128)     default("")
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -23,6 +23,14 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  credits                :integer
+#  admin                  :boolean         default(FALSE)
+#  invitation_token       :string(60)
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string(255)
+#  invited_project_id     :integer
 #
 
 class User < ActiveRecord::Base
@@ -30,9 +38,9 @@ class User < ActiveRecord::Base
   has_one :subscription, :dependent => :destroy
   has_many :project, :dependent => :destroy
   has_many :bids, :dependent => :destroy
-  has_many :credit_adjustments, :dependent => :destroy
+  has_many :credit_adjustments, :dependent => :destroy, :conditions => {:deleted_at => :nil}
 
-  has_many :project_privileges, :dependent => :destroy
+  has_many :project_privileges, :dependent => :destroy, :conditions => {:deleted_at => :nil}
   has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
   belongs_to :invited_project, :class_name => 'Project'
@@ -46,10 +54,7 @@ class User < ActiveRecord::Base
   attr_accessor :message_body
   attr_accessible :email, :password, :password_confirmation, :remember_me, :message_body
 
-  default_scope where(:deleted_at => nil)
-  def self.deleted
-    self.unscoped.where('deleted_at IS NOT NULL')
-  end
+  validate :email_immutable, :on => :update
 
   scope :privileged_on, lambda { |project|
     joins(:project_privileges).where(:project_privileges => { :project_id => project.id })
@@ -58,9 +63,6 @@ class User < ActiveRecord::Base
   scope :has_logged_in, where("sign_in_count > 0")
   scope :never_logged_in, where("sign_in_count = 0")
 
-  validate :email_immutable, :on => :update
-
-  
   def name
     return self.profile.present? ? self.profile.name : self.email 
   end
@@ -74,11 +76,15 @@ class User < ActiveRecord::Base
     return name
   end
   def mailboxer_email(object)
-    if true # TODO preference check
+    if self.deleted_at.blank?
       return email
     else
       return nil
 	  end
+  end
+
+  def active_for_authentication?
+    super && self.deleted_at.blank?
   end
 
   def unread_message_count
