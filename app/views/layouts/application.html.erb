@@ -65,9 +65,13 @@
       <div class="fill">
         <div class="container nav_container">
           <%= link_to (image_tag "/images/BuildersBidNetwork_Logo.png", :alt => "BBN", :class => "logo"), root_path %>
-          <% if user_signed_in? && ! current_user.profile.blank? %>
+          <% if user_signed_in? %>
             <ul class="nav ">
-              <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <% if current_user.profile.blank? %>
+                <li class="<%= put_if_current_page('active', new_profile_path) %>"><%= link_to "Create<br/>Profile".html_safe, new_profile_path %></li>
+              <% else %>
+                <li class="<%= put_if_current_page('active', profile_path(current_user.profile)) %>"><%= link_to "Profile", profile_path(current_user.profile) %></li>
+              <% end %>
               <li class="<%= put_if_current_page('active', notifications_path) %>">
                 <%= link_to notifications_path do %> 
                   Notifications
