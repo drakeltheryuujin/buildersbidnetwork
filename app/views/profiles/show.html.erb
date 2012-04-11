@@ -6,7 +6,7 @@
       <li><%= link_to (@profile.user.contractor? ? "Awarded Projects" : "Posted Projects"), projects_profile_path(@profile) %></li>
       <li>
         <%= link_to documents_profile_path(@profile) do %>
-          Documents <%= ("(#{@profile.profile_documents.size()})") unless @profile.profile_documents.empty? %>
+          Documents <%= ("(#{@profile.profile_documents.not_deleted.size()})") unless @profile.profile_documents.not_deleted.empty? %>
 	      <% end %>
 	    </li>
     </ul>

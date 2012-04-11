@@ -108,9 +108,9 @@ class ProfilesController < ApplicationController
 
   def projects
     if @profile.user.developer?
-      @projects = @profile.user.project.published.where(:private => false)
+      @projects = @profile.user.project.not_deleted.published.where(:private => false)
     else
-      @projects = Project.joins(:bids).where(:private => false, :bids => {:user_id => @profile.user.id, :state => :accepted.to_s})
+      @projects = Project.joins(:bids).where(:private => false, :deleted_at => nil, :bids => {:user_id => @profile.user.id, :state => :accepted.to_s, :deleted_at => nil})
     end
   end
 
@@ -173,11 +173,15 @@ class ProfilesController < ApplicationController
   private
 
   def get_profile
-    @profile = Profile.find(params[:id])
+    @profile = Profile.not_deleted.find(params[:id])
   end
 
   def check_may_modify!
     redirect_to(profile_path(@profile), :alert => "Access denied.") unless @profile.may_modify? current_user
+  end
+
+  def check_not_deleted!
+    raise ActiveRecord::RecordNotFound.new('Not Found') unless @profile.deleted_at.blank?
   end
 
   def documents 

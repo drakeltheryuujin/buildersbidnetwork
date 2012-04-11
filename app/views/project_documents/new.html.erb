@@ -22,9 +22,9 @@
         <% end %>
       </div>
     </div>
-    <% unless @project.project_documents.blank? || @project.project_documents.count == 0 %>
+    <% unless @project.project_documents.not_deleted.blank? || @project.project_documents.not_deleted.count == 0 %>
       <div class="project_meta form-stacked">
-        <% @project.project_documents.each do |project_document| %>
+        <% @project.project_documents.not_deleted.each do |project_document| %>
           <% unless project_document.id.blank? %>
             <div class="project_document">
               <% if project_document.is_image? %>

@@ -79,12 +79,12 @@ class BidsController < ApplicationController
   private
 
   def get_project_and_bid
-    @bid = Bid.find(params[:id])
+    @bid = Bid.not_deleted.find(params[:id]) 
     @project = @bid.project
   end
 
   def get_project
-    @project = Project.find(params[:project_id])
+    @project = Project.not_deleted.find(params[:project_id])
   end
 
   def check_may_modify!

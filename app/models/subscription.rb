@@ -19,9 +19,11 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
 
-  has_many :subscription_adjustments, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :subscription_adjustments, :dependent => :destroy
 
   accepts_nested_attributes_for :subscription_adjustments
+
+  before_destroy :cancel!
 
   def cancel!
     unless self.upstream_authorization.present?

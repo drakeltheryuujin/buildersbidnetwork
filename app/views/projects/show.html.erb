@@ -7,12 +7,12 @@
       <li class="active"><a href="#scope">Project Scope</a></li>
       <li>
         <a href="#docs">
-          Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+          Documents <%= ("(#{@project.project_documents.not_deleted.doc.size()})") unless @project.project_documents.not_deleted.doc.empty? %>
         </a>
       </li>
       <li>
         <a href="#photos">
-          Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+          Photos <%= ("(#{@project.project_documents.not_deleted.image.size()})") unless @project.project_documents.not_deleted.image.empty? %>
         </a>
       </li>
       <% if may_admin_project? && @project.bids.visible.present? %>
@@ -99,7 +99,7 @@
             <h4>Bid Breakdown By Line</h4>
             <ul class="line_items">
              <% if may_view_project_details? %>
-              <% @project.line_items.each_with_index do |line_item, index| %>
+              <% @project.line_items.not_deleted.each_with_index do |line_item, index| %>
                 <li class="line_item">
                   <strong><%= index + 1 %></strong>
                   <span class="content"><%= line_item.content %></span>
@@ -107,7 +107,7 @@
               <% end %>
               <%else%>
               <li class ="locked_bid_breakdown">Subscribe to View 
-              <%= pluralize(@project.line_items.size(), 'Line Item') %></li>
+              <%= pluralize(@project.line_items.not_deleted.size(), 'Line Item') %></li>
               <%end%>
             </ul>
           </div>
@@ -143,7 +143,7 @@
           <% end %>
           
           <ul class="faux-media-grid">
-            <% @project.project_documents.image.each do |project_document| %>
+            <% @project.project_documents.not_deleted.image.each do |project_document| %>
               <li class="project_document editable <%= @project.cover_photo.present? ? project_document.id == @project.cover_photo.id ? 'active' : '' : '' %>">
                 <%= link_to project_document.asset(:original), {:class => 'lightbox_thumb', :title => project_document.asset_file_name} do %>
                   <%= image_tag(project_document.asset(:thumb), :alt => project_document.asset_file_name) %>
@@ -189,7 +189,7 @@
           <% end %>
 
           <ul class="faux-media-grid">
-            <% @project.project_documents.doc.each do |project_document| %>
+            <% @project.project_documents.not_deleted.doc.each do |project_document| %>
               <li class="project_document editable">
                 <%= link_to project_document.asset(:original) do %>
                   <%= image_tag(doc_icon_path(project_document), :alt => project_document.asset_file_name) %>

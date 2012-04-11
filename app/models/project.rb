@@ -32,11 +32,11 @@ class Project < ActiveRecord::Base
   belongs_to :project_type
   belongs_to :cover_photo, :class_name => 'ProjectDocument'
   
-  has_many :line_items, :dependent => :destroy, :conditions => {:deleted_at => :nil}
-  has_many :bids, :dependent => :destroy, :conditions => {:deleted_at => :nil}
-  has_many :project_documents, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :line_items, :dependent => :destroy
+  has_many :bids, :dependent => :destroy
+  has_many :project_documents, :dependent => :destroy
 
-  has_many :project_privileges, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :project_privileges, :dependent => :destroy
   has_many :privileged_users, :through => :project_privileges, :source => :user
   
   geocoded_by :location_address
@@ -128,7 +128,7 @@ class Project < ActiveRecord::Base
   end
 
   def may_access?(user)
-    return false unless user.present?
+    return false unless user.present? && self.deleted_at.blank?
     self.private == false || self.may_modify?(user) || self.has_privilege?(user)
   end
 
@@ -139,7 +139,7 @@ class Project < ActiveRecord::Base
 
   def has_privilege?(user)
     return false unless user.present?
-    ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
+    ProjectPrivilege.not_deleted.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)
@@ -165,7 +165,7 @@ class Project < ActiveRecord::Base
   end
 
   def draft_or_cancelled?
-    return self.draft? || self.cancelled?
+    return self.draft? || self.cancelled? || self.deleted_at.present?
   end
 
   def hold_bids_and_notify_bidders(body)

@@ -6,7 +6,7 @@
       <li><%= link_to (@profile.user.contractor? ? "Awarded Projects" : "Posted Projects"), projects_profile_path(@profile) %></li>
       <li class="active">
         <%= link_to documents_profile_path(@profile) do %>
-          Documents <%= ("(#{@profile.profile_documents.size()})") unless @profile.profile_documents.empty? %>
+          Documents <%= ("(#{@profile.profile_documents.not_deleted.size()})") unless @profile.profile_documents.not_deleted.empty? %>
 	      <% end %>
 	    </li>
     </ul>
@@ -35,7 +35,7 @@
         <% end %>
 
         <ul class="faux-media-grid">
-          <% @profile.profile_documents.where(["asset_content_type IS NOT NULL"]).each do |profile_document| %>
+          <% @profile.profile_documents.not_deleted.where(["asset_content_type IS NOT NULL"]).each do |profile_document| %>
             <li class="profile_document editable">
               <%= link_to profile_document.asset(:original), {:class => "#{profile_document.is_image? ? 'lightbox_thumb' : ''}"} do %>
                 <%= image_tag((profile_document.is_image? ? profile_document.asset(:thumb) : doc_icon_path(profile_document)), :alt => profile_document.asset_file_name) %>

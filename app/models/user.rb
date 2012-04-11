@@ -38,9 +38,9 @@ class User < ActiveRecord::Base
   has_one :subscription, :dependent => :destroy
   has_many :project, :dependent => :destroy
   has_many :bids, :dependent => :destroy
-  has_many :credit_adjustments, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :credit_adjustments, :dependent => :destroy
 
-  has_many :project_privileges, :dependent => :destroy, :conditions => {:deleted_at => :nil}
+  has_many :project_privileges, :dependent => :destroy
   has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
   belongs_to :invited_project, :class_name => 'Project'

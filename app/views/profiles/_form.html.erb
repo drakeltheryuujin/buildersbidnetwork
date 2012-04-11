@@ -118,7 +118,7 @@
   </div>
   <div class="form-stacked">
     <label class="">Phone Numbers</label>
-    <%= f.fields_for :phones do |phone_form| %>
+    <%= f.fields_for :phones, @profile.phones do |phone_form| %>
       <div class="row">
         <%= phone_form.text_field :number, :class => "span9" %>
         <%= phone_form.collection_select(:phone_type_id, PhoneType.all, :id, :name, {:prompt => true}, {:class => "span2 alpha"}) %>

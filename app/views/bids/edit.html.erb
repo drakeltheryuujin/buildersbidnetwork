@@ -5,12 +5,12 @@
       <li><%= link_to 'Project Scope', project_path(@project, :anchor => 'scope') %></li>
       <li>
         <%= link_to project_path(@project, :anchor => 'docs') do %>
-          Documents <%= ("(#{@project.project_documents.doc.size()})") unless @project.project_documents.doc.empty? %>
+          Documents <%= ("(#{@project.project_documents.not_deleted.doc.size()})") unless @project.project_documents.not_deleted.doc.empty? %>
         <% end %>
       </li>
       <li>
         <%= link_to project_path(@project, :anchor => 'photos') do %>
-          Photos <%= ("(#{@project.project_documents.image.size()})") unless @project.project_documents.image.empty? %>
+          Photos <%= ("(#{@project.project_documents.not_deleted.image.size()})") unless @project.project_documents.not_deleted.image.empty? %>
         <% end %>
       </li>
       <li class="active"><a href="#my_bid">My Bid</a></li>

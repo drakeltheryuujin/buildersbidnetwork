@@ -167,7 +167,7 @@ class ProjectsController < ApplicationController
   private
 
   def get_project
-    @project = Project.find(params[:id])
+    @project = Project.not_deleted.find(params[:id])
   end
 
   def check_may_access!

@@ -12,5 +12,10 @@ class AddDeletedAtToDeleteableModels < ActiveRecord::Migration
     add_column :line_items, :deleted_at, :datetime
     add_column :line_item_bids, :deleted_at, :datetime
     add_column :project_documents, :deleted_at, :datetime
+    add_column :profile_documents, :deleted_at, :datetime
+
+    add_column :receipts, :deleted_at, :datetime
+    add_column :conversations, :deleted_at, :datetime
+    add_column :notifications, :deleted_at, :datetime
   end
 end

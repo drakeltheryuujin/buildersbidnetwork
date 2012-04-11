@@ -109,7 +109,7 @@
     <% end %>
     <div class="row form-stacked">
       <ul class="line_items">
-        <% @bid.line_item_bids.each_with_index do |line_item_bid, cnt| %>
+        <% @bid.line_item_bids.not_deleted.each_with_index do |line_item_bid, cnt| %>
           <li class="line_item ">
             <div class="content ">
               <span class="cnt"><%= cnt + 1 %></span>

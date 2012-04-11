@@ -25,9 +25,10 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   
-  has_many :profile_phones, :dependent => :destroy, :conditions => {:deleted_at => nil}
-  has_many :phones, :through => :profile_phones
-  has_many :profile_documents
+  has_many :profile_phones, :dependent => :destroy
+  has_many :phones, :through => :profile_phones, :conditions => {'profile_phones.deleted_at' => nil}
+
+  has_many :profile_documents, :dependent => :destroy
   
   has_and_belongs_to_many :project_types
 
@@ -53,7 +54,7 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :project_types, :allow_destroy => :true
 
   scope :hidden, where(:hidden => true)
-  scope :visible, where(:hidden => false)
+  scope :visible, where({:hidden => false, :deleted_at => nil})
 
   scope :distinct_visible, select('DISTINCT profiles.*').visible
 
