@@ -27,7 +27,7 @@
         <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
       </dl>
 
-      <p><a href="mailto: contact@buildersbidnetwork.com?subject=Account Deactivation: <User#<%= current_user.id%>>">Deactivate your account</a></p>
+      <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
     </div>
   </div>
   <div class="span11 form-stacked alpha">

@@ -2,21 +2,26 @@
 #
 # Table name: projects
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)     not null
-#  user_id         :integer         not null
-#  created_at      :datetime
-#  updated_at      :datetime
-#  bidding_end     :datetime        not null
-#  pre_bid_meeting :datetime
-#  project_start   :date            not null
-#  project_end     :date            not null
-#  description     :text            not null
-#  notes           :text
-#  location_id     :integer         not null
-#  project_type_id :integer         not null
-#  latitude        :float
-#  longitude       :float
+#  id               :integer         not null, primary key
+#  name             :string(255)     not null
+#  user_id          :integer         not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#  bidding_end      :datetime        not null
+#  pre_bid_meeting  :datetime
+#  project_start    :date            not null
+#  project_end      :date            not null
+#  description      :text            not null
+#  notes            :text
+#  location_id      :integer         not null
+#  project_type_id  :integer         not null
+#  latitude         :float
+#  longitude        :float
+#  state            :string(255)
+#  estimated_budget :decimal(11, 2)
+#  credit_value     :integer
+#  cover_photo_id   :integer
+#  private          :boolean         default(FALSE)
 #
 
 class Project < ActiveRecord::Base
@@ -27,11 +32,11 @@ class Project < ActiveRecord::Base
   belongs_to :project_type
   belongs_to :cover_photo, :class_name => 'ProjectDocument'
   
-  has_many :line_items
-  has_many :bids
-  has_many :project_documents
+  has_many :line_items, :dependent => :destroy
+  has_many :bids, :dependent => :destroy
+  has_many :project_documents, :dependent => :destroy
 
-  has_many :project_privileges
+  has_many :project_privileges, :dependent => :destroy
   has_many :privileged_users, :through => :project_privileges, :source => :user
   
   geocoded_by :location_address
@@ -97,7 +102,7 @@ class Project < ActiveRecord::Base
       transitions :to => :awarded, :from => :award_pending
     end
   end
-  
+
   scope :draft, where(:state => :draft)
   scope :published, where(:state => :published)
 
@@ -123,7 +128,7 @@ class Project < ActiveRecord::Base
   end
 
   def may_access?(user)
-    return false unless user.present?
+    return false unless user.present? && self.deleted_at.blank?
     self.private == false || self.may_modify?(user) || self.has_privilege?(user)
   end
 
@@ -134,7 +139,7 @@ class Project < ActiveRecord::Base
 
   def has_privilege?(user)
     return false unless user.present?
-    ProjectPrivilege.where(:project_id => self.id, :user_id => user.id).present?
+    ProjectPrivilege.not_deleted.where(:project_id => self.id, :user_id => user.id).present?
   end
 
   def my_bid(user)
@@ -160,7 +165,7 @@ class Project < ActiveRecord::Base
   end
 
   def draft_or_cancelled?
-    return self.draft? || self.cancelled?
+    return self.draft? || self.cancelled? || self.deleted_at.present?
   end
 
   def hold_bids_and_notify_bidders(body)

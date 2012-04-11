@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: subscription_adjustments
+#
+#  id                     :integer         not null, primary key
+#  subscription_id        :integer         not null
+#  type                   :string(255)     not null
+#  start_at               :datetime
+#  end_at                 :datetime
+#  granted_by_id          :integer
+#  order_tx_id            :integer
+#  upstream_authorization :string(255)
+#  amount                 :decimal(8, 2)
+#  interval               :string(255)
+#  ip_address             :string(255)
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  card_type              :string(255)
+#  card_display_number    :string(255)
+#  card_billing_zip       :string(255)
+#  card_expires_on        :date
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 class SubscriptionAdjustment < ActiveRecord::Base
   belongs_to :subscription
 

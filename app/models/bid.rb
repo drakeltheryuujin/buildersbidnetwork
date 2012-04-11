@@ -2,12 +2,13 @@
 #
 # Table name: bids
 #
-#  id         :integer(4)      not null, primary key
+#  id         :integer         not null, primary key
 #  total      :decimal(8, 2)
-#  user_id    :integer(4)
-#  project_id :integer(4)
+#  user_id    :integer
+#  project_id :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  state      :string(255)     default("draft")
 #
 
 class Bid < ActiveRecord::Base
@@ -16,8 +17,8 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
 
-  has_many :line_item_bids
-  has_many :credit_adjustments
+  has_many :line_item_bids, :dependent => :destroy
+  has_many :credit_adjustments, :dependent => :destroy
   
   accepts_nested_attributes_for :line_item_bids, :allow_destroy => :true
 
@@ -63,7 +64,7 @@ class Bid < ActiveRecord::Base
   scope :published, where(:state => :published)
   scope :awarded, where(:state => :awarded)
   scope :accepted, where(:state => :accepted)
-  scope :visible, where(:state => [:accepted, :awarded, :published])
+  scope :visible, where(:state => [:accepted, :awarded, :published], :deleted_at => nil)
 
   def may_modify?(user)
     self.user == user || user.try(:admin?)

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: project_privileges
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  project_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ProjectPrivilege < ActiveRecord::Base
   belongs_to :user
   belongs_to :project

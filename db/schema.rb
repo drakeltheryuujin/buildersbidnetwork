@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312182021) do
+ActiveRecord::Schema.define(:version => 20120410203033) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -35,12 +35,14 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state",                                    :default => "draft"
+    t.datetime "deleted_at"
   end
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+    t.datetime "deleted_at"
   end
 
   create_table "credit_adjustments", :force => true do |t|
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.decimal  "amount",              :precision => 8, :scale => 2
     t.string   "card_display_number"
     t.integer  "granted_by_id"
+    t.datetime "deleted_at"
   end
 
   add_index "credit_adjustments", ["bid_id"], :name => "index_credit_adjustments_on_bid_id"
@@ -74,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "line_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "line_items", :force => true do |t|
@@ -82,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "locations", :force => true do |t|
@@ -109,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "notified_object_id"
     t.string   "notified_object_type"
     t.string   "notification_type"
+    t.datetime "deleted_at"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
@@ -149,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "profile_documents", ["profile_id"], :name => "index_profile_documents_on_profile_id"
@@ -158,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "phone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "profile_phones", ["phone_id"], :name => "index_profile_phones_on_phone_id"
@@ -180,6 +188,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "asset_file_size"
     t.datetime "asset_updated_at"
     t.boolean  "hidden",             :default => false
+    t.datetime "deleted_at"
   end
 
   create_table "profiles_project_types", :id => false, :force => true do |t|
@@ -199,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "project_documents", ["project_id"], :name => "index_project_documents_on_project_id"
@@ -208,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "project_privileges", ["project_id"], :name => "index_project_privileges_on_project_id"
@@ -239,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "credit_value"
     t.integer  "cover_photo_id"
     t.boolean  "private",                                         :default => false
+    t.datetime "deleted_at"
   end
 
   add_index "projects", ["state"], :name => "index_projects_on_state"
@@ -249,10 +261,10 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "notification_id",                                  :null => false
     t.boolean  "read",                          :default => false
     t.boolean  "trashed",                       :default => false
-    t.boolean  "deleted",                       :default => false
     t.string   "mailbox_type",    :limit => 25
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
@@ -276,6 +288,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.date     "card_expires_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -284,6 +297,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   create_table "users", :force => true do |t|
@@ -315,6 +329,7 @@ ActiveRecord::Schema.define(:version => 20120312182021) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "invited_project_id"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

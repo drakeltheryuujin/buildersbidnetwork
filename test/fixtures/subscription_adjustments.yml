@@ -2,6 +2,7 @@
 contractor_<%= a %>_subscription_adjustment:
   subscription: contractor_<%= a %>_subscription
   type: GrantedSubscription
+  granted_by_id: 2 #admin
   start_at: <%= Time.now %>
   end_at: <%= Time.now + 1.year %>
 

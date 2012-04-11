@@ -4,12 +4,26 @@
 # provide an audit trail describing how the Subscription arrived at it's current state.
 ##
 ##
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id                     :integer         not null, primary key
+#  upstream_authorization :string(255)
+#  valid_until            :datetime
+#  user_id                :integer
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 class Subscription < ActiveRecord::Base
   belongs_to :user
 
-  has_many :subscription_adjustments
+  has_many :subscription_adjustments, :dependent => :destroy
 
   accepts_nested_attributes_for :subscription_adjustments
+
+  before_destroy :cancel!
 
   def cancel!
     unless self.upstream_authorization.present?

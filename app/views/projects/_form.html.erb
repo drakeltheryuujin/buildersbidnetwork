@@ -142,7 +142,7 @@
 
       <div class="project_meta project_line_items form-stacked">
         <label class="">Bid Breakdown</label>
-        <%= f.fields_for :line_items do |line_item_form| %>
+        <%= f.fields_for :line_items, @project.line_items.not_deleted do |line_item_form| %>
           <div class="field line_item">
             <%= line_item_form.text_field :content, :class => "line_item_content_field", :placeholder => "Line Item" %>
             <%= line_item_form.text_field :units, :class => "line_item_units_field", :placeholder => "Quantity" %>
@@ -159,9 +159,9 @@
         </div>
       </div>
 
-      <% unless @project.project_documents.blank? %>
+      <% unless @project.project_documents.not_deleted.blank? %>
         <div class="project_meta form-stacked">
-          <% @project.project_documents.each do |project_document| %>
+          <% @project.project_documents.not_deleted.each do |project_document| %>
             <% unless project_document.id.blank? %>
               <div class="project_document">
                 <% if project_document.is_image? %>
