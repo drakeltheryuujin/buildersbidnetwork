@@ -137,12 +137,12 @@
   <div id = "top-banner">
     <%= yield :top_banner %>
   </div>
-    <div id="wrapper" class="container">
-      <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
-      <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
+  <div id="wrapper" class="container">
+    <% if notice %><p class="alert-message warning"><%= notice %></p><% end %>
+    <% if alert %><p class="alert-message error"><%= alert %></p><% end %>
 
-      <%= yield %>
-    </div>
+    <%= yield %>
+  </div>
   <div class="footer">
     <div class="fill">
       <div class="container footer_container">

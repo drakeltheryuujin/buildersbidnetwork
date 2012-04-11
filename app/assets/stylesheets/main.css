@@ -757,6 +757,7 @@ padding-right:10px
   height: 100%;
   padding:0;
   width: 100%;
+  margin-top: -18px;
 }
 .db_page {
   position: relative;
@@ -2111,3 +2112,6 @@ input, textarea {
 	-webkit-transform-style: flat;
 }
 
+#wrapper {
+  margin-top: 18px;
+}
