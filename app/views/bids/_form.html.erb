@@ -16,7 +16,7 @@
   <div class="row form-stacked">
     <ul class="line_items">
       <% cnt = 0 %>
-      <%= f.fields_for :line_item_bids, @bid.line_item_bids.not_deleted do |line_item_bid_form| %>
+      <%= f.fields_for :line_item_bids, @bid.line_item_bids do |line_item_bid_form| %>
         <%= line_item_bid_form.hidden_field :line_item_id %>
         <li class="line_item ">
           <div class="content ">

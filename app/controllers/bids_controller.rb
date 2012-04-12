@@ -11,13 +11,13 @@ class BidsController < ApplicationController
   
   def new
     @bid = Bid.new(:project => @project)
-    @project.line_items.each do |line_item|
+    @project.line_items.not_deleted.each do |line_item|
       @bid.line_item_bids.build :line_item => line_item
     end
   end
   
   def edit
-    @project.line_items.each do |line_item|
+    @project.line_items.not_deleted.each do |line_item|
       unless @bid.line_item_bids.detect { |lib| lib.line_item_id == line_item.id }
         @bid.line_item_bids.build :line_item => line_item
       end
