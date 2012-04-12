@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe 'Test Case 12 Purchase Subscription' do
-fixtures:all
+  fixtures:all
   it 'Verifies the User can Successfully purchase a Subscription' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    find_field('user_email').value.should == 'user@developera.com' 
-    fill_in 'Password', :with => 'user@developera.com'
-    find_field('Password').value.should == 'user@developera.com' 
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
+
     click_link "Credits"
     click_link "Buy a Subscription"
     page.find(:xpath, './/a[@href="/subscriptions/new?package=monthly"]').click
@@ -27,5 +24,7 @@ fixtures:all
     click_link "Account"
     click_link "Purchase History"
     click_link "View"
-    end
- end
+
+    log_out
+  end
+end

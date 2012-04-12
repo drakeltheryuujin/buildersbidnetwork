@@ -1,14 +1,10 @@
 require 'spec_helper'
 
 describe 'Test Case 4 Test Viewing of Profile' do
-fixtures:all
+  fixtures:all
   it 'Verifies the User can Successfully View a Profile' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    find_field('user_email').value.should == 'user@developera.com' 
-    fill_in 'Password', :with => 'user@developera.com'
-    find_field('Password').value.should == 'user@developera.com' 
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
     
     click_link "Browse"
@@ -18,5 +14,7 @@ fixtures:all
     page.find('.search_result:nth-child(6) .result_body .result_name a').should have_content('Contractor_ Iii Profile')
     page.find('.search_result:nth-child(8) .result_body .result_name a').should have_content('Contractor_ Iv Profile')
     page.find('.search_result:nth-child(10) .result_body .result_name a').should have_content('Contractor_ V Profile')
-    end
+
+    log_out
   end
+end

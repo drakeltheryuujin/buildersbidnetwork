@@ -7,6 +7,9 @@ one:
   city: New York
   state: NY
   post_code: 10003
+  latitude: 40.7322535
+  longitude: -73.9874105
+
 
 two:
   id: 2
@@ -15,7 +18,9 @@ two:
   city: Brooklyn
   state: NY
   post_code: 11217
-  
+  latitude: 40.6866913
+  longitude: -73.9849326
+
 three:
   id: 3
   address1: 520 Court St
@@ -23,6 +28,9 @@ three:
   city: Brooklyn
   state: NY
   post_code: 11231
+  latitude: 40.6711933
+  longitude: -74.0115015
+
   
 four:
   id: 4
@@ -31,7 +39,9 @@ four:
   city: New York
   state: NY
   post_code: 10014
-  
+  latitude: 40.7366138
+  longitude: -74.0094471
+
 five:
   id: 5
   address1: 444 Broadway
@@ -39,20 +49,17 @@ five:
   city: New York
   state: NY
   post_code: 10013
-  
-six:
-  id: 6
-  address1: 547 West 27th St
-  city: New York
-  state: NY
-  post_code: 100013
-  
+  latitude: 40.7217861
+  longitude: -74.0094471
+
 six:
   id: 6
   address1: 122 East 42nd St
   city: New York
   state: NY
   post_code: 100168
+  latitude: 40.7512904
+  longitude: -73.976301
   
 seven:
   id: 7
@@ -60,42 +67,60 @@ seven:
   city: New York
   state: NY
   post_code: 10014
-  
+  latitude: 40.733949
+  longitude: -74.001765
+
 eight:
   id: 8
   address1: 4 East 81st Street
   city: New York
   state: NY
   post_code: 10028
-  
+  latitude: 40.777966
+  longitude: -73.962263
+
 nine:
   id: 9
   address1: 625 West 51st Street
   city: New York
   state: NY
   post_code: 10019
-  
+  latitude: 40.7671938
+  longitude: -73.995558
+
 ten:
   id: 10
   address1: 21 Astor Pl
   city: New York
   state: NY
   post_code: 10003
+  latitude: 40.730033
+  longitude: -73.991709
   
 eleven:
   id: 11
   address1: 120 State Rde 17
   city: East Rutherford
   state: NJ
-  post_code: 07073
-  
+  post_code: '07073'
+  latitude: 40.8284026
+  longitude: -74.09303849999999
+
 twelve:
   id: 12
   address1: 500 US Highway 46
   city: Clifton
   state: NJ
-  post_code: 07011
-  
+  post_code: '07011'
+  latitude: 40.8784533
+  longitude: -74.156668
+
+uncoded:
+  address1: 547 West 27th St
+  city: New York
+  state: NY
+  post_code: 100013
+
 
 # == Schema Information
 #

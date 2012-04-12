@@ -22,6 +22,19 @@ module Geocoder::Store
   end
 end
 
+module CapybaraAuthenticationHelpers  
+  def log_in_as(email, password)
+    fill_in 'user_email', :with => email
+    fill_in 'Password', :with => password
+    click_button 'Log In'
+  end
+
+  def log_out
+    page.find('a.dropdown-toggle').click
+    click_link "Logout"
+  end
+end
+
 shared_examples_for "presence of" do |property|
   it "requires a value for #{property}" do
     record = new_valid_record
@@ -57,4 +70,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.alias_it_should_behave_like_to :it_validates, "a model that validates"
+
+  config.include CapybaraAuthenticationHelpers, :type => :request
 end

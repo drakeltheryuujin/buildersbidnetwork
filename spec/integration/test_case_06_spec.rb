@@ -1,14 +1,10 @@
 require 'spec_helper'
 
 describe 'Test Case 6 Test Viewing of Profile and Bidding on a Project' do
-fixtures:all
+  fixtures:all
   it 'Gives the User Credits and a Subscription to Allow the Contractor to Bid on a Project' do
     visit '/'
-    fill_in 'user_email', :with => 'user@contractori.com'
-    find_field('user_email').value.should == 'user@contractori.com' 
-    fill_in 'Password', :with => 'user@contractori.com'
-    find_field('Password').value.should == 'user@contractori.com' 
-    click_button 'Login'
+    log_in_as 'user@contractori.com', 'user@contractori.com'
     page.should have_content('Dashboard')
     
     # Test Case 1 (User Fills out Invalid properties for Bid; Bid is not saved/published) 
@@ -94,5 +90,7 @@ fixtures:all
     fill_in 'bid_line_item_bids_attributes_9_unit_cost' , :with => '10'
     click_button "Publish Bid"
     find('.alert-message').should have_content('Bid was successfully updated')
-    end
- end
+
+    log_out
+  end
+end

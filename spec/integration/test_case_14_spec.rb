@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe 'Test Case 14 Goes through the Process of Uploading a File to your Profile Avatar  ' do
-fixtures:all
+  fixtures:all
   it 'logs in, edits profile, uploads new avatar' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    fill_in 'Password', :with => 'user@developera.com'
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
+
     click_link "Profile"
     click_link 'Edit Profile'
     attach_file 'asset', File.join(Rails.root, 'spec', 'support', 'assets', 'paving.jpg')
@@ -18,5 +17,7 @@ fixtures:all
     profile = User.find_by_email('user@developera.com').profile
     profile.asset_file_name.should eq('paving.jpg')
     profile.asset_updated_at.should satisfy { |w| w >= upload_time }
+
+    log_out
   end
 end

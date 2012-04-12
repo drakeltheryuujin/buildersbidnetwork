@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe 'Test Case 10' do
-fixtures:all
+  fixtures:all
   it 'Change Users Password' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    find_field('user_email').value.should == 'user@developera.com' 
-    fill_in 'Password', :with => 'user@developera.com'
-    find_field('Password').value.should == 'user@developera.com' 
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
+
     click_link "Notifications"
     click_link "Account"
     
@@ -28,7 +25,14 @@ fixtures:all
     fill_in 'user_current_password', :with => ''
     click_button 'Update'
     find('.alert-message').should have_content('error prohibited this user from being saved:')
-    
-    end
+
+    # set it back
+    fill_in 'user_password', :with => 'user@developera.com'
+    fill_in 'user_password_confirmation', :with => 'user@developera.com'
+    fill_in 'user_current_password', :with => '123456'
+    click_button 'Update'
+    find('.alert-message').should have_content('You updated your account successfully.')
+
+    log_out
   end
-    
+end

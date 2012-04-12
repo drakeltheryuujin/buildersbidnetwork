@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe 'Test Case 4b Editing the Profile' do
-fixtures:all
+  fixtures:all
   it 'welcomes the user' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    find_field('user_email').value.should == 'user@developera.com' 
-    fill_in 'Password', :with => 'user@developera.com'
-    find_field('Password').value.should == 'user@developera.com' 
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
+
     click_link "Profile"
     click_link 'Edit Profile'
     fill_in 'developer_profile_name', :with => ' '
@@ -26,5 +23,7 @@ fixtures:all
       find('.alert-message.block-message.error').should have_content("Location city can't be blank")
       find('.alert-message.block-message.error').should have_content("Location post code can't be blank")
       find('.alert-message.block-message.error').should have_content("Location post code should be 12345 or 12345-1234")
+
+    log_out
   end
 end    

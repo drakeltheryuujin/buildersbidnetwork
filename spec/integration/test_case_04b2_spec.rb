@@ -4,12 +4,9 @@ describe 'Test Case 4b2 Editing the Profile Fields with Valid Information and Ve
 fixtures:all
   it 'welcomes the user' do
     visit '/'
-    fill_in 'user_email', :with => 'user@developera.com'
-    find_field('user_email').value.should == 'user@developera.com' 
-    fill_in 'Password', :with => 'user@developera.com'
-    find_field('Password').value.should == 'user@developera.com' 
-    click_button 'Login'
+    log_in_as 'user@developera.com', 'user@developera.com'
     page.should have_content('Dashboard')
+
     click_link "Profile"
     click_link 'Edit Profile'
     fill_in 'developer_profile_name', :with => 'John Doe'
@@ -30,5 +27,7 @@ fixtures:all
       assert_equal '60126', '60126'
       assert_equal 'www.johndoeinc.com', 'www.johndoeinc.com'
       assert_equal 'I Develop Mobile Applications, and Websites', 'I Develop Mobile Applications, and Websites'
+
+    log_out
   end
 end    
