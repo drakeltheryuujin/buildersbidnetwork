@@ -159,7 +159,7 @@
         </div>
       </div>
 
-      <% unless @project.project_documents.not_deleted.blank? %>
+      <% unless @project.project_documents.blank? %>
         <div class="project_meta form-stacked">
           <% @project.project_documents.not_deleted.each do |project_document| %>
             <% unless project_document.id.blank? %>
