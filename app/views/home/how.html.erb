@@ -1,6 +1,8 @@
 <% content_for :head do %>
  <%= stylesheet_link_tag "how" %>
 <% end %>
+
+<%= link_to "Get Started", new_user_registration_path, :class=> "get_started_link" %>
 <div id="how_left">
 	<nav>
 		<ul>
@@ -11,24 +13,29 @@
 		</ul>
 	</nav>
 	
-	<h4>Download a Site Tutorial</h4>
-	<span class ="how_span1"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank">BBN Contractor Tutorial</a></span>
-	<span class ="how_span2"><a href="/BBN_Developer_Tutorial.pdf" target="_blank">BBN Developer Tutorial</a></span>
+	<%= image_tag "/images/Tools.png", :alt => "Tools", :width => "240px", :height => "160px" %>
+	
+	<div class="fake-border"></div>
+	
+	<h6>Download a Site Tutorial</h6>
+	<span class="tut-link"><a href="/BBN_Developer_Tutorial.pdf" target="_blank"><span class="bold">Developer</span><br />Tutorial</a></span><br />
+	<span class="tut-link"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank"><span class="bold">Contractor</span><br />Tutorial</a></span>
 </div>
 
 <div id="how_main_content">
-	<%= link_to "Get Started", new_user_registration_path %>
-	<h1 class ="page_head">Building a Better Network</h1>
+	<h1 class ="page_head">A Powerful Networking Tool</h1>
 	<!--<p>
 	BBN is the central marketplace of building projects, connecting contractors and developers so that the right people work on the right projects. 
 	<%= link_to "Get Started", new_user_registration_path %>
 	</p>-->
 
 	<div class="register_box"> 
+		<img id="register-icon" alt="stand-in" />
 		<p>Register now to strengthen your business network and streamline the bidding process. Get access to our extensive professional and project listings, build connections and enjoy the benefits of the centralized BBN marketplace.</p>
-		<a href="#">Register</a>
+		<a class="btn primary" href="#">Register</a>
+		<div class="clear"></div>
 	</div>
-
+	
 	<h3 class="list_header" id="contractors_list_head">Contractors</h3>
 	<ul>
 		<li>Build your online presence with your company profile</li>
