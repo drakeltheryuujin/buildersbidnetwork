@@ -108,7 +108,7 @@ class ProfilesController < ApplicationController
 
   def projects
     if @profile.user.developer?
-      @projects = @profile.user.project.not_deleted.published.where(:private => false)
+      @projects = @profile.user.project.not_deleted.published.where(:private => false).order('created_at DESC')
     else
       @projects = Project.joins(:bids).where(:private => false, :deleted_at => nil, :bids => {:user_id => @profile.user.id, :state => :accepted.to_s, :deleted_at => nil})
     end
