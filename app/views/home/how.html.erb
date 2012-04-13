@@ -1,32 +1,70 @@
-<h1 class ="page_head">How It Works</h1>
-<span class ="how_span1"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank">BBN Contractor Tutorial</a></span>
-<span class ="how_span2"><a href="/BBN_Developer_Tutorial.pdf" target="_blank">BBN Developer Tutorial</a></span>
-<p>
-BBN is the central marketplace of building projects, connecting contractors and developers so that the right people work on the right projects. 
-<%= link_to "Get Started Now!", new_user_registration_path %>
-</p>
- 
-<h3 class ="how">1. Register</h3>
-<p>
-  Create a company profile to strengthen and extend your existing network.  Build connections and join the BBN marketplace!
-</p>
+<% content_for :head do %>
+ <%= stylesheet_link_tag "how" %>
+<% end %>
+<div id="how_left">
+	<nav>
+		<ul>
+		<li class="active"><a href="#"><h3>Join the Network</h3></a></li>
+		<li><a href="#"><h3>Browse Projects</h3></a></li>
+		<li><a href="#"><h3>Subscribe</h3></a></li>
+		<li><a href="#"><h3>Online Bidding</h3></a></li>
+		</ul>
+	</nav>
+	
+	<h4>Download a Site Tutorial</h4>
+	<span class ="how_span1"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank">BBN Contractor Tutorial</a></span>
+	<span class ="how_span2"><a href="/BBN_Developer_Tutorial.pdf" target="_blank">BBN Developer Tutorial</a></span>
+</div>
 
-<h3 class ="how">2. Browse Projects</h3>
-<p>
-  Search for opportunities and contacts tailored to your business needs.
-</p>
+<div id="how_main_content">
+	<%= link_to "Get Started", new_user_registration_path %>
+	<h1 class ="page_head">Building a Better Network</h1>
+	<!--<p>
+	BBN is the central marketplace of building projects, connecting contractors and developers so that the right people work on the right projects. 
+	<%= link_to "Get Started", new_user_registration_path %>
+	</p>-->
 
-<h3 class ="how">3. Subscribe</h3>
-<p>
-  Gain exclusive access to the members of the community, detailed project descriptions, and RFPs based on your interests, location and expertise.
-</p>
+	<div class="register_box"> 
+		<p>Register now to strengthen your business network and streamline the bidding process. Get access to our extensive professional and project listings, build connections and enjoy the benefits of the centralized BBN marketplace.</p>
+		<a href="#">Register</a>
+	</div>
 
-<h3 class ="how">4. Bid</h3>
-<p>
-  Bid on actual projects or create projects for other members to bid on.  BBN makes bidding on projects easier, simpler, and considerably more cost effective.  A streamlined approach to commercial real estate, business and commerce.
-</p>
+	<h3 class="list_header" id="contractors_list_head">Contractors</h3>
+	<ul>
+		<li>Build your online presence with your company profile</li>
+		<li>Connect with commercial developers</li>
+		<li>Search our extensive project and developer listings</li>
+		<li>Create and save a comprehensive bidding portfolio</li>
+		<li>Bid on more projects</li>
+	</ul>
 
- 
-<p>
-  More Projects... More Opportunities.. Builders Bid Network is a simplified, streamlined approach to the developing commercial marketplace.  Access a network of industry professionals, dedicated to building connections, and developing projects with the right people. Jump into the marketplace and get to work!
-</p>
+	<h3 class="list_header" id="developers_list_head">Developers</h3>
+	<ul>
+		<li>Find top contractors with the expertise for your projects</li>
+		<li>Post projects quickly and easily</li>
+		<li>Ensure that all bidders see project changes</li>
+		<li>Make use of industry-leading RFP management tools</li>
+		<li>List projects publicly or as "invite-only" for your established contacts</li>
+		<li>Get more bids</li>
+	</ul>
+
+	<!--<h3 class ="how">2. Browse Projects</h3>
+	<p>
+		Search for opportunities and contacts tailored to your business needs.
+	</p>
+
+	<h3 class ="how">3. Subscribe</h3>
+	<p>
+		Gain exclusive access to the members of the community, detailed project descriptions, and RFPs based on your interests, location and expertise.
+	</p>
+
+	<h3 class ="how">4. Bid</h3>
+	<p>
+		Bid on actual projects or create projects for other members to bid on.  BBN makes bidding on projects easier, simpler, and considerably more cost effective.  A streamlined approach to commercial real estate, business and commerce.
+	</p>
+
+	 
+	<p>
+		More Projects... More Opportunities.. Builders Bid Network is a simplified, streamlined approach to the developing commercial marketplace.  Access a network of industry professionals, dedicated to building connections, and developing projects with the right people. Jump into the marketplace and get to work!
+	</p>-->
+</div>

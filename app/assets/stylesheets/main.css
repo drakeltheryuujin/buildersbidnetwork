@@ -386,14 +386,14 @@ span.how_span2,
 span.how_span1 a,
 span.how_span2 a {
   display:block;
-  float:right;
+  /*float:right;*/
   }
-span.how_span1 a {
+/*span.how_span1 a {
 margin-top: -45px;
 }
 span.how_span2 a {
 margin-top: -25px;
-}
+}*/
 li.faq,
 p.faq {
  color:#002666;
