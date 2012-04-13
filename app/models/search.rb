@@ -39,7 +39,7 @@ class Search
           relation = relation.joins(:project_types).where(:profiles_project_types => {:project_type_id => @type_ids})
         end
 	    else
-	      relation = @q.blank? ? Project.not_deleted : Project.not_deleted.seach(@q)
+	      relation = @q.blank? ? Project.not_deleted : Project.not_deleted.search(@q)
         relation = relation.where("bidding_end > :now", :now => Time.now)
         relation = relation.where(:private => false, :state => :published.to_s)
         unless @type_ids.blank?
