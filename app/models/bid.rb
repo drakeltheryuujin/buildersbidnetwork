@@ -77,7 +77,7 @@ class Bid < ActiveRecord::Base
   private
 
   def total_matches_line_item_bids?
-    unless (self.line_item_bids.collect { |lib| lib.cost }.sum) == self.total
+    unless (self.line_item_bids.collect { |lib| (lib.cost.blank? ? 0 : lib.cost) }.sum) == self.total
       self.errors[:base] << "Total is not in sync with line item costs."
       return false
     else
