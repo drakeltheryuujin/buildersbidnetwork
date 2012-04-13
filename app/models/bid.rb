@@ -29,7 +29,7 @@ class Bid < ActiveRecord::Base
   STATES = [ :draft, :published, :cancelled, :awarded, :accepted, :held ].collect do |n| n.to_s end
   validates_inclusion_of :state, :in => STATES
 
-  validate :sufficient_credits?, :if => :changed_to_published?
+  validate :sufficient_credits?
   validate :total_matches_line_item_bids?
 
   validates_associated :line_item_bids
@@ -38,7 +38,7 @@ class Bid < ActiveRecord::Base
   aasm :column => :state do
     state :draft, :initial => true
     state :published, :enter => :charge_credits_and_notify_creator
-    state :cancelled
+    state :cancelled, :enter => :refund_credits
     state :awarded, :enter => :award_project
     state :accepted, :enter => :award_complete
     state :held, :enter => :refund_credits
@@ -75,10 +75,6 @@ class Bid < ActiveRecord::Base
   end
 
   private
-
-  def changed_to_published?
-    self.state_changed? && self.published?
-  end
 
   def total_matches_line_item_bids?
     unless (self.line_item_bids.collect { |lib| lib.cost }.sum) == self.total

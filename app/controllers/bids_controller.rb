@@ -29,7 +29,7 @@ class BidsController < ApplicationController
     update_bid_state! params
     
     if @bid.save
-      redirect_to(project_path(@project), :notice => 'Bid was successfully created as Draft.')
+      redirect_to(project_path(@project), :notice => 'Bid was successfully created.')
     else
       render :action => "new"
     end
@@ -100,6 +100,7 @@ class BidsController < ApplicationController
   end
 
   def update_bid_state!(params)
+    y params
     if params[:publish] && ! @bid.published?
       @bid.publish 
     elsif params[:cancel] 
