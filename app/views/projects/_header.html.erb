@@ -39,7 +39,7 @@
         <%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn small edit' unless @project.award_period?  %> 
       <% end %>
       <% if current_page? project_path(@project) %>
-          <% if current_user.subscription_current? || may_admin_project? %>
+          <% if may_view_project_details? %>
             <% if current_user.contractor? %>
               <%= link_to 'Enter Bid', new_project_bid_path(@project), :class => 'btn large success new' if @project.bidding_period? unless has_bid_on_project? %>
               <%= link_to 'Edit Bid', edit_project_bid_path(@project, @project.my_bid(current_user)), :class => 'btn large success edit' if @project.bidding_period? && has_bid_on_project? %>
