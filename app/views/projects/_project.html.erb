@@ -31,7 +31,7 @@
       <% if project.bidding_end > Time.now %>
         <dl>
           <dd>
-            <%= (project.bidding_end.to_date - Date.today).to_i %> 
+            <%= (project.bidding_end.to_date - Date.today).to_i %><span class="clock-icon"></span>
           </dd>
           <dt>
             Days Left

@@ -1811,7 +1811,14 @@ ul.line_items li div.units .line_item_total,
 .search_result .result_numbers dl dd {
   margin-left: 0;
   font-weight: bold;
-  line-height: 10px;
+  line-height: 11px;
+}
+.search_result .result_numbers dl dd .clock-icon {
+	display: inline-block;
+	width: 11px;
+	height: 11px;
+	margin-left: 3px;
+	background: url('../images/clock.png') 0 0 no-repeat;
 }
 .search_result .result_numbers label,
 .search_result .result_numbers dl dt {
