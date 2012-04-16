@@ -489,6 +489,26 @@ li.terms {
   font-size: 18px;
   font-weight: bold;
 }
+.search_header .search_actions {
+	margin-top: -18px;
+	text-align: right;
+}
+
+.search_header .search_actions .btn.large {
+	line-height: 26px;
+	padding: 0;
+	font-size: 13px;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	margin: 0;
+	width: 162px;
+}
+
+.search_header .search_actions .btn.large:after {
+	content: " \00BB";
+}
+
 .profile_header .profile_actions .btn.small,
 .project_header .project_actions .btn.small {
   text-transform: uppercase;
