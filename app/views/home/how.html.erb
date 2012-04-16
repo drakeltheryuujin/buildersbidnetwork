@@ -26,7 +26,9 @@
 	<a class="tut_link" id="contractor_tut" href="/BBN_Contractor_Tutorial.pdf" target="_blank"><span class="bold">Contractor</span> Tutorial</a>
 </div>
 
-<div id="how_main_content">
+<div id="how_main_content"></div>
+
+<div id="join_the_network">
 	<h1 class ="page_head">A Powerful Networking Tool</h1>
 
 	<div class="register_box"> 
@@ -56,31 +58,35 @@
 	</ul>
 	
 	<%= image_tag "/images/how_man_stand_in.png", :alt =>"Man on Phone", :width => "530px" %>
-
-	<script type="text/javascript">
-		$('#how_left nav li').click(function(){
-			$(this).siblings().attr('class', '');
-			$(this).attr('class', 'active');
-		})
-	</script>
-	
-	<!--<h3 class ="how">2. Browse Projects</h3>
-	<p>
-		Search for opportunities and contacts tailored to your business needs.
-	</p>
-
-	<h3 class ="how">3. Subscribe</h3>
-	<p>
-		Gain exclusive access to the members of the community, detailed project descriptions, and RFPs based on your interests, location and expertise.
-	</p>
-
-	<h3 class ="how">4. Bid</h3>
-	<p>
-		Bid on actual projects or create projects for other members to bid on.  BBN makes bidding on projects easier, simpler, and considerably more cost effective.  A streamlined approach to commercial real estate, business and commerce.
-	</p>
-
-	 
-	<p>
-		More Projects... More Opportunities.. Builders Bid Network is a simplified, streamlined approach to the developing commercial marketplace.  Access a network of industry professionals, dedicated to building connections, and developing projects with the right people. Jump into the marketplace and get to work!
-	</p>-->
 </div>
+
+<div id="browse_projects">
+	<h1 class="page_head">Browse Projects Page</h1>
+	
+	<p>Search for opportunities and contacts tailored to your business needs.</p>
+</div>
+
+<div id="subscribe">
+	<h1 class="page_head">Subscribe Page</h1>
+	
+	<p>Gain exclusive access to the members of the community, detailed project descriptions, and RFPs based on your interests, location and expertise.</p>
+</div>
+
+<div id="online_bidding">
+	<h1 class="page_head">Online Bidding Page</h1>
+
+	<p>Bid on actual projects or create projects for other members to bid on.  BBN makes bidding on projects easier, simpler, and considerably more cost effective.  A streamlined approach to commercial real estate, business and commerce.</p>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){ 
+		$("#how_main_content").html($("#join_the_network").html());
+	})
+
+	$('#how_left nav li').click(function(){
+		$(this).siblings().attr('class', '');
+		$(this).attr('class', 'active');
+		sectionName = $(this).find('h3').html().toLowerCase().replace(/ /g, '_');
+		$("#how_main_content").html($("#"+sectionName).html());
+	})
+</script>
