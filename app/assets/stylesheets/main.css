@@ -386,14 +386,14 @@ span.how_span2,
 span.how_span1 a,
 span.how_span2 a {
   display:block;
-  float:right;
+  /*float:right;*/
   }
-span.how_span1 a {
+/*span.how_span1 a {
 margin-top: -45px;
 }
 span.how_span2 a {
 margin-top: -25px;
-}
+}*/
 li.faq,
 p.faq {
  color:#002666;
@@ -445,6 +445,11 @@ li.terms {
 .share_flag {
   padding: 3px 5px 3px 21px !important;
   background: url('../images/share_icon_grey.png') 0 4px no-repeat !important;
+}
+
+.project_avatar img {
+	border: 1px solid #f66d05;
+	padding: 1px;
 }
 
 .profile_avatar {
@@ -1749,6 +1754,10 @@ h1.search_header span {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 6px;
+}
+.search_result .result_project_id {
+	font-size: 12px;
+	line-height: 41px;
 }
 .search_result .result_numbers {
   padding: 16px;
