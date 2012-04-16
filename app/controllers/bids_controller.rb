@@ -100,7 +100,6 @@ class BidsController < ApplicationController
   end
 
   def update_bid_state!(params)
-    y params
     if params[:publish] && ! @bid.published?
       @bid.publish 
     elsif params[:cancel] 

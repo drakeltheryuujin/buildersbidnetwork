@@ -35,9 +35,11 @@ class Bid < ActiveRecord::Base
   validates_associated :line_item_bids
   validates_numericality_of :total, :greater_than => 0, :less_than => 10**6
 
+  after_save :charge_credits_and_notify_creator if :changed_to_published?
+
   aasm :column => :state do
     state :draft, :initial => true
-    state :published, :enter => :charge_credits_and_notify_creator
+    state :published
     state :cancelled, :enter => :refund_credits
     state :awarded, :enter => :award_project
     state :accepted, :enter => :award_complete
@@ -74,6 +76,10 @@ class Bid < ActiveRecord::Base
     Message.where(:notification_type => :project_award_message, :notified_object_type => 'Bid', :notified_object_id => self.id).first
   end
 
+  def changed_to_published?
+    self.state_changed? && self.published?
+  end
+
   private
 
   def total_matches_line_item_bids?
@@ -99,11 +105,14 @@ class Bid < ActiveRecord::Base
   end
 
   def charge_credits_and_notify_creator
-    if self.valid?
-      self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value))) unless self.state_was == :published.to_s
+    if sufficient_credits?
+      ca = self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value)))
       subject = "Bid from #{self.user.profile.name}"
       body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
       self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
+      ca.save
+    else
+      return false
     end
   end
 
