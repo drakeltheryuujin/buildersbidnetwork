@@ -2,14 +2,18 @@
  <%= stylesheet_link_tag "how" %>
 <% end %>
 
+<% content_for :head do %>
+ <%= javascript_include_tag "jquery.min" %>
+<% end %>
+
 <%= link_to "Get Started", new_user_registration_path, :class=> "get_started_link" %>
 <div id="how_left">
 	<nav>
 		<ul>
 		<li class="active"><a href="#"><h3>Join the Network</h3></a></li>
-		<li><a href="#"><h3>Browse Projects</h3></a></li>
-		<li><a href="#"><h3>Subscribe</h3></a></li>
-		<li><a href="#"><h3>Online Bidding</h3></a></li>
+		<li class><a href="#"><h3>Browse Projects</h3></a></li>
+		<li class><a href="#"><h3>Subscribe</h3></a></li>
+		<li class><a href="#"><h3>Online Bidding</h3></a></li>
 		</ul>
 	</nav>
 	
@@ -18,21 +22,21 @@
 	<div class="fake-border"></div>
 	
 	<h6>Download a Site Tutorial PDF</h6>
-	<span class="tut-link"><a href="/BBN_Developer_Tutorial.pdf" target="_blank"><span class="bold">Developer</span><br />Tutorial</a></span><br />
-	<span class="tut-link"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank"><span class="bold">Contractor</span><br />Tutorial</a></span>
+	<a class="tut_link" id="developer_tut" href="/BBN_Developer_Tutorial.pdf" target="_blank"><span class="bold">Developer</span> Tutorial</a>
+	<a class="tut_link" id="contractor_tut" href="/BBN_Contractor_Tutorial.pdf" target="_blank"><span class="bold">Contractor</span> Tutorial</a>
 </div>
 
 <div id="how_main_content">
 	<h1 class ="page_head">A Powerful Networking Tool</h1>
 
 	<div class="register_box"> 
-		<img id="register-icon" alt="stand-in" />
+		<%= image_tag "/images/register_icon_stand_in.png", :alt => "register-icon-stand-in", :width => "133px", :height => "70px", :id => "register-icon" %>
 		<p>Register now to strengthen your business network and streamline the bidding process. Get access to our extensive professional and project listings, build connections and enjoy the benefits of the centralized BBN marketplace.</p>
 		<a class="btn primary" href="#">Register</a>
 		<div class="clear"></div>
 	</div>
 	
-	<h3 class="list_header" id="contractors_list_head">Contractors</h3>
+	<h3 class="list_header" id="contractors_list_head">Contractors:</h3>
 	<ul>
 		<li>Build your online presence with your company profile</li>
 		<li>Connect with commercial developers</li>
@@ -41,7 +45,7 @@
 		<li>Bid on more projects</li>
 	</ul>
 	
-	<h3 class="list_header" id="developers_list_head">Developers</h3>
+	<h3 class="list_header" id="developers_list_head">Developers:</h3>
 	<ul>
 		<li>Find top contractors with the expertise for your projects</li>
 		<li>Post projects quickly and easily</li>
@@ -50,7 +54,16 @@
 		<li>List projects publicly or as "invite-only" for your established contacts</li>
 		<li>Get more bids</li>
 	</ul>
+	
+	<%= image_tag "/images/how_man_stand_in.png", :alt =>"Man on Phone", :width => "530px" %>
 
+	<script type="text/javascript">
+		$('#how_left nav li').click(function(){
+			$(this).siblings().attr('class', '');
+			$(this).attr('class', 'active');
+		})
+	</script>
+	
 	<!--<h3 class ="how">2. Browse Projects</h3>
 	<p>
 		Search for opportunities and contacts tailored to your business needs.
