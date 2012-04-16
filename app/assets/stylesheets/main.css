@@ -1786,6 +1786,9 @@ h1.search_header span {
   padding: 3px 8px;
   margin-bottom: 5px;
 }
+.label.success {
+	background-color: #8ac640;
+}
 ul.line_items li div.units .line_item_total,
 .search_result .result_numbers strong {
   color: #40c730;
