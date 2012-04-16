@@ -1681,8 +1681,7 @@ h1.search_header span {
 .search_result img.profile_avatar {
   padding: 10px;
 }
-.notification_result .result_name,
-.search_result .result_name {
+.notification_result .result_name {
   padding-top: 6px;
   font-size: 26px;
   line-height: 32px;
@@ -1750,14 +1749,22 @@ h1.search_header span {
 .search_result.bid .result_numbers {
   background-color: #9E9;
 }
+.search_result .result_name {
+	font-size: 18px;
+	line-height: 28px;
+	padding-top: 8px;
+}
 .search_result .result_location {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 6px;
 }
 .search_result .result_project_id {
+	font-size: 10px;
+	padding-top: 14px;
+}
+.search_result .result_type {
 	font-size: 12px;
-	line-height: 41px;
 }
 .search_result .result_numbers {
   padding: 16px;
