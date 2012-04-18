@@ -184,19 +184,23 @@
 
       <div class="project_meta public_private">
         <div class="field">
-          <div>
-            <span>
-              <%= f.label :private, "Public" %>
-              <%= f.radio_button :private, false %>
-            </span>
-            <span class="explain">Anyone can search and view &mdash; Recommended</span>
+					<div>
+            <div>
+              <%= f.label :private, "Private" %>
+            </div>
+            <span class="explain">Invite Only &mdash; Only people you choose can view</span>
+						<span>
+							<%= f.radio_button :private, true %>
+						</span>
           </div>
           <div>
-            <span>
-              <%= f.label :private, "Private" %>
-              <%= f.radio_button :private, true %>
-            </span>
-            <span class="explain">Invite Only &mdash; Only people you choose can view</span>
+						<div>
+              <%= f.label :private, "Public" %>
+            </div>
+						<span>
+							 <%= f.radio_button :private, false %>
+						</span>
+						<span class="explain">Anyone can search and view &mdash; Recommended</span>
           </div>
         </div>
       </div>
