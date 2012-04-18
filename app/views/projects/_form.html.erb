@@ -1,3 +1,7 @@
+<% content_for :head do %>
+ <%= stylesheet_link_tag "create_project" %>
+<% end %>
+
 <%= nested_form_for @project do |f| %>
   <div class="row project_form">
     <div class="span11">
@@ -21,7 +25,7 @@
         </div>
       <% end %>
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta form-stacked" id="title_and_type">
         <div class="field ">
           <%= f.label :name, :class => "" %>
           <%= f.text_field :name, :class => "" %>
