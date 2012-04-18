@@ -37,24 +37,11 @@
         <div class="filter filter_q">
           <%= f.text_field :q, :placeholder => 'Search...' %>
         </div>
-        <div class="filter filter_location ">
-          <h6>Location:</h6>
-          <table>
-            <tr>
-              <td>Within</td>
-              <td>&nbsp;</td>
-              <td>Your zip</td>
-            </tr>
-            <tr>
-              <td>
-                <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100], ["500 miles", 500], ["1000 miles", 1000], ["2500 miles", 2500], ["5000 miles", 5000]], {}, {:class => "span3"} %>
-              </td>
-              <td>of</td>
-              <td>
-                <%= f.text_field :location, :size => 7, :class => "span2" %>
-              </td>
-            </tr>
-          </table>
+        <div class="filter filter_location filter_q">
+          <h6>Within</h6>
+          <%= f.select :distance, [["5 miles", 5], ["10 miles", 10], ["15 miles", 15], ["20 miles", 20], ["30 miles", 30], ["40 miles", 40], ["50 miles", 50], ["100 miles", 100], ["500 miles", 500], ["1000 miles", 1000], ["2500 miles", 2500], ["5000 miles", 5000]], {}, {:class => "span3"} %>
+          <span>of</span>
+          <%= f.text_field :location, :size => 10, :placeholder => "Location (City, State, or Zip)" %>
         </div>
 
         <div class="filter filter_type">

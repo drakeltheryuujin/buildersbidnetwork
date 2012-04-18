@@ -1533,6 +1533,13 @@ ul.search_tabs li.selected {
 .search_filters div.filter_q input {
   width: 188px;
 }
+.search_filters div.filter_location input {
+  width: 188px;
+  margin-top: 5px;
+}
+.search_filters div.filter_location span {
+  padding-left: 10px;
+}
 
 .home_page .search_box table td,
 .search_filters div.filter.filter_location table td {
