@@ -8,6 +8,8 @@ class ActivityController < ApplicationController
 
       if :past.to_s == @filter
         @projects = @projects.where("bidding_end <= ?", Time.now).reverse_order
+      elsif :ready.to_s == @filter
+        @projects = @projects.where("bidding_end <= ?", Time.now).where(:state => :published).reverse_order
       else
         @projects = @projects.where("bidding_end > ?", Time.now)
         if @filter.present? && Project::STATES.include?(@filter)
