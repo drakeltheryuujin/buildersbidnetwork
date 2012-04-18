@@ -19,6 +19,12 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#ebeae8',GradientType=0 ); /* IE6-8 */
 }
 
+#new_project .project_form h4 {
+	border-bottom: 1px solid #d7d7d5;
+	width: 95%;
+	margin-bottom: 8px;
+}
+
 .project_form .project_meta .field select.type_select, .project_form .project_meta .field textarea, .project_form .project_meta .field input[type="text"] {
 	width: 95%;
 }
@@ -30,4 +36,11 @@
 .form-stacked label {
 	font-size: 16px;
 	line-height: 41px;
+}
+
+.form-stacked .span6 label, 
+.form-stacked .span3 label {
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 23px;
 }
