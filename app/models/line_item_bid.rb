@@ -17,4 +17,10 @@ class LineItemBid < ActiveRecord::Base
 
   validates_numericality_of :unit_cost, :greater_than => 0, :allow_nil => true
   validates_numericality_of :cost, :greater_than => 0
+
+  before_validation :remove_comma
+
+  def remove_comma
+    @attributes["cost"].gsub!(',', '')
+  end
 end
