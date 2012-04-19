@@ -41,8 +41,8 @@
 
 .form-stacked .span6 label, 
 .form-stacked .span3 label {
-	font-weight: normal;
-	font-size: 13px;
+	font-weight: bold;
+	font-size: 12px;
 	line-height: 23px;
 }
 
@@ -63,6 +63,8 @@
 }
 
 .project_form .project_meta.public_private {
+	margin-bottom: 13px;
+	
 	border: 1px solid #d7d7d5;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -108,4 +110,70 @@
 
 .project_form .text_area {
 	padding-bottom: 5px;
+}
+
+#new_project .project_form .public_private .private label.section_head {
+	font-size: 16px;
+	font-weight: bold;
+	width: 87%;
+	text-align: left;
+	line-height: 41px;
+}
+
+#new_project .project_form .public_private .field {
+	margin: 0;
+	padding: 0;
+}
+
+.project_form .public_private .private {
+	border-right: 1px solid #D7D7D5;
+	padding-bottom: 33px;
+}
+
+#new_project .project_form .public_private .private label {
+	display: block;
+	width: 100%;
+	float: right; 
+	margin-right: 56px;
+}
+
+#new_project .project_form .public_private .public label {
+	width: 100%;
+	text-align: left;
+	margin-left: 65px;
+}
+
+#new_project .project_form .public_private label {
+	font-weight: normal;
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+
+#new_project .project_form .public_private .private .pp_description {
+	text-align: right;
+}
+
+#new_project .project_form .public_private .public .pp_description {
+	text-align: left;
+}
+
+#new_project .project_form .public_private input[type="radio"] {
+	margin: 0 21px;
+}
+
+#new_project .agree_submit {
+	float: left;
+	padding: 19px 0 17px 20px;
+}
+
+#new_project .agree_submit .span6 {
+	font-size: 13px;
+	line-height: 37px;
+	font-weight: bold;
+	float: left;
+}
+
+#new_project .agree_submit .btn {
+	float: right;
+	margin-right: 20px;
 }

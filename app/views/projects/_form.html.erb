@@ -184,34 +184,39 @@
 
       <div class="project_meta public_private">
         <div class="field">
+					<div class="private">
 					<div>
+						<label class="section_head">User Access</label>
+					</div>
             <div>
               <%= f.label :private, "Private" %>
             </div>
-            <span class="explain">Invite Only &mdash; Only people you choose can view</span>
-						<span>
-							<%= f.radio_button :private, true %>
-						</span>
+						<div class="pp_description">
+							<span class="explain">Invite Only &hyphen; Only people you choose can view</span>
+							<span>
+								<%= f.radio_button :private, true %>
+							</span>
+						</div>
           </div>
-          <div>
+          <div class="public">
 						<div>
               <%= f.label :private, "Public" %>
             </div>
-						<span>
-							 <%= f.radio_button :private, false %>
-						</span>
-						<span class="explain">Anyone can search and view &mdash; Recommended</span>
+						<div class="pp_description">
+							<span>
+								 <%= f.radio_button :private, false %>
+							</span>
+							<span class="explain">Anyone can search and view &hyphen; Recommended</span>
+						</div>
           </div>
         </div>
       </div>
 
-      <div class="">
-        <p>
-          <label class="span6">
-            <%= f.check_box :terms_of_use %>
-            I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
-          </label>
-        </p>
+      <div class="project_meta form-stacked agree_submit">
+				<label class="span6">
+					<%= f.check_box :terms_of_use %>
+					I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
+				</label>
         <% if current_page? new_project_path %>
           <%= f.submit "Save and Continue", :disable_with => "Saving...", :name => :draft, :class => 'btn large primary' %>
         <% else %>
