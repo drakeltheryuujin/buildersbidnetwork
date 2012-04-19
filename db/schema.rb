@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410203033) do
+ActiveRecord::Schema.define(:version => 20120419195138) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(:version => 20120410203033) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "bids", :force => true do |t|
-    t.decimal  "total",      :precision => 8, :scale => 2
+    t.decimal  "total",      :precision => 10, :scale => 2
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                                    :default => "draft"
+    t.string   "state",                                     :default => "draft"
     t.datetime "deleted_at"
   end
 
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20120410203033) do
   add_index "credit_adjustments", ["user_id"], :name => "index_credit_adjustments_on_user_id"
 
   create_table "line_item_bids", :force => true do |t|
-    t.decimal  "unit_cost",    :precision => 8, :scale => 2
-    t.decimal  "cost",         :precision => 8, :scale => 2
+    t.decimal  "unit_cost",    :precision => 10, :scale => 2
+    t.decimal  "cost",         :precision => 10, :scale => 2
     t.integer  "bid_id"
     t.integer  "line_item_id"
     t.datetime "created_at"

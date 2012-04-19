@@ -33,7 +33,7 @@ class Bid < ActiveRecord::Base
   validate :total_matches_line_item_bids?
 
   validates_associated :line_item_bids
-  validates_numericality_of :total, :greater_than => 0, :less_than => 10**6
+  validates_numericality_of :total, :greater_than => 0, :less_than => 10**8
 
   after_save :charge_credits_and_notify_creator if :changed_to_published?
 
