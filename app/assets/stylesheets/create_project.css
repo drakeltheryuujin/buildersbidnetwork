@@ -83,3 +83,29 @@
 .project_form .project_meta.public_private .field {
 	border: none;
 }
+
+.project_form .name_type {
+	padding-bottom: 19px;
+}
+
+.project_form .project_estimated_budget {
+	padding-bottom: 20px;
+}
+
+.project_form .form_location {
+	padding-bottom: 5px;
+}
+
+#new_project #project_location_attributes_address1,
+#new_project #project_location_attributes_address2,
+#new_project #project_location_attributes_city {
+	margin-bottom: 19px;
+}
+
+.project_form .project_line_items {
+	padding-bottom: 24px;
+}
+
+.project_form .text_area {
+	padding-bottom: 5px;
+}

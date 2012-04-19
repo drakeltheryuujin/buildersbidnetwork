@@ -25,7 +25,7 @@
         </div>
       <% end %>
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta name_type form-stacked">
         <div class="field ">
           <%= f.label :name, :class => "" %>
           <%= f.text_field :name, :class => "" %>
@@ -64,7 +64,7 @@
         </div>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta project_budget form-stacked">
+      <div class="project_meta project_budget form-stacked project_estimated_budget">
         <%= f.label :estimated_budget, "Estimated Project Budget" %>
         <div class="input-prepend">
           <span class="add-on">$</span>
@@ -74,7 +74,7 @@
         <%= f.hidden_field :credit_value %>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta form-stacked form_location">
         <%= f.fields_for :location do |location_form| %>
           <div class="field location">
             <%= location_form.label :address1, "Location of Project", :class => "" %>
@@ -138,9 +138,9 @@
         <% end %>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta text_area form-stacked">
         <div class="field">
-          <%= f.label :description, "General Project Description" %><br/>
+          <%= f.label :description, "General Project Description" %>
           <%= f.text_area :description, :class => "", :rows => "5" %>
         </div>
       </div>
@@ -157,9 +157,9 @@
         <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
       </div>
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta text_area form-stacked">
         <div class="field">
-          <%= f.label :notes, "Additional Notes and Requirements" %><br/>
+          <%= f.label :notes, "Additional Notes and Requirements" %>
           <%= f.text_area :notes, :class => "", :rows => "5" %>
         </div>
       </div>
