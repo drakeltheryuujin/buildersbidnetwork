@@ -75,7 +75,7 @@
         <%= f.label :estimated_budget, "Estimated Project Budget" %>
         <div class="input-prepend">
           <span class="add-on">$</span>
-          <%= f.text_field :estimated_budget %>
+          <%= f.text_field :estimated_budget %>&nbsp;&nbsp;=&nbsp;&nbsp;
         </div>
         <span id="credit_value_label" class="label"><%= @project.credit_value || '0' %></span> Credit Value
         <%= f.hidden_field :credit_value %>
