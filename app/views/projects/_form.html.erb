@@ -27,15 +27,22 @@
 
       <div class="project_meta name_type form-stacked">
         <div class="field ">
-          <%= f.label :name, :class => "" %>
+          <%= f.label :name, "Project Title", :class => "" %>
           <%= f.text_field :name, :class => "" %>
         </div>
         <div class="field ">
-          <%= f.label :project_type, "Type", :class => "" %>
+          <%= f.label :project_type, "Project Type", :class => "" %>
           <%= f.collection_select(:project_type_id, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select"}) %>
         </div>
       </div> <!-- /.project_meta -->
 
+			<div class="project_meta form-stacked">
+				<div class="field">
+					<%= f.label :type_of_work, :class => "" %>
+					<%= f.collection_select(:project_type_id, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select"}) %>
+				</div>
+			</div><!-- /.project_meta -->
+			
       <div class="project_meta form-stacked ">
 				<h4>Project Schedule</h4>
         <div class="row">
@@ -141,7 +148,7 @@
       <div class="project_meta text_area form-stacked">
         <div class="field">
           <%= f.label :description, "General Project Description" %>
-          <%= f.text_area :description, :class => "", :rows => "5" %>
+          <%= f.text_area :description, :class => "", :rows => "5", :placeholder => "Enter your general project overview..." %>
         </div>
       </div>
 
@@ -160,7 +167,7 @@
       <div class="project_meta text_area form-stacked">
         <div class="field">
           <%= f.label :notes, "Additional Notes and Requirements" %>
-          <%= f.text_area :notes, :class => "", :rows => "5" %>
+          <%= f.text_area :notes, :class => "", :rows => "5", :placeholder => "Do you require union workers or any specific certifications? Please, enter here..." %>
         </div>
       </div>
 
