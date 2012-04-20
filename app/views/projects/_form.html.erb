@@ -47,7 +47,7 @@
             <div class="field datetime-field">
               <%= f.label :pre_bid_meeting, "Onsite Meeting (Optional)" %>
               <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
-              <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/delete_icon.png", :alt => "[Clear Date]", :class => "add_delete_btn") %></a>
+              <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/delete_icon.png", :alt => "[Clear Date]", :class => "btn") %></a>
             </div>
 
           </div>
@@ -151,10 +151,10 @@
           <div class="field line_item">
             <%= line_item_form.text_field :content, :class => "line_item_content_field", :placeholder => "Line Item" %>
             <%= line_item_form.text_field :units, :class => "line_item_units_field", :placeholder => "Quantity" %>
-            <%= line_item_form.link_to_remove image_tag("/images/delete_icon.png", :alt => "[Remove]") %>
+            <%= line_item_form.link_to_remove image_tag("/images/delete_icon.png", :alt => "[Remove]", :class => "btn") %>
           </div> <!-- /row -->
         <% end %>
-        <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
+        <p><%= f.link_to_add image_tag("/images/add_icon.png", :alt => "[Add]", :class => "btn"), :line_items %> Add a Line Item</p>
       </div>
 
       <div class="project_meta text_area form-stacked">
