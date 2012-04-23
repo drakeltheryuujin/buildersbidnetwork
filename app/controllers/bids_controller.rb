@@ -10,7 +10,8 @@ class BidsController < ApplicationController
   end
   
   def new
-    @bid = Bid.new(:project => @project)
+    @bid = Bid.new(:project => @project, :user => current_user)
+    @bid.sufficient_credits? # prime for CTA display
     @project.line_items.not_deleted.each do |line_item|
       @bid.line_item_bids.build :line_item => line_item
     end

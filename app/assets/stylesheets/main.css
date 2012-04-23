@@ -2119,6 +2119,10 @@ input, textarea {
 	-webkit-transform-style: flat;
 }
 
+.alert-message .btn {
+  margin-top: 10px;
+}
+
 #wrapper {
   margin-top: 18px;
 }

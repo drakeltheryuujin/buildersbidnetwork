@@ -2,13 +2,16 @@
   <div class="row">
     <% if @bid.errors.any? %>
       <div class="alert-message block-message error">
-        <strong><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</strong>
+        <strong><%= pluralize(@bid.errors.count, "error") %> prohibit<%= @bid.errors.count == 1 ? 's' : '' %> this Bid from being saved:</strong>
 
         <ul>
         <% @bid.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
         </ul>
+        <% unless @bid.sufficient_credits? %>
+          <%= link_to "Purchase Credits", credits_path, :class => 'btn large primary' %>
+        <% end %>
       </div>
     <% end %>
   </div>

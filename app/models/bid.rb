@@ -83,20 +83,20 @@ class Bid < ActiveRecord::Base
     self.state_changed? && self.published?
   end
 
-  private
-
-  def total_matches_line_item_bids?
-    unless (self.line_item_bids.collect { |lib| (lib.cost.blank? ? 0 : lib.cost) }.sum) == self.total
-      self.errors[:base] << "Total is not in sync with line item costs."
+  def sufficient_credits?
+    unless ((self.user.credits.blank? ? 0 : self.user.credits) >= self.project.credit_value)
+      self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." 
       return false
     else
       return true
     end
   end
 
-  def sufficient_credits?
-    unless ((self.user.credits.blank? ? 0 : self.user.credits) >= self.project.credit_value)
-      self.errors[:base] << "You need #{self.project.credit_value} credits to place this bid, but you only have #{self.user.credits}." 
+  private
+
+  def total_matches_line_item_bids?
+    unless (self.line_item_bids.collect { |lib| (lib.cost.blank? ? 0 : lib.cost) }.sum) == self.total
+      self.errors[:base] << "Total is not in sync with line item costs."
       return false
     else
       return true
