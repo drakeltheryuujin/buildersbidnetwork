@@ -36,13 +36,6 @@
         </div>
       </div> <!-- /.project_meta -->
 
-			<div class="project_meta form-stacked">
-				<div class="field">
-					<%= f.label :type_of_work, :class => "" %>
-					<%= f.collection_select(:project_type_id, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select"}) %>
-				</div>
-			</div><!-- /.project_meta -->
-			
       <div class="project_meta form-stacked ">
 				<h4>Project Schedule</h4>
         <div class="row">
