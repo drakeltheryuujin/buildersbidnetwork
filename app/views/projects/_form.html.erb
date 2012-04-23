@@ -1,3 +1,7 @@
+<% content_for :head do %>
+ <%= stylesheet_link_tag "create_project" %>
+<% end %>
+
 <%= nested_form_for @project do |f| %>
   <div class="row project_form">
     <div class="span11">
@@ -21,18 +25,19 @@
         </div>
       <% end %>
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta name_type form-stacked">
         <div class="field ">
-          <%= f.label :name, :class => "" %>
+          <%= f.label :name, "Project Title", :class => "" %>
           <%= f.text_field :name, :class => "" %>
         </div>
         <div class="field ">
-          <%= f.label :project_type, "Type", :class => "" %>
+          <%= f.label :project_type, "Project Type", :class => "" %>
           <%= f.collection_select(:project_type_id, ProjectType.order(:type_name).all, :id, :type_name, {:prompt => true}, {:class => "type_select"}) %>
         </div>
       </div> <!-- /.project_meta -->
 
       <div class="project_meta form-stacked ">
+				<h4>Project Schedule</h4>
         <div class="row">
           <div class="span6 ">
             <div class="field datetime-field">
@@ -42,7 +47,7 @@
             <div class="field datetime-field">
               <%= f.label :pre_bid_meeting, "Onsite Meeting (Optional)" %>
               <%= f.datetime_select :pre_bid_meeting, :ampm => true, :discard_minute => true, :include_blank => true %>
-              <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/cross.png", :alt => "[Clear Date]") %></a>
+              <a href="#" id="clear_pre_bid_meeting"><%= image_tag("/images/delete_icon.png", :alt => "[Clear Date]", :class => "btn") %></a>
             </div>
 
           </div>
@@ -59,17 +64,18 @@
         </div>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta project_budget form-stacked">
+      <div class="project_meta project_budget form-stacked project_estimated_budget">
         <%= f.label :estimated_budget, "Estimated Project Budget" %>
         <div class="input-prepend">
           <span class="add-on">$</span>
-          <%= f.text_field :estimated_budget %>
+          <%= f.text_field :estimated_budget %>&nbsp;&nbsp;=&nbsp;&nbsp;
         </div>
         <span id="credit_value_label" class="label"><%= @project.credit_value || '0' %></span> Credit Value
         <%= f.hidden_field :credit_value %>
+				<p><span class="bold">Note:</span> Factoring a 'Bid Credit Value' based on the estimated value of your project helps insure that you will receive only serious bidders.</p>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta form-stacked form_location">
         <%= f.fields_for :location do |location_form| %>
           <div class="field location">
             <%= location_form.label :address1, "Location of Project", :class => "" %>
@@ -133,10 +139,10 @@
         <% end %>
       </div> <!-- /.project_meta -->
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta text_area form-stacked">
         <div class="field">
-          <%= f.label :description, "General Project Description" %><br/>
-          <%= f.text_area :description, :class => "", :rows => "5" %>
+          <%= f.label :description, "General Project Description" %>
+          <%= f.text_area :description, :class => "", :rows => "5", :placeholder => "Enter your general project overview..." %>
         </div>
       </div>
 
@@ -146,16 +152,16 @@
           <div class="field line_item">
             <%= line_item_form.text_field :content, :class => "line_item_content_field", :placeholder => "Line Item" %>
             <%= line_item_form.text_field :units, :class => "line_item_units_field", :placeholder => "Quantity" %>
-            <%= line_item_form.link_to_remove image_tag("/images/cross.png", :alt => "[Remove]") %>
+            <%= line_item_form.link_to_remove image_tag("/images/delete_icon.png", :alt => "[Remove]", :class => "btn") %>
           </div> <!-- /row -->
         <% end %>
-        <p><%= f.link_to_add "Add a Line Item", :line_items %></p>
+        <p><%= f.link_to_add image_tag("/images/add_icon.png", :alt => "[Add]", :class => "btn"), :line_items %> Add a Line Item</p>
       </div>
 
-      <div class="project_meta form-stacked">
+      <div class="project_meta text_area form-stacked">
         <div class="field">
-          <%= f.label :notes, "Additional Notes and Requirements" %><br/>
-          <%= f.text_area :notes, :class => "", :rows => "5" %>
+          <%= f.label :notes, "Additional Notes and Requirements" %>
+          <%= f.text_area :notes, :class => "", :rows => "5", :placeholder => "Do you require union workers or any specific certifications? Please, enter here..." %>
         </div>
       </div>
 
@@ -179,30 +185,39 @@
 
       <div class="project_meta public_private">
         <div class="field">
-          <div>
-            <span>
-              <%= f.label :private, "Public" %>
-              <%= f.radio_button :private, false %>
-            </span>
-            <span class="explain">Anyone can search and view &mdash; Recommended</span>
-          </div>
-          <div>
-            <span>
+					<div class="private">
+					<div>
+						<label class="section_head">User Access</label>
+					</div>
+            <div>
               <%= f.label :private, "Private" %>
-              <%= f.radio_button :private, true %>
-            </span>
-            <span class="explain">Invite Only &mdash; Only people you choose can view</span>
+            </div>
+						<div class="pp_description">
+							<span class="explain">Invite Only &hyphen; Only people you choose can view</span>
+							<span>
+								<%= f.radio_button :private, true %>
+							</span>
+						</div>
+          </div>
+          <div class="public">
+						<div>
+              <%= f.label :private, "Public" %>
+            </div>
+						<div class="pp_description">
+							<span>
+								 <%= f.radio_button :private, false %>
+							</span>
+							<span class="explain">Anyone can search and view &hyphen; Recommended</span>
+						</div>
           </div>
         </div>
       </div>
 
-      <div class="">
-        <p>
-          <label class="span6">
-            <%= f.check_box :terms_of_use %>
-            I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
-          </label>
-        </p>
+      <div class="project_meta form-stacked agree_submit">
+				<label class="span6">
+					<%= f.check_box :terms_of_use %>
+					I have read and agree to the site's <%= link_to "Terms of Use", content_page_path('terms') %>
+				</label>
         <% if current_page? new_project_path %>
           <%= f.submit "Save and Continue", :disable_with => "Saving...", :name => :draft, :class => 'btn large primary' %>
         <% else %>
