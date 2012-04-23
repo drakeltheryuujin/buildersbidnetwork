@@ -10,9 +10,10 @@
       <%= project.location.city + ", " + project.location.state %>
     </div>
     <span class="result_type sector"><%= project.project_type.type_name unless project.project_type.blank? %></span>
-    <span class="project_flags">
+		<div class="result_project_id"><strong>ID:</strong> <%= project.id %></div>
+    <!--span class="project_flags">
       <p class="posted"><%= image_tag "/images/calendar.png" %><strong>Posted:</strong> <%= project.created_at.to_formatted_s(:short) %></p>
-    </span>
+    </span-->
   </div>
   <div class="result_infos">
     <div class="result_numbers">
@@ -30,7 +31,7 @@
       <% if project.bidding_end > Time.now %>
         <dl>
           <dd>
-            <%= (project.bidding_end.to_date - Date.today).to_i %> 
+            <%= (project.bidding_end.to_date - Date.today).to_i %><span class="clock-icon"></span>
           </dd>
           <dt>
             Days Left

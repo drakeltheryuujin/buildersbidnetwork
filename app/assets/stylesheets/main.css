@@ -386,14 +386,14 @@ span.how_span2,
 span.how_span1 a,
 span.how_span2 a {
   display:block;
-  float:right;
+  /*float:right;*/
   }
-span.how_span1 a {
+/*span.how_span1 a {
 margin-top: -45px;
 }
 span.how_span2 a {
 margin-top: -25px;
-}
+}*/
 li.faq,
 p.faq {
  color:#002666;
@@ -447,6 +447,11 @@ li.terms {
   background: url('../images/share_icon_grey.png') 0 4px no-repeat !important;
 }
 
+.project_avatar img {
+	border: 1px solid #f66d05;
+	padding: 1px;
+}
+
 .profile_avatar {
   border: 1px solid #4BAAEE; 
   float: left;
@@ -484,6 +489,26 @@ li.terms {
   font-size: 18px;
   font-weight: bold;
 }
+.search_header .search_actions {
+	margin-top: -18px;
+	text-align: right;
+}
+
+.search_header .search_actions .btn.large {
+	line-height: 26px;
+	padding: 0;
+	font-size: 13px;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	margin: 0;
+	width: 162px;
+}
+
+.search_header .search_actions .btn.large:after {
+	content: " \00BB";
+}
+
 .profile_header .profile_actions .btn.small,
 .project_header .project_actions .btn.small {
   text-transform: uppercase;
@@ -1683,8 +1708,7 @@ h1.search_header span {
 .search_result img.profile_avatar {
   padding: 10px;
 }
-.notification_result .result_name,
-.search_result .result_name {
+.notification_result .result_name {
   padding-top: 6px;
   font-size: 26px;
   line-height: 32px;
@@ -1752,10 +1776,22 @@ h1.search_header span {
 .search_result.bid .result_numbers {
   background-color: #9E9;
 }
+.search_result .result_name {
+	font-size: 18px;
+	line-height: 28px;
+	padding-top: 8px;
+}
 .search_result .result_location {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 6px;
+}
+.search_result .result_project_id {
+	font-size: 10px;
+	padding-top: 14px;
+}
+.search_result .result_type {
+	font-size: 12px;
 }
 .search_result .result_numbers {
   padding: 16px;
@@ -1776,6 +1812,9 @@ h1.search_header span {
   font-weight: bold;
   padding: 3px 8px;
   margin-bottom: 5px;
+}
+.label.success {
+	background-color: #8ac640;
 }
 ul.line_items li div.units .line_item_total,
 .search_result .result_numbers strong {
@@ -1799,7 +1838,14 @@ ul.line_items li div.units .line_item_total,
 .search_result .result_numbers dl dd {
   margin-left: 0;
   font-weight: bold;
-  line-height: 10px;
+  line-height: 11px;
+}
+.search_result .result_numbers dl dd .clock-icon {
+	display: inline-block;
+	width: 11px;
+	height: 11px;
+	margin-left: 3px;
+	background: url('../images/clock.png') 0 0 no-repeat;
 }
 .search_result .result_numbers label,
 .search_result .result_numbers dl dt {
