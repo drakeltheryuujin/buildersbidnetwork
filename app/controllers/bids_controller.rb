@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award, :accept]
+  before_filter :get_project_and_bid, :only => [:show, :update, :edit, :award, :revoke, :accept]
   before_filter :get_project, :only => [:new, :create]
   before_filter :verify_detail_access!, :only => [:new, :create, :edit, :update]
   before_filter :verify_bidding_period!, :only => [:new, :create, :edit, :update]
@@ -53,6 +53,21 @@ class BidsController < ApplicationController
     body = params[:message_body] || sender_name + " has awarded your bid for #{@project.name}."
     subject = "You've been awarded #{@project.name}"
     current_user.send_message_with_object_and_type([winner], body, subject, @bid, :project_award_message)
+
+    respond_to do |format|
+      format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Awarded') }
+      format.text { render :text => "Bid Awarded" }
+    end
+  end
+
+  def revoke
+    @bid.revoke!
+
+    winner = @bid.user
+    sender_name = current_user.name
+    body = params[:message_body] || sender_name + " has revoked your bid for #{@project.name}."
+    subject = "Your bid award has been revoked for #{@project.name}"
+    current_user.send_message_with_object_and_type([winner], body, subject, @bid, :project_revocation_message)
 
     respond_to do |format|
       format.html { redirect_to(project_bid_path(@project, @bid), :notice => 'Bid Awarded') }

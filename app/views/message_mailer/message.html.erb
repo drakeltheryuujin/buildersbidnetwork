@@ -4,6 +4,8 @@
   <% content_for :top_head, "Project has changed!" %>
 <% elsif @message.notification_type == :project_award_message %>
   <% content_for :top_head, "Your bid won the project!" %>
+<% elsif @message.notification_type == :project_revocation_message %>
+  <% content_for :top_head, "Your award has been revoked." %>
 <% elsif @message.notification_type == :bid_accepted_message %>
   <% content_for :top_head, "Your bid award was accepted!" %>
 <% elsif @message.notification_type == :bid_placed_message %>

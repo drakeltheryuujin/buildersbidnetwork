@@ -14,8 +14,10 @@
           <% if @bid.published? %>
             <%= link_to 'Award Project', award_project_bid_path(@project, @bid), :class => 'btn large primary', "data-controls-modal" => "award-project-modal", "data-backdrop" => "true" %> 
           <% elsif @bid.awarded? %>
-            <h1>Award Pending</h1>
-            <h2><%= link_to @bid.user.name, profile_path(@bid.user.profile) %></h2>
+            <h1>
+              Award Pending: <%= link_to @bid.user.name, profile_path(@bid.user.profile) %>
+            </h1>
+            <%= link_to 'Revoke Award', revoke_project_bid_path(@project, @bid), :class => 'btn large primary', "data-controls-modal" => "revoke-project-modal", "data-backdrop" => "true" %> 
           <% elsif @bid.accepted? %>
             <h1>Project Awarded</h1>
             <h2><%= link_to @bid.user.name, profile_path(@bid.user.profile) %></h2>
@@ -40,12 +42,40 @@
           </div> 
         <% end %>
       </div>
+      <div id="revoke-project-modal" class="modal hide fade">
+        <div class="modal-header">
+          <a href="#" class="close">×</a>
+          <h3>Revoke a project award notification</h3>
+        </div> 
+        <div class="award_explanation">
+          If the contractor you originally awarded the project to is unable to accept, you may revoke their award and then re-award the project to another bidder.
+        </div>
+        <%= form_tag(revoke_project_bid_path(@project, @bid), :remote => true, "data-type" => "text" )  do %>
+          <div class="modal-body form-stacked">
+            <label>Include a personal note <em>(Optional)</em></label>
+            <%= text_area_tag :message_body %>
+          </div> 
+          <div class="modal-footer">
+            <%= submit_tag "Send", :class => "btn primary" %>
+          </div> 
+        <% end %>
+      </div>
       <% content_for :javascript do %>
         <script type="text/javascript">
           $(document).ready(function() {
             $("#award-project-modal form")
               .bind('ajax:complete', function(evt, data, status, xhr){
                 $("#award-project-modal").modal('hide');
+              })
+              .bind('ajax:success', function(evt, data, status, xhr){
+                $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");
+              })
+              .bind('ajax:error', function(evt, xhr, status, error){
+                $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+              });
+            $("#revoke-project-modal form")
+              .bind('ajax:complete', function(evt, data, status, xhr){
+                $("#revoke-project-modal").modal('hide');
               })
               .bind('ajax:success', function(evt, data, status, xhr){
                 $("#wrapper").prepend("<p class='alert-message success'>" + xhr.responseText + "</p>");

@@ -96,7 +96,7 @@ class Project < ActiveRecord::Base
       transitions :to => :cancelled, :from => :published
     end
     event :award do
-      transitions :to => :award_pending, :from => :published
+      transitions :to => :award_pending, :from => [:published, :award_pending]
     end
     event :complete_award do
       transitions :to => :awarded, :from => :award_pending

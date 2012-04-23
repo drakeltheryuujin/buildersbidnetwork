@@ -23,7 +23,7 @@
         <li class="<%= 'active' if @filter.blank? || @filter == :published.to_s %>"><%= link_to "Active", activity_index_path %></li>
         <li class="<%= 'active' if params[:filter] == :draft.to_s %>"><%= link_to "Drafts", activity_index_path(:filter => :draft) %></li>
         <li class="<%= 'active' if params[:filter] == :cancelled.to_s %>"><%= link_to "Cancelled", activity_index_path(:filter => :cancelled) %></li>
-        <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Ready for Award", activity_index_path(:filter => :ready) %></li>
+        <li class="<%= 'active' if params[:filter] == :ready.to_s %>"><%= link_to "Ready for Award", activity_index_path(:filter => :ready) %></li>
         <li class="<%= 'active' if params[:filter] == :awarded.to_s %>"><%= link_to "Awarded", activity_index_path(:filter => :awarded) %></li>
         <li class="<%= 'active' if params[:filter] == :past.to_s %>"><%= link_to "Past Projects", activity_index_path(:filter => :past) %></li>
       </ul>

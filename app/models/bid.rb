@@ -54,6 +54,9 @@ class Bid < ActiveRecord::Base
     event :award do
       transitions :to => :awarded, :from => :published
     end
+    event :revoke do
+      transitions :to => :cancelled, :from => :awarded
+    end
     event :accept do
       transitions :to => :accepted, :from => :awarded
     end
@@ -105,7 +108,7 @@ class Bid < ActiveRecord::Base
   end
 
   def charge_credits_and_notify_creator
-    if sufficient_credits?
+    if sufficient_credits? && changed_to_published?
       ca = self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value)))
       subject = "Bid from #{self.user.profile.name}"
       body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
@@ -118,6 +121,10 @@ class Bid < ActiveRecord::Base
 
   def award_project
     self.project.award!
+  end
+
+  def revoke_project
+    self.project.revoke!
   end
 
   def award_complete
