@@ -166,6 +166,11 @@
         <%= number_to_currency @bid.total %>
       </div>
     </div>
+    
+    <div class="row form-stacked">
+      <h4>Additional Bid Notes</h4>
+      <%= @bid.description %>
+    </div>
   </div> <!-- /.span11 -->
 
   <%= render '/projects/sidebar' %>
