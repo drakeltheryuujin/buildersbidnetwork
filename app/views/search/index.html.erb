@@ -67,6 +67,7 @@
     <div class="search_results ">
       <% if @search.results.present? %>
         <%= render @search.section %>
+        <%= paginate @search.results %>
       <% else %>
         <div class="search_result no_result ">
           <h1>There weren't any exact matches for your search.</h1>

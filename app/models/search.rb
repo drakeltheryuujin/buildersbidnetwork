@@ -3,7 +3,7 @@ class Search
   include ActiveModel::Conversion
   extend ActiveModel::Naming
 
-  attr_accessor :q, :section, :location, :distance, :type_ids, :order
+  attr_accessor :q, :section, :location, :distance, :type_ids, :order, :page
 #attr_reader :relation
 
 #def initialize(relation) 
@@ -19,7 +19,9 @@ class Search
     @type_ids = [] unless @type_ids
     @order = (@section == :projects.to_s ? :time_left.to_s : :name.to_s) unless @order
     @q = "" unless @q
-
+    
+    @page = 1 unless @page
+    
     if @order == :distance.to_s && @location.blank?
       # FIXME handle this case better
       @order = :name.to_s
@@ -50,7 +52,8 @@ class Search
     if ! @location.blank?
       relation = relation.near(@location, @distance)
     end
-
+    
+    
     case @order
       when :distance.to_s
         relation = relation.order(:distance)
@@ -62,7 +65,7 @@ class Search
         relation = relation.order(:name)
     end
 
-    relation
+    relation.page(@page)
   end
 
   def section_matches?(section) 
