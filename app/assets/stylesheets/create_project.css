@@ -1,5 +1,5 @@
 /* Styles for create a project page*/
-#new_project .span11 .form-stacked {
+.project_form .span11 .form-stacked {
 	width: 619px;
 	border: 1px solid #d5d5d5;
 	margin-bottom: 13px;
@@ -21,7 +21,7 @@
 
 }
 
-#new_project .project_form h4 {
+.project_form h4 {
 	border-bottom: 1px solid #d5d5d5;
 	width: 95%;
 	margin-bottom: 8px;
@@ -106,9 +106,9 @@
 	padding-bottom: 5px;
 }
 
-#new_project #project_location_attributes_address1,
-#new_project #project_location_attributes_address2,
-#new_project #project_location_attributes_city {
+.project_form #project_location_attributes_address1,
+.project_form #project_location_attributes_address2,
+.project_form #project_location_attributes_city {
 	margin-bottom: 19px;
 }
 
@@ -129,7 +129,7 @@
 	line-height: 36px;
 }
 
-#new_project .project_form .project_meta .field.line_item input.line_item_content_field {
+.project_form .project_meta .field.line_item input.line_item_content_field {
 	width: 438px;
 }
 
@@ -137,86 +137,86 @@
 	padding-bottom: 5px;
 }
 
-#new_project .project_form .public_private .private label.section_head {
-	font-size: 16px;
+.project_form .project_meta.public_private .private label.section_head {
+	font-size: 16px !important;
 	font-weight: bold;
 	width: 87%;
 	text-align: left;
 	line-height: 41px;
 }
 
-#new_project .project_form .public_private .field {
-	margin: 0;
-	padding: 0;
+.project_form .project_meta.public_private .field {
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
-.project_form .public_private .private {
+.project_form .project_meta.public_private .private {
 	border-right: 1px solid #d5d5d5;
 	padding-bottom: 33px;
 }
 
-#new_project .project_form .public_private .private label {
+.project_form .project_meta.public_private .private label {
 	display: block;
 	width: 100%;
 	float: right; 
 	margin-right: 56px;
 }
 
-#new_project .project_form .public_private .public label {
+.project_form .project_meta.public_private .public label {
 	width: 100%;
 	text-align: left;
 	margin-left: 65px;
 }
 
-#new_project .project_form .public_private label {
+.project_form .project_meta.public_private label {
 	font-weight: normal;
-	font-size: 25px;
+	font-size: 25px !important;
 	margin-bottom: 10px;
 }
 
-#new_project .project_form .public_private .private .pp_description {
+.project_form .project_meta.public_private .private .pp_description {
 	text-align: right;
 }
 
-#new_project .project_form .public_private .public .pp_description {
+.project_form .project_meta.public_private .public .pp_description {
 	text-align: left;
 }
 
-#new_project .project_form .public_private input[type="radio"] {
+.project_form .project_meta.public_private input[type="radio"] {
 	margin: 0 21px;
 }
 
-#new_project .agree_submit {
+.project_form .agree_submit {
 	float: left;
 	padding: 19px 0 17px 20px;
 }
 
-#new_project .agree_submit .span6 {
+.project_form .agree_submit .span6 {
 	font-size: 13px;
 	line-height: 37px;
 	font-weight: bold;
 	float: left;
 }
 
-#new_project .agree_submit .btn {
+.project_form .agree_submit .btn {
 	float: right;
 	margin-right: 20px;
 }
 
-#new_project .btn {
+.project_form .btn {
 	float: none;
 	vertical-align: middle;
 	margin-right: 7px;
 }
 
-#new_project a img.add_remove_button {
+.project_form a img.add_remove_button {
 	margin-right: 7px;
 }
 
-#new_project a.remove_nested_fields {
+.project_form a.remove_nested_fields {
 	margin-bottom: 6px;
 }
 
-#new_project a#clear_pre_bid_meeting {
+.project_form a#clear_pre_bid_meeting {
 	margin-top: -7px;
 }
