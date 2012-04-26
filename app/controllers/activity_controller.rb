@@ -3,8 +3,10 @@ class ActivityController < ApplicationController
 
   def index
     @filter = params[:filter]
+    @page = params[:page] || 1
+    
     if current_user.developer?
-      @projects = Project.not_deleted.where(:user_id => current_user.id).order(:bidding_end)
+      @projects = Project.not_deleted.where(:user_id => current_user.id).order(:bidding_end).page(@page)
 
       if :past.to_s == @filter
         @projects = @projects.where("bidding_end <= ?", Time.now).reverse_order
@@ -19,10 +21,10 @@ class ActivityController < ApplicationController
           #@projects = @projects.find_all_by_user_id current_user.id
         end
       end
-
+          
       render :action => "developer"
     else
-      @bids = Bid.joins(:project).where(:user_id => current_user.id, :deleted_at => nil, :projects => {:deleted_at => nil}).order('projects.bidding_end')
+      @bids = Bid.joins(:project).where(:user_id => current_user.id, :deleted_at => nil, :projects => {:deleted_at => nil}).order('projects.bidding_end').page(@page)
       if :past.to_s == @filter
         @bids = @bids.where("projects.bidding_end <= :now", :now => Time.now).reverse_order
       else
