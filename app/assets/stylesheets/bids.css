@@ -1,0 +1,4 @@
+.new_bid .field textarea,
+.edit_bid .field textarea {
+	width: 95%;
+}

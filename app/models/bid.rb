@@ -6,6 +6,7 @@
 #  total      :decimal(8, 2)
 #  user_id    :integer
 #  project_id :integer
+#  description :text
 #  created_at :datetime
 #  updated_at :datetime
 #  state      :string(255)     default("draft")
@@ -112,6 +113,10 @@ class Bid < ActiveRecord::Base
       ca = self.credit_adjustments.build(:bid => self, :adjustment_type => :bid_purchase_debit, :user => self.user, :value => (-(self.project.credit_value)))
       subject = "Bid from #{self.user.profile.name}"
       body = "#{self.user.profile.name} has entered a bid on your project #{self.project.name}"
+      if self.description?
+        body << ", with additional notes: #{self.description}"
+      end
+        
       self.user.send_message_with_object_and_type([self.project.user], body, subject, self, :bid_placed_message)
       ca.save
     else
