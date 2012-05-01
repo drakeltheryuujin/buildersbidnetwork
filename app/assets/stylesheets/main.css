@@ -459,6 +459,9 @@ li.terms {
   width: 94px;
   height: 94px;
 } 
+.profile_avatar img {
+  width: 100%;
+}
 .notification_result .profile_avatar {
  margin-top:10px;
  margin-bottom:10px;
