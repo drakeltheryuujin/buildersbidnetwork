@@ -82,10 +82,16 @@
   margin-right: 10px;
 }
 
+.create-profile .new_contractor_profile .field ul.specialties,
+.create-profile .new_developer_profile .field ul.specialties,
+.create-profile .new_profile .field ul.specialties,
 .profile_page .profile-form .field ul.specialties {
   list-style: none;
   margin: 0;
 }
+.create-profile .new_contractor_profile .field ul.specialties li,
+.create-profile .new_developer_profile .field ul.specialties li,
+.create-profile .new_profile .field ul.specialties li,
 .profile_page .profile-form .field ul.specialties li {
   float: left;
   width: 33%;

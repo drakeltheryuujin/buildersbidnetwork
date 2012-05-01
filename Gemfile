@@ -66,6 +66,11 @@ gem "aasm"
 # soft delete
 gem "permanent_records"
 
+# linked in
+gem "omniauth"
+gem "omniauth-linkedin"
+gem "linkedin"
+
 # production
 gem "heroku"
 gem 'exception_notification'

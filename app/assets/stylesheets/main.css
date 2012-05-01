@@ -1949,12 +1949,27 @@ ul.line_items li div.units .line_item_total,
   border-bottom: 1px solid #ddd;
   padding: 10px 20px;
 }
+.login-page .login-box .login-head img.avatar {
+  display: inline-block;
+  float: left;
+  height: 65px;
+  padding-right: 10px;
+}
 .login-page .login-box .login-head h6 {
   text-transform: none;
   line-height: 1em;
 }
+.create-profile.login-page .login-box .login-head h2 {
+  display: inline;
+  vertical-align: top;
+}
+.create-profile.login-page .login-box .login-head img.avatar {
+  float: none;
+}
 
-.login-page .login-box .field > label, .confirmation-page .confirmation-box .field > label , .forgot-password-page .login-box .field > label {
+.login-page .login-box .field > label, 
+.confirmation-page .confirmation-box .field > label , 
+.forgot-password-page .login-box .field > label {
   text-transform: uppercase;
   font-weight: normal;
   width: 50%;

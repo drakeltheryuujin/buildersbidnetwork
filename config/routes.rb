@@ -1,7 +1,8 @@
 Ypn::Application.routes.draw do
 
-  ActiveAdmin.routes(self)
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  # FIXME devise's omniauth only supports one omniauthable model.  May need to invert the inheritence on User/AdminUser.
+  #ActiveAdmin.routes(self)
+  #devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :projects do
     resources :bids do
@@ -58,8 +59,10 @@ Ypn::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :invitations => 'users/invitations' }
+  match '/users/auth/:service/callback' => 'authentications#create' 
+  resources :authentications, :only => [:index, :create, :destroy]
 
+  devise_for :users, :controllers => { :invitations => 'users/invitations' }
 
   resources :messages
 

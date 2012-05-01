@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :bids, :dependent => :destroy
   has_many :credit_adjustments, :dependent => :destroy
 
+  has_many :authentications, :dependent => :destroy
+
   has_many :project_privileges, :dependent => :destroy
   has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
@@ -48,7 +50,9 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         :token_authenticatable, :confirmable, :lockable, :timeoutable 
+         :token_authenticatable, :confirmable, :lockable, :timeoutable,
+         :omniauthable
+
 
   # Setup accessible (or protected) attributes for your model
   attr_accessor :message_body
@@ -62,6 +66,20 @@ class User < ActiveRecord::Base
 
   scope :has_logged_in, where("sign_in_count > 0")
   scope :never_logged_in, where("sign_in_count = 0")
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if auth_hash = session["devise.omniauth_authentication"]
+        y auth_hash
+        user.authentications.build(auth_hash)
+      end
+      #if ((provider = session["devise.omniauth_provider"]) && (uid = session["devise.omniauth_uid"]))
+      #  user.authentications.build(:provider => provider, :uid => uid)
+      #end
+    end
+  end
+
+
 
   def name
     return self.profile.present? ? self.profile.name : self.email 

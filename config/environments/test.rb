@@ -51,4 +51,7 @@ Ypn::Application.configure do
       :password => TRANSACTION_KEY
     )
   end
+
+  LINKEDIN_KEY = "vnsl7tk2ecpz" 
+  LINKEDIN_SECRET = "mTH0eLe6yGPeHtQM"
 end

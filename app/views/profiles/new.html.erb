@@ -2,6 +2,7 @@
   <div class="offset2 span12 form-stacked">
     <div class="login-box">
       <div class="login-head">
+        <% if @avatar_url %><%= image_tag(@avatar_url, :class => "avatar") %><% end %>
         <h2>Let's get started by creating your company profile.</h2>
       </div>
 

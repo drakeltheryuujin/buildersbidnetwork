@@ -27,6 +27,38 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.xml
   def new
     @profile = Profile.new
+    if li_auth = current_user.authentications.linkedin.first
+      @avatar_url = li_auth.avatar_url
+      # fetch fields from the user's linkedin profile
+      li_client = li_auth.linked_in_client
+      li_profile = li_client.profile(:fields => %w(three_current_positions formatted_name summary location phone_numbers main_address))
+
+      # use current position's company, or the user's name if company unavailable
+      if li_profile['three_current_positions'].total
+        @profile.name = li_profile['three_current_positions'].all.first.company.name
+      else
+        @profile.name = li_profile['formatted_name']
+      end
+
+      # description/summary
+      @profile.description = li_profile['summary']
+
+      # phone numbers
+      if li_profile['phone_numbers'].total
+        li_profile['phone_numbers'].all.each do |p|
+          phone = @profile.phones.build(:number => p['phone_number'])
+          if p['phone_type'] == 'work'
+            phone.phone_type = PhoneType.find_by_name('Office') 
+          elsif p['phone_type'] == 'mobile'
+            phone.phone_type = PhoneType.find_by_name('Mobile') 
+          else
+            phone.phone_type = PhoneType.find 1
+          end
+        end
+      end
+
+      # TODO address.  li_profile['main_address'] is a multi-line address string.  needs parsed.
+    end
     @profile.build_location
     @phone = @profile.phones.build
     @phone.phone_type = PhoneType.find 1

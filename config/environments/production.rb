@@ -90,4 +90,7 @@ Ypn::Application.configure do
       (rack_env['SERVER_NAME'] != 'www.buildersbidnetwork.com')
     }
   end
+
+  LINKEDIN_KEY = "vnsl7tk2ecpz" 
+  LINKEDIN_SECRET = "mTH0eLe6yGPeHtQM"
 end
