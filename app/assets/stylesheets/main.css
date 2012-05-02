@@ -903,8 +903,7 @@ font-weight: bold;
 }
 .home_page .account_box .terms {
   float: right;
-  width: 210px;
-  font-size: 14px;
+  font-size: 12px;
 }
 .home_page .account_box .field.register {
   margin-top:20px;
@@ -2056,6 +2055,21 @@ ul.line_items li div.units .line_item_total,
   float: left;
   margin-right: 10px;
 }
+.account_box .login_choice,
+.login-page .login-box .login_choice {
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  width: 3.5em;
+  display: inline-block;
+}
+.account_box .login_choice {
+  width: 2.5em;
+}
+.account_box .auth_btn,
+.login-page .login-box .auth_btn {
+  float: right;
+}
 .btn.large.forgot_pw,
 .btn.large.confirm,
 .btn.large.unlock,
@@ -2218,6 +2232,17 @@ input, textarea {
 
 .alert-message .btn {
   margin-top: 10px;
+}
+
+.auth_btn {
+  padding: 0 5px 0 0;
+  height: 32px;
+  font-size: 14px;
+  text-shadow: #AAA 0.1em 0.1em 0.2em;
+  color: #333;
+}
+.auth_btn img {
+  vertical-align: middle;
 }
 
 #wrapper {

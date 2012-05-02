@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
         @profile.description = li_profile['summary']
 
         # phone numbers
-        if li_profile['phone_numbers'].total
+        if li_profile['phone_numbers'].total > 0
           li_profile['phone_numbers'].all.each do |p|
             phone = @profile.phones.build(
                 :number => p['phone_number'], 

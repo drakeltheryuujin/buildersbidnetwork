@@ -55,48 +55,44 @@
         </div>
       </div>
       <div class="span6">
-       <div class="account_box home_box row">
-       <h2>Create an Account- It's Free!</h2>
-       <li>Registering an account is required to view, create, and bid on projects.</li>
-        <%= form_for(:user, :as => :user, :url => user_registration_path) do |f| %>
+        <div class="account_box home_box row">
+          <h2>Create an Account- It's Free!</h2>
+          <li>Registering an account is required to view, create, and bid on projects.</li>
+          <%= form_for(:user, :as => :user, :url => user_registration_path) do |f| %>
+            <div class="field text">
+              <%= f.label :email %>
+              <%= f.email_field :email %>
+            </div>
 
-          <div class="field text">
-            <%= f.label :email %>
-            <%= f.email_field :email %>
-          </div>
+            <div class="field text">
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+            </div>
 
-          <div class="field text">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-          </div>
+            <div class="field text">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation %>
+            </div>
 
-          <div class="field text">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation %>
-          </div>
+            <div class="field register">
+              <%= f.submit "Create Account", :class => "btn large primary" %>
+              <span class="login_choice">or</span>
+              <%= render "/linkedin_auth_btn" %>
+            </div>
+          <% end %>
+          <div class="terms">
+            <span class="field_info span4">
+              By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
+            </span>
+          </div> <!-- /.terms -->
+        </div> <!-- /.home_box -->
+      </div> <!-- /.span6 -->
+      <div class="span8">
 
-          <div class="field register">
-            <%= f.submit "Create Account", :class => "btn large primary" %>
-            <div class="terms">
-              <span class="field_info span4">
-                By signing up you agree to our <%= link_to "User Agreement", content_page_path('terms') %>.
-              </span>
-             </div>
-          </div>
-        <% end %>
-        <div class="cta">
-          <%= link_to "Sign in with LinkedIn", user_omniauth_authorize_path(:linkedin) %>
-          Already have an account?
-          <%= link_to "Login ", new_user_session_path %>
-        </div>
-        </div>
-      </div>  
-        <div class="span8">
-         
-       </div>
-    </div>
-  </div> <!-- end .container for home page-->
-</div> <!--end .home interior wrap -->
+      </div>
+    </div> 
+  </div> <!-- /.container -->
+</div> <!--/.home_interior_wrap -->
 <div class="span8 bottombar" >
     <nav></nav>
   <div class="carousel">
