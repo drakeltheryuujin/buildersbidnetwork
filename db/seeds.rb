@@ -54,6 +54,6 @@
   ProjectType.find_or_create_by_name(t)
 end
 
-["Office", "Fax", "Mobile"].each do |t|
+["Office", "Fax", "Mobile", "Home"].each do |t|
   PhoneType.find_or_create_by_name(t)
 end
