@@ -69,8 +69,8 @@ class Profile < ActiveRecord::Base
   def cover_photo_square_thumb_url(default = '/images/company_square.png')
     if self.asset.present?
       self.asset(:square_thumb)
-    elsif self.user.authentications.linkedin.first.present?
-      self.user.authentications.linkedin.first.avatar_url.present? ?  self.user.authentications.linkedin.first.avatar_url : default
+    elsif self.user.linkedin_auth.present? && self.user.linkedin_auth.avatar_url.present? 
+      self.user.linkedin_auth.avatar_url
     else
       default
     end

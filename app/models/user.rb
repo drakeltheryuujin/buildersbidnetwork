@@ -169,6 +169,10 @@ class User < ActiveRecord::Base
     return notification.deliver false
   end
 
+  def linkedin_auth
+    self.authentications.linkedin.first
+  end
+
 
   private
 

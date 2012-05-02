@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new.xml
   def new
     @profile = Profile.new
-    if li_auth = current_user.authentications.linkedin.first
+    if li_auth = current_user.linkedin_auth
       @avatar_url = li_auth.avatar_url
       # fetch fields from the user's linkedin profile
       li_client = li_auth.linked_in_client
