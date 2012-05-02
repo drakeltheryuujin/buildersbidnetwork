@@ -3,7 +3,7 @@ class Authentication < ActiveRecord::Base
 
   validates :provider, :uid, :presence => true
 
-  attr_accessible :provider, :uid, :token, :secret, :avatar_url
+  attr_accessible :provider, :uid, :token, :secret, :avatar_url, :name, :profile_url
 
   scope :linkedin, where(:provider => :linkedin)
 

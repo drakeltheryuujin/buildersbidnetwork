@@ -1,35 +1,6 @@
-<% content_for :top_banner do %>
-  <div class="container">
-    <h1>
-      <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
-      Purchase History
-    </h1>
-    <%= render '/activity/tabs' %>
-  </div>
-<% end %>
+<%= render '/users/settings_top_banner', :page_title => "Subscription Status" %>
 <div class="settings_page row">
-  <div class="span5 ">
-    <div class="track_filters ">
-      <ul>
-        <li>
-          <%= link_to "Settings", edit_user_registration_path %>
-        </li>
-        <li class="active">
-          <%= link_to "Subscription Status", status_subscriptions_path %>
-        </li>
-        <li>
-          <%= link_to "Purchase History", history_credits_path %>
-        </li>
-      </ul>
-
-      <dl>
-        <dt>Last Login:</dt>
-        <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
-      </dl>
-
-      <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
-    </div>
-  </div>
+  <%= render '/users/settings_sidebar' %>
   <div class="span11 ">
     <% unless @subscription %>
       <%= link_to 'Get a Subscription', subscriptions_path, :class => 'btn large primary ' %>

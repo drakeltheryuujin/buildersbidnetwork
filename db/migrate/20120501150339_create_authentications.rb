@@ -7,6 +7,8 @@ class CreateAuthentications < ActiveRecord::Migration
       t.string :token
       t.string :secret
       t.string :avatar_url
+      t.string :name
+      t.string :profile_url
 
       t.timestamps
     end

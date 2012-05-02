@@ -2126,6 +2126,35 @@ ul.line_items li div.units .line_item_total,
   border-radius: 0px 5px 5px 0px;
 }
 
+.settings_page.authentications_page .external_auth h2 {
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 10px;
+  line-height: 28px;
+}
+.settings_page.authentications_page .external_auth .auth_meta a.auth_unlink {
+  font-size: 10px;
+}
+.settings_page.authentications_page .external_auth span,
+.settings_page.authentications_page .external_auth img {
+  display: inline;
+  vertical-align: top;
+}
+.settings_page.authentications_page .external_auth img.avatar {
+  float: left;
+  padding-right: 10px;
+}
+.settings_page.authentications_page .external_auth img.auth_logo {
+  float: right;
+}
+/*
+.settings_page.authentications_page .linkedin_auth {
+  vertical-align: top;
+}
+.settings_page.authentications_page .linkedin_auth img {
+  width: 65px;
+}
+*/
+
 
 .project_page .project_content h4,
 .profile_page .profile_content h4 {

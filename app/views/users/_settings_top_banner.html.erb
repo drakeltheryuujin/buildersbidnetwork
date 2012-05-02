@@ -1,0 +1,10 @@
+<% content_for :top_banner do %>
+  <div class="container">
+    <h1>
+      <%= image_tag "/images/contact_person_icon.png", :alt => "Avatar", :width => "16px", :height => "16px" %>
+      <%= local_assigns[:page_title].present? ? page_title : "Settings" %>
+    </h1>
+    <%= render '/activity/tabs' %>
+  </div>
+<% end %>
+

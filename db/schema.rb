@@ -29,12 +29,14 @@ ActiveRecord::Schema.define(:version => 20120501150339) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "authentications", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
+    t.integer  "user_id",     :null => false
+    t.string   "provider",    :null => false
+    t.string   "uid",         :null => false
     t.string   "token"
     t.string   "secret"
     t.string   "avatar_url"
+    t.string   "name"
+    t.string   "profile_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
