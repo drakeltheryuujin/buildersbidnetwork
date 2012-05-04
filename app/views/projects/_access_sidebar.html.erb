@@ -1,0 +1,26 @@
+<div class="span5 ">
+  <div class="track_filters ">
+    <ul>
+      <!--
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode) %>">
+        <%= link_to "BBN Registered", manage_access_project_path %>
+      </li>
+      -->
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode) %>">
+        <%= link_to "Email", manage_access_project_path %>
+      </li>
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode, :linkedin) %>">
+        <% if current_user.linkedin_auth.present? %>
+          <%= link_to "LinkedIn Connections", manage_access_project_path(:mode => :linkedin) %>
+        <% else %>
+          <%= render "/linkedin_auth_btn" %>
+        <% end %>
+      </li>
+      <!--
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode, :starred) %>">
+        <%= link_to "Favorites", manage_access_project_path(:mode => :starred) %>
+      </li>
+      -->
+    </ul>
+  </div> <!-- /.track_filters -->
+</div> <!-- /.span5 -->

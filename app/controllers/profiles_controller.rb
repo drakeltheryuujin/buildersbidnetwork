@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
       if li_profile.present?
         # use current position's company, or the user's name if company unavailable
-        if li_profile['three_current_positions'].total
+        if li_profile['three_current_positions'].total > 0
           @profile.name = li_profile['three_current_positions'].all.first.company.name
         else
           @profile.name = li_profile['formatted_name']

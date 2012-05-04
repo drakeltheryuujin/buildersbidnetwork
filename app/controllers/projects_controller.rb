@@ -123,6 +123,19 @@ class ProjectsController < ApplicationController
         @privileged_users << user
       end
     end
+
+    if params[:mode].to_s.eql? :linkedin.to_s
+      if li_auth = current_user.linkedin_auth
+        count = Kaminari.config.default_per_page
+        start = (page = params[:page]) ? (page.to_i - 1) * count : 0
+        li_client = li_auth.linked_in_client
+        li_connections = li_client.connections(:start => start, :count => count, :fields => [:id, :formatted_name, :headline, :picture_url, :public_profile_url])
+
+        if li_connections.present? && li_connections.total > 0
+          @connections = Kaminari.paginate_array(li_connections.all, {:offset => start, :limit => li_connections._count, :total_count => li_connections.total})
+        end
+      end
+    end
   end
   
   def revoke_access
@@ -162,6 +175,12 @@ class ProjectsController < ApplicationController
     end
 
     redirect_to manage_access_project_path(@project)
+  end
+
+  def invite_by_linkedin
+    params[:linkedin_uid].each do |uid|
+    end
+    redirect_to manage_access_project_path(@project, :mode => :linkedin)
   end
   
   private

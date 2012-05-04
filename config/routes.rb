@@ -20,6 +20,7 @@ Ypn::Application.routes.draw do
       get 'manage_access'
       delete 'revoke_access'
       post 'invite_by_email'
+      post 'invite_by_linkedin'
 	  end
   end
 

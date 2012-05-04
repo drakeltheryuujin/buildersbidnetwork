@@ -6,6 +6,9 @@
   </div>
 <% end %>
 <div class="row project_page">
+
+  <%= render 'access_sidebar' %>
+
   <div class="span11 project_content">
     <div class="invite_by_email">
       <h3>Invite Contractors by E-Mail</h3>
@@ -42,9 +45,25 @@
         </div>
       </div>
     <% end %>
-  </div>
 
-  <%= render 'sidebar' %>
+    <% if @connections.present? %>
+      <%= form_tag invite_by_linkedin_project_path(@project) do %>
+        <ul>
+          <% @connections.each do |conn| %>
+            <li>
+              <%= check_box_tag 'linkedin_uid[]', conn[:id] %>
+              <%= link_to conn[:public_profile_url] do %>
+                <%= image_tag conn[:picture_url] %>
+                <%= conn[:formatted_name] %> 
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <%= paginate @connections %>
+        <%= submit_tag "Send LinkedIn Invite", :class => 'btn primary' %>
+      <% end %>
+    <% end %>
+  </div>
 
   <% content_for :javascript do %>
     <%= javascript_include_tag "jquery.lightbox" %>
