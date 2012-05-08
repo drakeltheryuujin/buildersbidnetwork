@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     if li_auth = current_user.linkedin_auth
       @avatar_url = li_auth.avatar_url
       # fetch fields from the user's linkedin profile
-      li_client = li_auth.linked_in_client
+      li_client = li_auth.linkedin_client
       li_profile = li_client.profile(:fields => %w(three_current_positions formatted_name summary location phone_numbers main_address))
 
       if li_profile.present?

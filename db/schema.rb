@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120501150339) do
+ActiveRecord::Schema.define(:version => 20120508170555) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120501150339) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "authentications", :force => true do |t|
-    t.integer  "user_id",     :null => false
+    t.integer  "user_id"
     t.string   "provider",    :null => false
     t.string   "uid",         :null => false
     t.string   "token"
@@ -235,8 +235,10 @@ ActiveRecord::Schema.define(:version => 20120501150339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.integer  "authentication_id"
   end
 
+  add_index "project_privileges", ["authentication_id"], :name => "index_project_privileges_on_authentication_id"
   add_index "project_privileges", ["project_id"], :name => "index_project_privileges_on_project_id"
   add_index "project_privileges", ["user_id"], :name => "index_project_privileges_on_user_id"
 

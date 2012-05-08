@@ -70,12 +70,10 @@ class User < ActiveRecord::Base
   def self.new_with_session(params, session)
     super.tap do |user|
       if auth_hash = session["devise.omniauth_authentication"]
-        y auth_hash
         user.authentications.build(auth_hash)
+      elsif (session["devise.authentication_id"].present?) && (auth = Authentication.find session["devise.authentication_id"])
+        auth.attach_user user
       end
-      #if ((provider = session["devise.omniauth_provider"]) && (uid = session["devise.omniauth_uid"]))
-      #  user.authentications.build(:provider => provider, :uid => uid)
-      #end
     end
   end
 

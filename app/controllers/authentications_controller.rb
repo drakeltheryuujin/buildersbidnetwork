@@ -42,19 +42,32 @@ class AuthenticationsController < ApplicationController
       # apply
       if uid.present? && provider.present?
         auth = Authentication.find_by_provider_and_uid(provider, uid)
-        if auth.present?
+        if auth.present? 
           auth.update_attributes(
               :token => (token.blank? ? auth.token : token),
               :secret => (secret.blank? ? auth.secret : secret),
               :avatar_url => (avatar_url.blank? ? auth.avatar_url : avatar_url),
               :name => (name.blank? ? auth.name : name),
               :profile_url => (profile_url.blank? ? auth.profile_url : profile_url)) unless token.blank? && secret.blank? && avatar_url.blank? && name.blank? && profile_url.blank?
-          if user_signed_in? # already linked
-            flash[:notice] = authentication_route.capitalize + ' authentication updated.'
-            redirect_to authentications_path
-          else # signing in
-            flash[:notice] = 'Signed in successfully via ' + provider.capitalize + '.'
-            sign_in_and_redirect(:user, auth.user)
+          if auth.user.present? # already linked
+            if user_signed_in? # update authentication
+              flash[:notice] = authentication_route.capitalize + ' authentication updated.'
+              redirect_to authentications_path
+            else # signing in
+              flash[:notice] = 'Signed in successfully via ' + provider.capitalize + '.'
+              sign_in_and_redirect(:user, auth.user)
+            end
+          else # invited, not yet linked
+            if user_signed_in? # attach auth & privileges to user
+              auth.attach_user current_user
+              flash[:notice] = authentication_route.capitalize + ' authentication and project privileges updated.'
+              redirect_to authentications_path
+            else # new registration
+              flash[:notice] = 'Great!  Please provide your email address and choose a password to complete your registration with ' + provider.capitalize + ' and receive access to the project(s) you were invited to.'
+              flash[:avatar_url] = avatar_url
+              session["devise.authentication_id"] = auth_hash
+              redirect_to new_user_registration_path
+            end
           end
         else # no existing authentication
           auth_hash = {
