@@ -79,6 +79,7 @@
 #how_left li.active a {
 	text-decoration: none;
 	width: 264px;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 	background: url('../images/how_nav_stand_in.png') 0 0 no-repeat;
 }
 
