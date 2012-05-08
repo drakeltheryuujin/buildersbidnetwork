@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(:version => 20120425201146) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
+  create_table "bid_documents", :force => true do |t|
+    t.string   "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "bid_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bid_documents", ["bid_id"], :name => "index_bid_documents_on_bid_id"
+
   create_table "bids", :force => true do |t|
     t.decimal  "total",       :precision => 10, :scale => 2
     t.integer  "user_id"
