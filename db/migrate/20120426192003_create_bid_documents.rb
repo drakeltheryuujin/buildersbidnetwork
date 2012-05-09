@@ -7,6 +7,8 @@ class CreateBidDocuments < ActiveRecord::Migration
       t.string :asset_content_type
       t.integer :asset_file_size
       t.datetime :asset_updated_at
+      
+      t.datetime :deleted_at
 
       t.references :bid
 

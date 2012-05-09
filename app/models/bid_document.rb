@@ -24,7 +24,7 @@ end
 #  asset_content_type :string(255)
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
-#  bid_id         :integer
+#  bid_id             :integer
 #  created_at         :datetime
 #  updated_at         :datetime
 #

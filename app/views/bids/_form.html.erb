@@ -71,8 +71,6 @@
     </div>
   </div>
     
-  
-  
   <div class="row">
     <%= f.submit "Save As Draft", :name => :draft, :disable_with => "Saving...", :class => 'float_right btn info large' unless (@bid.published? || @bid.cancelled? || @bid.awarded? || @bid.held?) %>
     <%= f.submit "Cancel Bid", :name => :cancel, :disable_with => "Saving...", :class => 'float_right btn danger large' if (@bid.draft? || @bid.published?) unless @bid.new_record? %>

@@ -8,15 +8,15 @@ class BidDocumentsController < ApplicationController
 # need to have reference to @project?
   def destroy
     @bid_document.destroy
-    redirect_to(project_bid_path(@project, @bid_document.bid), :notice => 'BidDocument was successfully destroyed.')
+    redirect_to(project_bid_path(@bid.project, @bid_document.bid), :notice => 'BidDocument was successfully destroyed.')
 	end
 
   def show
-    redirect_to project_bid_path(@project, @bid_document.bid)
+    redirect_to project_bid_path(@bid.project, @bid_document.bid)
   end
   
   def edit
-    redirect_to project_bid_path(@project, @bid_document.bid)
+    redirect_to project_bid_path(@bid.project, @bid_document.bid)
   end
   
   def new
@@ -29,9 +29,9 @@ class BidDocumentsController < ApplicationController
     @bid_document.bid = @bid
     
     if @bid_document.save
-      redirect_to(project_bid_path(@project, @bid_document.bid), :notice => 'BidDocument was successfully created.')
+      redirect_to(project_bid_path(@bid.project, @bid_document.bid), :notice => 'BidDocument was successfully created.')
     else
-      redirect_to(project_bid_path(@project, @bid_document.bid), :alert => @bid_document.errors.full_messages.join(' ') + 'BidDocument could not be created.')
+      redirect_to(project_bid_path(@bid.project, @bid_document.bid), :alert => @bid_document.errors.full_messages.join(' ') + 'BidDocument could not be created.')
     end
   end
   
@@ -39,12 +39,12 @@ class BidDocumentsController < ApplicationController
     if @bid_document.update_attributes(params[:bid_document])
       respond_to do |format|
         format.text { render :text => @bid_document.description }
-        format.html { redirect_to(project_bid_path(@project, @bid_document.bid), :notice => 'BidDocument was successfully updated.') }
+        format.html { redirect_to(project_bid_path(@bid.project, @bid_document.bid), :notice => 'BidDocument was successfully updated.') }
       end
     else
       respond_to do |format|
         format.text { render :text => "Error updating description.", :status => :bad_request }
-        format.html { redirect_to(project_bid_path(@project, @bid_document.bid), :alert => 'BidDocument could not be updated.') }
+        format.html { redirect_to(project_bid_path(@bid.project, @bid_document.bid), :alert => 'BidDocument could not be updated.') }
       end
     end
   end
@@ -57,6 +57,6 @@ class BidDocumentsController < ApplicationController
   end
 
   def check_may_modify!
-    redirect_to(project_bid_path(@project, @bid_document.bid), :alert => "Access denied.") unless @bid.may_modify? current_user
+    redirect_to(project_bid_path(@bid.project, @bid_document.bid), :alert => "Access denied.") unless @bid.may_modify? current_user
   end
 end

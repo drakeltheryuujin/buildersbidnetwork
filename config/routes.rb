@@ -5,6 +5,7 @@ Ypn::Application.routes.draw do
 
   resources :projects do
     resources :bids do
+      resources :bid_documents
       member do 
         post 'award'
         post 'revoke'

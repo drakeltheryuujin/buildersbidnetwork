@@ -1,0 +1,120 @@
+<div class="row form-stacked ">
+  <h4>Additional Documents</h4>
+  
+  <% if @bid.errors.any? %>
+    <div class="alert-message block-message error">
+      <strong><%= pluralize(@bid.errors.count, "error") %> prohibit<%= @bid.errors.count == 1 ? 's' : '' %> this Bid from being saved:</strong>
+
+      <ul>
+      <% @bid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+      <% unless @bid.sufficient_credits? %>
+        <%= link_to "Purchase Credits", credits_path, :class => 'btn large primary' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  
+<div class="row form-stacked editable assets">
+  <% if may_admin_bid? && is_editable %>
+    <span class="admin-btns">
+      <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_plus_add.png" %> Add Documents</a>
+    </span>
+    <div class="add-asset">
+      <a href="#" class="btn small cancel-btn">Cancel</a>
+      <%= form_for [@project, @bid, @bid.bid_documents.build], :html => { :multipart => true } do |bid_doc_form| %>
+        <%= bid_doc_form.label :asset, "Add Document" %>
+        <%= bid_doc_form.file_field :asset %>
+        <%= bid_doc_form.label :description %>
+        <%= bid_doc_form.text_field :description %>
+    
+        <%= bid_doc_form.submit "Upload File", :disable_with => "Uploading...", :class => 'btn primary' %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <ul class="faux-media-grid">
+    <% @bid.bid_documents.not_deleted.doc.each do |bid_document| %>
+      <li class="bid_document editable">
+        <%= link_to bid_document.asset(:original) do %>
+          <%= image_tag(doc_icon_path(bid_document), :alt => bid_document.asset_file_name) %>
+          <div class="description"><%= bid_document.description || "&nbsp;".html_safe %></div>
+        <% end %>
+        
+        <% if may_admin_bid? %>
+          <%= form_for [@project, @bid, bid_document], :remote => true, "data-type" => "text" do |bid_doc_form| %>
+            <%= bid_doc_form.text_field :description %>
+            <a href="#" class="btn small cancel-btn">Cancel</a>
+            <%= bid_doc_form.submit "Save", {:class => 'btn small'} %>
+          <% end %>
+          <span class="edit-btns">
+            <%= link_to [@project, @bid, bid_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
+              <%= image_tag "/images/icon_X_delete.png" %> Delete
+            <% end %>
+            <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_pencil_edit.png" %> Edit</a>
+          </span>
+          <% end %>
+      </li>
+    <% end%>
+  </ul>
+  
+  <ul class="faux-media-grid">
+    <% @bid.bid_documents.not_deleted.image.each do |bid_document| %>
+      <li class="bid_document editable">
+        <%= link_to bid_document.asset(:original), {:class => 'lightbox_thumb', :title => bid_document.asset_file_name} do %>
+          <%= image_tag(bid_document.asset(:thumb), :alt => bid_document.asset_file_name) %>
+          <div class="description"><%= bid_document.description || "&nbsp;".html_safe %></div>
+        <% end %>
+        <% if may_admin_bid? %>
+          <%= form_for [@project, @bid, bid_document], :remote => true, "data-type" => "text" do |bid_doc_form| %>
+            <%= bid_doc_form.hidden_field :id %>
+            <%= bid_doc_form.text_field :description %>
+            <a href="#" class="btn small cancel-btn">Cancel</a>
+            <%= bid_doc_form.submit "Save", :disable_with => "Saving...", :class => 'btn small' %>
+          <% end %>
+          <span class="edit-btns">
+            <%= link_to [@project, @bid, bid_document], {:confirm => 'Are you sure?', :method => :delete, :class => 'btn small delete-btn nav nav-destroy'} do %>
+              <%= image_tag "/images/icon_X_delete.png" %> Delete
+            <% end %>
+            <a href="#" class="btn small edit-btn"><%= image_tag "/images/icon_pencil_edit.png" %> Edit</a>
+          </span>
+        <% end %>
+      </li>
+    <% end%>
+  </ul>
+</div>
+ 
+<% content_for :javascript do %>
+  <%= javascript_include_tag "jquery.lightbox" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+       $('.btn.edit-btn').click(function() {
+        $(this).closest('.editable').addClass('edit');
+        return false;
+      });
+      $('.btn.cancel-btn').click(function() {
+        $(this).closest('.editable').removeClass('edit');
+        return false;
+      });
+      $(".bid_document form")
+        .bind('ajax:complete', function(evt, data, status, xhr){
+          $(this).closest('.editable').removeClass('edit');
+        })
+        .bind('ajax:success', function(evt, data, status, xhr){
+          $(this).closest('.bid_document').find('.description').html(xhr.responseText);
+        })
+        .bind('ajax:error', function(evt, xhr, status, error){
+          $("#wrapper").prepend("<p class='alert-message error'>" + xhr.responseText + "</p>");
+        });
+        
+      $('.bid_document a.lightbox_thumb').lightBox({
+        imageLoading: '/images/lightbox/lightbox-ico-loading.gif',
+        imageBtnClose: '/images/lightbox/lightbox-btn-close.gif',
+        imageBlank: '/images/lightbox/lightbox-blank.gif'
+      });
+    });
+  </script>
+<% end %>
