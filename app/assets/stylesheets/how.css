@@ -149,9 +149,12 @@
 	margin-bottom: 20px;
 }
 
-#how_main_content .register_box #register-icon {
+#how_main_content .register_box .how-icon {
 	float: left;
 	margin-right: 18px;
+}
+
+#how_main_content .register_box #register-icon {
 	width: 133px;
 	height: 70px;
 }
