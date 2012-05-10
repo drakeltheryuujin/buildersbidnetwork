@@ -177,11 +177,11 @@
 	line-height: 28px;
 }
 
-#contractors_list_head {
+.contractors_list_head {
 	background: url('../images/contractor_list_icon_stand_in.png') 0 0 no-repeat;
 }
 
-#developers_list_head {
+.developers_list_head {
 	background: url('../images/developer_list_icon_stand_in.png') 0 0 no-repeat;
 }
 
@@ -201,4 +201,17 @@
 #subscribe,
 #online_bidding {
 	display: none;
+}
+
+#how_main_content .browse-images {
+	width: 570px;
+	height: 200px;
+}
+
+#how_main_content .browse-images .browse-image {
+	float: left;
+}
+
+#how_main_content .browse-images .browse-image:first-child {
+	margin-right: 18px;
 }
