@@ -208,10 +208,10 @@
 	height: 200px;
 }
 
-#how_main_content .browse-images .browse-image {
+#how_main_content .browse-image {
 	float: left;
 }
 
-#how_main_content .browse-images .browse-image:first-child {
+#how_main_content .browse-image:first-child {
 	margin-right: 18px;
 }
