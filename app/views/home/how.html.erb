@@ -1,32 +1,157 @@
-<h1 class ="page_head">How It Works</h1>
-<span class ="how_span1"><a href="/BBN_Contractor_Tutorial.pdf" target="_blank">BBN Contractor Tutorial</a></span>
-<span class ="how_span2"><a href="/BBN_Developer_Tutorial.pdf" target="_blank">BBN Developer Tutorial</a></span>
-<p>
-BBN is the central marketplace of building projects, connecting contractors and developers so that the right people work on the right projects. 
-<%= link_to "Get Started Now!", new_user_registration_path %>
-</p>
- 
-<h3 class ="how">1. Register</h3>
-<p>
-  Create a company profile to strengthen and extend your existing network.  Build connections and join the BBN marketplace!
-</p>
+<% content_for :head do %>
+ <%= stylesheet_link_tag "how" %>
+<% end %>
 
-<h3 class ="how">2. Browse Projects</h3>
-<p>
-  Search for opportunities and contacts tailored to your business needs.
-</p>
+<% content_for :head do %>
+ <%= javascript_include_tag "jquery.min" %>
+<% end %>
 
-<h3 class ="how">3. Subscribe</h3>
-<p>
-  Gain exclusive access to the members of the community, detailed project descriptions, and RFPs based on your interests, location and expertise.
-</p>
+<%= link_to "Get Started", new_user_registration_path, :class=> "get_started_link" %>
+<div id="how_left">
+	<nav>
+		<ul>
+		<li class="active"><a href="#"><h3>Join the Network</h3></a></li>
+		<li class><a href="#"><h3>Browse Projects</h3></a></li>
+		<li class><a href="#"><h3>Subscribe</h3></a></li>
+		<li class><a href="#"><h3>Online Bidding</h3></a></li>
+		</ul>
+	</nav>
+	
+	<%= image_tag "/images/Tools.png", :alt => "Tools", :width => "240px", :height => "160px" %>
+	
+	<div class="fake-border"></div>
+	
+	<h6>Download a Site Tutorial PDF</h6>
+	<a class="tut_link" id="developer_tut" href="/BBN_Developer_Tutorial.pdf" target="_blank"><span class="bold">Developer</span> Tutorial</a>
+	<a class="tut_link" id="contractor_tut" href="/BBN_Contractor_Tutorial.pdf" target="_blank"><span class="bold">Contractor</span> Tutorial</a>
+</div>
 
-<h3 class ="how">4. Bid</h3>
-<p>
-  Bid on actual projects or create projects for other members to bid on.  BBN makes bidding on projects easier, simpler, and considerably more cost effective.  A streamlined approach to commercial real estate, business and commerce.
-</p>
+<div id="how_main_content"></div>
 
- 
-<p>
-  More Projects... More Opportunities.. Builders Bid Network is a simplified, streamlined approach to the developing commercial marketplace.  Access a network of industry professionals, dedicated to building connections, and developing projects with the right people. Jump into the marketplace and get to work!
-</p>
+<div id="join_the_network">
+	<h1 class ="page_head">A Powerful Networking Tool</h1>
+
+	<div class="register_box"> 
+		<%= image_tag "/images/register_icon_stand_in.png", :alt => "register-icon-stand-in", :width => "133px", :height => "70px", :id => "register-icon", :class => "how-icon" %>
+		<p>Register now to strengthen your business network and streamline the bidding process. Get access to our extensive professional and project listings, build connections and enjoy the benefits of the centralized BBN marketplace.</p>
+		<div class="clear"></div>
+		<a class="btn primary" href="#">Register</a>
+		<div class="clear"></div>
+	</div>
+	
+	<h3 class="list_header contractors_list_head">Contractors:</h3>
+	<ul>
+		<li>Build your online presence with your company profile.</li>
+		<li>Connect with commercial developers, contractors and vendors.</li>
+		<li>Search our extensive project and developer listings.</li>
+		<li>Create and save a comprehensive bidding portfolio.</li>
+		<li>Bid on more projects.</li>
+	</ul>
+	
+	<h3 class="list_header developers_list_head">Developers:</h3>
+	<ul>
+		<li>Build a stronger network of contractors and vendors.</li>
+		<li>Easily create and manage Requests for Proposals.</li>
+		<li>Effectively track responses and alert bidders of changes in your project.</li>
+		<li>Collect and summarize all bid responses in one location.</li>
+	</ul>
+	
+	<%= image_tag "/images/how_man_stand_in.png", :alt =>"Man on Phone", :width => "530px" %>
+</div>
+
+<div id="browse_projects">
+	<h1 class="page_head">Find More Opportunities</h1>
+	
+	<div class="register_box">
+		<%= image_tag "/images/how_browse_handshake.png", :alt => "browse-icon-stand-in", :width => "232px", :height => "159px", :id => "browse-icon", :class => "how-icon" %>
+		<p>Browse, search or sign up for regular updates.  Projects are posted publicly and privately giving contractors and vendors the opportunity to be invited to bid on projects in their area. Keep your finger on the pulse of new business development opportunities.</p>
+		<div class="clear"></div>
+		<a class="btn primary" href="#">Browse</a>
+		<div class="clear"></div>
+	</div>
+	
+	<h3 class="list_header contractors_list_head">Contractors:</h3>
+	<ul>
+		<li>Easily search for projects that are in your area and area of expertise.</li>
+		<li>Establish key relationships by connecting to developers and project managers who will invite you to bid on their projects.</li>
+		<li>Save your favorite contacts and set-up regular updates so you can generate new leads.</li>
+	</ul>
+	
+	<h3 class="list_header developers_list_head">Developers:</h3>
+	<ul>
+		<li>Easily reference your projects and invite contractors and vendors to bid.</li>
+		<li>Effectively search for new contractors and vendors to bid on your projects, no matter where your project is or what type.</li>
+		<li>Save your favorite contractors and vendors or invite your existing contacts via email or LinkedIn.</li>
+	</ul>
+	
+	<div class="browse-images">
+		<%= image_tag "/images/how_browse_asphalt_man.png", :alt => "Asphalt worker", :width => "278px", :class => "browse-image" %>
+		<%= image_tag "/images/how_browse_roof_man.png", :alt => "Roof worker", :width => "267px", :class => "browse-image" %>
+	</div>
+</div>
+
+<div id="subscribe">
+	<h1 class="page_head">Unlock Project Details</h1>
+	
+	<div class="register_box">
+		<%= image_tag "/images/how_subscribe_lock.png", :alt => "browse-icon-stand-in", :width => "134px", :class => "how-icon" %>
+		<p>Gain full access to project details. Bid on projects that are publicly listed.  Get invited to bid on privately listed projects that do not show up in the browse.  Keep your finger on 
+		the pulse of new business development opportunities.</p>
+		<div class="clear"></div>
+		<a class="btn primary" href="#">Subscribe</a>
+		<div class="clear"></div>
+	</div>
+	
+	<h3 class="list_header contractors_list_head">Contractors:</h3>
+	<ul>
+		<li>View scope details and documents for projects that are publicly listed in the Browse.</li>
+		<li>Purchase bid credits to bid on public projects and get noticed for future opportunities with contacts.</li>
+		<li>Get invited to bid on private projects that are not listed in the Browse.</li>
+		<li>Subscribe for 1 year and receive 2 Free bid credits to get started.</li>
+	</ul>
+
+	<div class="subscribe-images">
+		<%= image_tag "/images/how_subscribe_measure.png", :alt => "Worker measuring", :width => "294px", :class => "browse-image" %>
+		<%= image_tag "/images/how_subscribe_welder.png", :alt => "Welder pic", :width => "136px", :class => "browse-image" %>
+	</div>
+</div>
+
+<div id="online_bidding">
+	<h1 class="page_head">Securely and Easily Submit Bids Online</h1>
+
+	<div class="register_box">
+		<%= image_tag "/images/how_bidding_computer.png", :alt => "bidding icon", :width => "304px", :class => "how-icon" %>
+		<p>Easily view project line items, documents and other details to submit your bid online. Respond directly to the project source without having to travel or worry if your bid was received before any deadlines.</p>
+		<div class="clear"></div>
+		<a class="btn primary" href="#">Get Started</a>
+		<div class="clear"></div>
+	</div>
+
+	<h3 class="list_header contractors_list_head">Contractors:</h3>
+	<ul>
+		<li>Securely and Easily submit your bids and bid documents online.</li>
+		<li>All bids are secured and can only be viewed by the project administrator.</li>
+		<li>Create time to bid on more projects and have more opportunities to be awarded contracts.</li>
+	</ul>
+	
+	<h3 class="list_header developers_list_head">Developers:</h3>
+	<ul>
+		<li>Effectively receive all bids in one location in a comprehensive summary.</li>
+		<li>View the specific pricing for line items you created, cutting down on questions when bids are received.</li>
+		<li>Receive all bid documents along with the bids to ensure your RFP was thoroughly completed.</li>
+		<li>Award your project online and get notification to your contractors and vendors quickly.</li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){ 
+		$("#how_main_content").html($("#join_the_network").html());
+	})
+
+	$('#how_left nav li').click(function(){
+		$(this).siblings().attr('class', '');
+		$(this).attr('class', 'active');
+		sectionName = $(this).find('h3').html().toLowerCase().replace(/ /g, '_');
+		$("#how_main_content").html($("#"+sectionName).html());
+	})
+</script>
