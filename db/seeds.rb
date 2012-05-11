@@ -51,7 +51,7 @@
 "Waterproofing",
 "Weather Barriers",
 "Windows"].each do |t|
-  ProjectType.find_or_create_by_name(t)
+  ProjectType.find_or_create_by_type_name(t)
 end
 
 ["Office", "Fax", "Mobile", "Home"].each do |t|

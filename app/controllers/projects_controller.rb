@@ -114,40 +114,48 @@ class ProjectsController < ApplicationController
   end
 
   def manage_access
-    @privileged_users = []
-    @privileged_profiles = []
-    @project.privileged_users.each do |user|
-      if user.profile.present?
-        @privileged_profiles << user.profile
-      else
-        @privileged_users << user
-      end
-    end
+    @mode = params[:mode].present? ? params[:mode].to_sym : :email
 
-    if params[:mode].to_s.eql? :linkedin.to_s
+    if @mode == :linkedin
       if li_auth = current_user.linkedin_auth
         count = Kaminari.config.default_per_page
         page = params[:page].present? ? params[:page].to_i : 1
         start = (page.to_i - 1) * count
         li_client = li_auth.linkedin_client
-        li_connections = li_client.connections(:start => start, :count => count, :fields => [:id, :formatted_name, :headline, :picture_url, :public_profile_url])
+        li_connections = li_client.connections(
+            :start => start, 
+            :count => count, 
+            :fields => [:id, :formatted_name, :headline, :picture_url, :public_profile_url, :location, :industry])
 
         if li_connections.present? && li_connections.total > 0
           @connections = Kaminari.paginate_array(li_connections.all, {:offset => start, :limit => li_connections._count, :total_count => li_connections.total}).page(page)
-          #@connections = li_connections.all
+        end
+      end
+    elsif @mode == :invited
+      @privileged_users = []
+      @privileged_profiles = []
+      @privileged_authentications = []
+      @project.project_privileges.each do |project_privilege|
+        if project_privilege.user.present? && project_privilege.user.profile.present? # registered user
+          @privileged_profiles << project_privilege.user.profile
+        elsif project_privilege.user.present? # email invited, not yet registered
+          @privileged_users << project_privilege.user
+        else # auth invited, not yet registered
+          @privileged_authentications << project_privilege.authentication
         end
       end
     end
   end
   
   def revoke_access
-    user = User.find params[:user_id]
-    pp = ProjectPrivilege.find_by_user_id_and_project_id(user.id, @project.id)
+    pp = params[:user_id].present? ? 
+        ProjectPrivilege.find_by_user_id_and_project_id(params[:user_id], @project.id) :
+        ProjectPrivilege.find_by_authentication_id_and_project_id(params[:authentication_id], @project.id)
     unless pp.blank?
-      pp.destroy
+      pp.destroy(:force)
       flash[:notice] = 'Access revoked'
     end
-    redirect_to manage_access_project_path(@project), :notice => 'Access revoked'
+    redirect_to manage_access_project_path(@project, :mode => :invited), :notice => 'Access revoked'
   end
 
   def invite_by_email
@@ -161,7 +169,7 @@ class ProjectsController < ApplicationController
 
     flash = invite_user(user, @project, params[:message_body])
 
-    redirect_to manage_access_project_path(@project)
+    redirect_to manage_access_project_path(@project, :mode => :invited)
   end
 
   def invite_by_linkedin
@@ -169,10 +177,10 @@ class ProjectsController < ApplicationController
       Authentication.transaction do
         auth = Authentication.find_or_initialize_by_provider_and_uid(:linkedin, params[:uid])
         if auth.user.present? # uid already registered
-          foo = invite_user(auth.user, @project, params[:message_body])
+          invite_user(auth.user, @project, params[:message_body])
         else # uid not registered
-          #auth.update_metadata(current_user.linkedin_auth.linkedin_client) unless auth.persisted? # retrieve name, avatar, etc
-          project_privilege = ProjectPrivilege.find_or_initialize_by_authentication_id_and_project_id(:authentication => auth.id, :project => @project.id, :message_body => params[:message_body])
+          auth.update_metadata(current_user.linkedin_auth.linkedin_client) unless auth.persisted? # retrieve name, avatar, etc
+          project_privilege = ProjectPrivilege.find_or_initialize_by_authentication_id_and_project_id(:authentication_id => auth.id, :project_id => @project.id, :message_body => params[:message_body])
           unless project_privilege.persisted?
             flash[:notice] = 'User invited.' if project_privilege.save!
           else
@@ -184,7 +192,7 @@ class ProjectsController < ApplicationController
       flash[:alert] = "Invalid request."
     end
     
-    redirect_to manage_access_project_path(@project, :mode => :linkedin)
+    redirect_to manage_access_project_path(@project, :mode => :invited)
   end
   
   private
@@ -202,19 +210,17 @@ class ProjectsController < ApplicationController
   end
 
   def invite_user(user, project, message_body)
-    result = {}
     if user.developer?
-      result[:alert] = "#{user.email} is registered as a Developer on BBN.  Only Contractors can Bid on Projects."
+      flash[:alert] = "#{user.name} is registered as a Developer on BBN.  Only Contractors can Bid on Projects."
     elsif user.errors.empty?
-      project_privilege = ProjectPrivilege.find_or_initialize_by_user_and_project(:user => user, :project => project, :message_body => message_body)
+      project_privilege = ProjectPrivilege.find_or_initialize_by_user_id_and_project_id(:user_id => user.id, :project_id => project.id, :message_body => message_body)
       unless project_privilege.persisted?
-        result[:notice] = 'User invited.' if project_privilege.save!
+        flash[:notice] = 'User invited.' if project_privilege.save!
       else
-        result[:alert] = 'Already invited.'
+        flash[:alert] = 'Already invited.'
       end
     else
-      result[:alert] = user.errors.full_messages.join(', ')
+      flash[:alert] = user.errors.full_messages.join(', ')
     end
-    result
   end
 end

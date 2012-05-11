@@ -68,10 +68,15 @@ class User < ActiveRecord::Base
   scope :never_logged_in, where("sign_in_count = 0")
 
   def self.new_with_session(params, session)
+    puts "############"
+    y params
+    puts "############"
+    y session
     super.tap do |user|
       if auth_hash = session["devise.omniauth_authentication"]
         user.authentications.build(auth_hash)
       elsif (session["devise.authentication_id"].present?) && (auth = Authentication.find session["devise.authentication_id"])
+        puts "############"
         auth.attach_user user
       end
     end

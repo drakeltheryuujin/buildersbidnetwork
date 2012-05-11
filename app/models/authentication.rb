@@ -15,10 +15,12 @@ class Authentication < ActiveRecord::Base
 
   def attach_user(user)
     user.transaction do
-      ProjectPrivilege.where(:authentication => self).each do |p|
-        p.update_attributes(:user => user, :authentication => nil)
+      ProjectPrivilege.where(:authentication_id => self.id).each do |pp|
+        #pp.update_attributes(:user => user, :authentication => nil)
+        #pp.authentication = nil
+        user.project_privileges << pp
       end
-      user.authentications << auth
+      user.authentications << self
     end
   end
 

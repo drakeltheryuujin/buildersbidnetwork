@@ -3,8 +3,16 @@ module HomeHelper
     current_page?(path) ? output : ''
   end
 
-  def put_if_current_page_and_param(output, path, filter = :filter, value = nil)
-    (current_page?(path) && value.to_s.eql?(params[filter.to_s].to_s)) ? output : ''
+  def put_if_current_page_and_param(output, path, param = :filter, value = nil)
+    (current_page?(path) && value.to_s.eql?(params[param.to_s].to_s)) ? output : ''
+  end
+
+  def put_if_current_page_and_param_or_blank(output, path, param = :filter, value = nil)
+    (current_page?(path) && (value.to_s.eql?(params[param.to_s].to_s) || params[param.to_s].blank?)) ? output : ''
+  end
+
+  def path_to_url(path)
+    "#{request.protocol}#{request.host_with_port}#{path}"
   end
 
   def projects_posted_in_days_count(days = 30)

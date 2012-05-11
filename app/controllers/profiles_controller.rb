@@ -90,8 +90,8 @@ class ProfilesController < ApplicationController
       if @profile.save
         @profile.user.send_welcome_notification
         format.html { 
-          if(current_user.sign_in_count == 1 && current_user.invited_project.present?)
-            redirect_to(project_path(current_user.invited_project), :notice => 'Your profile was successfully created. Here are is the project you were invited to bid on.') 
+          if(current_user.sign_in_count == 1 && current_user.project_privileges.present?)
+            redirect_to(project_path(current_user.project_privileges.first.project), :notice => 'Your profile was successfully created. Here is the project you were invited to bid on.') 
           elsif(current_user.sign_in_count == 1 && current_user.invited_by.present?) 
             redirect_to(projects_profile_path(current_user.invited_by.profile), :notice => 'Your profile was successfully created. Here are some projects from the user that invited you.') 
           else

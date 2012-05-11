@@ -1,0 +1,11 @@
+    <div class="manage_page_head">
+      <h3>Invite Contractors by E-Mail</h3>
+    </div>
+    <div class="invite_by_email">
+      <%= form_tag invite_by_email_project_path(@project) do %>
+        <%= text_field_tag :email_address, nil, :placeholder => "Enter e-mail address..." %>
+        <%= text_area_tag :message_body, nil, :placeholder => "Enter a message....", :rows => 5 %>
+        <%= submit_tag "Send E-Mail", :class => 'btn primary' %>
+      <% end %>
+    </div>
+

@@ -16,6 +16,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
+    return_dest = params[:return] || authentications_path
     # get the service parameter from the Rails router
     params[:service] ? service_route = params[:service] : service_route = 'no service (invalid callback)'
 
@@ -44,15 +45,15 @@ class AuthenticationsController < ApplicationController
         auth = Authentication.find_by_provider_and_uid(provider, uid)
         if auth.present? 
           auth.update_attributes(
-              :token => (token.blank? ? auth.token : token),
-              :secret => (secret.blank? ? auth.secret : secret),
-              :avatar_url => (avatar_url.blank? ? auth.avatar_url : avatar_url),
-              :name => (name.blank? ? auth.name : name),
+              :token =>       (token.blank?       ? auth.token       : token),
+              :secret =>      (secret.blank?      ? auth.secret      : secret),
+              :avatar_url =>  (avatar_url.blank?  ? auth.avatar_url  : avatar_url),
+              :name =>        (name.blank?        ? auth.name        : name),
               :profile_url => (profile_url.blank? ? auth.profile_url : profile_url)) unless token.blank? && secret.blank? && avatar_url.blank? && name.blank? && profile_url.blank?
           if auth.user.present? # already linked
             if user_signed_in? # update authentication
-              flash[:notice] = authentication_route.capitalize + ' authentication updated.'
-              redirect_to authentications_path
+              flash[:notice] = provider.capitalize + ' authentication updated.'
+              redirect_to return_dest
             else # signing in
               flash[:notice] = 'Signed in successfully via ' + provider.capitalize + '.'
               sign_in_and_redirect(:user, auth.user)
@@ -60,12 +61,12 @@ class AuthenticationsController < ApplicationController
           else # invited, not yet linked
             if user_signed_in? # attach auth & privileges to user
               auth.attach_user current_user
-              flash[:notice] = authentication_route.capitalize + ' authentication and project privileges updated.'
-              redirect_to authentications_path
+              flash[:notice] = provider.capitalize + ' authentication and project privileges updated.'
+              redirect_to return_dest
             else # new registration
               flash[:notice] = 'Great!  Please provide your email address and choose a password to complete your registration with ' + provider.capitalize + ' and receive access to the project(s) you were invited to.'
               flash[:avatar_url] = avatar_url
-              session["devise.authentication_id"] = auth_hash
+              session["devise.authentication_id"] = auth.id
               redirect_to new_user_registration_path
             end
           end
@@ -81,7 +82,7 @@ class AuthenticationsController < ApplicationController
           if user_signed_in? # link accounts
             current_user.authentications.create(auth_hash)
             flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account.'
-            redirect_to authentications_path
+            redirect_to return_dest
           else # new registration
             flash[:notice] = 'Great!  Please provide your email address and choose a password to complete your registration with ' + provider.capitalize + '.'
             flash[:avatar_url] = avatar_url

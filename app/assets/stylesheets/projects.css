@@ -298,9 +298,13 @@ form.new_profile_document {
   border-radius: 0;
   border-style: dotted;
 }
+.search_result.manage_access_result.authentication_result {
+  border-width: 0 0 1px 0;
+}
 
 .manage_access_page h3 {
-  color: #f60;
+  color: #666;
+  display: inline;
 }
 .manage_access_result .result_infos .btn {
   text-transform: uppercase;
@@ -308,6 +312,14 @@ form.new_profile_document {
   margin: 10px;
   float: right;
   padding: 5px 30px;
+}
+.manage_access_result.authentication_result .result_infos .btn {
+  padding: 5px ;
+  text-transform: none;
+}
+.manage_access_result.authentication_result .result_infos .btn img {
+  max-height: 28px;
+  vertical-align: middle;
 }
 
 .manage_access_page .invite_by_email input,
@@ -320,8 +332,20 @@ form.new_profile_document {
   float: right;
 }
 .manage_access_page .invited_emails {
-  padding: 20px 10px;
+  padding: 0 10px 10px;
 }
 .manage_access_page .invited_emails .btn {
   margin: 5px;
+}
+
+.manage_access_page .btn.delete.small img {
+  max-height: 18px;
+  padding: 0 5px;
+  vertical-align: middle;
+}
+
+.manage_access_page .modal .modal-header img {
+  vertical-align: middle;
+  max-height: 50px;
+  padding: 5px;
 }

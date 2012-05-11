@@ -16,7 +16,8 @@ class ProjectPrivilege < ActiveRecord::Base
 
   attr_accessor :message_body
 
-  validates :user_xor_authentication, :project, :presence => true
+  #validates :user_xor_authentication, :project, :presence => true
+  validates :project, :presence => true
 
   after_create :send_invite
 
