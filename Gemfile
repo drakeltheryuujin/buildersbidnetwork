@@ -69,7 +69,7 @@ gem "permanent_records"
 # linked in
 gem "omniauth"
 gem "omniauth-linkedin"
-gem "linkedin", :path => '../linkedin'
+gem "linkedin", :git => 'git://github.com/micahcraig/linkedin'
 
 # production
 gem "heroku"
