@@ -11,13 +11,19 @@
 
 class ProjectPrivilege < ActiveRecord::Base
   belongs_to :user
+  belongs_to :authentication
   belongs_to :project
 
   attr_accessor :message_body
 
-  validates :user, :project, :presence => true
+  #validates :user_xor_authentication, :project, :presence => true
+  validates :project, :presence => true
 
   after_create :send_invite
+
+  def user_xor_authentication
+    self.user.present? ^ self.authentication.present?
+  end
 
   private
 
@@ -26,6 +32,11 @@ class ProjectPrivilege < ActiveRecord::Base
     sender_name = sender.name
     subject = "Invitation to bid from #{sender_name}"
     body = self.message_body || "You've been invited to bid on a project."
-    sender.send_message_with_object_and_type([self.user], body, subject, project, :project_invite)
+    if self.user
+      sender.send_message_with_object_and_type([self.user], body, subject, project, :project_invite)
+    else
+      li_client = sender.linkedin_auth.linkedin_client
+      li_client.send_message(subject, body, [self.authentication.uid])
+    end
   end
 end

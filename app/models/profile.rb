@@ -67,7 +67,13 @@ class Profile < ActiveRecord::Base
   end
 
   def cover_photo_square_thumb_url(default = '/images/company_square.png')
-    (self.asset.present?) ? self.asset(:square_thumb) : default
+    if self.asset.present?
+      self.asset(:square_thumb)
+    elsif self.user.linkedin_auth.present? && self.user.linkedin_auth.avatar_url.present? 
+      self.user.linkedin_auth.avatar_url
+    else
+      default
+    end
   end
 
   def specialty?(project_type)

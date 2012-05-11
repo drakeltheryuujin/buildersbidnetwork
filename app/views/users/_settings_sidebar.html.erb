@@ -1,0 +1,25 @@
+<div class="span5 ">
+  <div class="track_filters ">
+    <ul>
+      <li class="<%= put_if_current_page('active', edit_user_registration_path) %>">
+        <%= link_to "Settings", edit_user_registration_path %>
+      </li>
+      <li class="<%= put_if_current_page('active', authentications_path) %>">
+        <%= link_to "Linked Accounts", authentications_path %>
+      </li>
+      <li class="<%= put_if_current_page('active', status_subscriptions_path) %>">
+        <%= link_to "Subscription Status", status_subscriptions_path %>
+      </li>
+      <li class="<%= put_if_current_page('active', history_credits_path) %>">
+        <%= link_to "Purchase History", history_credits_path %>
+      </li>
+    </ul>
+
+    <dl>
+      <dt>Last Login:</dt>
+      <dd><%= current_user.last_sign_in_at.to_formatted_s :long %> </dd>
+    </dl>
+
+    <p><%= link_to "Deactivate your account", user_registration_path, :confirm => "Are you sure?", :method => :delete %>.</p>
+  </div> <!-- /.track_filters -->
+</div> <!-- /.span5 -->

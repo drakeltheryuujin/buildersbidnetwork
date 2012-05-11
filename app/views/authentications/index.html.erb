@@ -1,0 +1,24 @@
+<%= render '/users/settings_top_banner', :page_title => "Linked Accounts" %>
+<div class="settings_page authentications_page row">
+  <%= render '/users/settings_sidebar' %>
+  <div class="span11 ">
+    <div class="external_auth linkedin_auth">
+      <h2>LinkedIn</h2>
+      <% if @linkedin_auth %>
+        <%= image_tag @linkedin_auth.avatar_url.present? ? @linkedin_auth.avatar_url : '/images/company_square.png', :alt => "LinkedIn Avatar", :class => "avatar" %>
+        <span class="auth_meta">
+          <div>
+            You're connected to LinkedIn 
+            <% if @linkedin_auth.name && @linkedin_auth.profile_url %>
+              as <%= link_to @linkedin_auth.name, @linkedin_auth.profile_url %>
+            <% end %>.
+          </div>
+          <%= link_to "Unlink Account", authentication_path(@linkedin_auth), :confirm => "Are you sure?", :method => :delete, :class => "auth_unlink" %> 
+        </span>
+      <% else %>
+        <%= link_to "Connect in with LinkedIn", user_omniauth_authorize_path(:linkedin), :class => 'btn large primary' %>
+      <% end %>
+      <%= image_tag "/images/auth_icons/linkedin_wide.png", :alt => "LinkedIn", :class => "auth_logo linkedin_logo" %>
+    </div>
+  </div>
+</div> <!-- /.authentications_page -->

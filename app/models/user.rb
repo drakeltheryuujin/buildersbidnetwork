@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :bids, :dependent => :destroy
   has_many :credit_adjustments, :dependent => :destroy
 
+  has_many :authentications, :dependent => :destroy
+
   has_many :project_privileges, :dependent => :destroy
   has_many :accessible_projects, :through => :project_privileges, :source => :project, :uniq => true
 
@@ -48,7 +50,9 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
-         :token_authenticatable, :confirmable, :lockable, :timeoutable 
+         :token_authenticatable, :confirmable, :lockable, :timeoutable,
+         :omniauthable
+
 
   # Setup accessible (or protected) attributes for your model
   attr_accessor :message_body
@@ -62,6 +66,23 @@ class User < ActiveRecord::Base
 
   scope :has_logged_in, where("sign_in_count > 0")
   scope :never_logged_in, where("sign_in_count = 0")
+
+  def self.new_with_session(params, session)
+    puts "############"
+    y params
+    puts "############"
+    y session
+    super.tap do |user|
+      if auth_hash = session["devise.omniauth_authentication"]
+        user.authentications.build(auth_hash)
+      elsif (session["devise.authentication_id"].present?) && (auth = Authentication.find session["devise.authentication_id"])
+        puts "############"
+        auth.attach_user user
+      end
+    end
+  end
+
+
 
   def name
     return self.profile.present? ? self.profile.name : self.email 
@@ -149,6 +170,10 @@ class User < ActiveRecord::Base
     notification = Notification.new({:body => "Welcome!", :subject => "Welcome to BBN!", :notification_type => :welcome_notification})
     notification.recipients = [self]
     return notification.deliver false
+  end
+
+  def linkedin_auth
+    self.authentications.linkedin.first
   end
 
 

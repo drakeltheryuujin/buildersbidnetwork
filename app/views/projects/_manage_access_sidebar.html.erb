@@ -1,0 +1,47 @@
+<div class="span5 ">
+  <div class="track_filters manage_filters">
+    <ul>
+      <li class="filter_head">
+        <h3>Invite Contractors</h3>
+      </li>
+      <!--
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode) %>">
+        <%= link_to manage_access_project_path do %>
+          <%= image_tag '/images/invite_icons/bbn_registered_icon.png' %> BBN Registered
+        <% end %>
+      </li>
+      -->
+      <li class="<%= put_if_current_page_and_param_or_blank('active', manage_access_project_path, :mode, :email) %>">
+        <%= link_to manage_access_project_path(:mode => :email) do %>
+          <%= image_tag '/images/invite_icons/bbn_envelope_icon.png' %> Invite via Email
+        <% end %>
+      </li>
+      <% if current_user.linkedin_auth.present? %>
+        <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode, :linkedin) %>">
+          <%= link_to manage_access_project_path(:mode => :linkedin) do %>
+            <%= image_tag '/images/auth_icons/linkedin_32.png' %> LinkedIn Connections
+          <% end %>
+        </li>
+      <% else %>
+        <li class="linkedin_auth">
+          <%= link_to user_omniauth_authorize_path(:linkedin, :return => manage_access_project_path(:mode => :linkedin)), :class => 'linkedin_auth_btn' do %>
+            Connect with 
+            <%= image_tag "/images/invite_icons/bbn_linkedin_icon.png" %>
+          <% end %>
+        </li>
+      <% end %>
+      <!--
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode, :starred) %>">
+        <%= link_to manage_access_project_path(:mode => :starred) do %>
+          <%= image_tag '/images/invite_icons/bbn_favorites_icon.png' %> Favorites
+        <% end %>
+      </li>
+      -->
+      <li class="<%= put_if_current_page_and_param('active', manage_access_project_path, :mode, :invited) %>">
+        <%= link_to manage_access_project_path(:mode => :invited) do %>
+          <%= image_tag '/images/invite_icons/bbn_sent_icon.png' %> Sent Invitations
+        <% end %>
+      </li>
+    </ul>
+  </div> <!-- /.track_filters -->
+</div> <!-- /.span5 -->

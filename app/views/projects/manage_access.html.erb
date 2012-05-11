@@ -6,45 +6,14 @@
   </div>
 <% end %>
 <div class="row project_page">
-  <div class="span11 project_content">
-    <div class="invite_by_email">
-      <h3>Invite Contractors by E-Mail</h3>
-      <%= form_tag invite_by_email_project_path(@project) do %>
-        <%= text_field_tag :email_address, nil, :placeholder => "Enter e-mail address..." %>
-        <%= text_area_tag :message_body, nil, :placeholder => "Enter a message....", :rows => 5 %>
-        <%= submit_tag "Send E-Mail", :class => 'btn primary' %>
-      <% end %>
-    </div>
-    <div class="invited_emails">
-      <% @privileged_users.each do |user| %>
-        <%= link_to revoke_access_project_path(@project, { :user_id => user.id }), :method => :delete, :confirm => 'Are you sure?', :class => 'btn small delete' do %>
-          <%= user.email %> <%= image_tag '/images/icon_X_delete.png' %> 
-        <% end %>
-      <% end %>
-    </div>
-    <% @privileged_profiles.each do |profile| %>
-      <div class="search_result manage_access_result contractor ">
-        <div class="result_image ">
-          <%= render :partial => "/profiles/cover_photo", :locals => { :profile => profile } %>
-        </div>
-        <div class="result_body">
-          <div class="result_name"><%= link_to profile.name, profile_path(profile) %></div>
-            <div class="result_location">
-              <%= link_to (image_tag "/images/location_pin.png", :alt => "Location"), "http://maps.google.com/maps/api/staticmap?size=640x640&sensor=false&zoom=16&markers=#{profile.latitude}%2C#{profile.longitude}" %>
-              <%= profile.location.city + ", " + profile.location.state %>
-            </div>
-            <span class="sector"><%= profile.type_name %></span>
-        </div>
-        <div class="result_infos">
-          <%= link_to revoke_access_project_path(@project, { :user_id => profile.user.id }), :method => :delete, :confirm => 'Are you sure?', :class => 'btn small delete' do %>
-            <%= image_tag '/images/icon_X_delete.png' %> Remove
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-  <%= render 'sidebar' %>
+  <%= render 'manage_access_sidebar' %>
+
+  <div class="span11 project_content">
+
+    <%= render "manage_access_#{@mode}" %>
+
+  </div>
 
   <% content_for :javascript do %>
     <%= javascript_include_tag "jquery.lightbox" %>
