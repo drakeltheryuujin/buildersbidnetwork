@@ -113,11 +113,13 @@ form.new_profile_document {
 }
 
 .project_page .tab-pane .project_document form.edit_project_document,
+.project_page .tab-pane .bid_document form.edit_bid_document,
 .profile_page .profile_document form.edit_profile_document {
   display: none;
   margin-bottom: 0;
 }
 .project_page .tab-pane .project_document form.edit_project_document input.small,
+.project_page .tab-pane .bid_document form.edit_bid_document input.small,
 .profile_page .profile_document form.edit_profile_document input.small {
   width: 60px;
 }
@@ -126,17 +128,20 @@ form.new_profile_document {
   width: auto;
 }
 .project_page .tab-pane .project_document.edit form.edit_project_document,
+.project_page .tab-pane .bid_document.edit form.edit_bid_document,
 .profile_page .profile_document.edit form.edit_profile_document,
 .project_page .tab-pane .project_document.select-cover form.edit_project_document {
   display: block;
 }
 .project_page .tab-pane .project_document.edit .edit-btns,
+.project_page .tab-pane .bid_document.edit .edit-btns,
 .profile_page .profile_document.edit .edit-btns,
 .project_page .tab-pane .project_document.edit .description,
 .profile_page .profile_document.edit .description {
   display: none;
 }
 .project_page .tab-pane .project_document form.edit_project_document input[type="text"],
+.project_page .tab-pane .bid_document form.edit_bid_document input[type="text"],
 .profile_page .profile_document form.edit_profile_document input[type="text"] {
   width: 135px;
   display: block;

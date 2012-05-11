@@ -20,6 +20,7 @@ class Bid < ActiveRecord::Base
 
   has_many :line_item_bids, :dependent => :destroy
   has_many :credit_adjustments, :dependent => :destroy
+  has_many :bid_documents, :dependent => :destroy
   
   accepts_nested_attributes_for :line_item_bids, :allow_destroy => :true
 

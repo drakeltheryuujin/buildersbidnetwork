@@ -1,5 +1,5 @@
-class ProfileDocument < ActiveRecord::Base
-  belongs_to :profile
+class BidDocument < ActiveRecord::Base
+  belongs_to :bid
   
   attr_accessible :asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at, :description
   has_attached_file :asset, {
@@ -16,7 +16,7 @@ class ProfileDocument < ActiveRecord::Base
 end
 # == Schema Information
 #
-# Table name: profile_documents
+# Table name: bid_documents
 #
 #  id                 :integer         not null, primary key
 #  description        :string(255)
@@ -24,7 +24,7 @@ end
 #  asset_content_type :string(255)
 #  asset_file_size    :integer
 #  asset_updated_at   :datetime
-#  profile_id         :integer
+#  bid_id             :integer
 #  created_at         :datetime
 #  updated_at         :datetime
 #

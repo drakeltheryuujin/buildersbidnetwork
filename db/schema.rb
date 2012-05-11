@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(:version => 20120508170555) do
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
+  create_table "bid_documents", :force => true do |t|
+    t.string   "description"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "bid_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bid_documents", ["bid_id"], :name => "index_bid_documents_on_bid_id"
+
   create_table "bids", :force => true do |t|
     t.decimal  "total",       :precision => 10, :scale => 2
     t.integer  "user_id"
@@ -358,18 +371,6 @@ ActiveRecord::Schema.define(:version => 20120508170555) do
   add_index "users", ["invited_project_id"], :name => "index_users_on_invited_project_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
-
-  create_table "versions", :force => true do |t|
-    t.string   "item_type",      :null => false
-    t.integer  "item_id",        :null => false
-    t.string   "event",          :null => false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-    t.text     "object_changes"
-  end
-
-  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
   add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
 

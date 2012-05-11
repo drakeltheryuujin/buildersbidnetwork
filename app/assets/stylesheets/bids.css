@@ -2,3 +2,8 @@
 .edit_bid .field textarea {
 	width: 95%;
 }
+
+.bid_page .tab-pane .row .btn.primary {
+  display: inline !important;
+  margin: 0 !important;
+}

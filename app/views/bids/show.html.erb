@@ -1,3 +1,4 @@
+<% content_for :body_class, "project_page bid_page" %>
 <% content_for :top_banner do %>
   <div class="container">
     <%= render "/projects/header" %>
@@ -5,7 +6,7 @@
   </div>
 <% end %>
 
-<div class="row">
+<div class="tab-pane row">
   <div class="span11">
     <%= render :partial => "/projects/bid_bubble", :locals => { :bid => @bid } %>
     <% if @project.user == current_user && @project.award_period? %>
@@ -170,6 +171,10 @@
     <div class="row form-stacked">
       <h4>Additional Bid Notes</h4>
       <%= @bid.description %>
+    </div>
+    
+    <div class="row form-stacked">
+      <%= render :partial => 'form_documents', :locals => { :is_editable => false } %>
     </div>
   </div> <!-- /.span11 -->
 
