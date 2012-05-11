@@ -5,18 +5,19 @@ GIT
     annotate (2.4.1.beta1)
 
 GIT
-  remote: git://github.com/ryanb/nested_form.git
-  revision: 57f32788f1952bcd633057b4b56b69b51df17610
-  specs:
-    nested_form (0.1.1)
-
-PATH
-  remote: ../linkedin
+  remote: git://github.com/micahcraig/linkedin
+  revision: df2e57435942d839e6b5ad57a01511674102246c
   specs:
     linkedin (0.3.6)
       hashie (~> 1.2.0)
       multi_json (~> 1.0.3)
       oauth (~> 0.4.5)
+
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 57f32788f1952bcd633057b4b56b69b51df17610
+  specs:
+    nested_form (0.1.1)
 
 GEM
   remote: http://rubygems.org/
