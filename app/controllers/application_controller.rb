@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :assure_profile!, :only => [:new, :edit, :create, :destroy]
+  #before_filter :assure_profile!, :only => [:new, :edit, :create, :destroy]
 
   protect_from_forgery
 

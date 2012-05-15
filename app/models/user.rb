@@ -33,7 +33,8 @@
 #  invited_project_id     :integer
 #
 
-class User < ActiveRecord::Base
+#class User < ActiveRecord::Base
+class User < AdminUser
   has_one :profile, :dependent => :destroy
   has_one :subscription, :dependent => :destroy
   has_many :project, :dependent => :destroy
@@ -47,7 +48,7 @@ class User < ActiveRecord::Base
 
   belongs_to :invited_project, :class_name => 'Project'
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  # :encryptable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
          :token_authenticatable, :confirmable, :lockable, :timeoutable,
@@ -68,29 +69,16 @@ class User < ActiveRecord::Base
   scope :never_logged_in, where("sign_in_count = 0")
 
   def self.new_with_session(params, session)
-    puts "############"
-    y params
-    puts "############"
-    y session
     super.tap do |user|
       if auth_hash = session["devise.omniauth_authentication"]
         user.authentications.build(auth_hash)
       elsif (session["devise.authentication_id"].present?) && (auth = Authentication.find session["devise.authentication_id"])
-        puts "############"
         auth.attach_user user
       end
     end
   end
 
 
-
-  def name
-    return self.profile.present? ? self.profile.name : self.email 
-  end
-
-  def to_s
-    return name
-  end
 
   acts_as_messageable
   def mailboxer_name

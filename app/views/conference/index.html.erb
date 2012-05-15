@@ -1,0 +1,115 @@
+<div class="row login-page create-profile">
+  <div class="offset2 span12 form-stacked new_profile">
+    <div class="login-box">
+
+<%= nested_form_for :user, :url => conference_index_path do |f| %>
+  <% if @user.errors.any? %>
+    <div class="alert-message block-message error">
+      <strong><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</strong>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @profile.errors.any? %>
+    <div class="alert-message block-message error">
+      <strong><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</strong>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.fields_for :profile do |profile_form| %>
+    <div class="row">
+      <div class="span9">
+        <div class="field ">
+          <%= profile_form.label :name, :class => "" %>
+          <%= profile_form.text_field :name, :class => "" %>
+        </div>
+      </div>
+      <div class="span3 alpha">
+        <div class="field ">
+          <%= profile_form.label :established, "Established", :class => "" %>
+          <%= profile_form.select(:established, (1900..Time.now.year).to_a.reverse, :include_blank => true) %>
+        </div>
+      </div>
+    </div>
+
+<div class="row">
+  <div class="span12">
+    <div class="field ">
+      <%= f.label :email, :class => "" %>
+      <%= f.text_field :email, :class => "" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <div class="field ">
+      <%= f.label :password, :class => "" %>
+      <%= f.password_field :password, :class => "" %>
+    </div>
+  </div>
+  <div class="span6 alpha">
+    <div class="field ">
+      <%= f.label 'Confirmation', :class => "" %>
+      <%= f.password_field :password_confirmation, :class => "" %>
+    </div>
+  </div>
+</div>
+
+    <% if @profile.new_record? %>
+      <div class="field ">
+        <%= profile_form.label :type, "Industry Role", :class => "" %>
+        <%= profile_form.select(:type, [
+          ['Developer (Creates Projects)', DeveloperProfile],
+          ['Contractor (Bids on Projects)', ContractorProfile]], :class => "") %>
+      </div>
+    <% end %>
+
+    <%= profile_form.fields_for :location do |location_form| %>
+      <div class="field ">
+        <%= location_form.label :address1, "Address", :class => "" %>
+        <%= location_form.text_field :address1, :class => "", :placeholder => "Street Number" %>
+        <%= location_form.text_field :address2, :class => "", :placeholder => "Suite, Apt, Floor, etc" %>
+        <div class="row">
+          <%= location_form.text_field :city, :class => "span6", :placeholder => "City" %>
+          <%= location_form.select(:state, [
+              ['Alabama', 'AL'], ['Alaska', 'AK'], ['Arizona', 'AZ'], ['Arkansas', 'AR'], ['California', 'CA'], ['Colorado', 'CO'], ['Connecticut', 'CT'], ['Delaware', 'DE'], ['District Of Columbia', 'DC'], ['Florida', 'FL'], ['Georgia', 'GA'], ['Hawaii', 'HI'], ['Idaho', 'ID'], ['Illinois', 'IL'], ['Indiana', 'IN'], ['Iowa', 'IA'], ['Kansas', 'KS'], ['Kentucky', 'KY'], ['Louisiana', 'LA'], ['Maine', 'ME'], ['Maryland', 'MD'], ['Massachusetts', 'MA'], ['Michigan', 'MI'], ['Minnesota', 'MN'], ['Mississippi', 'MS'], ['Missouri', 'MO'], ['Montana', 'MT'], ['Nebraska', 'NE'], ['Nevada', 'NV'], ['New Hampshire', 'NH'], ['New Jersey', 'NJ'], ['New Mexico', 'NM'], ['New York', 'NY'], ['North Carolina', 'NC'], ['North Dakota', 'ND'], ['Ohio', 'OH'], ['Oklahoma', 'OK'], ['Oregon', 'OR'], ['Pennsylvania', 'PA'], ['Rhode Island', 'RI'], ['South Carolina', 'SC'], ['South Dakota', 'SD'], ['Tennessee', 'TN'], ['Texas', 'TX'], ['Utah', 'UT'], ['Vermont', 'VT'], ['Virginia', 'VA'], ['Washington', 'WA'], ['West Virginia', 'WV'], ['Wisconsin', 'WI'], ['Wyoming', 'WY']
+          ], {}, :class => "span3") %>
+          <%= location_form.text_field :post_code, :size => "5", :class => "span2", :placeholder => "Zip Code" %>
+        </div>
+      </div>
+    <% end # fields_for :location %>
+
+    <div class="field form-stacked">
+      <%= profile_form.label "Specialties", :class => 'full-width' %><br/>
+      <ul class="specialties">
+        <% ProjectType.order(:type_name).each do |pt| %>
+          <li><%= check_box_tag "#{profile_form.object_name}[project_type_ids][]", pt.id, @profile.specialty?(pt) %> <%= pt.type_name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="field form-stacked">
+      <%= profile_form.label :description, "Description" %><br/>
+      <%= profile_form.text_area :description, :class => "", :rows => "5" %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.submit "Save Profile", :disable_with => "Saving...", :class => "btn large primary" %>
+  </div>
+<% end %>
+
+    </div>
+  </div>
+</div>

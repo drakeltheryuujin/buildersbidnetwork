@@ -1,8 +1,5 @@
 Ypn::Application.routes.draw do
 
-  # FIXME devise's omniauth only supports one omniauthable model.  May need to invert the inheritence on User/AdminUser.
-  #ActiveAdmin.routes(self)
-  #devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :projects do
     resources :bids do
@@ -97,6 +94,12 @@ Ypn::Application.routes.draw do
       get 'private'
     end
   end
+
+  resources :conference, :only => [:index, :create]
+
+  ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
 
   match 'home/:page' => 'home#show', :as => :content_page
   get "home/index"
