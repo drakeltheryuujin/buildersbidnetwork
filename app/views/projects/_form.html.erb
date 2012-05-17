@@ -223,7 +223,7 @@
         <% else %>
           <%= f.submit "Publish Project", :disable_with => "Saving...", :name => :publish, :class => 'btn primary' %>
           <%= f.submit "Save As Draft", :disable_with => "Saving...", :name => :draft, :class => 'btn info' if @project.draft? %>
-          <%= f.submit "Cancel Project", :disable_with => "Saving...", :confirm => "Are you sure?", :name => :cancel, :class => 'btn danger' if @project.published? %>
+          <%= f.submit "Cancel Project", :disable_with => "Saving...", :confirm => "Are you sure?", :name => :cancel, :class => 'btn danger' unless (@project.cancelled? || :cancelled.to_s.eql?(@project.state_was)) %>
         <% end %>
       </div>
     </div> <!-- /.span11 -->
