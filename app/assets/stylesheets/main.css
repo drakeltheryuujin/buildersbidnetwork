@@ -1099,9 +1099,9 @@ font-weight: bold;
 .perfect_tool_carousel {
  background: transparent url('/images/home_computer.png') 0 0 no-repeat;
  float: left;
- height:234px;
+ height: 234px;
  width: 414px;
- margin:20px 20px 0 0;
+ margin: 10px 20px 0 0;
 }
 
 .bottombar h2, .bottombar p{
@@ -2160,7 +2160,7 @@ ul.line_items li div.units .line_item_total,
   text-align: center;
   font-size: 11px;
   color: #666;
-  width: 3.5em;
+  width: 3.0em;
   display: inline-block;
 }
 .account_box .login_choice {

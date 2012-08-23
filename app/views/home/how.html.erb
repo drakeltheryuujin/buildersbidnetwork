@@ -35,7 +35,7 @@
 		<%= image_tag "/images/register_icon_stand_in.png", :alt => "register-icon-stand-in", :width => "133px", :height => "70px", :id => "register-icon", :class => "how-icon" %>
 		<p>Register now to strengthen your business network and streamline the bidding process. Get access to our extensive professional and project listings, build connections and enjoy the benefits of the centralized BBN marketplace.</p>
 		<div class="clear"></div>
-		<a class="btn primary" href="#">Register</a>
+		<%= link_to "Register", new_user_registration_path, :class => "btn primary" %>
 		<div class="clear"></div>
 	</div>
 	
@@ -66,8 +66,8 @@
 		<%= image_tag "/images/how_browse_handshake.png", :alt => "browse-icon-stand-in", :width => "232px", :height => "159px", :id => "browse-icon", :class => "how-icon" %>
 		<p>Browse, search or sign up for regular updates.  Projects are posted publicly and privately giving contractors and vendors the opportunity to be invited to bid on projects in their area. Keep your finger on the pulse of new business development opportunities.</p>
 		<div class="clear"></div>
-		<a class="btn primary" href="#">Browse</a>
-		<div class="clear"></div>
+		<%= link_to "Browse", search_index_url, :class => "btn primary" %>
+    <div class="clear"></div>
 	</div>
 	
 	<h3 class="list_header contractors_list_head">Contractors:</h3>
@@ -98,8 +98,8 @@
 		<p>Gain full access to project details. Bid on projects that are publicly listed.  Get invited to bid on privately listed projects that do not show up in the browse.  Keep your finger on 
 		the pulse of new business development opportunities.</p>
 		<div class="clear"></div>
-		<a class="btn primary" href="#">Subscribe</a>
-		<div class="clear"></div>
+		<%= link_to "Subscribe", subscriptions_path, :class => "btn primary" %>
+    <div class="clear"></div>
 	</div>
 	
 	<h3 class="list_header contractors_list_head">Contractors:</h3>
@@ -123,8 +123,8 @@
 		<%= image_tag "/images/how_bidding_computer.png", :alt => "bidding icon", :width => "304px", :class => "how-icon" %>
 		<p>Easily view project line items, documents and other details to submit your bid online. Respond directly to the project source without having to travel or worry if your bid was received before any deadlines.</p>
 		<div class="clear"></div>
-		<a class="btn primary" href="#">Get Started</a>
-		<div class="clear"></div>
+		<%= link_to "Get Started", new_user_registration_path, :class => "btn primary" %>
+    <div class="clear"></div>
 	</div>
 
 	<h3 class="list_header contractors_list_head">Contractors:</h3>
