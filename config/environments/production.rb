@@ -80,11 +80,13 @@ Ypn::Application.configure do
 
   config.force_ssl = true
 
-  config.middleware.use ExceptionNotifier,
-    :email_prefix => "[BBN EXCEPTION] ",
-    :sender_address => %{"notifier" <notifier@buildersbidnetwork.com>},
-    :exception_recipients => %w{micah@domandtom.com}
-
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[BBN EXCEPTION] ",
+      :sender_address => %{"notifier" <notifier@buildersbidnetwork.com>},
+      :exception_recipients => %w{dom@domandtom.com}
+    }
+    
   config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
     r301 %r{.*}, 'https://www.buildersbidnetwork.com$&', :if => Proc.new {|rack_env|
       (rack_env['SERVER_NAME'] != 'www.buildersbidnetwork.com')

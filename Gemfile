@@ -99,9 +99,9 @@ group :assets do
   gem 'coffee-rails'
 end
 
-#group :production do
-#  gem 'therubyracer-heroku', '0.8.1.pre3'
-#end
+group :production do
+  gem 'therubyracer-heroku', '0.8.1.pre3'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
