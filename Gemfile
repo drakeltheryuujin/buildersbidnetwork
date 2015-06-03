@@ -27,7 +27,7 @@ gem 'jquery-rails', '>= 1.0.12'
 gem 'annotate', '2.4.1.beta1'
 
 # validates dates before/after/between.
-gem 'date_validator'
+gem 'date_validator', '= 0.7.0'
 # validates urls
 gem 'validates_url_format_of'
 
