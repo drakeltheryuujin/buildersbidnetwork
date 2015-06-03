@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby "1.9.3"
+
 #gem 'rails', '3.0.9'
 gem 'rails', '3.1.1'
 
@@ -7,7 +9,7 @@ gem 'rails', '3.1.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # core
-gem 'sqlite3'
+#gem 'sqlite3'
 # mysql
 #gem 'mysql2' #, '< 0.3'
 # postgress
@@ -21,7 +23,8 @@ gem 'devise_invitable'
 gem 'jquery-rails', '>= 1.0.12'
 
 # model documentation
-gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+#gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+gem 'annotate', '2.4.1.beta1'
 
 # validates dates before/after/between.
 gem 'date_validator'
@@ -48,7 +51,8 @@ gem 'activemerchant'
 gem 'geocoder'
 
 # full text indexes and searching for postgres
-gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+#gem 'texticle', '~> 2.0', :require => 'texticle/rails'
+gem 'textacular', '~> 3.0'
 
 # twitter bootstrap 
 #gem 'twitter-bootstrap-rails'
@@ -56,8 +60,8 @@ gem 'texticle', '~> 2.0', :require => 'texticle/rails'
 gem "css-bootstrap-rails"
 
 # ActiveAdmin http://activeadmin.info/
-gem 'activeadmin'
-gem 'sass-rails'
+gem 'activeadmin', '= 0.6.2'
+gem 'sass-rails', '= 3.1.0'
 gem "meta_search",    '>= 1.1.0.pre'
 
 # state machine
@@ -90,6 +94,14 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-email'
 end
+
+group :assets do
+  gem 'coffee-rails'
+end
+
+#group :production do
+#  gem 'therubyracer-heroku', '0.8.1.pre3'
+#end
 
 # Use unicorn as the web server
 # gem 'unicorn'
