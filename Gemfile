@@ -60,7 +60,7 @@ gem 'textacular', '~> 3.0'
 gem "css-bootstrap-rails"
 
 # ActiveAdmin http://activeadmin.info/
-gem 'activeadmin', '= 0.6.2'
+gem 'activeadmin', '= 0.6.0'
 gem 'sass-rails', '= 3.1.0'
 gem "meta_search",    '>= 1.1.0.pre'
 
