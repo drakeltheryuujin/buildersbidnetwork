@@ -20,7 +20,9 @@ gem 'devise'
 gem 'devise_invitable'
 
 # jquery
-gem 'jquery-rails', '>= 1.0.12'
+#gem 'jquery-rails', '>= 1.0.12'
+gem 'jquery-rails', '~> 2.3.0'
+gem 'jquery-ui-rails'
 
 # model documentation
 #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'

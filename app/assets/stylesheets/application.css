@@ -2,6 +2,7 @@
 *= require scaffold
 *= require bootstrap
 *= require jquery-ui
+*= require jquery.ui.all
 *= require jquery.lightbox
 *= require jquery.placeholder.min
 *= require wizard

@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.all
 //= require nested_form
 //= require bootstrap/dropdown
 //= require bootstrap/tabs
