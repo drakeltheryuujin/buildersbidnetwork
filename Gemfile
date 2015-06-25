@@ -98,7 +98,7 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'coffee-rails' "~> 3.2.1"
+  gem 'coffee-rails', "~> 3.2.1"
 end
 
 group :production do
