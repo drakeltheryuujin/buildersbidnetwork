@@ -63,7 +63,7 @@ gem "css-bootstrap-rails"
 
 # ActiveAdmin http://activeadmin.info/
 gem 'activeadmin', '= 0.6.0'
-gem 'sass-rails', '~> 3.2.0'  
+gem 'sass-rails', '~> 3.2.3'  
 gem "meta_search",    '>= 1.1.0.pre'
 
 # state machine
@@ -98,7 +98,7 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'coffee-rails'
+  gem 'coffee-rails' "~> 3.2.1"
 end
 
 group :production do
