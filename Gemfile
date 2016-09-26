@@ -6,7 +6,7 @@ ruby "1.9.3"
 gem 'rails', '3.2.3'
 
 #gem 'heroku', '2.33.0'
-gem 'bundler', '1.2.1'
+gem 'bundler', '1.11.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
