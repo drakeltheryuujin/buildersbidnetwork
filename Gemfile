@@ -16,7 +16,7 @@ gem 'bundler', '1.11.2'
 # mysql
 #gem 'mysql2' #, '< 0.3'
 # postgress
-gem 'pg'
+gem 'pg', '0.19.0'
 
 # users & authentication
 gem 'devise'
