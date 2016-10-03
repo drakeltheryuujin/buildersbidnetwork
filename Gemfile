@@ -48,6 +48,7 @@ gem 'kaminari'
 
 # attach images and documents to model
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3.0'
 gem 'aws-s3'
 
 # clear credit card transactions
