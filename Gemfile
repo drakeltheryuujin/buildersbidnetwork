@@ -47,8 +47,8 @@ gem 'mailboxer', '~> 0.5.4'
 gem 'kaminari'
 
 # attach images and documents to model
-gem 'paperclip'
-gem 'aws-sdk', '~> 2.3.0'
+gem 'paperclip', '= 4.3.7'
+gem 'aws-sdk', '~> 2.0.0'
 gem 'aws-s3'
 
 # clear credit card transactions
