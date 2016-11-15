@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
 #ruby "1.9.3"
-ruby "2.0.0"
+# ruby "2.3.1"
 
 #gem 'rails', '3.0.9'
-gem 'rails', '3.2.3'
+gem 'rails', '5.0.0'
 
 #gem 'heroku', '2.33.0'
-gem 'bundler', '1.11.2'
+# gem 'bundler', '1.11.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,15 +25,15 @@ gem 'devise_invitable'
 
 # jquery
 #gem 'jquery-rails', '>= 1.0.12'
-gem 'jquery-rails', '~> 2.3.0'
-gem 'jquery-ui-rails'
+# gem 'jquery-rails', '>= 2.3.0'
+# gem 'jquery-ui-rails'
 
 # model documentation
 #gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem 'annotate', '2.4.1.beta1'
 
 # validates dates before/after/between.
-gem 'date_validator', '= 0.7.0'
+gem 'date_validator', '>= 0.7.0'
 # validates urls
 gem 'validates_url_format_of'
 
@@ -47,7 +47,7 @@ gem 'mailboxer', '~> 0.5.4'
 gem 'kaminari'
 
 # attach images and documents to model
-gem 'paperclip', '= 4.3.7'
+gem 'paperclip', '>= 4.3.7'
 gem 'aws-sdk', '~> 2.0.0'
 gem 'aws-s3'
 
@@ -67,9 +67,12 @@ gem 'textacular', '~> 3.0'
 gem "css-bootstrap-rails"
 
 # ActiveAdmin http://activeadmin.info/
-gem 'activeadmin', '= 0.6.0'
-gem 'sass-rails', '~> 3.2.3'  
-gem "meta_search",    '>= 1.1.0.pre'
+# Wait for https://github.com/activeadmin/activeadmin/pull/4145 to be merged in
+# gem 'activeadmin', github: 'tjgrathwell/activeadmin', branch 'rails5'
+gem 'activeadmin', github: 'activeadmin'
+#
+#gem 'sass-rails', '>= 3.2.3'  
+# gem "meta_search",    '>= 1.1.0.pre'
 
 # state machine
 gem "aasm"
@@ -97,13 +100,13 @@ group :development do
 # gem 'ruby-debug-ide'
 end
 group :development, :test do
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-email'
 end
 
 group :assets do
-  gem 'coffee-rails', "~> 3.2.1"
+  # gem 'coffee-rails'
 end
 
 group :production do
